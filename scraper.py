@@ -52,7 +52,7 @@ def extract_text_from_pdf(pdf_url):
         full_text = ""
         with pdfplumber.open(pdf_file) as pdf:
             for page in pdf.pages:
-                page_text = page.extract_text(x_tolerance=2, y_tolerance=2, layout=True)
+                page_text = page.extract_text(x_tolerance=2, y_tolerance=2, layout=False)
                 if page_text:
                     full_text += page_text + "\n"
         return full_text
@@ -60,34 +60,148 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def scrape_reports_debug():
+def parse_stocking_report_text(text, report_url):
     """
-    DEBUGGING FUNCTION: This function will only process the first PDF it finds,
-    print all of its extracted text to the log, and then stop.
-    This is to help us see the exact text structure the script is working with.
+    Parses the text extracted from the PDF, which has a known, specific format.
+    This parser is tailored to the log data you provided.
     """
-    print("--- Starting DEBUG Scrape Job ---")
-    print("This script will now attempt to download the first PDF and print its content.")
+    all_records = {}
+    current_species = None
+
+    # A mapping of hatchery IDs to their full names for cleaner data.
+    hatchery_map = {
+        'LO': 'Los Ojos Hatchery (Parkview)',
+        'PVT': 'Private',
+        'RR': 'Red River Trout Hatchery',
+        'LS': 'Lisboa Springs Trout Hatchery',
+        'RL': 'Rock Lake Trout Rearing Facility'
+    }
+
+    # Regex to capture a data line. It's designed to be flexible with spacing.
+    # Groups: 1:Water Name/Hatchery, 2:Length, 3:Lbs, 4:Number, 5:Date, 6:Hatchery ID
+    data_line_regex = re.compile(
+        r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}/\d{2}/\d{4})\s+([A-Z]{2,3})$"
+    )
+
+    lines = text.split('\n')
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        # Check if the line is a species header (e.g., "Channel Catfish")
+        # A species header is typically a short phrase of capitalized words without numbers.
+        if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
+            current_species = line
+            print(f"  [Parser] Species context set to: {current_species}")
+            continue
+        
+        # Ignore header rows and total rows
+        if line.startswith("Water Name") or line.startswith("TOTAL"):
+            continue
+
+        match = data_line_regex.match(line)
+        if match and current_species:
+            name_part, length, _, number, date_str, hatchery_id = match.groups()
+            
+            # Clean up the name part
+            water_name = name_part.strip()
+            # Get the full hatchery name from our map, or use the ID as a fallback
+            hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
+
+            # Some water names have the hatchery name appended. Let's clean that.
+            if hatchery_name != 'Private' and water_name.endswith(hatchery_name):
+                water_name = water_name.replace(hatchery_name, '').strip()
+            elif water_name.endswith('PRIVATE'):
+                 water_name = water_name.replace('PRIVATE', '').strip()
+
+            try:
+                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+                formatted_date = date_obj.strftime("%Y-%m-%d")
+
+                record = {
+                    "date": formatted_date,
+                    "species": current_species,
+                    "quantity": number.replace(',', ''),
+                    "length": length,
+                    "hatchery": hatchery_name
+                }
+                
+                print(f"    [+] Found Record for '{water_name}': {record['date']} - {record['species']}")
+
+                if water_name not in all_records:
+                    all_records[water_name] = {"reportUrl": report_url, "records": []}
+                all_records[water_name]["records"].append(record)
+
+            except ValueError as e:
+                print(f"    [!] Skipping record due to error: {e}")
+                continue
+    
+    return all_records
+
+
+def scrape_reports():
+    """
+    Main function to orchestrate the scraping process. It loads existing data
+    and merges new, unique records into it.
+    """
+    print("--- Starting Scrape Job ---")
+    
+    final_data = {}
+    if os.path.exists(OUTPUT_FILE):
+        print(f"Loading existing data from {OUTPUT_FILE}...")
+        try:
+            with open(OUTPUT_FILE, "r") as f:
+                final_data = json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Warning: Could not read or parse {OUTPUT_FILE}. Starting fresh. Error: {e}")
+            final_data = {}
+    else:
+        print("No existing data file found. Starting fresh.")
 
     pdf_links = get_pdf_links(REPORTS_PAGE_URL)
     if not pdf_links:
-        print("\nCould not find any PDF links. Aborting.")
+        print("No new PDF links found. Exiting.")
         return
 
-    # Process only the most recent report for debugging
-    first_pdf_url = pdf_links[0]
-    print(f"\nProcessing first PDF found: {first_pdf_url}\n")
+    new_records_found = 0
+    for link in pdf_links:
+        raw_text = extract_text_from_pdf(link)
+        if raw_text:
+            parsed_data = parse_stocking_report_text(raw_text, link)
+            
+            for water_body, data in parsed_data.items():
+                if water_body not in final_data:
+                    final_data[water_body] = data
+                    new_records_found += len(data['records'])
+                else:
+                    existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
+                    
+                    for new_record in data['records']:
+                        new_record_str = json.dumps(new_record, sort_keys=True)
+                        if new_record_str not in existing_records_set:
+                            final_data[water_body]['records'].append(new_record)
+                            existing_records_set.add(new_record_str)
+                            new_records_found += 1
     
-    raw_text = extract_text_from_pdf(first_pdf_url)
-
-    if raw_text:
-        print("-------------------- BEGIN PDF TEXT --------------------")
-        print(raw_text)
-        print("--------------------  END PDF TEXT  --------------------")
-        print("\nDebug job finished. Please copy all the text between the BEGIN and END markers and paste it in your next reply.")
+    if new_records_found > 0:
+        print(f"\nFound a total of {new_records_found} new records.")
+        for water_body in final_data:
+            final_data[water_body]['records'].sort(key=lambda x: x['date'], reverse=True)
+            if pdf_links:
+                final_data[water_body]['reportUrl'] = pdf_links[0] 
+            
+        try:
+            with open(OUTPUT_FILE, "w") as f:
+                json.dump(final_data, f, indent=4)
+            print(f"Successfully updated data file: {OUTPUT_FILE}")
+        except IOError as e:
+            print(f"Error writing to file {OUTPUT_FILE}: {e}")
     else:
-        print("\nFailed to extract any text from the PDF. The file might be empty or unreadable.")
+        print("\nNo new records found. Data file may be up-to-date or parser failed to find records.")
+
+    print("--- Scrape Job Finished ---")
 
 if __name__ == "__main__":
-    # We are calling the special debugging function instead of the main one.
-    scrape_reports_debug()
+    # Call the main production function
+    scrape_reports()

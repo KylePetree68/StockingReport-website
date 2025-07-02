@@ -1,0 +1,33 @@
+{
+    "Tingley Beach": {
+        "reportUrl": "https://wildlife.dgf.nm.gov/fishing/weekly-report/",
+        "records": [
+            { "date": "2024-06-18", "species": "Channel Catfish", "quantity": "1,250", "length": "18.0", "hatchery": "LIS" },
+            { "date": "2024-05-21", "species": "Rainbow Trout", "quantity": "1,500", "length": "12.5", "hatchery": "RGD" },
+            { "date": "2024-04-15", "species": "Rainbow Trout", "quantity": "2,000", "length": "11.8", "hatchery": "RGD" }
+        ]
+    },
+    "Cochiti Lake": {
+        "reportUrl": "https://wildlife.dgf.nm.gov/fishing/weekly-report/",
+        "records": [
+            { "date": "2024-06-12", "species": "Rainbow Trout", "quantity": "2,488", "length": "11.2", "hatchery": "CLH" },
+            { "date": "2024-05-08", "species": "Rainbow Trout", "quantity": "2,488", "length": "11.5", "hatchery": "CLH" },
+            { "date": "2024-04-03", "species": "Walleye", "quantity": "500", "length": "N/A", "hatchery": "N/A" }
+        ]
+    },
+    "Abiquiu Lake": {
+        "reportUrl": "https://wildlife.dgf.nm.gov/fishing/weekly-report/",
+        "records": [
+            { "date": "2024-05-29", "species": "Rainbow Trout", "quantity": "3,000", "length": "12.0", "hatchery": "RGD" },
+            { "date": "2024-05-01", "species": "Rainbow Trout", "quantity": "3,000", "length": "11.9", "hatchery": "RGD" }
+        ]
+    },
+    "Navajo Lake": {
+        "reportUrl": "https://wildlife.dgf.nm.gov/fishing/weekly-report/",
+        "records": [
+             { "date": "2024-06-25", "species": "Chinook Salmon", "quantity": "75,000", "length": "3.0", "hatchery": "NAV" },
+             { "date": "2024-06-11", "species": "Channel Catfish", "quantity": "20,000", "length": "8.0", "hatchery": "LIS" },
+             { "date": "2024-05-14", "species": "Crappie", "quantity": "40,000", "length": "4.0", "hatchery": "SCS" }
+        ]
+    }
+}

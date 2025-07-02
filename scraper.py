@@ -52,7 +52,7 @@ def extract_text_from_pdf(pdf_url):
         full_text = ""
         with pdfplumber.open(pdf_file) as pdf:
             for page in pdf.pages:
-                page_text = page.extract_text()
+                page_text = page.extract_text(x_tolerance=2, y_tolerance=2) # Tighter tolerance
                 if page_text:
                     full_text += page_text + "\n"
         return full_text
@@ -62,76 +62,90 @@ def extract_text_from_pdf(pdf_url):
 
 def parse_pdf_text(text, report_url):
     """
-    Parses the raw text extracted from a PDF by reading it line-by-line.
-    This is a more robust method than complex regex on the whole text block.
+    Parses the raw text extracted from a PDF using a more robust, line-by-line logic
+    that handles multiple formatting variations.
     """
     all_records = {}
     current_year = datetime.now().year
-    current_water_body = None
+    most_recent_header = None
 
-    # Regex to find individual stocking entries.
+    # Regex to find a line that is a water body header (ends in a colon)
+    header_pattern = re.compile(r"^([\w\s.’\-()]+?):$")
+    
+    # Regex to find a stocking record on a line, and optionally capture a header on the same line
+    # Group 1: Optional on-same-line header
+    # Group 2: Date
+    # Group 3: Quantity
+    # Group 4: Species
+    # Group 5: Length
     stock_pattern = re.compile(
+        r"(?:^([\w\s.’\-()]+?):\s*)?"  # Optional non-capturing group for the header
         r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)"
     )
-    
-    # Regex to identify a line that is likely a water body header (ends in a colon)
-    header_pattern = re.compile(r"^([\w\s.’\-()]+?):$")
 
-    for line in text.split('\n'):
+    lines = text.split('\n')
+    for line in lines:
         line = line.strip()
         if not line:
             continue
-
+        
+        # Is the entire line just a header?
         header_match = header_pattern.match(line)
-        # Check if the line is a header (e.g., "Bluewater Lake:")
         if header_match:
             potential_header = header_match.group(1).strip()
             # Filter out non-water-body headers
             if "report" not in potential_header.lower() and "week of" not in potential_header.lower():
-                 current_water_body = potential_header.title()
+                most_recent_header = potential_header.title()
+                # print(f"  [Parser] New Header Context: {most_recent_header}") # Debug print
             continue
 
-        # If we have a water body context, look for stocking records
-        if current_water_body:
-            stock_match = stock_pattern.search(line)
-            if stock_match:
-                date_str, quantity, species, length = stock_match.groups()
+        # Does the line contain a stocking record?
+        stock_match = stock_pattern.search(line)
+        if stock_match:
+            same_line_header, date_str, quantity, species, length = stock_match.groups()
+            
+            water_body_name = None
+            if same_line_header:
+                water_body_name = same_line_header.strip().title()
+            elif most_recent_header:
+                water_body_name = most_recent_header
+            
+            if not water_body_name:
+                # print(f"  [Parser] Skipping record, no water body context: {line}") # Debug print
+                continue
+
+            try:
+                date_obj = datetime.strptime(f"{date_str} {current_year}", "%B %d %Y")
+                if date_obj > datetime.now():
+                    date_obj = date_obj.replace(year=current_year - 1)
                 
-                try:
-                    # Handle dates that might cross over the new year
-                    date_obj = datetime.strptime(f"{date_str} {current_year}", "%B %d %Y")
-                    if date_obj > datetime.now():
-                        date_obj = date_obj.replace(year=current_year - 1)
-                    
-                    formatted_date = date_obj.strftime("%Y-%m-%d")
-                    clean_quantity = quantity.replace(',', '')
-                    clean_species = " ".join(species.strip().title().split())
+                formatted_date = date_obj.strftime("%Y-%m-%d")
+                clean_quantity = quantity.replace(',', '')
+                clean_species = " ".join(species.strip().title().split())
 
-                    record = {
-                        "date": formatted_date,
-                        "species": clean_species,
-                        "quantity": clean_quantity,
-                        "length": length,
-                        "hatchery": "N/A"
-                    }
-                    
-                    if current_water_body not in all_records:
-                        all_records[current_water_body] = {
-                            "reportUrl": report_url,
-                            "records": []
-                        }
-                    all_records[current_water_body]["records"].append(record)
+                record = {
+                    "date": formatted_date,
+                    "species": clean_species,
+                    "quantity": clean_quantity,
+                    "length": length,
+                    "hatchery": "N/A"
+                }
+                
+                # print(f"  [Parser] Found Record: {water_body_name} -> {record['date']}") # Debug print
 
-                except ValueError:
-                    # Silently skip if date is malformed
-                    continue
+                if water_body_name not in all_records:
+                    all_records[water_body_name] = {"reportUrl": report_url, "records": []}
+                all_records[water_body_name]["records"].append(record)
+
+            except ValueError:
+                continue
     
     return all_records
 
 
 def scrape_reports():
     """
-    Main function to orchestrate the scraping process. It now loads existing data
+    Main function to orchestrate the scraping process. It loads existing data
     and merges new, unique records into it.
     """
     print("--- Starting Scrape Job ---")

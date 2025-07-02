@@ -85,16 +85,17 @@ def parse_pdf_text_stateful(text, report_url):
         if not line:
             continue
 
-        # Is this line a header?
+        # Is this line a header? Check and set context if it is.
         header_match = header_pattern.match(line)
         if header_match:
             potential_header = header_match.group(1).strip().title()
             if "report" not in potential_header.lower() and "week of" not in potential_header.lower():
                 current_water_body = potential_header
                 print(f"  [Parser] Context set to: {current_water_body}")
-            continue
-
-        # If we have a water body context, look for a stocking record.
+        
+        # ** CRITICAL FIX **
+        # After checking for a header, ALWAYS check for a stocking record on the SAME line.
+        # This handles cases where the header and record are on the same line.
         if current_water_body:
             date_match = date_pattern.search(line)
             details_match = stock_details_pattern.search(line)
@@ -105,6 +106,7 @@ def parse_pdf_text_stateful(text, report_url):
 
                 try:
                     date_obj = datetime.strptime(f"{date_str} {current_year}", "%B %d %Y")
+                    # If the parsed date is in the future, assume it was from the previous year.
                     if date_obj > datetime.now():
                         date_obj = date_obj.replace(year=current_year - 1)
                     

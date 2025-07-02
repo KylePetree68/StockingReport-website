@@ -12,15 +12,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .custom-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: .65em auto;
-        }
         .clickable-row {
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
@@ -28,21 +19,19 @@
         .clickable-row:hover {
             background-color: #f9fafb; /* gray-50 */
         }
-        /* Simple loading spinner */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: middle;
+        /* Custom styles for the searchable dropdown */
+        #custom-select-options {
+            max-height: 250px;
+            overflow-y: auto;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        #custom-select-options::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        #custom-select-options {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
@@ -59,13 +48,14 @@
         <!-- Main Content -->
         <main class="bg-white rounded-xl shadow-lg p-6 md:p-8">
 
-            <!-- Water Body Selector -->
+            <!-- Searchable Dropdown -->
             <div class="mb-8">
-                <label for="water-select" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
-                <div class="relative">
-                    <select id="water-select" class="custom-select block w-full p-4 text-base bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" disabled>
-                        <option id="loading-option" selected>Loading waters...</option>
-                    </select>
+                <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
+                <div class="relative" id="searchable-dropdown">
+                    <input type="text" id="water-search-input" class="w-full p-4 text-base bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search for a water..." disabled>
+                    <div id="custom-select-options" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
 
@@ -97,14 +87,14 @@
             
             <div id="initial-message" class="text-center py-12">
                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 8.812a9.025 9.025 0 011.588-1.588M12 21a9.025 9.025 0 005.224-1.588" /></svg>
-                <h3 class="mt-2 text-lg font-medium text-gray-900">Awaiting Selection</h3>
-                <p class="mt-1 text-sm text-gray-500">Please choose a lake or river from the list above.</p>
+                <h3 id="initial-message-title" class="mt-2 text-lg font-medium text-gray-900">Loading Data...</h3>
+                <p class="mt-1 text-sm text-gray-500">Please wait a moment.</p>
             </div>
 
         </main>
 
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>&copy; 2024 stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
         </footer>
     </div>
 
@@ -113,14 +103,16 @@
         let stockingData = {};
 
         // --- DOM ELEMENTS ---
-        const waterSelect = document.getElementById('water-select');
-        const loadingOption = document.getElementById('loading-option');
+        const searchInput = document.getElementById('water-search-input');
+        const optionsContainer = document.getElementById('custom-select-options');
         const resultsContainer = document.getElementById('results-container');
         const initialMessage = document.getElementById('initial-message');
+        const initialMessageTitle = document.getElementById('initial-message-title');
         const waterNameTitle = document.getElementById('water-name-title');
         const lastStockedDate = document.getElementById('last-stocked-date');
         const lastStockedSpecies = document.getElementById('last-stocked-species');
         const historyTableBody = document.getElementById('history-table-body');
+        const copyrightYearSpan = document.getElementById('copyright-year');
 
         // --- FUNCTIONS ---
 
@@ -129,34 +121,45 @@
          */
         async function initializeApp() {
             try {
-                // Fetch the data from the JSON file
-                const response = await fetch('./stocking_data.json');
+                const response = await fetch('./stocking_data.json?v=' + new Date().getTime()); // Cache-bust
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 stockingData = await response.json();
                 
-                populateWaterSelect();
-                waterSelect.disabled = false; // Enable the dropdown
+                populateCustomSelect();
+                searchInput.disabled = false;
+                searchInput.placeholder = 'Type to search for a water...';
+                initialMessageTitle.textContent = 'Awaiting Selection';
+                initialMessage.querySelector('p').textContent = 'Please choose a lake or river from the list above.';
+
             } catch (error) {
                 console.error("Could not fetch or parse stocking data:", error);
-                loadingOption.textContent = "Error loading data.";
+                searchInput.placeholder = "Error loading data.";
+                initialMessageTitle.textContent = 'Error Loading Data';
+                initialMessage.querySelector('p').textContent = 'Could not load stocking information. Please try again later.';
             }
         }
 
         /**
-         * Populates the dropdown with water body names from the fetched data.
+         * Populates the custom searchable dropdown with water body names.
          */
-        function populateWaterSelect() {
+        function populateCustomSelect() {
             const waterNames = Object.keys(stockingData).sort();
-            loadingOption.textContent = 'Choose a water...';
-            loadingOption.disabled = true;
-
+            optionsContainer.innerHTML = ''; // Clear existing options
+            
             waterNames.forEach(name => {
-                const option = document.createElement('option');
-                option.value = name;
-                option.textContent = name;
-                waterSelect.appendChild(option);
+                const optionDiv = document.createElement('div');
+                optionDiv.textContent = name;
+                optionDiv.classList.add('p-3', 'cursor-pointer', 'hover:bg-blue-50');
+                
+                optionDiv.addEventListener('click', () => {
+                    searchInput.value = name;
+                    optionsContainer.classList.add('hidden');
+                    displayResults(name);
+                });
+                
+                optionsContainer.appendChild(optionDiv);
             });
         }
 
@@ -178,35 +181,4 @@
 
             const latestRecord = records[0];
             waterNameTitle.textContent = waterName;
-            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-            lastStockedSpecies.textContent = latestRecord.species;
-
-            historyTableBody.innerHTML = ''; 
-            records.forEach(record => {
-                const row = document.createElement('tr');
-                row.className = 'clickable-row';
-                row.onclick = () => { window.open(reportUrl, '_blank'); };
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(record.date).toLocaleDateString()}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
-                `;
-                historyTableBody.appendChild(row);
-            });
-        }
-
-        // --- EVENT LISTENERS ---
-        waterSelect.addEventListener('change', (event) => {
-            if (event.target.value) {
-                displayResults(event.target.value);
-            }
-        });
-
-        // --- INITIALIZATION ---
-        window.addEventListener('DOMContentLoaded', initializeApp);
-    </script>
-
-</body>
-</html>
+            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString(

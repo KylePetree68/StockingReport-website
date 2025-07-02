@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NM Stocking Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: .65em auto;
+        }
+        .clickable-row {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .clickable-row:hover {
+            background-color: #f9fafb; /* gray-50 */
+        }
+        /* Simple loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-800">NM Stocking Report</h1>
+            <p class="text-gray-600 mt-2">Your source for the latest New Mexico fish stocking information.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+
+            <!-- Water Body Selector -->
+            <div class="mb-8">
+                <label for="water-select" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
+                <div class="relative">
+                    <select id="water-select" class="custom-select block w-full p-4 text-base bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" disabled>
+                        <option id="loading-option" selected>Loading waters...</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Results Display -->
+            <div id="results-container" class="space-y-6 hidden">
+                <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                    <h2 class="text-xl font-bold text-gray-800"><span id="water-name-title"></span></h2>
+                    <p class="text-gray-700 mt-1">Last stocked on <strong id="last-stocked-date" class="text-blue-700"></strong> with <strong id="last-stocked-species" class="text-blue-700"></strong>.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
+                    <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" class="bg-white divide-y divide-gray-200"></tbody>
+                        </table>
+                    </div>
+                     <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
+                </div>
+            </div>
+            
+            <div id="initial-message" class="text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 8.812a9.025 9.025 0 011.588-1.588M12 21a9.025 9.025 0 005.224-1.588" /></svg>
+                <h3 class="mt-2 text-lg font-medium text-gray-900">Awaiting Selection</h3>
+                <p class="mt-1 text-sm text-gray-500">Please choose a lake or river from the list above.</p>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>&copy; 2024 stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- GLOBAL STATE ---
+        let stockingData = {};
+
+        // --- DOM ELEMENTS ---
+        const waterSelect = document.getElementById('water-select');
+        const loadingOption = document.getElementById('loading-option');
+        const resultsContainer = document.getElementById('results-container');
+        const initialMessage = document.getElementById('initial-message');
+        const waterNameTitle = document.getElementById('water-name-title');
+        const lastStockedDate = document.getElementById('last-stocked-date');
+        const lastStockedSpecies = document.getElementById('last-stocked-species');
+        const historyTableBody = document.getElementById('history-table-body');
+
+        // --- FUNCTIONS ---
+
+        /**
+         * Fetches data and initializes the application.
+         */
+        async function initializeApp() {
+            try {
+                // Fetch the data from the JSON file
+                const response = await fetch('./stocking_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                stockingData = await response.json();
+                
+                populateWaterSelect();
+                waterSelect.disabled = false; // Enable the dropdown
+            } catch (error) {
+                console.error("Could not fetch or parse stocking data:", error);
+                loadingOption.textContent = "Error loading data.";
+            }
+        }
+
+        /**
+         * Populates the dropdown with water body names from the fetched data.
+         */
+        function populateWaterSelect() {
+            const waterNames = Object.keys(stockingData).sort();
+            loadingOption.textContent = 'Choose a water...';
+            loadingOption.disabled = true;
+
+            waterNames.forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                waterSelect.appendChild(option);
+            });
+        }
+
+        /**
+         * Displays the stocking data for the selected water body.
+         * @param {string} waterName The name of the selected water.
+         */
+        function displayResults(waterName) {
+            const data = stockingData[waterName];
+            if (!data || !data.records || data.records.length === 0) return;
+            
+            const records = data.records;
+            const reportUrl = data.reportUrl;
+
+            resultsContainer.classList.remove('hidden');
+            initialMessage.classList.add('hidden');
+
+            records.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            const latestRecord = records[0];
+            waterNameTitle.textContent = waterName;
+            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            lastStockedSpecies.textContent = latestRecord.species;
+
+            historyTableBody.innerHTML = ''; 
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.className = 'clickable-row';
+                row.onclick = () => { window.open(reportUrl, '_blank'); };
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(record.date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
+                `;
+                historyTableBody.appendChild(row);
+            });
+        }
+
+        // --- EVENT LISTENERS ---
+        waterSelect.addEventListener('change', (event) => {
+            if (event.target.value) {
+                displayResults(event.target.value);
+            }
+        });
+
+        // --- INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+
+</body>
+</html>

@@ -88,7 +88,7 @@
             <div id="initial-message" class="text-center py-12">
                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 8.812a9.025 9.025 0 011.588-1.588M12 21a9.025 9.025 0 005.224-1.588" /></svg>
                 <h3 id="initial-message-title" class="mt-2 text-lg font-medium text-gray-900">Loading Data...</h3>
-                <p class="mt-1 text-sm text-gray-500">Please wait a moment.</p>
+                <p id="initial-message-body" class="mt-1 text-sm text-gray-500">Please wait a moment.</p>
             </div>
 
         </main>
@@ -108,6 +108,7 @@
         const resultsContainer = document.getElementById('results-container');
         const initialMessage = document.getElementById('initial-message');
         const initialMessageTitle = document.getElementById('initial-message-title');
+        const initialMessageBody = document.getElementById('initial-message-body');
         const waterNameTitle = document.getElementById('water-name-title');
         const lastStockedDate = document.getElementById('last-stocked-date');
         const lastStockedSpecies = document.getElementById('last-stocked-species');
@@ -123,21 +124,39 @@
             try {
                 const response = await fetch('./stocking_data.json?v=' + new Date().getTime()); // Cache-bust
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`File not found or server error (status: ${response.status}).`);
                 }
-                stockingData = await response.json();
+                
+                // Read the response as text first to check if it's empty
+                const text = await response.text();
+                if (!text) {
+                    throw new Error("The stocking data file is empty.");
+                }
+
+                // Now parse the text as JSON
+                stockingData = JSON.parse(text);
+
+                // Check if the parsed object is empty
+                if (Object.keys(stockingData).length === 0) {
+                    throw new Error("The stocking data file contains no records.");
+                }
                 
                 populateCustomSelect();
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
                 initialMessageTitle.textContent = 'Awaiting Selection';
-                initialMessage.querySelector('p').textContent = 'Please choose a lake or river from the list above.';
+                initialMessageBody.textContent = 'Please choose a lake or river from the list above.';
 
             } catch (error) {
-                console.error("Could not fetch or parse stocking data:", error);
-                searchInput.placeholder = "Error loading data.";
-                initialMessageTitle.textContent = 'Error Loading Data';
-                initialMessage.querySelector('p').textContent = 'Could not load stocking information. Please try again later.';
+                console.error("A critical error occurred during initialization:", error);
+                // Update the UI to show a detailed error message
+                try {
+                    searchInput.placeholder = "Error loading data.";
+                    initialMessageTitle.textContent = 'Error Loading Data';
+                    initialMessageBody.textContent = `Details: ${error.message} Please try again later.`;
+                } catch (uiError) {
+                    console.error("Failed to update the UI with the error message:", uiError);
+                }
             }
         }
 
@@ -181,4 +200,62 @@
 
             const latestRecord = records[0];
             waterNameTitle.textContent = waterName;
-            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString(
+            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            lastStockedSpecies.textContent = latestRecord.species;
+
+            historyTableBody.innerHTML = ''; 
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.className = 'clickable-row';
+                row.onclick = () => { window.open(reportUrl, '_blank'); };
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(record.date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
+                `;
+                historyTableBody.appendChild(row);
+            });
+        }
+
+        // --- EVENT LISTENERS ---
+        
+        // Filter options as user types
+        searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.toLowerCase();
+            const options = optionsContainer.getElementsByTagName('div');
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].textContent || options[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    options[i].style.display = "";
+                } else {
+                    options[i].style.display = "none";
+                }
+            }
+        });
+
+        // Show dropdown on focus
+        searchInput.addEventListener('focus', () => {
+            optionsContainer.classList.remove('hidden');
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            const dropdown = document.getElementById('searchable-dropdown');
+            if (!dropdown.contains(event.target)) {
+                optionsContainer.classList.add('hidden');
+            }
+        });
+
+        // --- INITIALIZATION ---
+        
+        // Set the copyright year automatically
+        copyrightYearSpan.textContent = new Date().getFullYear();
+        
+        // Start the app
+        window.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+
+</body>
+</html>

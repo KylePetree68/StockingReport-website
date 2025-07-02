@@ -62,43 +62,54 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def new_parse_logic(text, report_url):
+def final_parser(text, report_url):
     """
-    A new, more robust parsing strategy that splits the document into sections
-    based on headers, then parses each section.
+    A final, highly resilient parsing strategy that processes the text line-by-line,
+    maintaining the state of the current water body.
     """
     all_records = {}
     current_year = datetime.now().year
+    current_water_body = None
 
-    # Add newlines to ensure the regex matching works even at the start of the file.
-    text = "\n" + text + "\n"
+    # This regex identifies a line that is *only* a header.
+    # It must start with a letter and end with a colon, with no stocking info.
+    header_only_pattern = re.compile(r"^([A-Za-z][\w\s.’()\-]+?):$")
 
-    # This regex splits the text by lines that look like headers.
-    # A header is assumed to be on its own line, composed of capitalized words, and ending with a colon.
-    # The capture group (parentheses) keeps the header in the resulting list.
-    parts = re.split(r'\n([A-Z][A-Z\s.’()\-]+?:)\n', text)
+    # This regex finds a stocking record and can also capture a header if it's on the same line.
+    record_pattern = re.compile(
+        r"^(?:([\w\s.’()\-]+?):\s*)?"  # Optional header on the same line
+        r"(\w+\s\d+):\s*Stocked\s+([\d,]+)\s+([\w\s\-]+?)\s+\(.*?(\d+\.?\d*)-inch\)"
+    )
 
-    # The resulting list is [junk, header1, content1, header2, content2, ...]
-    # We iterate through it in steps of 2, starting from index 1.
-    for i in range(1, len(parts), 2):
-        # Clean up the header text
-        header = parts[i].strip().title().replace(':', '')
-        content = parts[i+1]
-
-        # Filter out section titles like "Northwest:", "Southeast:", etc.
-        if "Report" in header or "Week Of" in header or "Mexico" in header:
+    lines = text.split('\n')
+    for line in lines:
+        line = line.strip()
+        if not line:
             continue
-        
-        water_body_name = header
-        print(f"  [Parser] Processing section for: {water_body_name}")
 
-        # Regex to find all stocking records within this content block.
-        stock_pattern = re.compile(
-            r"(\w+\s\d+):\s*Stocked\s+([\d,]+)\s+([\w\s\-]+?)\s+\(.*?(\d+\.?\d*)-inch\)"
-        )
+        # First, check if the line is ONLY a header. If so, set context and move on.
+        header_match = header_only_pattern.match(line)
+        if header_match:
+            potential_header = header_match.group(1).strip().title()
+            # Filter out high-level regional headers
+            if "Report" not in potential_header and "Week Of" not in potential_header and "Mexico" not in potential_header and "Northwest" not in potential_header and "Northeast" not in potential_header and "Southwest" not in potential_header and "Southeast" not in potential_header:
+                current_water_body = potential_header
+                print(f"  [Parser] Context set to: {current_water_body}")
+                continue # This line was just a header, so we're done with it.
 
-        for match in stock_pattern.finditer(content):
-            date_str, quantity, species, length = match.groups()
+        # Second, check if the line contains a stocking record.
+        record_match = record_pattern.search(line)
+        if record_match:
+            same_line_header, date_str, quantity, species, length = record_match.groups()
+            
+            water_body_for_record = None
+            if same_line_header:
+                water_body_for_record = same_line_header.strip().title()
+            elif current_water_body:
+                water_body_for_record = current_water_body
+            
+            if not water_body_for_record:
+                continue
             
             try:
                 date_obj = datetime.strptime(f"{date_str} {current_year}", "%B %d %Y")
@@ -117,11 +128,11 @@ def new_parse_logic(text, report_url):
                     "hatchery": "N/A"
                 }
                 
-                print(f"    [+] Found Record: {record['date']} - {record['species']}")
+                print(f"    [+] Found Record for '{water_body_for_record}': {record['date']} - {record['species']}")
 
-                if water_body_name not in all_records:
-                    all_records[water_body_name] = {"reportUrl": report_url, "records": []}
-                all_records[water_body_name]["records"].append(record)
+                if water_body_for_record not in all_records:
+                    all_records[water_body_for_record] = {"reportUrl": report_url, "records": []}
+                all_records[water_body_for_record]["records"].append(record)
 
             except ValueError:
                 continue
@@ -162,8 +173,7 @@ def scrape_reports():
     for link in pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
-            # Use the new, more robust parsing logic
-            parsed_data = new_parse_logic(raw_text, link)
+            parsed_data = final_parser(raw_text, link)
             
             for water_body, data in parsed_data.items():
                 if water_body not in final_data:

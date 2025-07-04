@@ -101,7 +101,6 @@
     <script>
         // --- GLOBAL STATE ---
         let stockingData = {};
-        let allWaterNames = []; // Store a sorted list of all water names
 
         // --- DOM ELEMENTS ---
         const searchInput = document.getElementById('water-search-input');
@@ -139,11 +138,7 @@
                     throw new Error("The stocking data file contains no records.");
                 }
                 
-                // Populate the master list of water names
-                allWaterNames = Object.keys(stockingData).sort();
-
-                // Initial render of all options
-                renderOptions();
+                buildOptionsList(); // Build the dropdown options once
 
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
@@ -159,25 +154,19 @@
         }
 
         /**
-         * Renders the dropdown options based on a filter.
-         * If no filter is provided, it renders all options.
-         * @param {string} [filter=''] - The text to filter the water names by.
+         * Builds the full list of dropdown options once for better performance.
          */
-        function renderOptions(filter = '') {
+        function buildOptionsList() {
+            const waterNames = Object.keys(stockingData).sort();
             optionsContainer.innerHTML = ''; // Clear existing options
-            const lowerCaseFilter = filter.toLowerCase();
-
-            const filteredNames = allWaterNames.filter(name => name.toLowerCase().includes(lowerCaseFilter));
             
-            filteredNames.forEach(name => {
+            waterNames.forEach(name => {
                 const optionDiv = document.createElement('div');
                 optionDiv.textContent = name;
                 optionDiv.classList.add('p-3', 'cursor-pointer', 'hover:bg-blue-50');
                 
-                // Event listener for when an option is clicked
                 optionDiv.addEventListener('mousedown', (e) => {
-                    // Use mousedown to ensure it fires before the input's blur event
-                    e.preventDefault(); // Prevent the input from losing focus immediately
+                    e.preventDefault();
                     searchInput.value = name;
                     optionsContainer.classList.add('hidden');
                     displayResults(name);
@@ -218,4 +207,51 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatche
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
+                `;
+                historyTableBody.appendChild(row);
+            });
+        }
+
+        // --- EVENT LISTENERS ---
+        
+        // Filter options as user types by showing/hiding existing elements.
+        searchInput.addEventListener('input', () => {
+            // Always ensure the dropdown is visible when the user is typing.
+            optionsContainer.classList.remove('hidden');
+            const filter = searchInput.value.toLowerCase();
+            const options = optionsContainer.getElementsByTagName('div');
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].textContent || options[i].innerText;
+                if (txtValue.toLowerCase().includes(filter)) {
+                    options[i].style.display = "";
+                } else {
+                    options[i].style.display = "none";
+                }
+            }
+        });
+
+        // Show dropdown on focus
+        searchInput.addEventListener('focus', () => {
+            optionsContainer.classList.remove('hidden');
+        });
+
+        // Hide dropdown when clicking outside of it
+        document.addEventListener('click', (event) => {
+            const dropdown = document.getElementById('searchable-dropdown');
+            if (!dropdown.contains(event.target)) {
+                optionsContainer.classList.add('hidden');
+            }
+        });
+
+        // --- INITIALIZATION ---
+        
+        // Set the copyright year automatically
+        copyrightYearSpan.textContent = new Date().getFullYear();
+        
+        // Start the app
+        window.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+
+</body>
+</html>

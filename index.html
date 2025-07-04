@@ -218,42 +218,4 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
-                `;
-                historyTableBody.appendChild(row);
-            });
-        }
-
-        // --- EVENT LISTENERS ---
-        
-        // Re-render options as user types
-        searchInput.addEventListener('input', () => {
-            renderOptions(searchInput.value);
-        });
-
-        // Show dropdown on focus
-        searchInput.addEventListener('focus', () => {
-            // Re-render the list based on current input, or show all if empty
-            renderOptions(searchInput.value);
-            optionsContainer.classList.remove('hidden');
-        });
-
-        // Hide dropdown when clicking outside of it
-        document.addEventListener('click', (event) => {
-            const dropdown = document.getElementById('searchable-dropdown');
-            if (!dropdown.contains(event.target)) {
-                optionsContainer.classList.add('hidden');
-            }
-        });
-
-        // --- INITIALIZATION ---
-        
-        // Set the copyright year automatically
-        copyrightYearSpan.textContent = new Date().getFullYear();
-        
-        // Start the app
-        window.addEventListener('DOMContentLoaded', initializeApp);
-    </script>
-
-</body>
-</html>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatche

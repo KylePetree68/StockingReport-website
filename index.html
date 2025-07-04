@@ -101,6 +101,7 @@
     <script>
         // --- GLOBAL STATE ---
         let stockingData = {};
+        let allWaterNames = []; // Store a sorted list of all water names
 
         // --- DOM ELEMENTS ---
         const searchInput = document.getElementById('water-search-input');
@@ -127,21 +128,23 @@
                     throw new Error(`File not found or server error (status: ${response.status}).`);
                 }
                 
-                // Read the response as text first to check if it's empty
                 const text = await response.text();
                 if (!text) {
                     throw new Error("The stocking data file is empty.");
                 }
 
-                // Now parse the text as JSON
                 stockingData = JSON.parse(text);
 
-                // Check if the parsed object is empty
                 if (Object.keys(stockingData).length === 0) {
                     throw new Error("The stocking data file contains no records.");
                 }
                 
-                populateCustomSelect();
+                // Populate the master list of water names
+                allWaterNames = Object.keys(stockingData).sort();
+
+                // Initial render of all options
+                renderOptions();
+
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
                 initialMessageTitle.textContent = 'Awaiting Selection';
@@ -149,30 +152,32 @@
 
             } catch (error) {
                 console.error("A critical error occurred during initialization:", error);
-                // Update the UI to show a detailed error message
-                try {
-                    searchInput.placeholder = "Error loading data.";
-                    initialMessageTitle.textContent = 'Error Loading Data';
-                    initialMessageBody.textContent = `Details: ${error.message} Please try again later.`;
-                } catch (uiError) {
-                    console.error("Failed to update the UI with the error message:", uiError);
-                }
+                searchInput.placeholder = "Error loading data.";
+                initialMessageTitle.textContent = 'Error Loading Data';
+                initialMessageBody.textContent = `Details: ${error.message} Please try again later.`;
             }
         }
 
         /**
-         * Populates the custom searchable dropdown with water body names.
+         * Renders the dropdown options based on a filter.
+         * If no filter is provided, it renders all options.
+         * @param {string} [filter=''] - The text to filter the water names by.
          */
-        function populateCustomSelect() {
-            const waterNames = Object.keys(stockingData).sort();
+        function renderOptions(filter = '') {
             optionsContainer.innerHTML = ''; // Clear existing options
+            const lowerCaseFilter = filter.toLowerCase();
+
+            const filteredNames = allWaterNames.filter(name => name.toLowerCase().includes(lowerCaseFilter));
             
-            waterNames.forEach(name => {
+            filteredNames.forEach(name => {
                 const optionDiv = document.createElement('div');
                 optionDiv.textContent = name;
                 optionDiv.classList.add('p-3', 'cursor-pointer', 'hover:bg-blue-50');
                 
-                optionDiv.addEventListener('click', () => {
+                // Event listener for when an option is clicked
+                optionDiv.addEventListener('mousedown', (e) => {
+                    // Use mousedown to ensure it fires before the input's blur event
+                    e.preventDefault(); // Prevent the input from losing focus immediately
                     searchInput.value = name;
                     optionsContainer.classList.add('hidden');
                     displayResults(name);
@@ -188,7 +193,7 @@
          */
         function displayResults(waterName) {
             const data = stockingData[waterName];
-            if (!data || !data.records || data.records.length === 0) return;
+            if (!data || !data.records || !data.records.length) return;
             
             const records = data.records;
             const reportUrl = data.reportUrl;
@@ -221,26 +226,19 @@
 
         // --- EVENT LISTENERS ---
         
-        // Filter options as user types
+        // Re-render options as user types
         searchInput.addEventListener('input', () => {
-            const filter = searchInput.value.toLowerCase();
-            const options = optionsContainer.getElementsByTagName('div');
-            for (let i = 0; i < options.length; i++) {
-                const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                    options[i].style.display = "";
-                } else {
-                    options[i].style.display = "none";
-                }
-            }
+            renderOptions(searchInput.value);
         });
 
         // Show dropdown on focus
         searchInput.addEventListener('focus', () => {
+            // Re-render the list based on current input, or show all if empty
+            renderOptions(searchInput.value);
             optionsContainer.classList.remove('hidden');
         });
 
-        // Hide dropdown when clicking outside
+        // Hide dropdown when clicking outside of it
         document.addEventListener('click', (event) => {
             const dropdown = document.getElementById('searchable-dropdown');
             if (!dropdown.contains(event.target)) {

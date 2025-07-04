@@ -182,8 +182,21 @@
          */
         function displayResults(waterName) {
             const data = stockingData[waterName];
-            if (!data || !data.records || !data.records.length) return;
             
+            // **THE FIX IS HERE**
+            // Check if there is no data or no records for the selected water body.
+            if (!data || !data.records || data.records.length === 0) {
+                // Hide the results container
+                resultsContainer.classList.add('hidden');
+                
+                // Show the initial message container and update its text for the "no data" case.
+                initialMessage.classList.remove('hidden');
+                initialMessageTitle.textContent = `No Data for ${waterName}`;
+                initialMessageBody.textContent = 'There is no stocking history available for this location.';
+                return; // Stop the function here.
+            }
+            
+            // If we have data, proceed as normal.
             const records = data.records;
             const reportUrl = data.reportUrl;
 
@@ -217,7 +230,6 @@
         
         // Filter options as user types by showing/hiding existing elements.
         searchInput.addEventListener('input', () => {
-            // Always ensure the dropdown is visible when the user is typing.
             optionsContainer.classList.remove('hidden');
             const filter = searchInput.value.toLowerCase();
             const options = optionsContainer.getElementsByTagName('div');

@@ -161,6 +161,38 @@ def scrape_reports():
         try:
             with open(OUTPUT_FILE, "r") as f:
                 final_data = json.load(f)
+            
+            # --- SAFER ONE-TIME TEST DATA CLEANUP ---
+            # This routine will only run once. It checks for records with a 2024 date
+            # and removes them, preserving the water body and any real data.
+            print("Checking for legacy test data...")
+            cleaned_count = 0
+            # A flag to see if we need to run the cleanup
+            cleanup_needed = False
+            for water_body, data in final_data.items():
+                for record in data.get("records", []):
+                    if record.get("date", "").startswith("2024"):
+                        cleanup_needed = True
+                        break
+                if cleanup_needed:
+                    break
+            
+            if cleanup_needed:
+                print("Legacy test data found. Performing one-time cleanup...")
+                for water_body, data in final_data.items():
+                    # Create a new list of records that are not from 2024
+                    records_to_keep = [
+                        rec for rec in data.get("records", []) if not rec.get("date", "").startswith("2024")
+                    ]
+                    # Check if the number of records has changed
+                    if len(records_to_keep) < len(data.get("records", [])):
+                        cleaned_count += len(data.get("records", [])) - len(records_to_keep)
+                        final_data[water_body]["records"] = records_to_keep
+                print(f"Removed {cleaned_count} legacy test records.")
+            else:
+                print("No legacy test data found.")
+            # --- END CLEANUP ---
+
         except (json.JSONDecodeError, IOError) as e:
             print(f"Warning: Could not read or parse {OUTPUT_FILE}. Starting fresh. Error: {e}")
             final_data = {}

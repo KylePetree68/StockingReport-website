@@ -63,7 +63,7 @@ def extract_text_from_pdf(pdf_url):
 def parse_stocking_report_text(text, report_url):
     """
     Parses the text extracted from the PDF, which has a known, specific format.
-    This parser is tailored to the log data you provided.
+    This version includes robust logic to clean hatchery names from water body names.
     """
     all_records = {}
     current_species = None
@@ -90,7 +90,6 @@ def parse_stocking_report_text(text, report_url):
             continue
 
         # Check if the line is a species header (e.g., "Channel Catfish")
-        # A species header is typically a short phrase of capitalized words without numbers.
         if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
             current_species = line
             print(f"  [Parser] Species context set to: {current_species}")
@@ -104,16 +103,25 @@ def parse_stocking_report_text(text, report_url):
         if match and current_species:
             name_part, length, _, number, date_str, hatchery_id = match.groups()
             
-            # Clean up the name part
             water_name = name_part.strip()
-            # Get the full hatchery name from our map, or use the ID as a fallback
             hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
 
-            # Some water names have the hatchery name appended. Let's clean that.
-            if hatchery_name != 'Private' and water_name.endswith(hatchery_name):
-                water_name = water_name.replace(hatchery_name, '').strip()
-            elif water_name.endswith('PRIVATE'):
-                 water_name = water_name.replace('PRIVATE', '').strip()
+            # **REVISED CLEANING LOGIC**
+            # Use a case-insensitive regex replace to remove the hatchery name from the water name.
+            if hatchery_name != 'Private':
+                # Escape special characters in hatchery name for regex, like parentheses
+                escaped_hatchery_name = re.escape(hatchery_name)
+                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
+            
+            # Also handle the 'PRIVATE' case separately and robustly
+            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+
+            # Final cleanup to remove extra spaces and apply title case
+            water_name = " ".join(water_name.split()).title()
+
+            # If after cleaning, the water_name is empty, something went wrong, so skip.
+            if not water_name:
+                continue
 
             try:
                 date_obj = datetime.strptime(date_str, "%m/%d/%Y")

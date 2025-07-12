@@ -6,12 +6,14 @@ from datetime import datetime
 import pdfplumber
 import io
 import os
+import shutil
 
 # The URL of the main stocking report page
 BASE_URL = "https://wildlife.dgf.nm.gov"
 REPORTS_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/"
 # The file where the final JSON data will be saved and read from
 OUTPUT_FILE = "stocking_data.json"
+BACKUP_FILE = "stocking_data.json.bak"
 
 def get_pdf_links(page_url):
     """
@@ -63,12 +65,10 @@ def extract_text_from_pdf(pdf_url):
 def parse_stocking_report_text(text, report_url):
     """
     Parses the text extracted from the PDF, which has a known, specific format.
-    This version includes robust logic to clean hatchery names from water body names.
     """
     all_records = {}
     current_species = None
 
-    # A mapping of hatchery IDs to their full names for cleaner data.
     hatchery_map = {
         'LO': 'Los Ojos Hatchery (Parkview)',
         'PVT': 'Private',
@@ -77,8 +77,6 @@ def parse_stocking_report_text(text, report_url):
         'RL': 'Rock Lake Trout Rearing Facility'
     }
 
-    # Regex to capture a data line. It's designed to be flexible with spacing.
-    # Groups: 1:Water Name/Hatchery, 2:Length, 3:Lbs, 4:Number, 5:Date, 6:Hatchery ID
     data_line_regex = re.compile(
         r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}/\d{2}/\d{4})\s+([A-Z]{2,3})$"
     )
@@ -89,13 +87,10 @@ def parse_stocking_report_text(text, report_url):
         if not line:
             continue
 
-        # Check if the line is a species header (e.g., "Channel Catfish")
         if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
             current_species = line
-            print(f"  [Parser] Species context set to: {current_species}")
             continue
         
-        # Ignore header rows and total rows
         if line.startswith("Water Name") or line.startswith("TOTAL"):
             continue
 
@@ -106,20 +101,13 @@ def parse_stocking_report_text(text, report_url):
             water_name = name_part.strip()
             hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
 
-            # **REVISED CLEANING LOGIC**
-            # Use a case-insensitive regex replace to remove the hatchery name from the water name.
             if hatchery_name != 'Private':
-                # Escape special characters in hatchery name for regex, like parentheses
                 escaped_hatchery_name = re.escape(hatchery_name)
                 water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
             
-            # Also handle the 'PRIVATE' case separately and robustly
             water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
-
-            # Final cleanup to remove extra spaces and apply title case
             water_name = " ".join(water_name.split()).title()
 
-            # If after cleaning, the water_name is empty, something went wrong, so skip.
             if not water_name:
                 continue
 
@@ -135,14 +123,11 @@ def parse_stocking_report_text(text, report_url):
                     "hatchery": hatchery_name
                 }
                 
-                print(f"    [+] Found Record for '{water_name}': {record['date']} - {record['species']}")
-
                 if water_name not in all_records:
                     all_records[water_name] = {"reportUrl": report_url, "records": []}
                 all_records[water_name]["records"].append(record)
 
             except ValueError as e:
-                print(f"    [!] Skipping record due to error: {e}")
                 continue
     
     return all_records
@@ -150,8 +135,8 @@ def parse_stocking_report_text(text, report_url):
 
 def scrape_reports():
     """
-    Main function to orchestrate the scraping process. It loads existing data
-    and merges new, unique records into it.
+    Main function to orchestrate the scraping process. It loads existing data,
+    merges new records, and now correctly saves the file if any data has changed.
     """
     print("--- Starting Scrape Job ---")
     
@@ -161,48 +146,52 @@ def scrape_reports():
         try:
             with open(OUTPUT_FILE, "r") as f:
                 final_data = json.load(f)
-            
-            # --- SAFER ONE-TIME TEST DATA CLEANUP ---
-            # This routine will only run once. It checks for records with a 2024 date
-            # and removes them, preserving the water body and any real data.
-            print("Checking for legacy test data...")
-            cleaned_count = 0
-            # A flag to see if we need to run the cleanup
-            cleanup_needed = False
-            for water_body, data in final_data.items():
-                for record in data.get("records", []):
-                    if record.get("date", "").startswith("2024"):
-                        cleanup_needed = True
-                        break
-                if cleanup_needed:
-                    break
-            
-            if cleanup_needed:
-                print("Legacy test data found. Performing one-time cleanup...")
-                for water_body, data in final_data.items():
-                    # Create a new list of records that are not from 2024
-                    records_to_keep = [
-                        rec for rec in data.get("records", []) if not rec.get("date", "").startswith("2024")
-                    ]
-                    # Check if the number of records has changed
-                    if len(records_to_keep) < len(data.get("records", [])):
-                        cleaned_count += len(data.get("records", [])) - len(records_to_keep)
-                        final_data[water_body]["records"] = records_to_keep
-                print(f"Removed {cleaned_count} legacy test records.")
-            else:
-                print("No legacy test data found.")
-            # --- END CLEANUP ---
-
         except (json.JSONDecodeError, IOError) as e:
-            print(f"Warning: Could not read or parse {OUTPUT_FILE}. Starting fresh. Error: {e}")
-            final_data = {}
+            print(f"Warning: Could not read or parse {OUTPUT_FILE}. Attempting to restore from backup.")
+            if os.path.exists(BACKUP_FILE):
+                try:
+                    with open(BACKUP_FILE, "r") as bf:
+                        final_data = json.load(bf)
+                    print("Successfully restored from backup.")
+                except (json.JSONDecodeError, IOError) as be:
+                     print(f"Could not restore from backup. Starting fresh. Error: {be}")
+                     final_data = {}
+            else:
+                print("No backup file found. Starting fresh.")
+                final_data = {}
     else:
         print("No existing data file found. Starting fresh.")
+
+    # **FIX**: A flag to track if any data has been changed (cleaned or new records added)
+    data_was_modified = False
+
+    # --- Safer One-Time Test Data Cleanup ---
+    cleanup_needed = any(
+        record.get("date", "").startswith("2024")
+        for data in final_data.values()
+        for record in data.get("records", [])
+    )
+    
+    if cleanup_needed:
+        print("Legacy test data found. Performing one-time cleanup...")
+        data_was_modified = True
+        cleaned_count = 0
+        for water_body in list(final_data.keys()):
+            records_to_keep = [
+                rec for rec in final_data[water_body].get("records", []) if not rec.get("date", "").startswith("2024")
+            ]
+            if len(records_to_keep) < len(final_data[water_body].get("records", [])):
+                cleaned_count += len(final_data[water_body].get("records", [])) - len(records_to_keep)
+                final_data[water_body]["records"] = records_to_keep
+        print(f"Removed {cleaned_count} legacy test records.")
+    # --- END CLEANUP ---
 
     pdf_links = get_pdf_links(REPORTS_PAGE_URL)
     if not pdf_links:
         print("No new PDF links found. Exiting.")
-        return
+        # If no new links and no cleanup, we don't need to save.
+        if not data_was_modified:
+            return
 
     new_records_found = 0
     for link in pdf_links:
@@ -225,23 +214,32 @@ def scrape_reports():
                             new_records_found += 1
     
     if new_records_found > 0:
+        data_was_modified = True
         print(f"\nFound a total of {new_records_found} new records.")
+
+    # **FIX**: Save the file if data was modified in any way (cleanup or new records)
+    if data_was_modified:
+        print("Data has been modified. Saving file...")
         for water_body in final_data:
             final_data[water_body]['records'].sort(key=lambda x: x['date'], reverse=True)
             if pdf_links:
                 final_data[water_body]['reportUrl'] = pdf_links[0] 
-            
+        
         try:
+            # Create a backup before writing the new file
+            if os.path.exists(OUTPUT_FILE):
+                shutil.copy(OUTPUT_FILE, BACKUP_FILE)
+                print(f"Created backup: {BACKUP_FILE}")
+
             with open(OUTPUT_FILE, "w") as f:
                 json.dump(final_data, f, indent=4)
             print(f"Successfully updated data file: {OUTPUT_FILE}")
         except IOError as e:
             print(f"Error writing to file {OUTPUT_FILE}: {e}")
     else:
-        print("\nNo new records found. Data file may be up-to-date or parser failed to find records.")
+        print("\nNo new records found and no cleanup performed. Data file is up-to-date.")
 
     print("--- Scrape Job Finished ---")
 
 if __name__ == "__main__":
-    # Call the main production function
     scrape_reports()

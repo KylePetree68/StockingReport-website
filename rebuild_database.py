@@ -33,7 +33,9 @@ def get_all_pdf_links_from_archive(start_url):
             response.raise_for_status()
             soup = BeautifulSoup(response.content, "html.parser")
             
-            content_div = soup.find("div", class_="entry-content")
+            # ** THE FIX IS HERE **
+            # The class name for the content div has been updated.
+            content_div = soup.find("div", class_="post-content")
             if not content_div:
                 print(f"    Could not find content div on page {page_count}. Stopping.")
                 break

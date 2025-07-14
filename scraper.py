@@ -65,7 +65,8 @@ def extract_text_from_pdf(pdf_url):
 
 def parse_stocking_report_text(text, report_url):
     """
-    Parses the text extracted from the PDF, which has a known, specific format.
+    Parses the text extracted from the PDF.
+    **CHANGE**: Now adds the reportUrl to each individual record.
     """
     all_records = {}
     current_species = None
@@ -121,11 +122,13 @@ def parse_stocking_report_text(text, report_url):
                     "species": current_species,
                     "quantity": number.replace(',', ''),
                     "length": length,
-                    "hatchery": hatchery_name
+                    "hatchery": hatchery_name,
+                    "reportUrl": report_url # Add the source URL to the record itself
                 }
                 
                 if water_name not in all_records:
-                    all_records[water_name] = {"reportUrl": report_url, "records": []}
+                    # The top level no longer needs a reportUrl
+                    all_records[water_name] = {"records": []}
                 all_records[water_name]["records"].append(record)
 
             except ValueError as e:
@@ -136,8 +139,7 @@ def parse_stocking_report_text(text, report_url):
 
 def scrape_reports():
     """
-    Main function to orchestrate the scraping process. It now only processes
-    PDFs that it has not seen before.
+    Main function with corrected efficiency logic.
     """
     print("--- Starting Scrape Job ---")
     
@@ -148,18 +150,8 @@ def scrape_reports():
             with open(OUTPUT_FILE, "r") as f:
                 final_data = json.load(f)
         except (json.JSONDecodeError, IOError) as e:
-            print(f"Warning: Could not read or parse {OUTPUT_FILE}. Attempting to restore from backup.")
-            if os.path.exists(BACKUP_FILE):
-                try:
-                    with open(BACKUP_FILE, "r") as bf:
-                        final_data = json.load(bf)
-                    print("Successfully restored from backup.")
-                except (json.JSONDecodeError, IOError) as be:
-                     print(f"Could not restore from backup. Starting fresh. Error: {be}")
-                     final_data = {}
-            else:
-                print("No backup file found. Starting fresh.")
-                final_data = {}
+            print(f"Warning: Could not read or parse {OUTPUT_FILE}. Starting fresh.")
+            final_data = {}
     else:
         print("No existing data file found. Starting fresh.")
 
@@ -186,12 +178,13 @@ def scrape_reports():
         print(f"Removed {cleaned_count} legacy test records.")
     # --- END CLEANUP ---
 
-    # --- **NEW EFFICIENCY LOGIC** ---
-    # 1. Get a set of all URLs we have already processed.
+    # --- **CORRECTED EFFICIENCY LOGIC** ---
+    # 1. Get a set of all URLs we have already processed by checking every record.
     processed_urls = set()
     for water_data in final_data.values():
-        if "reportUrl" in water_data:
-            processed_urls.add(water_data["reportUrl"])
+        for record in water_data.get("records", []):
+            if "reportUrl" in record:
+                processed_urls.add(record["reportUrl"])
     
     # 2. Get all links from the archive page.
     all_pdf_links = get_pdf_links(ARCHIVE_PAGE_URL)
@@ -213,7 +206,6 @@ def scrape_reports():
         return
 
     new_records_found = 0
-    # **CHANGE**: Loop through only the new links.
     for link in new_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
@@ -241,8 +233,6 @@ def scrape_reports():
         print("Data has been modified. Saving file...")
         for water_body in final_data:
             final_data[water_body]['records'].sort(key=lambda x: x['date'], reverse=True)
-            if all_pdf_links:
-                final_data[water_body]['reportUrl'] = all_pdf_links[0] 
         
         try:
             if os.path.exists(OUTPUT_FILE):

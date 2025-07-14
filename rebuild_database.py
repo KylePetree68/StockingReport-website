@@ -8,12 +8,10 @@ import io
 import os
 import shutil
 
-# This script is for a one-time rebuild of the database from the archive.
+# This script is for a one-time debug to inspect an old PDF file.
 
 BASE_URL = "https://wildlife.dgf.nm.gov"
 ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
-OUTPUT_FILE = "stocking_data.json"
-BACKUP_FILE = "stocking_data.json.bak"
 
 def get_pdf_links(page_url):
     """
@@ -57,134 +55,51 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def parse_structured_format(text, report_url):
+def debug_old_file():
     """
-    Parses the modern, table-based PDF format.
+    DEBUGGING FUNCTION: Finds an old PDF (from 2024), extracts its text,
+    and prints it to the log for analysis.
     """
-    all_records = {}
-    current_species = None
-    hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery'}
-    data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}/\d{2}/\d{4})\s+([A-Z]{2,3})$")
-    lines = text.split('\n')
-    for line in lines:
-        line = line.strip()
-        if not line: continue
-        if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
-            current_species = line
-            continue
-        if line.startswith("Water Name") or line.startswith("TOTAL"): continue
-        match = data_line_regex.match(line)
-        if match and current_species:
-            name_part, length, _, number, date_str, hatchery_id = match.groups()
-            water_name = name_part.strip()
-            hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
-            if hatchery_name != 'Private':
-                escaped_hatchery_name = re.escape(hatchery_name)
-                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
-            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
-            water_name = " ".join(water_name.split()).title()
-            if not water_name: continue
-            try:
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-                if water_name not in all_records:
-                    all_records[water_name] = {"records": []}
-                all_records[water_name]["records"].append(record)
-            except ValueError: continue
-    return all_records
+    print("--- Starting OLD FILE DEBUG Job ---")
+    print("This script will find a 2024 report and print its content.")
 
-def parse_free_form_format(text, report_url):
-    """
-    Parses older, less-structured PDF formats.
-    """
-    all_records = {}
-    current_year_str = str(datetime.now().year)
-    # Find year from report title if available, e.g., "Stocking Report By Date for 01/01/2024"
-    year_match = re.search(r'\d{2}/\d{2}/(\d{4})', text)
-    if year_match:
-        current_year_str = year_match.group(1)
-
-    # Regex to find a water body header and capture all text until the next one.
-    water_body_pattern = re.compile(r"([A-Z\s.’()\-]+?):\n(.*?)(?=\n[A-Z\s.’()\-]+?:|\Z)", re.DOTALL)
-    stock_pattern = re.compile(r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)")
-    
-    for wb_match in water_body_pattern.finditer(text):
-        water_body_name = wb_match.group(1).strip().title()
-        if "Report" in water_body_name or "Week Of" in water_body_name: continue
-
-        entry_text = wb_match.group(2)
-        for stock_match in stock_pattern.finditer(entry_text):
-            date_str, quantity, species, length = stock_match.groups()
-            try:
-                date_obj = datetime.strptime(f"{date_str} {current_year_str}", "%B %d %Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                record = {"date": formatted_date, "species": species.strip().title(), "quantity": quantity.replace(',', ''), "length": length, "hatchery": "N/A", "reportUrl": report_url}
-                if water_body_name not in all_records:
-                    all_records[water_body_name] = {"records": []}
-                all_records[water_body_name]["records"].append(record)
-            except ValueError: continue
-    return all_records
-
-def rebuild_database():
-    """
-    This function performs a one-time, full rebuild of the database.
-    """
-    print("--- Starting One-Time Database Rebuild ---")
-    print("This will process ALL reports from the archive.")
-    
-    final_data = {} # Start with a completely empty dictionary
     all_pdf_links = get_pdf_links(ARCHIVE_PAGE_URL)
-    
     if not all_pdf_links:
-        print("No PDF links found. Aborting rebuild.")
+        print("\nCould not find any PDF links. Aborting.")
         return
 
+    # Find the first link that contains a 2024 date in its text/URL
+    target_pdf_url = None
     for link in all_pdf_links:
-        raw_text = extract_text_from_pdf(link)
-        if raw_text:
-            # First, try the modern, structured parser
-            parsed_data = parse_structured_format(raw_text, link)
-            
-            # If it returns no data, fall back to the free-form parser
-            if not parsed_data:
-                print("    -> Structured parse failed, trying free-form parser...")
-                parsed_data = parse_free_form_format(raw_text, link)
-
-            if not parsed_data:
-                print("    [!] No records found in this file with any parser.")
-                continue
-
-            for water_body, data in parsed_data.items():
-                if water_body not in final_data:
-                    final_data[water_body] = data
-                else:
-                    final_data[water_body]["records"].extend(data["records"])
+        # A simple way to find a report from a previous year.
+        if "24.pdf" in link or "-24/" in link:
+            target_pdf_url = link
+            break
     
-    print(f"\nRebuild complete. Processed {len(all_pdf_links)} reports.")
-    
-    if final_data:
-        print("Saving the newly built database...")
-        for water_body in final_data:
-            # Remove duplicates and sort
-            unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
-            unique_records.sort(key=lambda x: x['date'], reverse=True)
-            final_data[water_body]['records'] = unique_records
-        
-        try:
-            if os.path.exists(OUTPUT_FILE):
-                shutil.copy(OUTPUT_FILE, BACKUP_FILE)
-                print(f"Created backup of old file: {BACKUP_FILE}")
+    if not target_pdf_url:
+         # Fallback if the first check fails
+        for link in all_pdf_links:
+            if "2024" in link:
+                target_pdf_url = link
+                break
 
-            with open(OUTPUT_FILE, "w") as f:
-                json.dump(final_data, f, indent=4)
-            print(f"Successfully saved new data file: {OUTPUT_FILE}")
-        except IOError as e:
-            print(f"Error writing to file {OUTPUT_FILE}: {e}")
+    if not target_pdf_url:
+        print("\nCould not find a report from 2024 to debug. Please check the archive page.")
+        return
+
+    print(f"\nFound a 2024 report to debug: {target_pdf_url}\n")
+    
+    raw_text = extract_text_from_pdf(target_pdf_url)
+
+    if raw_text:
+        print("-------------------- BEGIN OLD PDF TEXT --------------------")
+        print(raw_text)
+        print("--------------------  END OLD PDF TEXT  --------------------")
+        print("\nDebug job finished. Please copy all the text between the BEGIN and END markers and paste it in your next reply.")
     else:
-        print("No data was parsed. The data file was not written.")
+        print("\nFailed to extract any text from the target PDF. The file might be empty or unreadable.")
 
-    print("--- Rebuild Finished ---")
 
 if __name__ == "__main__":
-    rebuild_database()
+    # We are calling the special debugging function instead of the main one.
+    debug_old_file()

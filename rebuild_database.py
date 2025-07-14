@@ -57,38 +57,31 @@ def extract_text_from_pdf(pdf_url):
 
 def debug_old_file():
     """
-    DEBUGGING FUNCTION: Finds an old PDF (from 2024), extracts its text,
+    DEBUGGING FUNCTION: Finds an old PDF, extracts its text,
     and prints it to the log for analysis.
     """
     print("--- Starting OLD FILE DEBUG Job ---")
-    print("This script will find a 2024 report and print its content.")
+    print("This script will find an old report and print its content.")
 
     all_pdf_links = get_pdf_links(ARCHIVE_PAGE_URL)
     if not all_pdf_links:
         print("\nCould not find any PDF links. Aborting.")
         return
 
-    # **IMPROVED LOGIC TO FIND AN OLDER FILE**
+    # **CORRECTED LOGIC TO FIND AN OLDER FILE**
     target_pdf_url = None
-    # A more robust way to find a report from a previous year.
-    # Look for "-24" which is common in date formats like "12-25-24" in the URL.
+    # Look for "-24" which is common in date formats like "12-25-24" in the URL's text.
+    # This check is not perfect but is a good first attempt.
     for link in all_pdf_links:
         if "-24" in link:
             target_pdf_url = link
             break
     
-    if not target_pdf_url:
-         # Fallback if the first check fails, look for the full year
-        for link in all_pdf_links:
-            if "2024" in link:
-                target_pdf_url = link
-                break
-
-    # If we still can't find a 2024 file, grab an older one from the list to debug.
-    if not target_pdf_url and len(all_pdf_links) > 10:
-        print("\nCould not find a 2024 report specifically. Grabbing an older report from the archive to debug...")
-        # Grab the 10th from the end, which is likely from a previous year.
-        target_pdf_url = all_pdf_links[-10] 
+    # If we still can't find a 2024 file, grab the last one from the list to debug.
+    # The last link on the archive page is the oldest.
+    if not target_pdf_url and all_pdf_links:
+        print("\nCould not find a 2024 report specifically. Grabbing the oldest report from the archive to debug...")
+        target_pdf_url = all_pdf_links[-1] 
 
     if not target_pdf_url:
         print("\nCould not find a suitable old report to debug. Please check the archive page.")

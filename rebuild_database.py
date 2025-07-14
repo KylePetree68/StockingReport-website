@@ -68,26 +68,33 @@ def debug_old_file():
         print("\nCould not find any PDF links. Aborting.")
         return
 
-    # Find the first link that contains a 2024 date in its text/URL
+    # **IMPROVED LOGIC TO FIND AN OLDER FILE**
     target_pdf_url = None
+    # A more robust way to find a report from a previous year.
+    # Look for "-24" which is common in date formats like "12-25-24" in the URL.
     for link in all_pdf_links:
-        # A simple way to find a report from a previous year.
-        if "24.pdf" in link or "-24/" in link:
+        if "-24" in link:
             target_pdf_url = link
             break
     
     if not target_pdf_url:
-         # Fallback if the first check fails
+         # Fallback if the first check fails, look for the full year
         for link in all_pdf_links:
             if "2024" in link:
                 target_pdf_url = link
                 break
 
+    # If we still can't find a 2024 file, grab an older one from the list to debug.
+    if not target_pdf_url and len(all_pdf_links) > 10:
+        print("\nCould not find a 2024 report specifically. Grabbing an older report from the archive to debug...")
+        # Grab the 10th from the end, which is likely from a previous year.
+        target_pdf_url = all_pdf_links[-10] 
+
     if not target_pdf_url:
-        print("\nCould not find a report from 2024 to debug. Please check the archive page.")
+        print("\nCould not find a suitable old report to debug. Please check the archive page.")
         return
 
-    print(f"\nFound a 2024 report to debug: {target_pdf_url}\n")
+    print(f"\nFound a target report to debug: {target_pdf_url}\n")
     
     raw_text = extract_text_from_pdf(target_pdf_url)
 

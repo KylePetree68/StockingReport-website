@@ -11,6 +11,11 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* A lighter, slightly blue-gray background */
+            /* Background image from Unsplash - adds personality */
+            background-image: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), url('https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=2070');
+            background-attachment: fixed;
+            background-size: cover;
         }
         .clickable-row {
             cursor: pointer;
@@ -19,47 +24,33 @@
         .clickable-row:hover {
             background-color: #f9fafb; /* gray-50 */
         }
-        /* Custom styles for the searchable dropdown */
         #custom-select-options {
             max-height: 250px;
             overflow-y: auto;
         }
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        #custom-select-options::-webkit-scrollbar {
-            display: none;
-        }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        #custom-select-options {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        #custom-select-options::-webkit-scrollbar { display: none; }
+        #custom-select-options { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
-        <!-- Header -->
         <header class="text-center mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-blue-800">NM Stocking Report</h1>
             <p class="text-gray-600 mt-2">Your source for the latest New Mexico fish stocking information.</p>
         </header>
 
-        <!-- Main Content -->
-        <main class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
 
-            <!-- Searchable Dropdown -->
             <div class="mb-8">
                 <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
                 <div class="relative" id="searchable-dropdown">
-                    <input type="text" id="water-search-input" class="w-full p-4 text-base bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search for a water..." disabled>
-                    <div id="custom-select-options" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-                        <!-- Options will be populated by JavaScript -->
-                    </div>
+                    <input type="text" id="water-search-input" class="w-full p-4 text-base bg-white border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search for a water..." disabled>
+                    <div id="custom-select-options" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg"></div>
                 </div>
             </div>
 
-            <!-- Results Display -->
             <div id="results-container" class="space-y-6 hidden">
                 <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                     <h2 class="text-xl font-bold text-gray-800"><span id="water-name-title"></span></h2>
@@ -85,13 +76,20 @@
                 </div>
             </div>
             
-            <div id="initial-message" class="text-center py-12">
-                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 8.812a9.025 9.025 0 011.588-1.588M12 21a9.025 9.025 0 005.224-1.588" /></svg>
-                <h3 id="initial-message-title" class="mt-2 text-lg font-medium text-gray-900">Loading Data...</h3>
-                <p id="initial-message-body" class="mt-1 text-sm text-gray-500">Please wait a moment.</p>
+            <div id="initial-message" class="py-4">
+                <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700">Loading Data...</h3>
+                <div id="initial-message-body" class="text-gray-600">
+                    <p>Please wait a moment while we fetch the latest reports.</p>
+                </div>
             </div>
 
         </main>
+
+        <div class="mt-8 text-center">
+            <div class="bg-gray-200/80 rounded-lg flex items-center justify-center h-24 text-gray-500">
+                Advertisement
+            </div>
+        </div>
 
         <footer class="text-center mt-8 text-sm text-gray-500">
             <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
@@ -123,34 +121,61 @@
         async function initializeApp() {
             try {
                 const response = await fetch('./stocking_data.json?v=' + new Date().getTime()); // Cache-bust
-                if (!response.ok) {
-                    throw new Error(`File not found or server error (status: ${response.status}).`);
-                }
+                if (!response.ok) throw new Error(`File not found or server error (status: ${response.status}).`);
                 
                 const text = await response.text();
-                if (!text) {
-                    throw new Error("The stocking data file is empty.");
-                }
+                if (!text) throw new Error("The stocking data file is empty.");
 
                 stockingData = JSON.parse(text);
 
-                if (Object.keys(stockingData).length === 0) {
-                    throw new Error("The stocking data file contains no records.");
-                }
+                if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
                 
-                buildOptionsList(); // Build the dropdown options once
+                buildOptionsList();
+                displayStatewideSummary(); // Display the new summary on load
 
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
-                initialMessageTitle.textContent = 'Awaiting Selection';
-                initialMessageBody.textContent = 'Please choose a lake or river from the list above.';
-
             } catch (error) {
                 console.error("A critical error occurred during initialization:", error);
                 searchInput.placeholder = "Error loading data.";
                 initialMessageTitle.textContent = 'Error Loading Data';
-                initialMessageBody.textContent = `Details: ${error.message} Please try again later.`;
+                initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
             }
+        }
+
+        /**
+         * Displays a summary of the most recently stocked waters statewide.
+         */
+        function displayStatewideSummary() {
+            initialMessageTitle.textContent = "Latest Statewide Stockings";
+            initialMessageBody.innerHTML = ''; // Clear loading message
+
+            const allRecords = [];
+            for (const waterName in stockingData) {
+                stockingData[waterName].records.forEach(record => {
+                    allRecords.push({ waterName, ...record });
+                });
+            }
+
+            allRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            const recentStockings = allRecords.slice(0, 5); // Get top 5 most recent
+
+            const summaryList = document.createElement('ul');
+            summaryList.className = 'space-y-3';
+            
+            recentStockings.forEach(rec => {
+                const li = document.createElement('li');
+                li.className = 'p-3 bg-white/50 rounded-lg border border-gray-200';
+                const stockDate = new Date(rec.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+                li.innerHTML = `
+                    <p class="font-semibold text-gray-800">${rec.waterName}</p>
+                    <p class="text-sm text-gray-600">Stocked with ${rec.species} on ${stockDate}</p>
+                `;
+                summaryList.appendChild(li);
+            });
+
+            initialMessageBody.appendChild(summaryList);
         }
 
         /**
@@ -158,7 +183,7 @@
          */
         function buildOptionsList() {
             const waterNames = Object.keys(stockingData).sort();
-            optionsContainer.innerHTML = ''; // Clear existing options
+            optionsContainer.innerHTML = '';
             
             waterNames.forEach(name => {
                 const optionDiv = document.createElement('div');
@@ -178,25 +203,18 @@
 
         /**
          * Displays the stocking data for the selected water body.
-         * @param {string} waterName The name of the selected water.
          */
         function displayResults(waterName) {
             const data = stockingData[waterName];
             
-            // **THE FIX IS HERE**
-            // Check if there is no data or no records for the selected water body.
             if (!data || !data.records || data.records.length === 0) {
-                // Hide the results container
                 resultsContainer.classList.add('hidden');
-                
-                // Show the initial message container and update its text for the "no data" case.
                 initialMessage.classList.remove('hidden');
                 initialMessageTitle.textContent = `No Data for ${waterName}`;
-                initialMessageBody.textContent = 'There is no stocking history available for this location.';
-                return; // Stop the function here.
+                initialMessageBody.innerHTML = '<p>There is no stocking history available for this location.</p>';
+                return;
             }
             
-            // If we have data, proceed as normal.
             const records = data.records;
             const reportUrl = data.reportUrl;
 
@@ -228,7 +246,6 @@
 
         // --- EVENT LISTENERS ---
         
-        // Filter options as user types by showing/hiding existing elements.
         searchInput.addEventListener('input', () => {
             optionsContainer.classList.remove('hidden');
             const filter = searchInput.value.toLowerCase();
@@ -243,12 +260,10 @@
             }
         });
 
-        // Show dropdown on focus
         searchInput.addEventListener('focus', () => {
             optionsContainer.classList.remove('hidden');
         });
 
-        // Hide dropdown when clicking outside of it
         document.addEventListener('click', (event) => {
             const dropdown = document.getElementById('searchable-dropdown');
             if (!dropdown.contains(event.target)) {
@@ -258,10 +273,7 @@
 
         // --- INITIALIZATION ---
         
-        // Set the copyright year automatically
         copyrightYearSpan.textContent = new Date().getFullYear();
-        
-        // Start the app
         window.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 

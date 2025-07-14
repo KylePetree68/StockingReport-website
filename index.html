@@ -236,7 +236,6 @@
             }
             
             const records = data.records;
-            const reportUrl = data.reportUrl;
 
             resultsContainer.classList.remove('hidden');
             initialMessage.classList.add('hidden');
@@ -252,7 +251,8 @@
             records.forEach(record => {
                 const row = document.createElement('tr');
                 row.className = 'clickable-row';
-                row.onclick = () => { window.open(reportUrl, '_blank'); };
+                // **THE FIX IS HERE**: The reportUrl is now part of the record object.
+                row.onclick = () => { if(record.reportUrl) window.open(record.reportUrl, '_blank'); };
                 row.innerHTML = `
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(record.date).toLocaleDateString()}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>

@@ -33,8 +33,6 @@ def get_all_pdf_links_from_archive(start_url):
             response.raise_for_status()
             soup = BeautifulSoup(response.content, "html.parser")
             
-            # ** THE FIX IS HERE **
-            # The class name for the content div has been updated.
             content_div = soup.find("div", class_="post-content")
             if not content_div:
                 print(f"    Could not find content div on page {page_count}. Stopping.")
@@ -94,9 +92,9 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def parse_modern_format(text, report_url):
+def final_parser(text, report_url):
     """
-    Parses the modern, table-based PDF format.
+    A robust parser built from the debug logs to handle the known PDF format.
     """
     all_records = {}
     current_species = None
@@ -131,40 +129,9 @@ def parse_modern_format(text, report_url):
             except ValueError: continue
     return all_records
 
-def parse_older_format(text, report_url):
-    """
-    Parses older, less-structured PDF formats based on the debug log.
-    """
-    all_records = {}
-    # Find year from report title if available, e.g., "Stocking Report By Date for 01/01/2024"
-    year_match = re.search(r'(\d{4})', text)
-    current_year_str = year_match.group(1) if year_match else str(datetime.now().year)
-
-    # Regex to find a water body header and capture all text until the next one.
-    water_body_pattern = re.compile(r"([A-Z\s.’()\-]+?):\n(.*?)(?=\n[A-Z\s.’()\-]+?:|\Z)", re.DOTALL)
-    stock_pattern = re.compile(r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)")
-    
-    for wb_match in water_body_pattern.finditer(text):
-        water_body_name = wb_match.group(1).strip().title()
-        if "Report" in water_body_name or "Week Of" in water_body_name: continue
-
-        entry_text = wb_match.group(2)
-        for stock_match in stock_pattern.finditer(entry_text):
-            date_str, quantity, species, length = stock_match.groups()
-            try:
-                date_obj = datetime.strptime(f"{date_str} {current_year_str}", "%B %d %Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                record = {"date": formatted_date, "species": species.strip().title(), "quantity": quantity.replace(',', ''), "length": length, "hatchery": "N/A", "reportUrl": report_url}
-                if water_body_name not in all_records:
-                    all_records[water_body_name] = {"records": []}
-                all_records[water_name]["records"].append(record)
-            except ValueError: continue
-    return all_records
-
 def rebuild_database():
     """
     This function performs a one-time, full rebuild of the database.
-    It now uses multiple parsing strategies to handle different file formats.
     """
     print("--- Starting One-Time Database Rebuild ---")
     print("This will process ALL reports from the archive.")
@@ -179,16 +146,9 @@ def rebuild_database():
     for link in all_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
-            # Try the modern parser first
-            parsed_data = parse_modern_format(raw_text, link)
-            
-            # If it returns no data, fall back to the older format parser
+            parsed_data = final_parser(raw_text, link)
             if not parsed_data:
-                print(f"    -> Modern parser failed for {link}. Trying older format parser...")
-                parsed_data = parse_older_format(raw_text, link)
-
-            if not parsed_data:
-                print(f"    [!] No records found in file with any parser: {link}")
+                print(f"    [!] No records found in file: {link}")
                 continue
 
             for water_body, data in parsed_data.items():

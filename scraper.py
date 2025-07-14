@@ -60,9 +60,9 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def final_parser(text, report_url):
+def parse_modern_format(text, report_url):
     """
-    A robust parser built from the debug logs to handle the known PDF format.
+    Parses the modern, table-based PDF format.
     """
     all_records = {}
     current_species = None
@@ -97,9 +97,40 @@ def final_parser(text, report_url):
             except ValueError: continue
     return all_records
 
+def parse_older_format(text, report_url):
+    """
+    Parses older, less-structured PDF formats.
+    """
+    all_records = {}
+    # Find year from report title if available, e.g., "Stocking Report for week of July 4-10, 2020"
+    year_match = re.search(r'(\d{4})', text)
+    current_year_str = year_match.group(1) if year_match else str(datetime.now().year)
+    print(f"    -> Using year {current_year_str} for older format.")
+
+    # Regex to find a water body header and capture all text until the next one.
+    water_body_pattern = re.compile(r"([A-Z\s.’()\-]+?):\n(.*?)(?=\n[A-Z\s.’()\-]+?:|\Z)", re.DOTALL)
+    stock_pattern = re.compile(r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)")
+    
+    for wb_match in water_body_pattern.finditer(text):
+        water_body_name = wb_match.group(1).strip().title()
+        if "Report" in water_body_name or "Week Of" in water_body_name: continue
+
+        entry_text = wb_match.group(2)
+        for stock_match in stock_pattern.finditer(entry_text):
+            date_str, quantity, species, length = stock_match.groups()
+            try:
+                date_obj = datetime.strptime(f"{date_str} {current_year_str}", "%B %d %Y")
+                formatted_date = date_obj.strftime("%Y-%m-%d")
+                record = {"date": formatted_date, "species": species.strip().title(), "quantity": quantity.replace(',', ''), "length": length, "hatchery": "N/A", "reportUrl": report_url}
+                if water_body_name not in all_records:
+                    all_records[water_body_name] = {"records": []}
+                all_records[water_body_name]["records"].append(record)
+            except ValueError: continue
+    return all_records
+
 def scrape_reports():
     """
-    Main daily function with corrected efficiency logic.
+    Main daily function with corrected efficiency logic and fallback parser.
     """
     print("--- Starting Daily Scrape Job ---")
     
@@ -121,7 +152,6 @@ def scrape_reports():
             if "reportUrl" in record:
                 processed_urls.add(record["reportUrl"])
     
-    # Only get links from the first page for daily efficiency
     pdf_links_on_first_page = get_pdf_links_from_first_page(ARCHIVE_PAGE_URL)
     if not pdf_links_on_first_page:
         print("No PDF links found on the first archive page. Exiting.")
@@ -141,13 +171,23 @@ def scrape_reports():
     for link in new_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
-            parsed_data = final_parser(raw_text, link)
+            # **FIX**: Use the two-stage parsing logic
+            parsed_data = parse_modern_format(raw_text, link)
+            if not parsed_data:
+                print(f"    -> Modern parser failed for {link}. Trying older format parser...")
+                parsed_data = parse_older_format(raw_text, link)
+
+            if not parsed_data:
+                print(f"    [!] No records found in file with any parser: {link}")
+                continue
+
             for water_body, data in parsed_data.items():
                 if water_body not in final_data:
                     final_data[water_body] = data
                     new_records_found += len(data['records'])
                 else:
                     existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
+                    
                     for new_record in data['records']:
                         new_record_str = json.dumps(new_record, sort_keys=True)
                         if new_record_str not in existing_records_set:
@@ -172,13 +212,7 @@ def scrape_reports():
         except IOError as e:
             print(f"Error writing to file {OUTPUT_FILE}: {e}")
     else:
-        print("\nNo new records were added, but saving file to ensure data integrity.")
-        try:
-            with open(OUTPUT_FILE, "w") as f:
-                json.dump(final_data, f, indent=4)
-            print(f"File saved successfully.")
-        except IOError as e:
-            print(f"Error writing to file {OUTPUT_FILE}: {e}")
+        print("\nNo new records were added. File not saved.")
 
     print("--- Scrape Job Finished ---")
 

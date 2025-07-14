@@ -38,8 +38,6 @@ def get_all_pdf_links_from_archive(start_url):
                 print(f"    Could not find content div on page {page_count}. Stopping.")
                 break
 
-            # Find PDF links on the current page
-            page_links_found = 0
             for a_tag in content_div.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE)):
                 if "?wpdmdl=" in a_tag['href']:
                     full_url = a_tag['href']
@@ -47,27 +45,22 @@ def get_all_pdf_links_from_archive(start_url):
                         full_url = f"{BASE_URL}{full_url}"
                     if full_url not in all_pdf_links:
                         all_pdf_links.append(full_url)
-                        page_links_found += 1
             
-            print(f"    Found {page_links_found} new PDF links on this page.")
-
-            # Find the 'Next' link to go to the next page
             next_link = soup.find("a", class_="next")
             if next_link and next_link.has_attr('href'):
                 current_page_url = next_link['href']
                 page_count += 1
-                time.sleep(1) # Be respectful to the server
+                time.sleep(1)
             else:
-                current_page_url = None # No more pages
+                current_page_url = None
 
-            # Safety break after 25 pages to prevent infinite loops
             if page_count > 25:
                 print("    Reached page limit of 25. Stopping.")
                 break
 
         except requests.exceptions.RequestException as e:
             print(f"Error fetching page {current_page_url}: {e}")
-            break # Stop if a page fails to load
+            break
 
     print(f"\nFinished scraping archive. Found {len(all_pdf_links)} total PDF links across {page_count} pages.")
     return all_pdf_links
@@ -98,31 +91,47 @@ def final_parser(text, report_url):
     """
     all_records = {}
     current_species = None
-    hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery'}
+    hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery', 'SS': 'Seven Springs Hatchery'}
+    
+    # **FIX**: This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
+    species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
     data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}/\d{2}/\d{4})\s+([A-Z]{2,3})$")
+    
     lines = text.split('\n')
     for line in lines:
         line = line.strip()
         if not line: continue
-        if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
+        
+        # Check if the line is a species header
+        if species_regex.match(line) and "By Date For" not in line:
             current_species = line.strip()
             continue
+            
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
+        
         match = data_line_regex.match(line)
         if match and current_species:
             name_part, length, _, number, date_str, hatchery_id = match.groups()
+            
             water_name = name_part.strip()
             hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
-            if hatchery_name != 'Private':
+            
+            if hatchery_name:
                 escaped_hatchery_name = re.escape(hatchery_name)
                 water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
+            
             water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
             water_name = " ".join(water_name.split()).title()
+            
             if not water_name: continue
+            
             try:
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
+                # **FIX**: Use string manipulation for dates to avoid timezone issues.
+                month, day, year = date_str.split('/')
+                formatted_date = f"{year}-{month.zfill(2)}-{day.zfill(2)}"
+                
                 record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
+                
                 if water_name not in all_records:
                     all_records[water_name] = {"records": []}
                 all_records[water_name]["records"].append(record)
@@ -136,7 +145,7 @@ def rebuild_database():
     print("--- Starting One-Time Database Rebuild ---")
     print("This will process ALL reports from the archive.")
     
-    final_data = {} # Start with a completely empty dictionary
+    final_data = {}
     all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
     
     if not all_pdf_links:
@@ -156,14 +165,13 @@ def rebuild_database():
                     final_data[water_body] = data
                 else:
                     final_data[water_body]["records"].extend(data["records"])
-        time.sleep(1) # Be respectful to the server
+        time.sleep(1)
     
     print(f"\nRebuild complete. Processed {len(all_pdf_links)} reports.")
     
     if final_data:
         print("Saving the newly built database...")
         for water_body in final_data:
-            # Remove duplicates and sort
             unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
             unique_records.sort(key=lambda x: x['date'], reverse=True)
             final_data[water_body]['records'] = unique_records

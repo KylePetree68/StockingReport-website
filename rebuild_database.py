@@ -16,6 +16,9 @@ OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
 
 def get_pdf_links(page_url):
+    """
+    Scrapes the archive page to find links to all available PDF reports.
+    """
     print(f"Finding all PDF links on the archive page: {page_url}...")
     pdf_links = []
     try:
@@ -35,9 +38,12 @@ def get_pdf_links(page_url):
         return []
 
 def extract_text_from_pdf(pdf_url):
+    """
+    Downloads a PDF from a URL and extracts all text from it.
+    """
     print(f"  > Processing {pdf_url}...")
     try:
-        response = requests.get(pdf_url, timeout=15)
+        response = requests.get(pdf_url, timeout=20) # Increased timeout
         response.raise_for_status()
         pdf_file = io.BytesIO(response.content)
         full_text = ""
@@ -51,7 +57,10 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def parse_stocking_report_text(text, report_url):
+def parse_structured_format(text, report_url):
+    """
+    Parses the modern, table-based PDF format.
+    """
     all_records = {}
     current_species = None
     hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery'}
@@ -85,11 +94,46 @@ def parse_stocking_report_text(text, report_url):
             except ValueError: continue
     return all_records
 
+def parse_free_form_format(text, report_url):
+    """
+    Parses older, less-structured PDF formats.
+    """
+    all_records = {}
+    current_year_str = str(datetime.now().year)
+    # Find year from report title if available, e.g., "Stocking Report By Date for 01/01/2024"
+    year_match = re.search(r'\d{2}/\d{2}/(\d{4})', text)
+    if year_match:
+        current_year_str = year_match.group(1)
+
+    # Regex to find a water body header and capture all text until the next one.
+    water_body_pattern = re.compile(r"([A-Z\s.’()\-]+?):\n(.*?)(?=\n[A-Z\s.’()\-]+?:|\Z)", re.DOTALL)
+    stock_pattern = re.compile(r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)")
+    
+    for wb_match in water_body_pattern.finditer(text):
+        water_body_name = wb_match.group(1).strip().title()
+        if "Report" in water_body_name or "Week Of" in water_body_name: continue
+
+        entry_text = wb_match.group(2)
+        for stock_match in stock_pattern.finditer(entry_text):
+            date_str, quantity, species, length = stock_match.groups()
+            try:
+                date_obj = datetime.strptime(f"{date_str} {current_year_str}", "%B %d %Y")
+                formatted_date = date_obj.strftime("%Y-%m-%d")
+                record = {"date": formatted_date, "species": species.strip().title(), "quantity": quantity.replace(',', ''), "length": length, "hatchery": "N/A", "reportUrl": report_url}
+                if water_body_name not in all_records:
+                    all_records[water_body_name] = {"records": []}
+                all_records[water_body_name]["records"].append(record)
+            except ValueError: continue
+    return all_records
+
 def rebuild_database():
+    """
+    This function performs a one-time, full rebuild of the database.
+    """
     print("--- Starting One-Time Database Rebuild ---")
     print("This will process ALL reports from the archive.")
     
-    final_data = {}
+    final_data = {} # Start with a completely empty dictionary
     all_pdf_links = get_pdf_links(ARCHIVE_PAGE_URL)
     
     if not all_pdf_links:
@@ -99,7 +143,18 @@ def rebuild_database():
     for link in all_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
-            parsed_data = parse_stocking_report_text(raw_text, link)
+            # First, try the modern, structured parser
+            parsed_data = parse_structured_format(raw_text, link)
+            
+            # If it returns no data, fall back to the free-form parser
+            if not parsed_data:
+                print("    -> Structured parse failed, trying free-form parser...")
+                parsed_data = parse_free_form_format(raw_text, link)
+
+            if not parsed_data:
+                print("    [!] No records found in this file with any parser.")
+                continue
+
             for water_body, data in parsed_data.items():
                 if water_body not in final_data:
                     final_data[water_body] = data

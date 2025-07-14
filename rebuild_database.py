@@ -94,7 +94,7 @@ def final_parser(text, report_url):
     current_species = None
     hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery', 'SS': 'Seven Springs Hatchery'}
     
-    # This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
+    # **FIX**: This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
     data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}\/\d{2}\/\d{4})\s+([A-Z]{2,3})$")
     
@@ -114,23 +114,27 @@ def final_parser(text, report_url):
         if match and current_species:
             name_part, length, _, number, date_str, hatchery_id = match.groups()
             
-            water_name = name_part.strip()
+            water_name_raw = name_part.strip()
             hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
             
-            # **FIX**: Corrected logic for cleaning hatchery names
+            # **FIX**: More robust logic for cleaning hatchery names
+            water_name = water_name_raw
             if hatchery_name and hatchery_name != 'Private':
-                escaped_hatchery_name = re.escape(hatchery_name)
-                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
-            
-            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+                # Check if the raw name part ends with the hatchery name and remove it
+                if water_name_raw.lower().endswith(hatchery_name.lower()):
+                    water_name = water_name_raw[:-len(hatchery_name)].strip()
+
+            if water_name_raw.lower().endswith('private'):
+                 water_name = water_name_raw[:-len('private')].strip()
+
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue
             
             try:
-                # **FIX**: Use datetime.strptime for robust, timezone-naive date conversion.
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
+                # **FIX**: Use string manipulation for dates to be timezone-proof.
+                month, day, year = date_str.split('/')
+                formatted_date = f"{year}-{int(month):02d}-{int(day):02d}"
                 
                 record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
                 

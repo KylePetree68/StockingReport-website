@@ -1,2 +1,1 @@
-pip install -r requirements.txt
-python scraper.py
+python rebuild_database.py

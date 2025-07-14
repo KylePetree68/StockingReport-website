@@ -10,23 +10,24 @@ import shutil
 
 # The URL of the main stocking report page
 BASE_URL = "https://wildlife.dgf.nm.gov"
-REPORTS_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/"
+# We now only need to point to the archive page.
+ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
 # The file where the final JSON data will be saved and read from
 OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
 
 def get_pdf_links(page_url):
     """
-    Scrapes the main reports page to find links to individual PDF reports
-    that explicitly contain "Stocking Report" in the link text.
+    Scrapes the archive page to find links to all available PDF reports.
     """
-    print(f"Finding 'Stocking Report' PDF links on {page_url}...")
+    print(f"Finding all PDF links on the archive page: {page_url}...")
     pdf_links = []
     try:
         response = requests.get(page_url)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, "html.parser")
         
+        # Find all links that seem to be PDF downloads on the archive page
         for a_tag in soup.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE)):
             if "?wpdmdl=" in a_tag['href']:
                 full_url = a_tag['href']
@@ -34,7 +35,7 @@ def get_pdf_links(page_url):
                     full_url = f"{BASE_URL}{full_url}"
                 pdf_links.append(full_url)
 
-        print(f"Found {len(pdf_links)} relevant PDF links.")
+        print(f"Found {len(pdf_links)} total PDF links in the archive.")
         return pdf_links
     except requests.exceptions.RequestException as e:
         print(f"Error fetching page {page_url}: {e}")
@@ -135,8 +136,8 @@ def parse_stocking_report_text(text, report_url):
 
 def scrape_reports():
     """
-    Main function to orchestrate the scraping process. It loads existing data,
-    merges new records, and now correctly saves the file if any data has changed.
+    Main function to orchestrate the scraping process. It now only processes
+    PDFs that it has not seen before.
     """
     print("--- Starting Scrape Job ---")
     
@@ -162,7 +163,6 @@ def scrape_reports():
     else:
         print("No existing data file found. Starting fresh.")
 
-    # **FIX**: A flag to track if any data has been changed (cleaned or new records added)
     data_was_modified = False
 
     # --- Safer One-Time Test Data Cleanup ---
@@ -186,15 +186,35 @@ def scrape_reports():
         print(f"Removed {cleaned_count} legacy test records.")
     # --- END CLEANUP ---
 
-    pdf_links = get_pdf_links(REPORTS_PAGE_URL)
-    if not pdf_links:
-        print("No new PDF links found. Exiting.")
-        # If no new links and no cleanup, we don't need to save.
+    # --- **NEW EFFICIENCY LOGIC** ---
+    # 1. Get a set of all URLs we have already processed.
+    processed_urls = set()
+    for water_data in final_data.values():
+        if "reportUrl" in water_data:
+            processed_urls.add(water_data["reportUrl"])
+    
+    # 2. Get all links from the archive page.
+    all_pdf_links = get_pdf_links(ARCHIVE_PAGE_URL)
+    if not all_pdf_links:
+        print("No PDF links found on the archive page. Exiting.")
         if not data_was_modified:
             return
 
+    # 3. Filter for only the new, unprocessed links.
+    new_pdf_links = [link for link in all_pdf_links if link not in processed_urls]
+    
+    print(f"Found {len(processed_urls)} already processed reports.")
+    print(f"Found {len(new_pdf_links)} new reports to process.")
+    # --- END EFFICIENCY LOGIC ---
+
+    if not new_pdf_links and not data_was_modified:
+        print("\nNo new reports to process and no cleanup performed. Data is up-to-date.")
+        print("--- Scrape Job Finished ---")
+        return
+
     new_records_found = 0
-    for link in pdf_links:
+    # **CHANGE**: Loop through only the new links.
+    for link in new_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
             parsed_data = parse_stocking_report_text(raw_text, link)
@@ -217,16 +237,14 @@ def scrape_reports():
         data_was_modified = True
         print(f"\nFound a total of {new_records_found} new records.")
 
-    # **FIX**: Save the file if data was modified in any way (cleanup or new records)
     if data_was_modified:
         print("Data has been modified. Saving file...")
         for water_body in final_data:
             final_data[water_body]['records'].sort(key=lambda x: x['date'], reverse=True)
-            if pdf_links:
-                final_data[water_body]['reportUrl'] = pdf_links[0] 
+            if all_pdf_links:
+                final_data[water_body]['reportUrl'] = all_pdf_links[0] 
         
         try:
-            # Create a backup before writing the new file
             if os.path.exists(OUTPUT_FILE):
                 shutil.copy(OUTPUT_FILE, BACKUP_FILE)
                 print(f"Created backup: {BACKUP_FILE}")

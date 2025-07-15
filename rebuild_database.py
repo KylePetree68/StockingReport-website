@@ -112,43 +112,49 @@ def final_parser(text, report_url):
             
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
         
-        # **FINAL, ROBUST FIX**: Use hatchery names as delimiters to split the line.
-        for h_name in hatchery_names_sorted:
-            # Use a case-insensitive regex to find the hatchery name
-            match = re.search(r'\b' + re.escape(h_name) + r'\b', line, re.IGNORECASE)
-            if match:
-                # Split the line at the hatchery name
-                name_part = line[:match.start()].strip()
-                data_part = line[match.end():].strip()
-                
-                # Now parse the remaining data part
-                data_words = data_part.split()
-                if len(data_words) < 5: continue
+        words = line.split()
+        if len(words) < 6: continue
 
-                try:
-                    hatchery_id = data_words[-1]
-                    date_str = data_words[-2]
-                    number = data_words[-3]
-                    length = data_words[-5]
+        try:
+            hatchery_id = words[-1]
+            date_str = words[-2]
+            number = words[-3]
+            length = words[-5]
+            
+            name_part = " ".join(words[:-5])
 
-                    if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
-                    if hatchery_id not in hatchery_map: continue
+            if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
+            if hatchery_id not in hatchery_map: continue
 
-                    water_name = " ".join(name_part.split()).title()
-                    if not water_name: continue
+            hatchery_name = hatchery_map.get(hatchery_id)
+            
+            # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
+            water_name = name_part
+            for h_name_to_remove in hatchery_names_sorted:
+                if h_name_to_remove == 'Private': continue
+                # Use case-insensitive string checking and slicing
+                if water_name.lower().endswith(h_name_to_remove.lower()):
+                    water_name = water_name[:-len(h_name_to_remove)].strip()
+                    break # Exit loop once a match is found and removed
+            
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')].strip()
 
-                    date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                    formatted_date = date_obj.strftime("%Y-%m-%d")
-                    
-                    record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_map.get(hatchery_id), "reportUrl": report_url}
-                    
-                    if water_name not in all_records:
-                        all_records[water_name] = {"records": []}
-                    all_records[water_name]["records"].append(record)
-                    break # Move to the next line once we've found a match
+            water_name = " ".join(water_name.split()).title()
+            
+            if not water_name: continue
+            
+            date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+            formatted_date = date_obj.strftime("%Y-%m-%d")
+            
+            record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
+            
+            if water_name not in all_records:
+                all_records[water_name] = {"records": []}
+            all_records[water_name]["records"].append(record)
 
-                except (ValueError, IndexError):
-                    continue
+        except (ValueError, IndexError):
+            continue
             
     return all_records
 

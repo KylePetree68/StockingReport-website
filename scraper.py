@@ -172,14 +172,12 @@ def final_parser(text, report_url):
 
             hatchery_name = hatchery_map.get(hatchery_id)
             
-            # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
             water_name = name_part
             for h_name_to_remove in hatchery_names_sorted:
                 if h_name_to_remove == 'Private': continue
-                # Use case-insensitive string checking and slicing
                 if water_name.lower().endswith(h_name_to_remove.lower()):
                     water_name = water_name[:-len(h_name_to_remove)].strip()
-                    break # Exit loop once a match is found and removed
+                    break
             
             if water_name.lower().endswith(' private'):
                 water_name = water_name[:-len(' private')].strip()
@@ -236,6 +234,14 @@ def run_scraper(rebuild=False):
         
         if not new_pdf_links:
             print("\nNo new reports to process. Data is up-to-date.")
+            # **FIX**: Even if no new reports, we must save the file to prevent it
+            # from being overwritten by an empty one from the repo.
+            try:
+                with open(OUTPUT_FILE, "w") as f:
+                    json.dump(final_data, f, indent=4)
+                print("Re-saved existing data to ensure file is not empty.")
+            except IOError as e:
+                print(f"Error re-saving data file: {e}")
             print("--- Scrape Job Finished ---")
             return
         

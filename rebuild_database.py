@@ -9,67 +9,13 @@ import os
 import shutil
 import time
 
-# This script is for a one-time, full rebuild of the database from all archive pages.
-
-BASE_URL = "https://wildlife.dgf.nm.gov"
-ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
-OUTPUT_FILE = "stocking_data.json"
-BACKUP_FILE = "stocking_data.json.bak"
-
-def get_all_pdf_links_from_archive(start_url):
-    """
-    Scrapes ALL pages of the archive to find links to all available PDF reports.
-    It handles pagination by finding and following the "Next" link.
-    """
-    print(f"Finding all PDF links, starting from: {start_url}...")
-    all_pdf_links = []
-    current_page_url = start_url
-    page_count = 1
-
-    while current_page_url:
-        print(f"  Scraping archive page {page_count}: {current_page_url}")
-        try:
-            response = requests.get(current_page_url)
-            response.raise_for_status()
-            soup = BeautifulSoup(response.content, "html.parser")
-            
-            content_div = soup.find("div", class_="post-content")
-            if not content_div:
-                print(f"    Could not find content div on page {page_count}. Stopping.")
-                break
-
-            for a_tag in content_div.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE)):
-                if "?wpdmdl=" in a_tag['href']:
-                    full_url = a_tag['href']
-                    if not full_url.startswith('http'):
-                        full_url = f"{BASE_URL}{full_url}"
-                    if full_url not in all_pdf_links:
-                        all_pdf_links.append(full_url)
-            
-            next_link = soup.find("a", class_="next")
-            if next_link and next_link.has_attr('href'):
-                current_page_url = next_link['href']
-                page_count += 1
-                time.sleep(1)
-            else:
-                current_page_url = None
-
-            if page_count > 25:
-                print("    Reached page limit of 25. Stopping.")
-                break
-
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching page {current_page_url}: {e}")
-            break
-
-    print(f"\nFinished scraping archive. Found {len(all_pdf_links)} total PDF links across {page_count} pages.")
-    return all_pdf_links
+# This script is a targeted debugging tool to inspect a specific problematic PDF.
 
 def extract_text_from_pdf(pdf_url):
     """
     Downloads a PDF from a URL and extracts all text from it.
     """
-    print(f"  > Processing {pdf_url}...")
+    print(f"  > Processing specific debug URL: {pdf_url}...")
     try:
         response = requests.get(pdf_url, timeout=30)
         response.raise_for_status()
@@ -85,117 +31,30 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def final_parser(text, report_url):
+def debug_specific_file():
     """
-    A robust parser built from the debug logs to handle the known PDF format.
-    This version includes fixes for species and date parsing.
+    DEBUGGING FUNCTION: Processes only the known problematic PDF from Oct 29, 2021,
+    and prints its full text content to the log for analysis.
     """
-    all_records = {}
-    current_species = None
-    hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery', 'SS': 'Seven Springs Hatchery'}
+    print("--- Starting SPECIFIC FILE DEBUG Job ---")
     
-    # **FIX**: This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
-    species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
-    data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}\/\d{2}\/\d{4})\s+([A-Z]{2,3})$")
+    # ** THE FIX IS HERE **
+    # This URL points directly to the report from 10/29/2021 that you identified.
+    target_pdf_url = "https://wildlife.dgf.nm.gov/download/stocking-report-10-29-21/?wpdmdl=45610"
     
-    lines = text.split('\n')
-    for line in lines:
-        line = line.strip()
-        if not line: continue
-        
-        # Check if the line is a species header
-        if species_regex.match(line) and "By Date For" not in line:
-            current_species = line.strip()
-            continue
-            
-        if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
-        
-        match = data_line_regex.match(line)
-        if match and current_species:
-            name_part, length, _, number, date_str, hatchery_id = match.groups()
-            
-            water_name_raw = name_part.strip()
-            hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
-            
-            # **FIX**: More robust logic for cleaning hatchery names
-            water_name = water_name_raw
-            if hatchery_name and hatchery_name != 'Private':
-                # Check if the raw name part ends with the hatchery name and remove it
-                if water_name_raw.lower().endswith(hatchery_name.lower()):
-                    water_name = water_name_raw[:-len(hatchery_name)].strip()
-
-            if water_name_raw.lower().endswith('private'):
-                 water_name = water_name_raw[:-len('private')].strip()
-
-            water_name = " ".join(water_name.split()).title()
-            
-            if not water_name: continue
-            
-            try:
-                # **FIX**: Use string manipulation for dates to be timezone-proof.
-                month, day, year = date_str.split('/')
-                formatted_date = f"{year}-{int(month):02d}-{int(day):02d}"
-                
-                record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-                
-                if water_name not in all_records:
-                    all_records[water_name] = {"records": []}
-                all_records[water_name]["records"].append(record)
-            except ValueError: continue
-    return all_records
-
-def rebuild_database():
-    """
-    This function performs a one-time, full rebuild of the database.
-    """
-    print("--- Starting One-Time Database Rebuild ---")
-    print("This will process ALL reports from the archive.")
+    print(f"\nAttempting to process the report from October 29, 2021: {target_pdf_url}\n")
     
-    final_data = {}
-    all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
-    
-    if not all_pdf_links:
-        print("No PDF links found. Aborting rebuild.")
-        return
+    raw_text = extract_text_from_pdf(target_pdf_url)
 
-    for link in all_pdf_links:
-        raw_text = extract_text_from_pdf(link)
-        if raw_text:
-            parsed_data = final_parser(raw_text, link)
-            if not parsed_data:
-                print(f"    [!] No records found in file: {link}")
-                continue
-
-            for water_body, data in parsed_data.items():
-                if water_body not in final_data:
-                    final_data[water_body] = data
-                else:
-                    final_data[water_body]["records"].extend(data["records"])
-        time.sleep(1)
-    
-    print(f"\nRebuild complete. Processed {len(all_pdf_links)} reports.")
-    
-    if final_data:
-        print("Saving the newly built database...")
-        for water_body in final_data:
-            unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
-            unique_records.sort(key=lambda x: x['date'], reverse=True)
-            final_data[water_body]['records'] = unique_records
-        
-        try:
-            if os.path.exists(OUTPUT_FILE):
-                shutil.copy(OUTPUT_FILE, BACKUP_FILE)
-                print(f"Created backup of old file: {BACKUP_FILE}")
-
-            with open(OUTPUT_FILE, "w") as f:
-                json.dump(final_data, f, indent=4)
-            print(f"Successfully saved new data file: {OUTPUT_FILE}")
-        except IOError as e:
-            print(f"Error writing to file {OUTPUT_FILE}: {e}")
+    if raw_text:
+        print("-------------------- BEGIN PDF TEXT (Oct 29, 2021) --------------------")
+        print(raw_text)
+        print("--------------------  END PDF TEXT (Oct 29, 2021)  --------------------")
+        print("\nDebug job finished. Please copy all the text between the BEGIN and END markers and paste it in your next reply.")
     else:
-        print("No data was parsed. The data file was not written.")
+        print("\nFailed to extract any text from the target PDF. The file might be empty or unreadable.")
 
-    print("--- Rebuild Finished ---")
 
 if __name__ == "__main__":
-    rebuild_database()
+    # We are calling the special debugging function.
+    debug_specific_file()

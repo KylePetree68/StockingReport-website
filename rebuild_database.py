@@ -129,7 +129,16 @@ def final_parser(text, report_url):
             if hatchery_id not in hatchery_map: continue
 
             hatchery_name = hatchery_map.get(hatchery_id)
-            water_name = " ".join(name_part.split()).title()
+            
+            # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
+            water_name = name_part
+            for h_name in hatchery_map.values():
+                if h_name == 'Private': continue
+                # Use a case-insensitive regex to replace the hatchery name if it's at the end.
+                water_name = re.sub(r'\s*' + re.escape(h_name) + r'\s*$', '', water_name, flags=re.IGNORECASE).strip()
+            
+            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+            water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue
             

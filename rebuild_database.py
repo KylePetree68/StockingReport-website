@@ -87,10 +87,12 @@ def extract_text_from_pdf(pdf_url):
 def final_parser(text, report_url):
     """
     A robust parser that works backwards from the end of the line to identify columns
-    and correctly cleans the water body name.
+    and correctly cleans the water body name using a definitive list.
     """
     all_records = {}
     current_species = None
+    
+    # **FINAL FIX**: A comprehensive map of all known hatchery names and their IDs.
     hatchery_map = {
         'LO': 'Los Ojos Hatchery (Parkview)',
         'PVT': 'Private',
@@ -98,7 +100,8 @@ def final_parser(text, report_url):
         'LS': 'Lisboa Springs Trout Hatchery',
         'RL': 'Rock Lake Trout Rearing Facility',
         'FED': 'Federal Hatchery',
-        'SS': 'Seven Springs Trout Hatchery'
+        'SS': 'Seven Springs Trout Hatchery',
+        'GW': 'Glenwood Springs Hatchery' # Added from official list
     }
     
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")

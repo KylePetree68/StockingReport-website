@@ -86,8 +86,7 @@ def extract_text_from_pdf(pdf_url):
 
 def final_parser(text, report_url):
     """
-    A robust parser built from the debug logs to handle the known PDF format.
-    This version includes fixes for species and date parsing.
+    A robust parser that splits lines into words and works backwards to avoid errors.
     """
     all_records = {}
     current_species = None
@@ -102,7 +101,6 @@ def final_parser(text, report_url):
     }
     
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
-    data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}\/\d{2}\/\d{4})\s+([A-Z]{2,3})$")
     
     lines = text.split('\n')
     for line in lines:
@@ -115,36 +113,43 @@ def final_parser(text, report_url):
             
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
         
-        match = data_line_regex.match(line)
-        if match and current_species:
-            name_part, length, _, number, date_str, hatchery_id = match.groups()
-            
-            water_name_raw = name_part.strip()
-            hatchery_name = hatchery_map.get(hatchery_id)
-            
-            # **FINAL FIX**: More robust logic for cleaning hatchery names
-            water_name = water_name_raw
-            if hatchery_name and hatchery_name != 'Private':
-                if water_name.lower().endswith(hatchery_name.lower()):
-                    water_name = water_name[:-len(hatchery_name)].strip()
+        words = line.split()
+        # A valid data line must have at least 6 columns (name can be multi-word)
+        if len(words) < 6: continue
 
-            if water_name.lower().endswith(' private'):
-                water_name = water_name[:-len(' private')].strip()
+        try:
+            # Work backwards from the end of the line, which is more predictable
+            hatchery_id = words[-1]
+            date_str = words[-2]
+            number = words[-3]
+            # lbs = words[-4] # We don't use this column
+            length = words[-5]
             
-            water_name = " ".join(water_name.split()).title()
+            # Everything else is part of the name
+            name_part = " ".join(words[:-5])
+
+            # Validate that the extracted parts look correct
+            if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
+            if not hatchery_id in hatchery_map: continue
+
+            hatchery_name = hatchery_map.get(hatchery_id)
+            water_name = " ".join(name_part.split()).title()
             
             if not water_name: continue
             
-            try:
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                
-                record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-                
-                if water_name not in all_records:
-                    all_records[water_name] = {"records": []}
-                all_records[water_name]["records"].append(record)
-            except ValueError: continue
+            date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+            formatted_date = date_obj.strftime("%Y-%m-%d")
+            
+            record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
+            
+            if water_name not in all_records:
+                all_records[water_name] = {"records": []}
+            all_records[water_name]["records"].append(record)
+
+        except (ValueError, IndexError):
+            # This line didn't match the expected format, so we skip it
+            continue
+            
     return all_records
 
 def rebuild_database():

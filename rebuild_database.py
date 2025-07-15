@@ -122,24 +122,28 @@ def final_parser(text, report_url):
             name_part, length, _, number, date_str, hatchery_id = match.groups()
             
             water_name_raw = name_part.strip()
-            hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
+            hatchery_name = hatchery_map.get(hatchery_id)
             
-            # **FIX**: More robust logic for cleaning hatchery names
+            # **FIX**: More robust logic for cleaning hatchery names using word lists
             water_name = water_name_raw
             if hatchery_name and hatchery_name != 'Private':
-                # Use word boundaries to avoid partial matches
-                escaped_hatchery_name = r'\b' + re.escape(hatchery_name) + r'\b'
-                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
+                name_words = water_name_raw.lower().split()
+                hatchery_words = hatchery_name.lower().split()
+                
+                if name_words[-len(hatchery_words):] == hatchery_words:
+                    water_name = " ".join(water_name_raw.split()[:-len(hatchery_words)])
 
-            water_name = re.sub(r'\bPRIVATE\b', '', water_name, flags=re.IGNORECASE).strip()
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')]
+            
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue
             
             try:
-                # **FIX**: Use string manipulation for dates to be timezone-proof.
-                month, day, year = date_str.split('/')
-                formatted_date = f"{year}-{int(month):02d}-{int(day):02d}"
+                # **FIX**: Use datetime.strptime for robust, timezone-naive date conversion.
+                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+                formatted_date = date_obj.strftime("%Y-%m-%d")
                 
                 record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
                 

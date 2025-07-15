@@ -101,7 +101,6 @@ def final_parser(text, report_url):
         'SS': 'Seven Springs Trout Hatchery'
     }
     
-    # This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
     data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}\/\d{2}\/\d{4})\s+([A-Z]{2,3})$")
     
@@ -110,7 +109,6 @@ def final_parser(text, report_url):
         line = line.strip()
         if not line: continue
         
-        # Check if the line is a species header
         if species_regex.match(line) and "By Date For" not in line:
             current_species = line.strip()
             continue
@@ -124,20 +122,21 @@ def final_parser(text, report_url):
             water_name_raw = name_part.strip()
             hatchery_name = hatchery_map.get(hatchery_id)
             
-            # **FIX**: More robust logic for cleaning hatchery names
+            # **FINAL FIX**: More robust logic for cleaning hatchery names
             water_name = water_name_raw
             if hatchery_name and hatchery_name != 'Private':
-                # Use word boundaries to avoid partial matches
-                escaped_hatchery_name = r'\b' + re.escape(hatchery_name) + r'\b'
-                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
+                # Check if the raw name part ends with the hatchery name and remove it
+                if water_name_raw.lower().endswith(hatchery_name.lower()):
+                    water_name = water_name_raw[:-len(hatchery_name)].strip()
 
-            water_name = re.sub(r'\bPRIVATE\b', '', water_name, flags=re.IGNORECASE).strip()
+            if water_name_raw.lower().endswith('private'):
+                 water_name = water_name_raw[:-len('private')].strip()
+
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue
             
             try:
-                # **FIX**: Use datetime.strptime for robust, timezone-naive date conversion.
                 date_obj = datetime.strptime(date_str, "%m/%d/%Y")
                 formatted_date = date_obj.strftime("%Y-%m-%d")
                 

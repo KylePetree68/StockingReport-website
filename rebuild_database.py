@@ -9,7 +9,7 @@ import os
 import shutil
 import time
 
-# This script is for a one-time, full rebuild of the database from all archive pages.
+# This script is for a one-time, full rebuild of the database from the first 3 archive pages.
 
 BASE_URL = "https://wildlife.dgf.nm.gov"
 ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"

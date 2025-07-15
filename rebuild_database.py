@@ -97,6 +97,8 @@ def final_parser(text, report_url):
         'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility',
         'FED': 'Federal Hatchery', 'SS': 'Seven Springs Trout Hatchery', 'GW': 'Glenwood Springs Hatchery'
     }
+    # Create a sorted list of hatchery names, longest first, to avoid partial matches
+    hatchery_names_sorted = sorted(hatchery_map.values(), key=len, reverse=True)
     
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
     
@@ -129,11 +131,11 @@ def final_parser(text, report_url):
             
             # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
             water_name = name_part
-            for h_name in hatchery_map.values():
-                if h_name == 'Private': continue
+            for h_name_to_remove in hatchery_names_sorted:
+                if h_name_to_remove == 'Private': continue
                 # Use case-insensitive string checking and slicing
-                if water_name.lower().endswith(h_name.lower()):
-                    water_name = water_name[:-len(h_name)].strip()
+                if water_name.lower().endswith(h_name_to_remove.lower()):
+                    water_name = water_name[:-len(h_name_to_remove)].strip()
                     break # Exit loop once a match is found and removed
             
             if water_name.lower().endswith(' private'):

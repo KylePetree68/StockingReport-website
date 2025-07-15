@@ -134,10 +134,14 @@ def final_parser(text, report_url):
             water_name = name_part
             for h_name in hatchery_map.values():
                 if h_name == 'Private': continue
-                # Use a case-insensitive regex to replace the hatchery name if it's at the end.
-                water_name = re.sub(r'\s*' + re.escape(h_name) + r'\s*$', '', water_name, flags=re.IGNORECASE).strip()
+                # Use case-insensitive string checking and slicing
+                if water_name.lower().endswith(h_name.lower()):
+                    water_name = water_name[:-len(h_name)].strip()
+                    break # Exit loop once a match is found and removed
             
-            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')].strip()
+
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue

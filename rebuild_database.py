@@ -92,16 +92,10 @@ def final_parser(text, report_url):
     all_records = {}
     current_species = None
     
-    # **FINAL FIX**: A comprehensive map of all known hatchery names and their IDs.
     hatchery_map = {
-        'LO': 'Los Ojos Hatchery (Parkview)',
-        'PVT': 'Private',
-        'RR': 'Red River Trout Hatchery',
-        'LS': 'Lisboa Springs Trout Hatchery',
-        'RL': 'Rock Lake Trout Rearing Facility',
-        'FED': 'Federal Hatchery',
-        'SS': 'Seven Springs Trout Hatchery',
-        'GW': 'Glenwood Springs Hatchery' # Added from official list
+        'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery',
+        'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility',
+        'FED': 'Federal Hatchery', 'SS': 'Seven Springs Trout Hatchery', 'GW': 'Glenwood Springs Hatchery'
     }
     
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")

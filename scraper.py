@@ -19,14 +19,18 @@ BACKUP_FILE = "stocking_data.json.bak"
 
 def get_all_pdf_links_from_archive(start_url):
     """
-    Scrapes ALL pages of the archive to find links to all available PDF reports.
+    Scrapes archive pages starting from a given year and moving forward.
+    It stops when it encounters a report from a previous year.
     """
-    print(f"Finding all PDF links, starting from: {start_url}...")
+    # **THE FIX IS HERE**: Hardcoded the target year to 2025.
+    target_year = 2025
+    print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
     all_pdf_links = []
     current_page_url = start_url
     page_count = 1
+    keep_scraping = True
 
-    while current_page_url:
+    while current_page_url and keep_scraping:
         print(f"  Scraping archive page {page_count}: {current_page_url}")
         try:
             response = requests.get(current_page_url)
@@ -38,7 +42,21 @@ def get_all_pdf_links_from_archive(start_url):
                 print(f"    Could not find content div on page {page_count}. Stopping.")
                 break
 
-            for a_tag in content_div.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE)):
+            links_on_page = content_div.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE))
+            if not links_on_page:
+                print("    No report links found on this page. Stopping.")
+                break
+
+            for a_tag in links_on_page:
+                # Check the year from the link text (e.g., "Stocking Report 7-11-25")
+                date_match = re.search(r'(\d{1,2})[_-](\d{1,2})[_-](\d{2})', a_tag.get_text())
+                if date_match:
+                    report_year = int(f"20{date_match.group(3)}")
+                    if report_year < target_year:
+                        print(f"    Found report from {report_year}. Stopping archive scrape.")
+                        keep_scraping = False
+                        break # Stop processing links on this page
+
                 if "?wpdmdl=" in a_tag['href']:
                     full_url = a_tag['href']
                     if not full_url.startswith('http'):
@@ -46,6 +64,9 @@ def get_all_pdf_links_from_archive(start_url):
                     if full_url not in all_pdf_links:
                         all_pdf_links.append(full_url)
             
+            if not keep_scraping:
+                break
+
             next_link = soup.find("a", class_="next")
             if next_link and next_link.has_attr('href'):
                 current_page_url = next_link['href']
@@ -62,7 +83,7 @@ def get_all_pdf_links_from_archive(start_url):
             print(f"Error fetching page {current_page_url}: {e}")
             break
 
-    print(f"\nFinished scraping archive. Found {len(all_pdf_links)} total PDF links across {page_count} pages.")
+    print(f"\nFinished scraping archive. Found {len(all_pdf_links)} total PDF links for the target year.")
     return all_pdf_links
 
 def get_pdf_links_from_first_page(page_url):
@@ -111,8 +132,8 @@ def extract_text_from_pdf(pdf_url):
 
 def final_parser(text, report_url):
     """
-    A robust parser that uses a definitive list of hatchery names to correctly
-    separate water names from the rest of the data.
+    A robust parser that works backwards from the end of the line to identify columns
+    and correctly cleans the water body name using a definitive list.
     """
     all_records = {}
     current_species = None
@@ -137,42 +158,47 @@ def final_parser(text, report_url):
             
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
         
-        # **FINAL, ROBUST FIX**: Use hatchery names as delimiters.
-        for h_name in hatchery_names_sorted:
-            # Use a case-insensitive regex to find the hatchery name
-            match = re.search(r'\b' + re.escape(h_name) + r'\b', line, re.IGNORECASE)
-            if match:
-                name_part = line[:match.start()].strip()
-                data_part = line[match.end():].strip()
-                
-                # Now parse the remaining data part
-                data_words = data_part.split()
-                if len(data_words) < 5: continue
+        words = line.split()
+        if len(words) < 6: continue
 
-                try:
-                    hatchery_id = data_words[-1]
-                    date_str = data_words[-2]
-                    number = data_words[-3]
-                    length = data_words[-5]
+        try:
+            hatchery_id = words[-1]
+            date_str = words[-2]
+            number = words[-3]
+            length = words[-5]
+            
+            name_part = " ".join(words[:-5])
 
-                    if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
-                    if hatchery_id not in hatchery_map: continue
+            if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
+            if hatchery_id not in hatchery_map: continue
 
-                    water_name = " ".join(name_part.split()).title()
-                    if not water_name: continue
+            hatchery_name = hatchery_map.get(hatchery_id)
+            
+            water_name = name_part
+            for h_name_to_remove in hatchery_names_sorted:
+                if h_name_to_remove == 'Private': continue
+                if water_name.lower().endswith(h_name_to_remove.lower()):
+                    water_name = water_name[:-len(h_name_to_remove)].strip()
+                    break
+            
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')].strip()
 
-                    date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                    formatted_date = date_obj.strftime("%Y-%m-%d")
-                    
-                    record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_map.get(hatchery_id), "reportUrl": report_url}
-                    
-                    if water_name not in all_records:
-                        all_records[water_name] = {"records": []}
-                    all_records[water_name]["records"].append(record)
-                    break # Move to the next line once we've found a match
+            water_name = " ".join(water_name.split()).title()
+            
+            if not water_name: continue
+            
+            date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+            formatted_date = date_obj.strftime("%Y-%m-%d")
+            
+            record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
+            
+            if water_name not in all_records:
+                all_records[water_name] = {"records": []}
+            all_records[water_name]["records"].append(record)
 
-                except (ValueError, IndexError):
-                    continue
+        except (ValueError, IndexError):
+            continue
             
     return all_records
 

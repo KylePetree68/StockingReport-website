@@ -86,7 +86,8 @@ def extract_text_from_pdf(pdf_url):
 
 def final_parser(text, report_url):
     """
-    A robust parser that splits lines into words and works backwards to avoid errors.
+    A robust parser that works backwards from the end of the line to identify columns
+    and correctly cleans the water body name.
     """
     all_records = {}
     current_species = None
@@ -114,23 +115,18 @@ def final_parser(text, report_url):
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
         
         words = line.split()
-        # A valid data line must have at least 6 columns (name can be multi-word)
         if len(words) < 6: continue
 
         try:
-            # Work backwards from the end of the line, which is more predictable
             hatchery_id = words[-1]
             date_str = words[-2]
             number = words[-3]
-            # lbs = words[-4] # We don't use this column
             length = words[-5]
             
-            # Everything else is part of the name
             name_part = " ".join(words[:-5])
 
-            # Validate that the extracted parts look correct
             if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
-            if not hatchery_id in hatchery_map: continue
+            if hatchery_id not in hatchery_map: continue
 
             hatchery_name = hatchery_map.get(hatchery_id)
             water_name = " ".join(name_part.split()).title()
@@ -147,7 +143,6 @@ def final_parser(text, report_url):
             all_records[water_name]["records"].append(record)
 
         except (ValueError, IndexError):
-            # This line didn't match the expected format, so we skip it
             continue
             
     return all_records

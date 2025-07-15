@@ -14,15 +14,14 @@ import sys
 
 BASE_URL = "https://wildlife.dgf.nm.gov"
 ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
+LIVE_DATA_URL = "https://stockingreport.com/stocking_data.json"
 OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
 
 def get_all_pdf_links_from_archive(start_url):
     """
-    Scrapes archive pages starting from a given year and moving forward.
-    It stops when it encounters a report from a previous year.
+    Scrapes ALL pages of the archive to find links to all available PDF reports.
     """
-    # **THE FIX IS HERE**: Hardcoded the target year to 2025.
     target_year = 2025
     print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
     all_pdf_links = []
@@ -55,8 +54,8 @@ def get_all_pdf_links_from_archive(start_url):
                     if report_year < target_year:
                         print(f"    Found report from {report_year}. Stopping archive scrape.")
                         keep_scraping = False
-                        break # Stop processing links on this page
-
+                        break 
+                
                 if "?wpdmdl=" in a_tag['href']:
                     full_url = a_tag['href']
                     if not full_url.startswith('http'):
@@ -64,8 +63,7 @@ def get_all_pdf_links_from_archive(start_url):
                     if full_url not in all_pdf_links:
                         all_pdf_links.append(full_url)
             
-            if not keep_scraping:
-                break
+            if not keep_scraping: break
 
             next_link = soup.find("a", class_="next")
             if next_link and next_link.has_attr('href'):
@@ -174,12 +172,14 @@ def final_parser(text, report_url):
 
             hatchery_name = hatchery_map.get(hatchery_id)
             
+            # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
             water_name = name_part
             for h_name_to_remove in hatchery_names_sorted:
                 if h_name_to_remove == 'Private': continue
+                # Use case-insensitive string checking and slicing
                 if water_name.lower().endswith(h_name_to_remove.lower()):
                     water_name = water_name[:-len(h_name_to_remove)].strip()
-                    break
+                    break # Exit loop once a match is found and removed
             
             if water_name.lower().endswith(' private'):
                 water_name = water_name[:-len(' private')].strip()
@@ -215,15 +215,15 @@ def run_scraper(rebuild=False):
             return
     else:
         print("--- Starting Daily Scrape Job ---")
-        final_data = {}
-        if os.path.exists(OUTPUT_FILE):
-            print(f"Loading existing data from {OUTPUT_FILE}...")
-            try:
-                with open(OUTPUT_FILE, "r") as f:
-                    final_data = json.load(f)
-            except (json.JSONDecodeError, IOError) as e:
-                print(f"Warning: Could not parse {OUTPUT_FILE}. Error: {e}. Aborting to prevent data loss.")
-                return
+        try:
+            print(f"Loading existing data from {LIVE_DATA_URL}...")
+            response = requests.get(LIVE_DATA_URL)
+            response.raise_for_status()
+            final_data = response.json()
+            print("Successfully loaded live data.")
+        except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+            print(f"Warning: Could not load or parse live data file. Error: {e}. Aborting to prevent data loss.")
+            return
         
         processed_urls = set()
         for water_data in final_data.values():
@@ -255,7 +255,6 @@ def run_scraper(rebuild=False):
                 if water_body not in final_data:
                     final_data[water_body] = data
                 else:
-                    # Add only new records
                     existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
                     for new_record in data['records']:
                         new_record_str = json.dumps(new_record, sort_keys=True)

@@ -8,13 +8,62 @@ import io
 import os
 import shutil
 import time
+import sys
 
-# The URL of the main stocking report page
+# This script is for a one-time, full rebuild of the database from all archive pages.
+
 BASE_URL = "https://wildlife.dgf.nm.gov"
 ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
-# The file where the final JSON data will be saved and read from
 OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
+
+def get_all_pdf_links_from_archive(start_url):
+    """
+    Scrapes ALL pages of the archive to find links to all available PDF reports.
+    """
+    print(f"Finding all PDF links, starting from: {start_url}...")
+    all_pdf_links = []
+    current_page_url = start_url
+    page_count = 1
+
+    while current_page_url:
+        print(f"  Scraping archive page {page_count}: {current_page_url}")
+        try:
+            response = requests.get(current_page_url)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.content, "html.parser")
+            
+            content_div = soup.find("div", class_="post-content")
+            if not content_div:
+                print(f"    Could not find content div on page {page_count}. Stopping.")
+                break
+
+            for a_tag in content_div.find_all("a", href=True, string=re.compile("Stocking Report", re.IGNORECASE)):
+                if "?wpdmdl=" in a_tag['href']:
+                    full_url = a_tag['href']
+                    if not full_url.startswith('http'):
+                        full_url = f"{BASE_URL}{full_url}"
+                    if full_url not in all_pdf_links:
+                        all_pdf_links.append(full_url)
+            
+            next_link = soup.find("a", class_="next")
+            if next_link and next_link.has_attr('href'):
+                current_page_url = next_link['href']
+                page_count += 1
+                time.sleep(1)
+            else:
+                current_page_url = None
+
+            if page_count > 25:
+                print("    Reached page limit of 25. Stopping.")
+                break
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching page {current_page_url}: {e}")
+            break
+
+    print(f"\nFinished scraping archive. Found {len(all_pdf_links)} total PDF links across {page_count} pages.")
+    return all_pdf_links
 
 def get_pdf_links_from_first_page(page_url):
     """
@@ -44,9 +93,9 @@ def extract_text_from_pdf(pdf_url):
     """
     Downloads a PDF from a URL and extracts all text from it.
     """
-    print(f"  > Extracting text from {pdf_url}...")
+    print(f"  > Processing {pdf_url}...")
     try:
-        response = requests.get(pdf_url, timeout=20)
+        response = requests.get(pdf_url, timeout=30)
         response.raise_for_status()
         pdf_file = io.BytesIO(response.content)
         full_text = ""
@@ -62,8 +111,8 @@ def extract_text_from_pdf(pdf_url):
 
 def final_parser(text, report_url):
     """
-    A robust parser that works backwards from the end of the line to identify columns
-    and correctly cleans the water body name using a definitive list.
+    A robust parser that uses a definitive list of hatchery names to correctly
+    separate water names from the rest of the data.
     """
     all_records = {}
     current_species = None
@@ -88,122 +137,113 @@ def final_parser(text, report_url):
             
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
         
-        words = line.split()
-        if len(words) < 6: continue
+        # **FINAL, ROBUST FIX**: Use hatchery names as delimiters.
+        for h_name in hatchery_names_sorted:
+            # Use a case-insensitive regex to find the hatchery name
+            match = re.search(r'\b' + re.escape(h_name) + r'\b', line, re.IGNORECASE)
+            if match:
+                name_part = line[:match.start()].strip()
+                data_part = line[match.end():].strip()
+                
+                # Now parse the remaining data part
+                data_words = data_part.split()
+                if len(data_words) < 5: continue
 
-        try:
-            hatchery_id = words[-1]
-            date_str = words[-2]
-            number = words[-3]
-            length = words[-5]
-            
-            name_part = " ".join(words[:-5])
+                try:
+                    hatchery_id = data_words[-1]
+                    date_str = data_words[-2]
+                    number = data_words[-3]
+                    length = data_words[-5]
 
-            if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
-            if hatchery_id not in hatchery_map: continue
+                    if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
+                    if hatchery_id not in hatchery_map: continue
 
-            hatchery_name = hatchery_map.get(hatchery_id)
-            
-            water_name = name_part
-            for h_name_to_remove in hatchery_names_sorted:
-                if h_name_to_remove == 'Private': continue
-                if water_name.lower().endswith(h_name_to_remove.lower()):
-                    water_name = water_name[:-len(h_name_to_remove)].strip()
-                    break
-            
-            if water_name.lower().endswith(' private'):
-                water_name = water_name[:-len(' private')].strip()
+                    water_name = " ".join(name_part.split()).title()
+                    if not water_name: continue
 
-            water_name = " ".join(water_name.split()).title()
-            
-            if not water_name: continue
-            
-            date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-            formatted_date = date_obj.strftime("%Y-%m-%d")
-            
-            record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-            
-            if water_name not in all_records:
-                all_records[water_name] = {"records": []}
-            all_records[water_name]["records"].append(record)
+                    date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+                    formatted_date = date_obj.strftime("%Y-%m-%d")
+                    
+                    record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_map.get(hatchery_id), "reportUrl": report_url}
+                    
+                    if water_name not in all_records:
+                        all_records[water_name] = {"records": []}
+                    all_records[water_name]["records"].append(record)
+                    break # Move to the next line once we've found a match
 
-        except (ValueError, IndexError):
-            continue
+                except (ValueError, IndexError):
+                    continue
             
     return all_records
 
-def scrape_reports():
+def run_scraper(rebuild=False):
     """
-    Main daily function with robust data loading and efficiency logic.
+    Main function to orchestrate the scraping process.
     """
-    print("--- Starting Daily Scrape Job ---")
-    
-    final_data = {}
-    if os.path.exists(OUTPUT_FILE):
-        print(f"Loading existing data from {OUTPUT_FILE}...")
-        try:
-            with open(OUTPUT_FILE, "r") as f:
-                final_data = json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"Warning: Could not parse {OUTPUT_FILE}. Error: {e}. Attempting to restore from backup.")
-            if os.path.exists(BACKUP_FILE):
-                try:
-                    with open(BACKUP_FILE, "r") as bf:
-                        final_data = json.load(bf)
-                    print("Successfully restored data from backup file.")
-                except (json.JSONDecodeError, IOError) as be:
-                     print(f"FATAL: Could not restore from backup. Error: {be}. Aborting to prevent data loss.")
-                     return # Exit the script
-            else:
-                print("FATAL: Main data file is corrupt and no backup file was found. Aborting to prevent data loss.")
-                return # Exit the script
+    if rebuild:
+        print("--- Starting One-Time Database Rebuild ---")
+        final_data = {}
+        all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
+        if not all_pdf_links:
+            print("No PDF links found. Aborting rebuild.")
+            return
     else:
-        print("No existing data file found. This should only happen on the very first run.")
+        print("--- Starting Daily Scrape Job ---")
+        final_data = {}
+        if os.path.exists(OUTPUT_FILE):
+            print(f"Loading existing data from {OUTPUT_FILE}...")
+            try:
+                with open(OUTPUT_FILE, "r") as f:
+                    final_data = json.load(f)
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"Warning: Could not parse {OUTPUT_FILE}. Error: {e}. Aborting to prevent data loss.")
+                return
+        
+        processed_urls = set()
+        for water_data in final_data.values():
+            for record in water_data.get("records", []):
+                if "reportUrl" in record:
+                    processed_urls.add(record["reportUrl"])
+        
+        all_pdf_links = get_pdf_links_from_first_page(ARCHIVE_PAGE_URL)
+        new_pdf_links = [link for link in all_pdf_links if link not in processed_urls]
+        
+        if not new_pdf_links:
+            print("\nNo new reports to process. Data is up-to-date.")
+            print("--- Scrape Job Finished ---")
+            return
+        
+        print(f"Found {len(new_pdf_links)} new reports to process.")
+        all_pdf_links = new_pdf_links
 
-    processed_urls = set()
-    for water_data in final_data.values():
-        for record in water_data.get("records", []):
-            if "reportUrl" in record:
-                processed_urls.add(record["reportUrl"])
-    
-    pdf_links_on_first_page = get_pdf_links_from_first_page(ARCHIVE_PAGE_URL)
-    if not pdf_links_on_first_page:
-        print("No PDF links found on the first archive page. Exiting.")
-        return
-
-    new_pdf_links = [link for link in pdf_links_on_first_page if link not in processed_urls]
-    
-    print(f"Found {len(processed_urls)} already processed reports in total.")
-    print(f"Found {len(new_pdf_links)} new reports to process from the first page.")
-
-    if not new_pdf_links:
-        print("\nNo new reports to process. Data is up-to-date.")
-        print("--- Scrape Job Finished ---")
-        return
-
-    new_records_found = 0
-    for link in new_pdf_links:
+    # Process the selected links (either all for rebuild, or new for daily)
+    for link in all_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
             parsed_data = final_parser(raw_text, link)
+            if not parsed_data:
+                print(f"    [!] No records found in file: {link}")
+                continue
+
             for water_body, data in parsed_data.items():
                 if water_body not in final_data:
                     final_data[water_body] = data
-                    new_records_found += len(data['records'])
                 else:
+                    # Add only new records
                     existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
                     for new_record in data['records']:
                         new_record_str = json.dumps(new_record, sort_keys=True)
                         if new_record_str not in existing_records_set:
                             final_data[water_body]['records'].append(new_record)
-                            existing_records_set.add(new_record_str)
-                            new_records_found += 1
-        time.sleep(1) # Be respectful
-
-    if new_records_found > 0:
-        print(f"\nFound a total of {new_records_found} new records. Saving file...")
+        time.sleep(1)
+    
+    print("\nScrape complete. Saving data...")
+    
+    if final_data:
         for water_body in final_data:
-            final_data[water_body]['records'].sort(key=lambda x: x['date'], reverse=True)
+            unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
+            unique_records.sort(key=lambda x: x['date'], reverse=True)
+            final_data[water_body]['records'] = unique_records
         
         try:
             if os.path.exists(OUTPUT_FILE):
@@ -212,13 +252,17 @@ def scrape_reports():
 
             with open(OUTPUT_FILE, "w") as f:
                 json.dump(final_data, f, indent=4)
-            print(f"Successfully updated data file: {OUTPUT_FILE}")
+            print(f"Successfully saved new data file: {OUTPUT_FILE}")
         except IOError as e:
             print(f"Error writing to file {OUTPUT_FILE}: {e}")
     else:
-        print("\nNo new records were added. File not saved.")
+        print("No data was parsed. The data file was not written.")
 
     print("--- Scrape Job Finished ---")
 
 if __name__ == "__main__":
-    scrape_reports()
+    # Check for a command-line argument to trigger a rebuild
+    if "--rebuild" in sys.argv:
+        run_scraper(rebuild=True)
+    else:
+        run_scraper(rebuild=False)

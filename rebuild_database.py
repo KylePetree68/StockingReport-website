@@ -101,7 +101,7 @@ def final_parser(text, report_url):
         'SS': 'Seven Springs Trout Hatchery'
     }
     
-    # **FIX**: This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
+    # This regex is more robust for multi-word species names like "Rio Grande Cutthroat Trout"
     species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
     data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}\/\d{2}\/\d{4})\s+([A-Z]{2,3})$")
     
@@ -124,18 +124,14 @@ def final_parser(text, report_url):
             water_name_raw = name_part.strip()
             hatchery_name = hatchery_map.get(hatchery_id)
             
-            # **FIX**: More robust logic for cleaning hatchery names using word lists
+            # **FIX**: More robust logic for cleaning hatchery names
             water_name = water_name_raw
             if hatchery_name and hatchery_name != 'Private':
-                name_words = water_name_raw.lower().split()
-                hatchery_words = hatchery_name.lower().split()
-                
-                if name_words[-len(hatchery_words):] == hatchery_words:
-                    water_name = " ".join(water_name_raw.split()[:-len(hatchery_words)])
+                # Use word boundaries to avoid partial matches
+                escaped_hatchery_name = r'\b' + re.escape(hatchery_name) + r'\b'
+                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
 
-            if water_name.lower().endswith(' private'):
-                water_name = water_name[:-len(' private')]
-            
+            water_name = re.sub(r'\bPRIVATE\b', '', water_name, flags=re.IGNORECASE).strip()
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue

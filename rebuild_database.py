@@ -39,8 +39,8 @@ def debug_specific_file():
     print("--- Starting SPECIFIC FILE DEBUG Job ---")
     
     # ** THE FIX IS HERE **
-    # This URL points directly to the report from 10/29/2021 that you identified.
-    target_pdf_url = "https://wildlife.dgf.nm.gov/download/stocking-report-10-29-21/?wpdmdl=45610"
+    # This URL has been corrected to the one you provided.
+    target_pdf_url = "https://wildlife.dgf.nm.gov/download/stocking-report-10_29_21/?wpdmdl=44541"
     
     print(f"\nAttempting to process the report from October 29, 2021: {target_pdf_url}\n")
     

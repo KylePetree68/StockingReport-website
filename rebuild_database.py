@@ -127,13 +127,11 @@ def final_parser(text, report_url):
             # **FIX**: More robust logic for cleaning hatchery names
             water_name = water_name_raw
             if hatchery_name and hatchery_name != 'Private':
-                # Check if the raw name part ends with the hatchery name and remove it
-                if water_name_raw.lower().endswith(hatchery_name.lower()):
-                    water_name = water_name_raw[:-len(hatchery_name)].strip()
+                # Use word boundaries to avoid partial matches
+                escaped_hatchery_name = r'\b' + re.escape(hatchery_name) + r'\b'
+                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
 
-            if water_name_raw.lower().endswith('private'):
-                 water_name = water_name_raw[:-len('private')].strip()
-
+            water_name = re.sub(r'\bPRIVATE\b', '', water_name, flags=re.IGNORECASE).strip()
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue

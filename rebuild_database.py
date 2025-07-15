@@ -124,13 +124,13 @@ def final_parser(text, report_url):
             
             # **FINAL FIX**: More robust logic for cleaning hatchery names
             water_name = water_name_raw
-            for name in hatchery_map.values():
-                if name == 'Private': continue
-                # Use a case-insensitive regex to replace the hatchery name if it's at the end of the string
-                # The \b ensures we match whole words.
-                water_name = re.sub(r'\s*\b' + re.escape(name) + r'\s*$', '', water_name, flags=re.IGNORECASE).strip()
+            if hatchery_name and hatchery_name != 'Private':
+                if water_name.lower().endswith(hatchery_name.lower()):
+                    water_name = water_name[:-len(hatchery_name)].strip()
 
-            water_name = re.sub(r'\s*\bPRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')].strip()
+            
             water_name = " ".join(water_name.split()).title()
             
             if not water_name: continue

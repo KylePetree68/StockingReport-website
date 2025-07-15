@@ -136,11 +136,18 @@
         // --- FUNCTIONS ---
 
         /**
-         * Fetches data and initializes the application.
+         * **FIX**: This function safely parses a YYYY-MM-DD date string
+         * to avoid timezone conversion issues.
          */
+        function parseDateAsLocal(dateString) {
+            const [year, month, day] = dateString.split('-').map(Number);
+            // new Date(year, monthIndex, day) is interpreted in the local timezone.
+            return new Date(year, month - 1, day);
+        }
+
         async function initializeApp() {
             try {
-                const response = await fetch('./stocking_data.json?v=' + new Date().getTime()); // Cache-bust
+                const response = await fetch('./stocking_data.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error(`File not found or server error (status: ${response.status}).`);
                 
                 const text = await response.text();
@@ -151,7 +158,7 @@
                 if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
                 
                 buildOptionsList();
-                displayStatewideSummary(); // Display the new summary on load
+                displayStatewideSummary();
 
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
@@ -163,12 +170,9 @@
             }
         }
 
-        /**
-         * Displays a summary of the most recently stocked waters statewide.
-         */
         function displayStatewideSummary() {
             initialMessageTitle.textContent = "Latest Statewide Stockings";
-            initialMessageBody.innerHTML = ''; // Clear loading message
+            initialMessageBody.innerHTML = '';
 
             const allRecords = [];
             for (const waterName in stockingData) {
@@ -178,8 +182,7 @@
             }
 
             allRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            const recentStockings = allRecords.slice(0, 5); // Get top 5 most recent
+            const recentStockings = allRecords.slice(0, 5);
 
             const summaryList = document.createElement('ul');
             summaryList.className = 'space-y-3';
@@ -187,7 +190,8 @@
             recentStockings.forEach(rec => {
                 const li = document.createElement('li');
                 li.className = 'p-3 bg-white/50 rounded-lg border border-gray-200';
-                const stockDate = new Date(rec.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+                const localDate = parseDateAsLocal(rec.date);
+                const stockDate = localDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
                 li.innerHTML = `
                     <p class="font-semibold text-gray-800">${rec.waterName}</p>
                     <p class="text-sm text-gray-600">Stocked with ${rec.species} on ${stockDate}</p>
@@ -198,9 +202,6 @@
             initialMessageBody.appendChild(summaryList);
         }
 
-        /**
-         * Builds the full list of dropdown options once for better performance.
-         */
         function buildOptionsList() {
             const waterNames = Object.keys(stockingData).sort();
             optionsContainer.innerHTML = '';
@@ -221,9 +222,6 @@
             });
         }
 
-        /**
-         * Displays the stocking data for the selected water body.
-         */
         function displayResults(waterName) {
             const data = stockingData[waterName];
             
@@ -243,18 +241,19 @@
             records.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             const latestRecord = records[0];
+            const latestDate = parseDateAsLocal(latestRecord.date);
             waterNameTitle.textContent = waterName;
-            lastStockedDate.textContent = new Date(latestRecord.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            lastStockedDate.textContent = latestDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             lastStockedSpecies.textContent = latestRecord.species;
 
             historyTableBody.innerHTML = ''; 
             records.forEach(record => {
                 const row = document.createElement('tr');
                 row.className = 'clickable-row';
-                // **THE FIX IS HERE**: The reportUrl is now part of the record object.
                 row.onclick = () => { if(record.reportUrl) window.open(record.reportUrl, '_blank'); };
+                const recordDate = parseDateAsLocal(record.date);
                 row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${new Date(record.date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>

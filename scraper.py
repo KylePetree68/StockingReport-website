@@ -60,77 +60,81 @@ def extract_text_from_pdf(pdf_url):
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")
         return ""
 
-def parse_modern_format(text, report_url):
+def final_parser(text, report_url):
     """
-    Parses the modern, table-based PDF format.
+    A robust parser that works backwards from the end of the line to identify columns
+    and correctly cleans the water body name using a definitive list.
     """
     all_records = {}
     current_species = None
-    hatchery_map = {'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery', 'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility', 'FED': 'Federal Hatchery'}
-    data_line_regex = re.compile(r"^(.*?)\s+([\d.]+)\s+([\d,.]+)\s+([\d,]+)\s+(\d{2}/\d{2}/\d{4})\s+([A-Z]{2,3})$")
+    
+    hatchery_map = {
+        'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery',
+        'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility',
+        'FED': 'Federal Hatchery', 'SS': 'Seven Springs Trout Hatchery', 'GW': 'Glenwood Springs Hatchery'
+    }
+    hatchery_names_sorted = sorted(hatchery_map.values(), key=len, reverse=True)
+    
+    species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
+    
     lines = text.split('\n')
     for line in lines:
         line = line.strip()
         if not line: continue
-        if re.match(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+){0,2}$", line):
+        
+        if species_regex.match(line) and "By Date For" not in line:
             current_species = line.strip()
             continue
+            
         if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
-        match = data_line_regex.match(line)
-        if match and current_species:
-            name_part, length, _, number, date_str, hatchery_id = match.groups()
-            water_name = name_part.strip()
-            hatchery_name = hatchery_map.get(hatchery_id, hatchery_id)
-            if hatchery_name != 'Private':
-                escaped_hatchery_name = re.escape(hatchery_name)
-                water_name = re.sub(escaped_hatchery_name, '', water_name, flags=re.IGNORECASE).strip()
-            water_name = re.sub(r'\s*PRIVATE\s*$', '', water_name, flags=re.IGNORECASE).strip()
+        
+        words = line.split()
+        if len(words) < 6: continue
+
+        try:
+            hatchery_id = words[-1]
+            date_str = words[-2]
+            number = words[-3]
+            length = words[-5]
+            
+            name_part = " ".join(words[:-5])
+
+            if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
+            if hatchery_id not in hatchery_map: continue
+
+            hatchery_name = hatchery_map.get(hatchery_id)
+            
+            water_name = name_part
+            for h_name_to_remove in hatchery_names_sorted:
+                if h_name_to_remove == 'Private': continue
+                if water_name.lower().endswith(h_name_to_remove.lower()):
+                    water_name = water_name[:-len(h_name_to_remove)].strip()
+                    break
+            
+            if water_name.lower().endswith(' private'):
+                water_name = water_name[:-len(' private')].strip()
+
             water_name = " ".join(water_name.split()).title()
+            
             if not water_name: continue
-            try:
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-                if water_name not in all_records:
-                    all_records[water_name] = {"records": []}
-                all_records[water_name]["records"].append(record)
-            except ValueError: continue
-    return all_records
+            
+            date_obj = datetime.strptime(date_str, "%m/%d/%Y")
+            formatted_date = date_obj.strftime("%Y-%m-%d")
+            
+            record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
+            
+            if water_name not in all_records:
+                all_records[water_name] = {"records": []}
+            all_records[water_name]["records"].append(record)
 
-def parse_older_format(text, report_url):
-    """
-    Parses older, less-structured PDF formats.
-    """
-    all_records = {}
-    # Find year from report title if available, e.g., "Stocking Report for week of July 4-10, 2020"
-    year_match = re.search(r'(\d{4})', text)
-    current_year_str = year_match.group(1) if year_match else str(datetime.now().year)
-    print(f"    -> Using year {current_year_str} for older format.")
-
-    # Regex to find a water body header and capture all text until the next one.
-    water_body_pattern = re.compile(r"([A-Z\s.’()\-]+?):\n(.*?)(?=\n[A-Z\s.’()\-]+?:|\Z)", re.DOTALL)
-    stock_pattern = re.compile(r"(\w+\s\d+):\s*Stocked\s*([\d,]+)\s*([\w\s\-]+?)\s*\(.*?(\d+\.?\d*)-inch\)")
-    
-    for wb_match in water_body_pattern.finditer(text):
-        water_body_name = wb_match.group(1).strip().title()
-        if "Report" in water_body_name or "Week Of" in water_body_name: continue
-
-        entry_text = wb_match.group(2)
-        for stock_match in stock_pattern.finditer(entry_text):
-            date_str, quantity, species, length = stock_match.groups()
-            try:
-                date_obj = datetime.strptime(f"{date_str} {current_year_str}", "%B %d %Y")
-                formatted_date = date_obj.strftime("%Y-%m-%d")
-                record = {"date": formatted_date, "species": species.strip().title(), "quantity": quantity.replace(',', ''), "length": length, "hatchery": "N/A", "reportUrl": report_url}
-                if water_body_name not in all_records:
-                    all_records[water_body_name] = {"records": []}
-                all_records[water_body_name]["records"].append(record)
-            except ValueError: continue
+        except (ValueError, IndexError):
+            continue
+            
     return all_records
 
 def scrape_reports():
     """
-    Main daily function with corrected efficiency logic and fallback parser.
+    Main daily function with robust data loading and efficiency logic.
     """
     print("--- Starting Daily Scrape Job ---")
     
@@ -140,11 +144,21 @@ def scrape_reports():
         try:
             with open(OUTPUT_FILE, "r") as f:
                 final_data = json.load(f)
-        except (json.JSONDecodeError, IOError):
-            print(f"Warning: Could not parse {OUTPUT_FILE}. Starting fresh.")
-            final_data = {}
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Warning: Could not parse {OUTPUT_FILE}. Error: {e}. Attempting to restore from backup.")
+            if os.path.exists(BACKUP_FILE):
+                try:
+                    with open(BACKUP_FILE, "r") as bf:
+                        final_data = json.load(bf)
+                    print("Successfully restored data from backup file.")
+                except (json.JSONDecodeError, IOError) as be:
+                     print(f"FATAL: Could not restore from backup. Error: {be}. Aborting to prevent data loss.")
+                     return # Exit the script
+            else:
+                print("FATAL: Main data file is corrupt and no backup file was found. Aborting to prevent data loss.")
+                return # Exit the script
     else:
-        print("No existing data file found. Starting fresh.")
+        print("No existing data file found. This should only happen on the very first run.")
 
     processed_urls = set()
     for water_data in final_data.values():
@@ -171,23 +185,13 @@ def scrape_reports():
     for link in new_pdf_links:
         raw_text = extract_text_from_pdf(link)
         if raw_text:
-            # **FIX**: Use the two-stage parsing logic
-            parsed_data = parse_modern_format(raw_text, link)
-            if not parsed_data:
-                print(f"    -> Modern parser failed for {link}. Trying older format parser...")
-                parsed_data = parse_older_format(raw_text, link)
-
-            if not parsed_data:
-                print(f"    [!] No records found in file with any parser: {link}")
-                continue
-
+            parsed_data = final_parser(raw_text, link)
             for water_body, data in parsed_data.items():
                 if water_body not in final_data:
                     final_data[water_body] = data
                     new_records_found += len(data['records'])
                 else:
                     existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
-                    
                     for new_record in data['records']:
                         new_record_str = json.dumps(new_record, sort_keys=True)
                         if new_record_str not in existing_records_set:

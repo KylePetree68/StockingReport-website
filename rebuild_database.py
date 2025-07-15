@@ -18,7 +18,7 @@ BACKUP_FILE = "stocking_data.json.bak"
 
 def get_all_pdf_links_from_archive(start_url):
     """
-    Scrapes ALL pages of the archive to find links to all available PDF reports.
+    Scrapes the first 3 pages of the archive to find links to all available PDF reports.
     """
     print(f"Finding all PDF links, starting from: {start_url}...")
     all_pdf_links = []
@@ -45,6 +45,11 @@ def get_all_pdf_links_from_archive(start_url):
                     if full_url not in all_pdf_links:
                         all_pdf_links.append(full_url)
             
+            # **THE FIX IS HERE**: Stop after scraping page 3.
+            if page_count >= 3:
+                print("    Reached page limit of 3. Stopping.")
+                break
+
             next_link = soup.find("a", class_="next")
             if next_link and next_link.has_attr('href'):
                 current_page_url = next_link['href']
@@ -52,10 +57,6 @@ def get_all_pdf_links_from_archive(start_url):
                 time.sleep(1)
             else:
                 current_page_url = None
-
-            if page_count > 25:
-                print("    Reached page limit of 25. Stopping.")
-                break
 
         except requests.exceptions.RequestException as e:
             print(f"Error fetching page {current_page_url}: {e}")
@@ -128,14 +129,12 @@ def final_parser(text, report_url):
 
             hatchery_name = hatchery_map.get(hatchery_id)
             
-            # **FINAL, ROBUST FIX**: Iterate through all known hatchery names and remove them.
             water_name = name_part
             for h_name_to_remove in hatchery_names_sorted:
                 if h_name_to_remove == 'Private': continue
-                # Use case-insensitive string checking and slicing
                 if water_name.lower().endswith(h_name_to_remove.lower()):
                     water_name = water_name[:-len(h_name_to_remove)].strip()
-                    break # Exit loop once a match is found and removed
+                    break
             
             if water_name.lower().endswith(' private'):
                 water_name = water_name[:-len(' private')].strip()
@@ -162,8 +161,7 @@ def rebuild_database():
     """
     This function performs a one-time, full rebuild of the database.
     """
-    print("--- Starting One-Time Database Rebuild ---")
-    print("This will process ALL reports from the archive.")
+    print("--- Starting One-Time Database Rebuild (First 3 Pages) ---")
     
     final_data = {}
     all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)

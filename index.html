@@ -8,26 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon and Social Media Meta Tags -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
+    <meta property="og:title" content="NM Stocking Report">
+    <meta property="og:description" content="Your source for the latest New Mexico fish stocking information.">
+    <meta property="og:image" content="https://stockingreport.com/og-image.png"> <!-- You will need to upload an og-image.png file -->
+    <meta property="og:url" content="https://stockingreport.com">
+    <meta name="twitter:card" content="summary_large_image">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* A lighter, slightly blue-gray background */
-            /* Background image from Unsplash - adds personality */
+            background-color: #f0f4f8;
             background-image: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), url('https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=2070');
             background-attachment: fixed;
             background-size: cover;
         }
-        .clickable-row {
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .clickable-row:hover {
-            background-color: #f9fafb; /* gray-50 */
-        }
-        #custom-select-options {
-            max-height: 250px;
-            overflow-y: auto;
-        }
+        .clickable-row { cursor: pointer; transition: background-color 0.2s ease-in-out; }
+        .clickable-row:hover { background-color: #f9fafb; }
+        #custom-select-options { max-height: 250px; overflow-y: auto; }
         #custom-select-options::-webkit-scrollbar { display: none; }
         #custom-select-options { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -41,7 +42,6 @@
             <p class="text-gray-600 mt-2">Your source for the latest New Mexico fish stocking information.</p>
         </header>
 
-        <!-- About this Site Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">About This Site</h2>
             <div class="space-y-4 text-gray-700">
@@ -58,7 +58,6 @@
         </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-
             <div class="mb-8">
                 <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
                 <div class="relative" id="searchable-dropdown">
@@ -67,7 +66,6 @@
                 </div>
             </div>
 
-            <!-- Results Display -->
             <div id="results-container" class="space-y-6 hidden">
                 <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                     <h2 class="text-xl font-bold text-gray-800"><span id="water-name-title"></span></h2>
@@ -93,20 +91,16 @@
                 </div>
             </div>
             
-            <!-- Initial Message / Statewide Summary -->
             <div id="initial-message" class="py-4">
                 <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700">Loading Data...</h3>
                 <div id="initial-message-body" class="text-gray-600">
                     <p>Please wait a moment while we fetch the latest reports.</p>
                 </div>
             </div>
-
         </main>
 
-        <!-- Ad Banner Placeholder -->
         <div class="mt-8 text-center">
             <div class="bg-gray-200/80 rounded-lg flex items-center justify-center h-24 text-gray-500">
-                <!-- Your Google AdSense code would go here. -->
                 Advertisement
             </div>
         </div>
@@ -117,10 +111,7 @@
     </div>
 
     <script>
-        // --- GLOBAL STATE ---
         let stockingData = {};
-
-        // --- DOM ELEMENTS ---
         const searchInput = document.getElementById('water-search-input');
         const optionsContainer = document.getElementById('custom-select-options');
         const resultsContainer = document.getElementById('results-container');
@@ -133,15 +124,8 @@
         const historyTableBody = document.getElementById('history-table-body');
         const copyrightYearSpan = document.getElementById('copyright-year');
 
-        // --- FUNCTIONS ---
-
-        /**
-         * **FIX**: This function safely parses a YYYY-MM-DD date string
-         * to avoid timezone conversion issues.
-         */
         function parseDateAsLocal(dateString) {
             const [year, month, day] = dateString.split('-').map(Number);
-            // new Date(year, monthIndex, day) is interpreted in the local timezone.
             return new Date(year, month - 1, day);
         }
 
@@ -149,17 +133,12 @@
             try {
                 const response = await fetch('./stocking_data.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error(`File not found or server error (status: ${response.status}).`);
-                
                 const text = await response.text();
                 if (!text) throw new Error("The stocking data file is empty.");
-
                 stockingData = JSON.parse(text);
-
                 if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
-                
                 buildOptionsList();
                 displayStatewideSummary();
-
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
             } catch (error) {
@@ -173,58 +152,46 @@
         function displayStatewideSummary() {
             initialMessageTitle.textContent = "Latest Statewide Stockings";
             initialMessageBody.innerHTML = '';
-
             const allRecords = [];
             for (const waterName in stockingData) {
                 stockingData[waterName].records.forEach(record => {
                     allRecords.push({ waterName, ...record });
                 });
             }
-
             allRecords.sort((a, b) => new Date(b.date) - new Date(a.date));
             const recentStockings = allRecords.slice(0, 5);
-
             const summaryList = document.createElement('ul');
             summaryList.className = 'space-y-3';
-            
             recentStockings.forEach(rec => {
                 const li = document.createElement('li');
                 li.className = 'p-3 bg-white/50 rounded-lg border border-gray-200';
                 const localDate = parseDateAsLocal(rec.date);
                 const stockDate = localDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-                li.innerHTML = `
-                    <p class="font-semibold text-gray-800">${rec.waterName}</p>
-                    <p class="text-sm text-gray-600">Stocked with ${rec.species} on ${stockDate}</p>
-                `;
+                li.innerHTML = `<p class="font-semibold text-gray-800">${rec.waterName}</p><p class="text-sm text-gray-600">Stocked with ${rec.species} on ${stockDate}</p>`;
                 summaryList.appendChild(li);
             });
-
             initialMessageBody.appendChild(summaryList);
         }
 
         function buildOptionsList() {
             const waterNames = Object.keys(stockingData).sort();
             optionsContainer.innerHTML = '';
-            
             waterNames.forEach(name => {
                 const optionDiv = document.createElement('div');
                 optionDiv.textContent = name;
                 optionDiv.classList.add('p-3', 'cursor-pointer', 'hover:bg-blue-50');
-                
                 optionDiv.addEventListener('mousedown', (e) => {
                     e.preventDefault();
                     searchInput.value = name;
                     optionsContainer.classList.add('hidden');
                     displayResults(name);
                 });
-                
                 optionsContainer.appendChild(optionDiv);
             });
         }
 
         function displayResults(waterName) {
             const data = stockingData[waterName];
-            
             if (!data || !data.records || data.records.length === 0) {
                 resultsContainer.classList.add('hidden');
                 initialMessage.classList.remove('hidden');
@@ -232,39 +199,26 @@
                 initialMessageBody.innerHTML = '<p>There is no stocking history available for this location.</p>';
                 return;
             }
-            
             const records = data.records;
-
             resultsContainer.classList.remove('hidden');
             initialMessage.classList.add('hidden');
-
             records.sort((a, b) => new Date(b.date) - new Date(a.date));
-
             const latestRecord = records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);
             waterNameTitle.textContent = waterName;
             lastStockedDate.textContent = latestDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             lastStockedSpecies.textContent = latestRecord.species;
-
             historyTableBody.innerHTML = ''; 
             records.forEach(record => {
                 const row = document.createElement('tr');
                 row.className = 'clickable-row';
                 row.onclick = () => { if(record.reportUrl) window.open(record.reportUrl, '_blank'); };
                 const recordDate = parseDateAsLocal(record.date);
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
-                `;
+                row.innerHTML = `<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>`;
                 historyTableBody.appendChild(row);
             });
         }
 
-        // --- EVENT LISTENERS ---
-        
         searchInput.addEventListener('input', () => {
             optionsContainer.classList.remove('hidden');
             const filter = searchInput.value.toLowerCase();
@@ -289,12 +243,9 @@
                 optionsContainer.classList.add('hidden');
             }
         });
-
-        // --- INITIALIZATION ---
         
         copyrightYearSpan.textContent = new Date().getFullYear();
         window.addEventListener('DOMContentLoaded', initializeApp);
     </script>
-
 </body>
 </html>

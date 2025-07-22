@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
     <meta property="og:title" content="NM Stocking Report">
     <meta property="og:description" content="Your source for the latest New Mexico fish stocking information.">
-    <meta property="og:image" content="https://stockingreport.com/og-image.png"> <!-- You will need to upload an og-image.png file -->
+    <meta property="og:image" content="https://stockingreport.com/og-image.png">
     <meta property="og:url" content="https://stockingreport.com">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -97,6 +97,14 @@
                     <p>Please wait a moment while we fetch the latest reports.</p>
                 </div>
             </div>
+
+            <!-- Browse All Waters Section -->
+            <div id="browse-section" class="mt-8 hidden">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Browse All Waters</h3>
+                <div id="browse-links" class="columns-2 md:columns-3 lg:columns-4 gap-x-6">
+                    <!-- Links will be populated by JavaScript -->
+                </div>
+            </div>
         </main>
 
         <div class="mt-8 text-center">
@@ -123,6 +131,8 @@
         const lastStockedSpecies = document.getElementById('last-stocked-species');
         const historyTableBody = document.getElementById('history-table-body');
         const copyrightYearSpan = document.getElementById('copyright-year');
+        const browseSection = document.getElementById('browse-section');
+        const browseLinks = document.getElementById('browse-links');
 
         function parseDateAsLocal(dateString) {
             const [year, month, day] = dateString.split('-').map(Number);
@@ -139,6 +149,7 @@
                 if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
                 buildOptionsList();
                 displayStatewideSummary();
+                populateBrowseLinks(); // New function call
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
             } catch (error) {
@@ -173,6 +184,20 @@
             initialMessageBody.appendChild(summaryList);
         }
 
+        function populateBrowseLinks() {
+            const waterNames = Object.keys(stockingData).sort();
+            browseLinks.innerHTML = '';
+            waterNames.forEach(name => {
+                const filename = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + ".html";
+                const link = document.createElement('a');
+                link.href = `/waters/${filename}`;
+                link.textContent = name;
+                link.className = 'block text-blue-600 hover:underline py-1';
+                browseLinks.appendChild(link);
+            });
+            browseSection.classList.remove('hidden');
+        }
+
         function buildOptionsList() {
             const waterNames = Object.keys(stockingData).sort();
             optionsContainer.innerHTML = '';
@@ -202,6 +227,7 @@
             const records = data.records;
             resultsContainer.classList.remove('hidden');
             initialMessage.classList.add('hidden');
+            browseSection.classList.add('hidden'); // Hide browse section when showing results
             records.sort((a, b) => new Date(b.date) - new Date(a.date));
             const latestRecord = records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);

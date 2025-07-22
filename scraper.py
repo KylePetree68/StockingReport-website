@@ -219,18 +219,21 @@ def generate_static_pages(data):
 
     generated_count = 0
     for water_name, water_data in data.items():
-        # Create a URL-friendly filename (e.g., "Lake Maloya" -> "lake-maloya.html")
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         filepath = os.path.join(OUTPUT_DIR, filename)
 
-        # Create the table rows HTML
         table_rows_html = ""
         for record in water_data.get("records", []):
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
-            # **FIX**: Add onclick and class to the table row
+            
+            # **THE FIX IS HERE**: Ensure the onclick attribute is always correctly generated.
+            onclick_attr = ""
+            if record.get("reportUrl"):
+                onclick_attr = f"onclick=\"window.open('{record['reportUrl']}', '_blank')\""
+
             table_rows_html += f"""
-                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('{record['reportUrl']}', '_blank')">
+                <tr class="clickable-row hover:bg-gray-50" {onclick_attr}>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['quantity']}</td>
@@ -239,7 +242,6 @@ def generate_static_pages(data):
                 </tr>
             """
         
-        # Replace placeholders in the template
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
 

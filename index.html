@@ -190,7 +190,8 @@
             waterNames.forEach(name => {
                 const filename = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + ".html";
                 const link = document.createElement('a');
-                link.href = `/waters/${filename}`;
+                // **THE FIX IS HERE**
+                link.href = `/public/waters/${filename}`;
                 link.textContent = name;
                 link.className = 'block text-blue-600 hover:underline py-1';
                 browseLinks.appendChild(link);

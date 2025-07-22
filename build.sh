@@ -5,6 +5,6 @@
 #python clean_database.py
 #
 pip install -r requirements.txt
-#mkdir -p public/waters
-#python scraper.py
-python scraper.py --rebuild
+mkdir -p public/waters
+python scraper.py
+#python scraper.py --rebuild

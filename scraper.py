@@ -226,11 +226,11 @@ def generate_static_pages(data):
         # Create the table rows HTML
         table_rows_html = ""
         for record in water_data.get("records", []):
-            # Parse date to reformat it nicely
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
+            # **FIX**: Add onclick and class to the table row
             table_rows_html += f"""
-                <tr class="hover:bg-gray-50">
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('{record['reportUrl']}', '_blank')">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['quantity']}</td>

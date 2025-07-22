@@ -161,30 +161,35 @@
         }
 
         function displayStatewideSummary() {
-            let latestDate = '1970-01-01';
+            // **UPDATED LOGIC**
+            let latestDateStr = '1970-01-01';
             for (const waterName in stockingData) {
                 if (stockingData[waterName].records && stockingData[waterName].records.length > 0) {
-                    // Assumes records are pre-sorted, so the first one is the latest
-                    if (stockingData[waterName].records[0].date > latestDate) {
-                        latestDate = stockingData[waterName].records[0].date;
+                    if (stockingData[waterName].records[0].date > latestDateStr) {
+                        latestDateStr = stockingData[waterName].records[0].date;
                     }
                 }
             }
 
-            const watersInLatestReport = new Set();
+            const latestDate = parseDateAsLocal(latestDateStr);
+            const sevenDaysAgo = new Date(latestDate);
+            sevenDaysAgo.setDate(latestDate.getDate() - 6); // Go back 6 days to get a 7-day window
+
+            const watersInDateRange = new Set();
             for (const waterName in stockingData) {
                 stockingData[waterName].records.forEach(record => {
-                    if (record.date === latestDate) {
-                        watersInLatestReport.add(waterName);
+                    const recordDate = parseDateAsLocal(record.date);
+                    if (recordDate >= sevenDaysAgo && recordDate <= latestDate) {
+                        watersInDateRange.add(waterName);
                     }
                 });
             }
 
-            const sortedWaters = Array.from(watersInLatestReport).sort();
-            const localDate = parseDateAsLocal(latestDate);
-            const reportDateString = localDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const sortedWaters = Array.from(watersInDateRange).sort();
+            const startDateString = sevenDaysAgo.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const endDateString = latestDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-            initialMessageTitle.textContent = `Waters in the Latest Report (${reportDateString})`;
+            initialMessageTitle.textContent = `Most Recent Stockings (${startDateString} - ${endDateString})`;
             initialMessageBody.innerHTML = '';
 
             if (sortedWaters.length === 0) {

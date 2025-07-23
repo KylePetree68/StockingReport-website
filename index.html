@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK0ZMTQ9X9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TK0ZMTQ9X9');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NM Stocking Report</title>
@@ -161,7 +170,6 @@
         }
 
         function displayStatewideSummary() {
-            // **UPDATED LOGIC**
             let latestDateStr = '1970-01-01';
             for (const waterName in stockingData) {
                 if (stockingData[waterName].records && stockingData[waterName].records.length > 0) {
@@ -173,7 +181,7 @@
 
             const latestDate = parseDateAsLocal(latestDateStr);
             const sevenDaysAgo = new Date(latestDate);
-            sevenDaysAgo.setDate(latestDate.getDate() - 6); // Go back 6 days to get a 7-day window
+            sevenDaysAgo.setDate(latestDate.getDate() - 6);
 
             const watersInDateRange = new Set();
             for (const waterName in stockingData) {

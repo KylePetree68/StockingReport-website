@@ -220,6 +220,8 @@ def generate_static_pages(data):
 
     generated_count = 0
     for water_name, water_data in data.items():
+        # **LOGGING ADDED**
+        print(f"  -> Generating page for {water_name}...")
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         filepath = os.path.join(OUTPUT_DIR, filename)
 
@@ -258,7 +260,12 @@ def generate_sitemap(data):
     """
     print("\n--- Starting Sitemap Generation ---")
     
-    urls = ["https://stockingreport.com/"] # Start with the homepage
+    # **LOGGING/SAFETY ADDED**: Ensure the public directory exists.
+    if not os.path.exists("public"):
+        os.makedirs("public")
+        print("Created 'public' directory for sitemap.")
+
+    urls = ["https://stockingreport.com/"]
     
     for water_name in data.keys():
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
@@ -325,6 +332,9 @@ def run_scraper(rebuild=False):
                 with open(OUTPUT_FILE, "w") as f:
                     json.dump(final_data, f, indent=4)
                 print("Re-saved existing data to ensure file is not empty.")
+                # Also regenerate pages and sitemap to keep them fresh
+                generate_static_pages(final_data)
+                generate_sitemap(final_data)
             except IOError as e:
                 print(f"Error re-saving data file: {e}")
             print("--- Scrape Job Finished ---")

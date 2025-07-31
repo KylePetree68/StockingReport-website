@@ -214,13 +214,8 @@ def generate_static_pages(data):
     with open(TEMPLATE_FILE, "r") as f:
         template_html = f.read()
 
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-        print(f"Created output directory: {OUTPUT_DIR}")
-
     generated_count = 0
     for water_name, water_data in data.items():
-        # **LOGGING ADDED**
         print(f"  -> Generating page for {water_name}...")
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         filepath = os.path.join(OUTPUT_DIR, filename)
@@ -260,11 +255,6 @@ def generate_sitemap(data):
     """
     print("\n--- Starting Sitemap Generation ---")
     
-    # **LOGGING/SAFETY ADDED**: Ensure the public directory exists.
-    if not os.path.exists("public"):
-        os.makedirs("public")
-        print("Created 'public' directory for sitemap.")
-
     urls = ["https://stockingreport.com/"]
     
     for water_name in data.keys():
@@ -298,6 +288,14 @@ def run_scraper(rebuild=False):
     """
     Main function to orchestrate the scraping process.
     """
+    # **FIX**: Ensure output directories exist at the very beginning of any run.
+    if not os.path.exists("public"):
+        os.makedirs("public")
+        print("Created 'public' directory.")
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+        print(f"Created output directory: {OUTPUT_DIR}")
+
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
@@ -332,7 +330,6 @@ def run_scraper(rebuild=False):
                 with open(OUTPUT_FILE, "w") as f:
                     json.dump(final_data, f, indent=4)
                 print("Re-saved existing data to ensure file is not empty.")
-                # Also regenerate pages and sitemap to keep them fresh
                 generate_static_pages(final_data)
                 generate_sitemap(final_data)
             except IOError as e:
@@ -381,8 +378,10 @@ def run_scraper(rebuild=False):
             print(f"Successfully saved new data file: {OUTPUT_FILE}")
 
             # After saving the data, generate the static pages and sitemap
+            print("Proceeding to generate static pages and sitemap...")
             generate_static_pages(final_data)
             generate_sitemap(final_data)
+            print("Static pages and sitemap generation complete.")
 
         except IOError as e:
             print(f"Error writing to file {OUTPUT_FILE}: {e}")

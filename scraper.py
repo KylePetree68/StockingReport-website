@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import re
-from datetime import datetime
+from datetime import datetime, date
 import pdfplumber
 import io
 import os
@@ -19,10 +19,11 @@ OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
 TEMPLATE_FILE = "template.html"
 OUTPUT_DIR = "public/waters"
+SITEMAP_FILE = "public/sitemap.xml"
 
-def get_pdf_links_for_rebuild(start_url):
+def get_all_pdf_links_from_archive(start_url):
     """
-    Scrapes archive pages starting from a hardcoded year and moving forward.
+    Scrapes archive pages starting from 2025 and moving forward.
     """
     target_year = 2025
     print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
@@ -251,6 +252,41 @@ def generate_static_pages(data):
     print(f"Generated {generated_count} static pages in '{OUTPUT_DIR}'.")
     print("--- Static Page Generation Finished ---")
 
+def generate_sitemap(data):
+    """
+    Generates a sitemap.xml file from the data.
+    """
+    print("\n--- Starting Sitemap Generation ---")
+    
+    urls = ["https://stockingreport.com/"] # Start with the homepage
+    
+    for water_name in data.keys():
+        filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
+        url = f"https://stockingreport.com/public/waters/{filename}"
+        urls.append(url)
+
+    xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    today = date.today().isoformat()
+    
+    for url in urls:
+        xml_content += '  <url>\n'
+        xml_content += f'    <loc>{url}</loc>\n'
+        xml_content += f'    <lastmod>{today}</lastmod>\n'
+        xml_content += '  </url>\n'
+        
+    xml_content += '</urlset>'
+    
+    try:
+        with open(SITEMAP_FILE, "w") as f:
+            f.write(xml_content)
+        print(f"Successfully generated sitemap with {len(urls)} URLs: {SITEMAP_FILE}")
+    except IOError as e:
+        print(f"Error writing sitemap file: {e}")
+        
+    print("--- Sitemap Generation Finished ---")
+
 def run_scraper(rebuild=False):
     """
     Main function to orchestrate the scraping process.
@@ -258,8 +294,7 @@ def run_scraper(rebuild=False):
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
-        # **THE FIX IS HERE**: Corrected the function name from get_all_pdf_links_from_archive to get_pdf_links_for_rebuild
-        all_pdf_links = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL)
+        all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
         if not all_pdf_links:
             print("No PDF links found. Aborting rebuild.")
             return
@@ -335,8 +370,9 @@ def run_scraper(rebuild=False):
                 json.dump(final_data, f, indent=4)
             print(f"Successfully saved new data file: {OUTPUT_FILE}")
 
-            # After saving the data, generate the static pages
+            # After saving the data, generate the static pages and sitemap
             generate_static_pages(final_data)
+            generate_sitemap(final_data)
 
         except IOError as e:
             print(f"Error writing to file {OUTPUT_FILE}: {e}")

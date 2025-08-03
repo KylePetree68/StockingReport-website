@@ -6,5 +6,5 @@
 #
 pip install -r requirements.txt
 mkdir -p public/waters
-python scraper.py
-#python scraper.py --rebuild
+#python scraper.py
+python scraper.py --rebuild

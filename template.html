@@ -45,7 +45,20 @@
                 <a href="/" class="text-blue-600 hover:underline">&larr; Back to Main Search</a>
             </div>
             
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Stocking History for {{WATER_NAME}}</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">{{WATER_NAME}}</h2>
+            <div class="prose max-w-none text-gray-600 mb-6">
+                {{SUMMARY}}
+            </div>
+
+            <!-- Latest Stocking Summary -->
+            <div class="mb-8 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Latest Stocking</h3>
+                <div id="latest-stocking-summary">
+                    {{LATEST_STOCKING_SUMMARY}}
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Complete Stocking History</h3>
 
             <div class="overflow-x-auto rounded-lg border border-gray-200">
                 <table class="min-w-full divide-y divide-gray-200">

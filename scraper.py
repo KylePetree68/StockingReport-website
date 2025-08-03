@@ -299,7 +299,7 @@ def run_scraper(rebuild=False):
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
         # **THE FIX IS HERE**: Corrected the function name.
-        all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
+        all_pdf_links = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL)
         if not all_pdf_links:
             print("No PDF links found. Aborting rebuild.")
             return

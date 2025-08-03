@@ -21,7 +21,7 @@ TEMPLATE_FILE = "template.html"
 OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 
-def get_all_pdf_links_from_archive(start_url):
+def get_pdf_links_for_rebuild(start_url):
     """
     Scrapes archive pages starting from a hardcoded year and moving forward.
     """
@@ -204,7 +204,7 @@ def final_parser(text, report_url):
 
 def generate_static_pages(data):
     """
-    Generates an individual HTML page for each water body with enhanced content.
+    Generates an individual HTML page for each water body.
     """
     print("\n--- Starting Static Page Generation ---")
     if not os.path.exists(TEMPLATE_FILE):
@@ -220,20 +220,15 @@ def generate_static_pages(data):
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         filepath = os.path.join(OUTPUT_DIR, filename)
 
-        records = water_data.get("records", [])
-        
-        latest_stocking_html = "<p>No recent stocking data available.</p>"
-        if records:
-            latest_record = records[0]
-            date_obj = datetime.strptime(latest_record['date'], "%Y-%m-%d")
-            display_date = date_obj.strftime("%B %d, %Y")
-            latest_stocking_html = f"<p>Last stocked on <strong class='text-blue-700'>{display_date}</strong> with <strong class='text-blue-700'>{latest_record['species']}</strong>.</p>"
-
         table_rows_html = ""
-        for record in records:
+        for record in water_data.get("records", []):
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
-            onclick_attr = f"onclick=\"window.open('{record['reportUrl']}', '_blank')\"" if record.get("reportUrl") else ""
+            
+            onclick_attr = ""
+            if record.get("reportUrl"):
+                onclick_attr = f"onclick=\"window.open('{record['reportUrl']}', '_blank')\""
+
             table_rows_html += f"""
                 <tr class="clickable-row hover:bg-gray-50" {onclick_attr}>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
@@ -244,12 +239,7 @@ def generate_static_pages(data):
                 </tr>
             """
         
-        # **NEW**: Get the summary for the page
-        summary_html = f"<p>{water_data.get('summary', 'No description available.')}</p>"
-
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
-        page_html = page_html.replace("{{SUMMARY}}", summary_html)
-        page_html = page_html.replace("{{LATEST_STOCKING_SUMMARY}}", latest_stocking_html)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
 
         with open(filepath, "w") as f:
@@ -294,30 +284,6 @@ def generate_sitemap(data):
         
     print("--- Sitemap Generation Finished ---")
 
-def enrich_data_with_summaries(data):
-    """
-    Iterates through the data and adds a summary for any water body that doesn't have one.
-    """
-    print("\n--- Starting Content Enrichment ---")
-    enriched_count = 0
-    for water_name in data.keys():
-        if "summary" not in data[water_name] or not data[water_name]["summary"]:
-            print(f"  -> Fetching summary for {water_name}...")
-            try:
-                # This is a placeholder for a real search. In a real environment,
-                # you would use a search API here.
-                # For now, we'll use a generic placeholder.
-                summary = f"{water_name} is a popular fishing destination in New Mexico, frequently stocked by the NMDGF."
-                data[water_name]["summary"] = summary
-                enriched_count += 1
-                time.sleep(1) # Be respectful to APIs
-            except Exception as e:
-                print(f"    [!] Could not fetch summary for {water_name}: {e}")
-    
-    print(f"Enriched {enriched_count} new water bodies with summaries.")
-    print("--- Content Enrichment Finished ---")
-    return data
-
 def run_scraper(rebuild=False):
     """
     Main function to orchestrate the scraping process.
@@ -332,7 +298,8 @@ def run_scraper(rebuild=False):
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
-        all_pdf_links = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL)
+        # **THE FIX IS HERE**: Corrected the function name.
+        all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
         if not all_pdf_links:
             print("No PDF links found. Aborting rebuild.")
             return
@@ -396,9 +363,6 @@ def run_scraper(rebuild=False):
     print("\nScrape complete. Saving data...")
     
     if final_data:
-        # **NEW**: Enrich the data with summaries before saving
-        final_data = enrich_data_with_summaries(final_data)
-
         for water_body in final_data:
             unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
             unique_records.sort(key=lambda x: x['date'], reverse=True)

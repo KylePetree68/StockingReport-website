@@ -21,9 +21,9 @@ TEMPLATE_FILE = "template.html"
 OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 
-def get_all_pdf_links_from_archive(start_url):
+def get_pdf_links_for_rebuild(start_url):
     """
-    Scrapes archive pages starting from 2025 and moving forward.
+    Scrapes archive pages starting from a hardcoded year and moving forward.
     """
     target_year = 2025
     print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
@@ -145,14 +145,15 @@ def final_parser(text, report_url):
     }
     hatchery_names_sorted = sorted(hatchery_map.values(), key=len, reverse=True)
     
-    species_regex = re.compile(r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$")
+    # **THE FIX IS HERE**: This regex is more flexible for species names like "Brook Trout YY"
+    species_regex = re.compile(r"^[A-Z][a-zA-Z]+(?:\s[A-Za-z\s]+)*$")
     
     lines = text.split('\n')
     for line in lines:
         line = line.strip()
         if not line: continue
         
-        if species_regex.match(line) and "By Date For" not in line:
+        if species_regex.match(line) and "By Date For" not in line and len(line.split()) < 4:
             current_species = line.strip()
             continue
             
@@ -288,7 +289,6 @@ def run_scraper(rebuild=False):
     """
     Main function to orchestrate the scraping process.
     """
-    # **FIX**: Ensure output directories exist at the very beginning of any run.
     if not os.path.exists("public"):
         os.makedirs("public")
         print("Created 'public' directory.")
@@ -299,7 +299,7 @@ def run_scraper(rebuild=False):
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
-        all_pdf_links = get_all_pdf_links_from_archive(ARCHIVE_PAGE_URL)
+        all_pdf_links = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL)
         if not all_pdf_links:
             print("No PDF links found. Aborting rebuild.")
             return

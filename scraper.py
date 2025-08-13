@@ -20,6 +20,7 @@ BACKUP_FILE = "stocking_data.json.bak"
 TEMPLATE_FILE = "template.html"
 OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
+MANUAL_COORDS_FILE = "manual_coordinates.json"
 
 def get_pdf_links_for_rebuild(start_url):
     """
@@ -202,39 +203,46 @@ def final_parser(text, report_url):
             
     return all_records
 
-def enrich_data_with_coordinates(data):
+def enrich_data_with_coordinates(data, manual_coords):
     """
-    Adds latitude and longitude to any water body that doesn't have them using Nominatim API.
+    Adds latitude and longitude, prioritizing the manual override file.
     """
     print("\n--- Starting Geocoding Enrichment ---")
     enriched_count = 0
     for water_name in data.keys():
-        if "coords" not in data[water_name] or data[water_name]["coords"] is None:
-            print(f"  -> Fetching coordinates for {water_name}...")
-            try:
-                # Format the query for the Nominatim API
-                query = f"{water_name}, New Mexico"
-                url = f"https://nominatim.openstreetmap.org/search?q={requests.utils.quote(query)}&format=json&limit=1"
-                headers = {'User-Agent': 'NMStockingReport/1.0'}
-                
-                response = requests.get(url, headers=headers)
-                response.raise_for_status()
-                results = response.json()
-                
-                if results:
-                    lat = float(results[0]["lat"])
-                    lon = float(results[0]["lon"])
-                    data[water_name]["coords"] = {"lat": lat, "lon": lon}
-                    enriched_count += 1
-                    print(f"    [+] Found coordinates: {lat}, {lon}")
-                else:
-                    data[water_name]["coords"] = None # Mark as null if not found
-                    print(f"    [!] Could not find coordinates for {water_name}")
-                
-                time.sleep(1.5) # Be respectful to the API's usage policy (max 1 req/sec)
-            except Exception as e:
-                print(f"    [!] Error fetching coordinates for {water_name}: {e}")
+        if data[water_name].get("coords"):
+            continue
+
+        if water_name in manual_coords:
+            print(f"  -> Using manual coordinates for {water_name}...")
+            data[water_name]["coords"] = manual_coords[water_name]
+            enriched_count += 1
+            continue
+
+        print(f"  -> Fetching coordinates for {water_name}...")
+        try:
+            query = f"{water_name}, New Mexico"
+            url = f"https://nominatim.openstreetmap.org/search?q={requests.utils.quote(query)}&format=json&limit=1"
+            headers = {'User-Agent': 'NMStockingReport/1.0'}
+            
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            results = response.json()
+            
+            if results:
+                lat = float(results[0]["lat"])
+                lon = float(results[0]["lon"])
+                data[water_name]["coords"] = {"lat": lat, "lon": lon}
+                enriched_count += 1
+                print(f"    [+] Found coordinates: {lat}, {lon}")
+            else:
                 data[water_name]["coords"] = None
+                print(f"    [!] Could not find coordinates for {water_name}")
+            
+            time.sleep(1.5)
+        except Exception as e:
+            print(f"    [!] Error fetching coordinates for {water_name}: {e}")
+            data[water_name]["coords"] = None
     
     print(f"Enriched {enriched_count} new water bodies with coordinates.")
     print("--- Geocoding Enrichment Finished ---")
@@ -333,6 +341,12 @@ def run_scraper(rebuild=False):
         os.makedirs(OUTPUT_DIR)
         print(f"Created output directory: {OUTPUT_DIR}")
 
+    manual_coords = {}
+    if os.path.exists(MANUAL_COORDS_FILE):
+        print(f"Loading manual coordinates from {MANUAL_COORDS_FILE}...")
+        with open(MANUAL_COORDS_FILE, "r") as f:
+            manual_coords = json.load(f)
+
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
@@ -400,7 +414,7 @@ def run_scraper(rebuild=False):
     print("\nScrape complete. Saving data...")
     
     if final_data:
-        final_data = enrich_data_with_coordinates(final_data)
+        final_data = enrich_data_with_coordinates(final_data, manual_coords)
 
         for water_body in final_data:
             unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())

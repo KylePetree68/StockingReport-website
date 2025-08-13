@@ -18,6 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
     <!-- Favicon and Social Media Meta Tags -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
@@ -40,6 +43,7 @@
         #custom-select-options { max-height: 250px; overflow-y: auto; }
         #custom-select-options::-webkit-scrollbar { display: none; }
         #custom-select-options { -ms-overflow-style: none; scrollbar-width: none; }
+        #map { height: 500px; border-radius: 0.75rem; border: 1px solid #e5e7eb; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -107,6 +111,12 @@
                 </div>
             </div>
 
+            <!-- Interactive Map Section -->
+            <div id="map-section" class="mt-8 hidden">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Explore on the Map</h3>
+                <div id="map"></div>
+            </div>
+
             <!-- Browse All Waters Section -->
             <div id="browse-section" class="mt-8 hidden">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Browse All Waters</h3>
@@ -116,16 +126,6 @@
             </div>
         </main>
         
-        <!-- Articles Section Placeholder -->
-        <section class="mt-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Fishing Articles & News</h2>
-            <div class="space-y-4 text-gray-700">
-                <p>Check back soon for articles and tips for fishing in New Mexico!</p>
-                <!-- Example of what an article link could look like -->
-                <!-- <a href="/articles/top-5-spring-trout-spots.html" class="block text-blue-600 hover:underline">Top 5 Lakes Stocked with Trout this Spring</a> -->
-            </div>
-        </section>
-
         <div class="mt-8 text-center">
             <div class="bg-gray-200/80 rounded-lg flex items-center justify-center h-24 text-gray-500">
                 Advertisement
@@ -137,6 +137,8 @@
         </footer>
     </div>
 
+    <!-- Leaflet JS for the map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         let stockingData = {};
         const searchInput = document.getElementById('water-search-input');
@@ -152,6 +154,8 @@
         const copyrightYearSpan = document.getElementById('copyright-year');
         const browseSection = document.getElementById('browse-section');
         const browseLinks = document.getElementById('browse-links');
+        const mapSection = document.getElementById('map-section');
+        let map; // To hold the map instance
 
         function parseDateAsLocal(dateString) {
             const [year, month, day] = dateString.split('-').map(Number);
@@ -169,6 +173,7 @@
                 buildOptionsList();
                 displayStatewideSummary();
                 populateBrowseLinks();
+                initializeMap(); // New function call
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
             } catch (error) {
@@ -176,6 +181,26 @@
                 searchInput.placeholder = "Error loading data.";
                 initialMessageTitle.textContent = 'Error Loading Data';
                 initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
+            }
+        }
+
+        function initializeMap() {
+            mapSection.classList.remove('hidden');
+            map = L.map('map').setView([34.5, -106.0], 7); // Centered on New Mexico
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            for (const waterName in stockingData) {
+                const water = stockingData[waterName];
+                if (water.coords && water.coords.lat && water.coords.lon) {
+                    const filename = waterName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + ".html";
+                    const link = `/public/waters/${filename}`;
+                    const marker = L.marker([water.coords.lat, water.coords.lon]).addTo(map);
+                    marker.bindPopup(`<b>${waterName}</b><br><a href="${link}" class="text-blue-600 hover:underline">View Stocking History</a>`);
+                }
             }
         }
 
@@ -274,6 +299,7 @@
             resultsContainer.classList.remove('hidden');
             initialMessage.classList.add('hidden');
             browseSection.classList.add('hidden');
+            mapSection.classList.add('hidden'); // Hide map when showing results
             records.sort((a, b) => new Date(b.date) - new Date(a.date));
             const latestRecord = records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);

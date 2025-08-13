@@ -152,7 +152,7 @@ def final_parser(text, report_url):
         line = line.strip()
         if not line: continue
         
-        if species_regex.match(line) and "By Date For" not in line and len(line.split()) < 4:
+        if species_regex.match(line) and "By Date For" not in line and len(line.split()) < 5:
             current_species = line.strip()
             continue
             
@@ -204,28 +204,34 @@ def final_parser(text, report_url):
 
 def enrich_data_with_coordinates(data):
     """
-    Adds latitude and longitude to any water body that doesn't have them.
+    Adds latitude and longitude to any water body that doesn't have them using Nominatim API.
     """
     print("\n--- Starting Geocoding Enrichment ---")
     enriched_count = 0
     for water_name in data.keys():
-        if "coords" not in data[water_name]:
+        if "coords" not in data[water_name] or data[water_name]["coords"] is None:
             print(f"  -> Fetching coordinates for {water_name}...")
             try:
-                # In a real environment, you might use a more robust geocoding API.
-                # For this purpose, a targeted search is a good approach.
-                search_results = __builtins__.google_search.search(queries=[f"latitude longitude of {water_name}, New Mexico"])
-                # A simple regex to find lat/long coordinates in the search snippet.
-                coord_match = re.search(r'(\d{2}\.\d+)\s*°?\s*N,?\s*(\d{3}\.\d+)\s*°?\s*W', search_results[0].results[0].snippet)
-                if coord_match:
-                    lat, lon = coord_match.groups()
-                    data[water_name]["coords"] = {"lat": float(lat), "lon": -float(lon)} # Longitude is negative in NM
+                # Format the query for the Nominatim API
+                query = f"{water_name}, New Mexico"
+                url = f"https://nominatim.openstreetmap.org/search?q={requests.utils.quote(query)}&format=json&limit=1"
+                headers = {'User-Agent': 'NMStockingReport/1.0'}
+                
+                response = requests.get(url, headers=headers)
+                response.raise_for_status()
+                results = response.json()
+                
+                if results:
+                    lat = float(results[0]["lat"])
+                    lon = float(results[0]["lon"])
+                    data[water_name]["coords"] = {"lat": lat, "lon": lon}
                     enriched_count += 1
-                    print(f"    [+] Found coordinates: {lat}, -{lon}")
+                    print(f"    [+] Found coordinates: {lat}, {lon}")
                 else:
                     data[water_name]["coords"] = None # Mark as null if not found
                     print(f"    [!] Could not find coordinates for {water_name}")
-                time.sleep(1) # Be respectful to APIs
+                
+                time.sleep(1.5) # Be respectful to the API's usage policy (max 1 req/sec)
             except Exception as e:
                 print(f"    [!] Error fetching coordinates for {water_name}: {e}")
                 data[water_name]["coords"] = None
@@ -394,7 +400,6 @@ def run_scraper(rebuild=False):
     print("\nScrape complete. Saving data...")
     
     if final_data:
-        # **NEW**: Enrich the data with coordinates before saving
         final_data = enrich_data_with_coordinates(final_data)
 
         for water_body in final_data:

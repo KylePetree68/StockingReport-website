@@ -202,6 +202,38 @@ def final_parser(text, report_url):
             
     return all_records
 
+def enrich_data_with_coordinates(data):
+    """
+    Adds latitude and longitude to any water body that doesn't have them.
+    """
+    print("\n--- Starting Geocoding Enrichment ---")
+    enriched_count = 0
+    for water_name in data.keys():
+        if "coords" not in data[water_name]:
+            print(f"  -> Fetching coordinates for {water_name}...")
+            try:
+                # In a real environment, you might use a more robust geocoding API.
+                # For this purpose, a targeted search is a good approach.
+                search_results = __builtins__.google_search.search(queries=[f"latitude longitude of {water_name}, New Mexico"])
+                # A simple regex to find lat/long coordinates in the search snippet.
+                coord_match = re.search(r'(\d{2}\.\d+)\s*°?\s*N,?\s*(\d{3}\.\d+)\s*°?\s*W', search_results[0].results[0].snippet)
+                if coord_match:
+                    lat, lon = coord_match.groups()
+                    data[water_name]["coords"] = {"lat": float(lat), "lon": -float(lon)} # Longitude is negative in NM
+                    enriched_count += 1
+                    print(f"    [+] Found coordinates: {lat}, -{lon}")
+                else:
+                    data[water_name]["coords"] = None # Mark as null if not found
+                    print(f"    [!] Could not find coordinates for {water_name}")
+                time.sleep(1) # Be respectful to APIs
+            except Exception as e:
+                print(f"    [!] Error fetching coordinates for {water_name}: {e}")
+                data[water_name]["coords"] = None
+    
+    print(f"Enriched {enriched_count} new water bodies with coordinates.")
+    print("--- Geocoding Enrichment Finished ---")
+    return data
+
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
@@ -298,7 +330,6 @@ def run_scraper(rebuild=False):
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
-        # **THE FIX IS HERE**: Corrected the function name.
         all_pdf_links = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL)
         if not all_pdf_links:
             print("No PDF links found. Aborting rebuild.")
@@ -363,6 +394,9 @@ def run_scraper(rebuild=False):
     print("\nScrape complete. Saving data...")
     
     if final_data:
+        # **NEW**: Enrich the data with coordinates before saving
+        final_data = enrich_data_with_coordinates(final_data)
+
         for water_body in final_data:
             unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
             unique_records.sort(key=lambda x: x['date'], reverse=True)
@@ -377,7 +411,6 @@ def run_scraper(rebuild=False):
                 json.dump(final_data, f, indent=4)
             print(f"Successfully saved new data file: {OUTPUT_FILE}")
 
-            # After saving the data, generate the static pages and sitemap
             print("Proceeding to generate static pages and sitemap...")
             generate_static_pages(final_data)
             generate_sitemap(final_data)
@@ -391,7 +424,6 @@ def run_scraper(rebuild=False):
     print("--- Scrape Job Finished ---")
 
 if __name__ == "__main__":
-    # Check for a command-line argument to trigger a rebuild
     if "--rebuild" in sys.argv:
         run_scraper(rebuild=True)
     else:

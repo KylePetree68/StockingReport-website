@@ -203,6 +203,51 @@ def final_parser(text, report_url):
             
     return all_records
 
+def enrich_data_with_coordinates(data, manual_coords):
+    """
+    Adds latitude and longitude, prioritizing the manual override file.
+    """
+    print("\n--- Starting Geocoding Enrichment ---")
+    enriched_count = 0
+    for water_name in data.keys():
+        if data[water_name].get("coords"):
+            continue
+
+        if water_name in manual_coords:
+            print(f"  -> Using manual coordinates for {water_name}...")
+            data[water_name]["coords"] = manual_coords[water_name]
+            enriched_count += 1
+            continue
+
+        print(f"  -> Fetching coordinates for {water_name}...")
+        try:
+            query = f"{water_name}, New Mexico"
+            url = f"https://nominatim.openstreetmap.org/search?q={requests.utils.quote(query)}&format=json&limit=1"
+            headers = {'User-Agent': 'NMStockingReport/1.0'}
+            
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            results = response.json()
+            
+            if results:
+                lat = float(results[0]["lat"])
+                lon = float(results[0]["lon"])
+                data[water_name]["coords"] = {"lat": lat, "lon": lon}
+                enriched_count += 1
+                print(f"    [+] Found coordinates: {lat}, {lon}")
+            else:
+                data[water_name]["coords"] = None
+                print(f"    [!] Could not find coordinates for {water_name}")
+            
+            time.sleep(1.5)
+        except Exception as e:
+            print(f"    [!] Error fetching coordinates for {water_name}: {e}")
+            data[water_name]["coords"] = None
+    
+    print(f"Enriched {enriched_count} new water bodies with coordinates.")
+    print("--- Geocoding Enrichment Finished ---")
+    return data
+
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
@@ -296,6 +341,12 @@ def run_scraper(rebuild=False):
         os.makedirs(OUTPUT_DIR)
         print(f"Created output directory: {OUTPUT_DIR}")
 
+    manual_coords = {}
+    if os.path.exists(MANUAL_COORDS_FILE):
+        print(f"Loading manual coordinates from {MANUAL_COORDS_FILE}...")
+        with open(MANUAL_COORDS_FILE, "r") as f:
+            manual_coords = json.load(f)
+
     if rebuild:
         print("--- Starting One-Time Database Rebuild ---")
         final_data = {}
@@ -363,6 +414,9 @@ def run_scraper(rebuild=False):
     print("\nScrape complete. Saving data...")
     
     if final_data:
+        # **THE FIX IS HERE**: The call to enrich data with coordinates is restored.
+        final_data = enrich_data_with_coordinates(final_data, manual_coords)
+
         for water_body in final_data:
             unique_records = list({json.dumps(rec, sort_keys=True): rec for rec in final_data[water_body]['records']}.values())
             unique_records.sort(key=lambda x: x['date'], reverse=True)
@@ -377,7 +431,6 @@ def run_scraper(rebuild=False):
                 json.dump(final_data, f, indent=4)
             print(f"Successfully saved new data file: {OUTPUT_FILE}")
 
-            # After saving the data, generate the static pages and sitemap
             print("Proceeding to generate static pages and sitemap...")
             generate_static_pages(final_data)
             generate_sitemap(final_data)
@@ -391,7 +444,6 @@ def run_scraper(rebuild=False):
     print("--- Scrape Job Finished ---")
 
 if __name__ == "__main__":
-    # Check for a command-line argument to trigger a rebuild
     if "--rebuild" in sys.argv:
         run_scraper(rebuild=True)
     else:

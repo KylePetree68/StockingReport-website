@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div id="results-container" class="space-y-6 hidden">
+            <div id="results-container" class="space-y-6">
                 <!-- Results will be populated here -->
             </div>
             
@@ -139,13 +139,14 @@
         function parseDateAsLocal(dateString) {
             if (!dateString) return null;
             const parts = dateString.split('-').map(Number);
+            // Create date in UTC to avoid timezone shifts, then format it based on local settings.
             const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
-            return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+            return date;
         }
 
         async function initializeApp() {
             try {
-                const response = await fetch('./stocking_data.json?v=' + new Date().getTime());
+                const response = await fetch('./public/stocking_data.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error(`File not found or server error (status: ${response.status}).`);
                 const text = await response.text();
                 if (!text) throw new Error("The stocking data file is empty.");
@@ -217,8 +218,11 @@
             }
 
             const sortedWaters = Array.from(watersInDateRange).sort();
-            const startDateString = sevenDaysAgo.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const endDateString = latestDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const formatDate = (date) => date.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' });
+            
+            const startDateString = formatDate(sevenDaysAgo);
+            const endDateString = formatDate(latestDate);
+
 
             initialMessageTitle.textContent = `Most Recent Stockings (${startDateString} - ${endDateString})`;
             initialMessageBody.innerHTML = '';
@@ -289,9 +293,8 @@
                 browseSection.classList.add('hidden');
                 return;
             }
-            const records = data.records;
             
-            records.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const records = data.records.sort((a, b) => new Date(b.date) - new Date(a.date));
             const latestRecord = records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);
 
@@ -300,7 +303,7 @@
                 const recordDate = parseDateAsLocal(record.date);
                 tableRows += `
                     <tr class="clickable-row" onclick="window.open('${record.reportUrl}', '_blank')">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
@@ -311,7 +314,7 @@
             resultsContainer.innerHTML = `
                 <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                     <h2 class="text-2xl font-bold text-gray-800">${waterName}</h2>
-                    <p class="text-gray-700 mt-1">Last stocked on <strong class="text-blue-700">${latestDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong> with <strong class="text-blue-700">${latestRecord.species}</strong>.</p>
+                    <p class="text-gray-700 mt-1">Last stocked on <strong class="text-blue-700">${latestDate.toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' })}</strong> with <strong class="text-blue-700">${latestRecord.species}</strong>.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
@@ -340,20 +343,30 @@
         }
 
         searchInput.addEventListener('input', () => {
-            optionsContainer.classList.remove('hidden');
             const filter = searchInput.value.toLowerCase();
             const options = optionsContainer.getElementsByTagName('div');
+            let hasVisibleOptions = false;
             for (let i = 0; i < options.length; i++) {
                 const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().includes(filter)) {
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
                     options[i].style.display = "";
+                    hasVisibleOptions = true;
                 } else {
                     options[i].style.display = "none";
                 }
             }
+             if (hasVisibleOptions) {
+                optionsContainer.classList.remove('hidden');
+            } else {
+                optionsContainer.classList.add('hidden');
+            }
         });
 
+
         searchInput.addEventListener('focus', () => {
+            if(searchInput.value === "") {
+                 buildOptionsList();
+            }
             optionsContainer.classList.remove('hidden');
         });
 

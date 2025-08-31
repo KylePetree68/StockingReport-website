@@ -17,6 +17,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon and Social Media Meta Tags -->
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <meta property="og:title" content="{{WATER_NAME}} - Stocking Report">
+    <meta property="og:description" content="View the complete stocking history for {{WATER_NAME}}, including dates, species, quantity, and size.">
+    <meta property="og:image" content="https://stockingreport.com/og-image.png">
+    <meta property="og:url" content="{{PAGE_URL}}">
+    <meta name="twitter:card" content="summary_large_image">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -25,51 +35,52 @@
             background-attachment: fixed;
             background-size: cover;
         }
-        .clickable-row {
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
+        .clickable-row { cursor: pointer; transition: background-color 0.2s ease-in-out; }
+        .clickable-row:hover { background-color: #f9fafb; }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-
         <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-blue-800">NM Stocking Report</h1>
-            <p class="text-gray-600 mt-2">Your source for the latest New Mexico fish stocking information.</p>
+             <a href="/" class="text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition">NM Stocking Report</a>
+            <p class="text-gray-600 mt-2">The complete stocking history for {{WATER_NAME}}.</p>
         </header>
-
+        
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <div class="mb-6">
-                <a href="/" class="text-blue-600 hover:underline">&larr; Back to Main Search</a>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">{{WATER_NAME}}</h2>
+            <div class="prose max-w-none text-gray-700 mb-6">
+                <p>{{SUMMARY}}</p>
             </div>
-            
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Stocking History for {{WATER_NAME}}</h2>
-
-            <div class="overflow-x-auto rounded-lg border border-gray-200">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        {{TABLE_ROWS}}
-                    </tbody>
-                </table>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {{TABLE_ROWS}}
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
             </div>
-             <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
         </main>
-
+        
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>&copy; 2025 stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
         </footer>
     </div>
-
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
+

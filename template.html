@@ -35,6 +35,7 @@
             background-attachment: fixed;
             background-size: cover;
         }
+        /* THE FIX IS HERE: Added transition and hover state */
         .clickable-row { cursor: pointer; transition: background-color 0.2s ease-in-out; }
         .clickable-row:hover { background-color: #f9fafb; }
     </style>
@@ -45,15 +46,31 @@
         <header class="flex items-center justify-center mb-8">
             <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4"></a>
             <div>
-                 <h1 class="text-4xl md:text-5xl font-bold text-blue-800 text-left">{{WATER_NAME}}</h1>
-                 <p class="text-gray-600 mt-1 text-left">Complete Stocking History</p>
+                 <a href="/" class="text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
+                <p class="text-gray-600 mt-1 text-left">The complete stocking history for {{WATER_NAME}}.</p>
             </div>
         </header>
-        
+
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <div id="results-container">
-                <!-- Table is inserted here by the script -->
-                {{TABLE_ROWS}}
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {{TABLE_ROWS}}
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
             </div>
         </main>
         

@@ -51,7 +51,7 @@
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
         <header class="flex items-center justify-center mb-8">
-            <img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4">
+            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4"></a>
             <div>
                 <h1 class="text-4xl md:text-5xl font-bold text-blue-800 text-left">NM Stocking Report</h1>
                 <p class="text-gray-600 mt-1 text-left">Your source for the latest New Mexico fish stocking information.</p>
@@ -75,7 +75,7 @@
         
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-2">Explore the Map</h2>
-             <p class="text-gray-600 mb-4 text-sm italic">Note: Locations are estimated and may not be perfectly accurate.</p>
+            <p class="text-gray-600 mb-4 text-sm italic">Note: Locations are estimated and may not be perfectly accurate.</p>
             <div id="map"></div>
         </section>
 
@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div id="results-container" class="space-y-6">
+            <div id="results-container" class="space-y-6 hidden">
                 <!-- Results will be populated here -->
             </div>
             
@@ -133,31 +133,28 @@
         const copyrightYearSpan = document.getElementById('copyright-year');
         const browseSection = document.getElementById('browse-section');
         const browseLinks = document.getElementById('browse-links');
-        const mapElement = document.getElementById('map');
         let map;
 
         function parseDateAsLocal(dateString) {
-            if (!dateString) return null;
-            const parts = dateString.split('-').map(Number);
-            // Create date in UTC to avoid timezone shifts, then format it based on local settings.
-            const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
-            return date;
+            const [year, month, day] = dateString.split('-').map(Number);
+            return new Date(Date.UTC(year, month - 1, day));
         }
 
         async function initializeApp() {
             try {
-                const response = await fetch('./public/stocking_data.json?v=' + new Date().getTime());
-                if (!response.ok) throw new Error(`File not found or server error (status: ${response.status}).`);
+                // THE FIX IS HERE: Changed from './' to '/' for a root-relative path.
+                const response = await fetch('/stocking_data.json?v=' + new Date().getTime());
+                if (!response.ok) throw new Error(`Could not load data file (status: ${response.status}).`);
                 const text = await response.text();
                 if (!text) throw new Error("The stocking data file is empty.");
                 stockingData = JSON.parse(text);
                 if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
                 
+                initMap();
                 buildOptionsList();
                 displayStatewideSummary();
                 populateBrowseLinks();
-                initializeMap();
-
+                
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
             } catch (error) {
@@ -167,43 +164,37 @@
                 initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
             }
         }
-        
-        function initializeMap() {
-            if (!mapElement) return;
-            map = L.map('map').setView([34.5, -106], 6); // Centered on NM
 
+        function initMap() {
+            map = L.map('map').setView([34.5, -106], 6);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
             for (const waterName in stockingData) {
-                const water = stockingData[waterName];
-                if (water.coords && water.coords.lat && water.coords.lon) {
+                const data = stockingData[waterName];
+                if (data.coords && data.coords.lat && data.coords.lon) {
                     const filename = waterName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + ".html";
-                    const marker = L.marker([water.coords.lat, water.coords.lon]).addTo(map);
-                    marker.bindPopup(`<b>${waterName}</b><br><a href="/public/waters/${filename}" class="text-blue-600 hover:underline">View Stocking History</a>`);
+                    const url = `/public/waters/${filename}`;
+                    L.marker([data.coords.lat, data.coords.lon])
+                     .addTo(map)
+                     .bindPopup(`<b><a href="${url}" class="text-blue-600 hover:underline">${waterName}</a></b>`);
                 }
             }
         }
-
 
         function displayStatewideSummary() {
             let latestDateStr = '1970-01-01';
             for (const waterName in stockingData) {
                 if (stockingData[waterName].records && stockingData[waterName].records.length > 0) {
-                    const sortedRecords = [...stockingData[waterName].records].sort((a, b) => new Date(b.date) - new Date(a.date));
-                    if (sortedRecords[0].date > latestDateStr) {
-                        latestDateStr = sortedRecords[0].date;
+                    if (stockingData[waterName].records[0].date > latestDateStr) {
+                        latestDateStr = stockingData[waterName].records[0].date;
                     }
                 }
             }
 
             const latestDate = parseDateAsLocal(latestDateStr);
-            if (!latestDate) {
-                 initialMessageTitle.textContent = 'Most Recent Stockings';
-                 initialMessageBody.innerHTML = '<p>Could not determine the latest stocking report.</p>';
-                return;
-            }
             const sevenDaysAgo = new Date(latestDate);
             sevenDaysAgo.setDate(latestDate.getDate() - 6);
 
@@ -218,17 +209,14 @@
             }
 
             const sortedWaters = Array.from(watersInDateRange).sort();
-            const formatDate = (date) => date.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' });
+            const startDateString = sevenDaysAgo.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' });
+            const endDateString = latestDate.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' });
             
-            const startDateString = formatDate(sevenDaysAgo);
-            const endDateString = formatDate(latestDate);
-
-
             initialMessageTitle.textContent = `Most Recent Stockings (${startDateString} - ${endDateString})`;
             initialMessageBody.innerHTML = '';
 
             if (sortedWaters.length === 0) {
-                initialMessageBody.innerHTML = '<p>No recent stocking reports found in the last week.</p>';
+                initialMessageBody.innerHTML = '<p>No recent stocking data found in the last week.</p>';
                 return;
             }
 
@@ -280,40 +268,23 @@
 
         function displayResults(waterName) {
             const data = stockingData[waterName];
-            resultsContainer.innerHTML = ''; 
-
             if (!data || !data.records || data.records.length === 0) {
-                 resultsContainer.innerHTML = `
-                    <div class="text-center py-8">
-                        <h2 class="text-2xl font-bold text-gray-800">${waterName}</h2>
-                        <p class="text-gray-600 mt-2">No stocking history available for this location.</p>
-                    </div>`;
+                resultsContainer.innerHTML = `<div class="text-center p-4"><h2 class="text-xl font-bold text-gray-800">${waterName}</h2><p class="text-gray-600 mt-2">No stocking data found for this location.</p></div>`;
                 resultsContainer.classList.remove('hidden');
                 initialMessage.classList.add('hidden');
                 browseSection.classList.add('hidden');
                 return;
             }
-            
-            const records = data.records.sort((a, b) => new Date(b.date) - new Date(a.date));
-            const latestRecord = records[0];
+             resultsContainer.classList.remove('hidden');
+             initialMessage.classList.add('hidden');
+             browseSection.classList.add('hidden');
+
+            const latestRecord = data.records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);
 
-            let tableRows = '';
-            records.forEach(record => {
-                const recordDate = parseDateAsLocal(record.date);
-                tableRows += `
-                    <tr class="clickable-row" onclick="window.open('${record.reportUrl}', '_blank')">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
-                    </tr>`;
-            });
-            
-            resultsContainer.innerHTML = `
+            let resultsHTML = `
                 <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                    <h2 class="text-2xl font-bold text-gray-800">${waterName}</h2>
+                    <h2 class="text-xl font-bold text-gray-800">${waterName}</h2>
                     <p class="text-gray-700 mt-1">Last stocked on <strong class="text-blue-700">${latestDate.toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' })}</strong> with <strong class="text-blue-700">${latestRecord.species}</strong>.</p>
                 </div>
                 <div>
@@ -330,44 +301,51 @@
                                 </tr>
                             </thead>
                             <tbody id="history-table-body" class="bg-white divide-y divide-gray-200">
-                                ${tableRows}
+                            ${data.records.map(record => {
+                                const recordDate = parseDateAsLocal(record.date);
+                                return `<tr class="clickable-row" onclick="window.open('${record.reportUrl}', '_blank')">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
+                                </tr>`
+                            }).join('')}
                             </tbody>
                         </table>
                     </div>
-                     <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
+                    <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
                 </div>
             `;
-            resultsContainer.classList.remove('hidden');
-            initialMessage.classList.add('hidden');
-            browseSection.classList.add('hidden');
+            resultsContainer.innerHTML = resultsHTML;
         }
 
         searchInput.addEventListener('input', () => {
             const filter = searchInput.value.toLowerCase();
+            if (filter) {
+                optionsContainer.classList.remove('hidden');
+            } else {
+                optionsContainer.classList.add('hidden');
+                resultsContainer.classList.add('hidden');
+                initialMessage.classList.remove('hidden');
+                browseSection.classList.remove('hidden');
+            }
+
             const options = optionsContainer.getElementsByTagName('div');
-            let hasVisibleOptions = false;
             for (let i = 0; i < options.length; i++) {
                 const txtValue = options[i].textContent || options[i].innerText;
                 if (txtValue.toLowerCase().indexOf(filter) > -1) {
                     options[i].style.display = "";
-                    hasVisibleOptions = true;
                 } else {
                     options[i].style.display = "none";
                 }
             }
-             if (hasVisibleOptions) {
-                optionsContainer.classList.remove('hidden');
-            } else {
-                optionsContainer.classList.add('hidden');
-            }
         });
 
-
         searchInput.addEventListener('focus', () => {
-            if(searchInput.value === "") {
-                 buildOptionsList();
+            if(searchInput.value) {
+                optionsContainer.classList.remove('hidden');
             }
-            optionsContainer.classList.remove('hidden');
         });
 
         document.addEventListener('click', (event) => {

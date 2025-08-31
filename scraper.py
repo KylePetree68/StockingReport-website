@@ -28,7 +28,7 @@ BASE_SITE_URL = "https://stockingreport.com"
 HATCHERIES = sorted([
     "SEVEN SPRINGS TROUT HATCHERY", "RED RIVER TROUT HATCHERY", 
     "LOS OJOS HATCHERY (PARKVIEW)", "ROCK LAKE TROUT REARING FACILITY",
-    "LISBOA SPRINGS TROUT HATCHery", "FEDERAL HATCHERY", "CLAYTON HATCHERY",
+    "LISBOA SPRINGS TROUT HATCHERY", "FEDERAL HATCHERY", "CLAYTON HATCHERY",
     "PRIVATE" 
 ], key=len, reverse=True)
 
@@ -43,10 +43,7 @@ def normalize_text(text):
     return ' '.join(text.strip().split())
 
 # --- Scraper Core Logic ---
-
-def get_pdf_links_for_rebuild(start_url, start_year=2025):
-    """Scrapes all archive pages starting from a hardcoded year and moving forward."""
-    print(f"Finding all PDF links for year {start_year} and later...")
+def get_pdf_links(start_url, all_pages=False, start_year=2025):
     all_pdf_links = set()
     current_page_url = start_url
     page_count = 1
@@ -58,10 +55,9 @@ def get_pdf_links_for_rebuild(start_url, start_year=2025):
             response.raise_for_status()
             soup = BeautifulSoup(response.content, "html.parser")
             
-            # **THE FIX IS HERE**: Using a much more stable selector to find the content.
             content_div = soup.find("div", id="left-area")
             if not content_div:
-                print(f"  [!] Could not find content div with id='left-area' on page {page_count}. Stopping.")
+                print(f"  [!] Could not find content div on page {page_count}. Stopping.")
                 break
 
             links_on_page = content_div.find_all("a", href=True)
@@ -73,7 +69,9 @@ def get_pdf_links_for_rebuild(start_url, start_year=2025):
             
             all_pdf_links.update(page_pdf_links)
 
-            # Check if we should continue to the next page
+            if not all_pages:
+                break
+
             last_link_on_page = sorted(list(page_pdf_links))[-1]
             match = re.search(r'(\d{1,2})[-_](\d{1,2})[-_](\d{2,4})', last_link_on_page)
             if match:
@@ -92,35 +90,39 @@ def get_pdf_links_for_rebuild(start_url, start_year=2025):
             print(f"  [!] Error fetching page {current_page_url}: {e}")
             current_page_url = None
 
-    final_links = sorted([link for link in all_pdf_links if str(start_year)[-2:] in link or str(start_year) in link], reverse=True)
-    print(f"Finished scraping archive. Found {len(final_links)} total PDF links for {start_year} and later across {page_count-1} page(s).")
-    return final_links
+    # Final filter for rebuild to ensure only target year and newer are included
+    if all_pages:
+        final_links = []
+        for link in all_pdf_links:
+            match = re.search(r'(\d{1,2})[-_](\d{1,2})[-_](\d{2,4})', link)
+            if match:
+                year_part = match.group(3)
+                year = int(f"20{year_part}") if len(year_part) == 2 else int(year_part)
+                if year >= start_year:
+                    final_links.append(link)
+        print(f"Finished scraping archive. Found {len(final_links)} total PDF links for {start_year} and later.")
+        return sorted(final_links, reverse=True)
+    else:
+        unique_links = sorted(list(all_pdf_links), reverse=True)
+        print(f"Finished scraping. Found {len(unique_links)} PDF links on the first page.")
+        return unique_links
 
-def get_pdf_links_for_daily(page_url):
-    """Gets PDF links from only the first page for daily checks."""
-    print(f"Finding new PDF links on the first page of the archive...")
-    try:
-        response = requests.get(page_url, timeout=30)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, "html.parser")
-        content_div = soup.find("div", id="left-area")
-        if not content_div:
-            print(f"  [!] Could not find content div on page. Aborting.")
-            return []
-        
-        links_on_page = content_div.find_all("a", href=True)
-        pdf_links = {a['href'] for a in links_on_page if 'stocking-report' in a['href'].lower() and 'wpdmdl' in a['href']}
-        print(f"Found {len(pdf_links)} PDF links on the first page.")
-        return sorted(list(pdf_links), reverse=True)
-    except requests.RequestException as e:
-        print(f"  [!] Error fetching page {page_url}: {e}")
-        return []
 
 def parse_pdf_text_line_by_line(pdf_text, pdf_url):
     records = []
     current_species = "Unknown"
     lines = pdf_text.split('\n')
     species_pattern = re.compile(r'^\s*(' + '|'.join(re.escape(s) for s in SPECIES_LIST) + r')\s*$', re.IGNORECASE)
+    
+    # Pre-compile the record regex for efficiency
+    record_regex = re.compile(
+        r'^(.*?)'                  # Group 1: Water name and hatchery (non-greedy)
+        r'\s+([\d\.]+)'            # Group 2: Length
+        r'\s+([\d\.,]+)'           # Group 3: Lbs (we ignore this)
+        r'\s+([\d,]+)'             # Group 4: Number/Quantity
+        r'\s+(\d{1,2}/\d{1,2}/\d{2,4})' # Group 5: Date
+        r'\s+([A-Z]{2,3})\s*$'     # Group 6: Hatchery ID
+    )
 
     for line in lines:
         normalized_line = normalize_text(line)
@@ -129,47 +131,38 @@ def parse_pdf_text_line_by_line(pdf_text, pdf_url):
         species_match = species_pattern.match(normalized_line)
         if species_match:
             matched_species = next((s for s in SPECIES_LIST if s.lower() == species_match.group(1).lower()), "Unknown")
-            current_species = matched_species
-            continue
-
-        parts = normalized_line.split()
-        if len(parts) < 6: continue
-        
-        try:
-            # Work backwards from the end of the line
-            hatchery_id = parts[-1]
-            date_str = parts[-2]
-            quantity = parts[-3].replace(',', '')
-            _ = parts[-4] # Lbs column
-            length = parts[-5]
-            
-            # Everything else is the name part
-            name_part = ' '.join(parts[:-5])
-
-            # Validate that the parsed parts look correct
-            if not (re.match(r'\d{1,2}/\d{1,2}/\d{2,4}', date_str) and hatchery_id.isalpha() and hatchery_id.isupper()):
+            if matched_species != "Unknown":
+                current_species = matched_species
                 continue
 
+        match = record_regex.search(normalized_line)
+        if match:
+            name_part, length, _, quantity, date_str, hatchery_id = match.groups()
+            name_part = name_part.strip()
+            
             water_name = name_part
             hatchery_name = "Unknown"
-            
+
             for h in HATCHERIES:
-                if name_part.upper().endswith(h):
+                # Use a regex to find the hatchery name at the end of the string, case-insensitive
+                if re.search(r'\s+' + re.escape(h) + '$', name_part, re.IGNORECASE):
                     hatchery_name = h.title().replace("Trout Rearing Facility", "TRF").replace("Hatchery (Parkview)", "Hatchery")
-                    water_name = name_part[:-len(h)].strip()
+                    # Remove the found hatchery name from the end of the string
+                    water_name = re.sub(r'\s+' + re.escape(h) + '$', '', name_part, flags=re.IGNORECASE).strip()
                     break
 
-            date_format = '%m/%d/%Y' if len(date_str.split('/')[-1]) == 4 else '%m/%d/%y'
-            dt_object = datetime.strptime(date_str, date_format)
-            formatted_date = dt_object.strftime('%Y-%m-%d')
+            try:
+                date_format = '%m/%d/%Y' if len(date_str.split('/')[-1]) == 4 else '%m/%d/%y'
+                dt_object = datetime.strptime(date_str, date_format)
+                formatted_date = dt_object.strftime('%Y-%m-%d')
+            except ValueError:
+                continue
             
             record = {
-                'date': formatted_date, 'species': current_species, 'quantity': quantity,
+                'date': formatted_date, 'species': current_species, 'quantity': quantity.replace(',', ''),
                 'length': length, 'hatchery': hatchery_name, 'reportUrl': pdf_url
             }
             records.append((water_name, record))
-        except (ValueError, IndexError):
-            continue
     return records
 
 
@@ -195,6 +188,7 @@ def enrich_data_with_coordinates(data):
     print("\n--- Starting Coordinate Enrichment ---")
     manual_coords = {}
     try:
+        # Load from the root, as it's part of the repo
         with open(MANUAL_COORDS_FILE, 'r') as f:
             manual_coords = json.load(f)
         print(f"  Loaded {len(manual_coords)} manual coordinate entries.")
@@ -223,16 +217,18 @@ def enrich_data_with_coordinates(data):
     print("--- Finished Coordinate Enrichment ---\n")
     return data
 
-def generate_static_pages(data):
-    print("--- Starting Static Page Generation ---")
+def generate_static_pages_and_sitemap(data):
+    print("--- Starting Static Page and Sitemap Generation ---")
     if not os.path.exists(TEMPLATE_FILE):
-        print(f"[!] ERROR: Template file '{TEMPLATE_FILE}' not found.")
+        print(f"[!] ERROR: Template file '{TEMPLATE_FILE}' not found. Cannot generate pages.")
         return
 
     with open(TEMPLATE_FILE, 'r') as f:
         template_content = f.read()
-
+    
+    sitemap_urls = {BASE_SITE_URL + "/"}
     page_count = 0
+
     for water_name, water_data in data.items():
         if not water_data.get('records'): continue
 
@@ -253,41 +249,33 @@ def generate_static_pages(data):
         
         filename_safe = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-')
         filename = f"{filename_safe}.html"
+        page_path = os.path.join(STATIC_PAGES_DIR, filename)
         page_url = f"{BASE_SITE_URL}/public/waters/{filename}"
+        sitemap_urls.add(page_url)
 
         page_content = template_content.replace('{{WATER_NAME}}', water_name)
         page_content = page_content.replace('{{PAGE_URL}}', page_url)
         page_content = page_content.replace('{{TABLE_ROWS}}', table_rows)
         
-        with open(os.path.join(STATIC_PAGES_DIR, filename), 'w') as f:
+        with open(page_path, 'w') as f:
             f.write(page_content)
         page_count += 1
         
     print(f"  Generated {page_count} static pages.")
-    print("--- Finished Static Page Generation ---")
 
-
-def generate_sitemap(data):
-    print("\n--- Starting Sitemap Generation ---")
-    urls = {BASE_SITE_URL + "/"}
-    for water_name in data:
-        if data[water_name].get('records'):
-            filename_safe = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-')
-            filename = f"{filename_safe}.html"
-            urls.add(f"{BASE_SITE_URL}/public/waters/{filename}")
-
+    # Generate Sitemap
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for url in sorted(list(urls)):
+    for url in sorted(list(sitemap_urls)):
         xml_content.append(f'  <url><loc>{url}</loc><lastmod>{date.today().isoformat()}</lastmod></url>')
     xml_content.append('</urlset>')
 
     try:
         with open(SITEMAP_FILE, 'w') as f:
             f.write('\n'.join(xml_content))
-        print(f"  Sitemap generated with {len(urls)} URLs: {SITEMAP_FILE}")
+        print(f"  Sitemap generated with {len(sitemap_urls)} URLs.")
     except IOError as e:
         print(f"  [!] Error writing sitemap: {e}")
-    print("--- Finished Sitemap Generation ---")
+    print("--- Finished Static Page and Sitemap Generation ---")
 
 
 def run_scraper(rebuild=False):
@@ -301,7 +289,7 @@ def run_scraper(rebuild=False):
     
     if rebuild:
         print("REBUILD MODE: Starting fresh, scraping all reports from 2025 onward.")
-        pdf_links_to_process = get_pdf_links_for_rebuild(ARCHIVE_PAGE_URL, start_year=2025)
+        pdf_links_to_process = get_pdf_links(ARCHIVE_PAGE_URL, all_pages=True, start_year=2025)
     else: # Daily run
         try:
             print(f"Loading existing data from live site: {LIVE_DATA_URL}")
@@ -310,8 +298,9 @@ def run_scraper(rebuild=False):
             final_data = response.json()
             print(f"Successfully loaded {len(final_data)} water records from live site.")
         except Exception as e:
-            print(f"[!] Could not load existing data from live URL: {e}. This is okay on first run or after a failed build.")
-            final_data = {}
+            print(f"[!] CRITICAL: Could not load existing data from live URL: {e}.")
+            print("[!] ABORTING daily run to prevent data loss.")
+            sys.exit(1) # Exit with an error code to fail the build
         
         processed_urls = {
             record.get('reportUrl', '').split('&refresh=')[0]
@@ -319,11 +308,11 @@ def run_scraper(rebuild=False):
             for record in water.get('records', [])
         }
         
-        latest_links = get_pdf_links_for_daily(ARCHIVE_PAGE_URL)
+        latest_links = get_pdf_links(ARCHIVE_PAGE_URL, all_pages=False)
         pdf_links_to_process = [link for link in latest_links if link.split('&refresh=')[0] not in processed_urls]
 
     if not pdf_links_to_process:
-        print("\nNo new reports to process.")
+        print("\nNo new reports to process. Data file will be re-saved to ensure consistency.")
     else:
         print(f"\nFound {len(pdf_links_to_process)} new reports to process.")
         for pdf_url in pdf_links_to_process:
@@ -334,9 +323,7 @@ def run_scraper(rebuild=False):
                 with pdfplumber.open(io.BytesIO(pdf_response.content)) as pdf:
                     full_text = "".join(page.extract_text() or "" for page in pdf.pages)
                 
-                if not full_text.strip():
-                    print(f"    [!] Warning: PDF is empty or text could not be extracted.")
-                    continue
+                if not full_text.strip(): continue
 
                 parsed_records = parse_pdf_text_line_by_line(full_text, pdf_url)
                 
@@ -349,38 +336,39 @@ def run_scraper(rebuild=False):
                 print(f"    [!] Failed to process PDF {pdf_url}: {e}")
             time.sleep(1)
 
-    if final_data:
-        final_data = enrich_data_with_coordinates(final_data)
-        
-        print("\nCleaning, de-duplicating, and sorting final data...")
-        total_records = 0
-        for water_name in list(final_data.keys()):
-            water_data = final_data[water_name]
-            if 'records' in water_data and water_data['records']:
-                unique_records_map = {}
-                for r in water_data['records']:
-                    key = (r['date'], r['species'], r['quantity'], r['length'], r['hatchery'])
-                    unique_records_map[key] = r
-                
-                water_data['records'] = sorted(unique_records_map.values(), key=lambda x: x['date'], reverse=True)
-                total_records += len(water_data['records'])
-            else:
-                # Remove waters that might exist from old data but have no new records in a rebuild
-                if rebuild:
-                    del final_data[water_name]
+    if not final_data:
+        print("[!] No data was loaded or parsed. Aborting to prevent writing an empty file.")
+        sys.exit(1)
 
-        try:
-            if os.path.exists(DATA_FILE): shutil.copy(DATA_FILE, BACKUP_FILE)
-            with open(DATA_FILE, "w") as f:
-                json.dump(final_data, f, indent=4)
-            print(f"Successfully saved data file with {len(final_data)} waters and {total_records} total records.")
+    # --- Post-processing for BOTH rebuild and daily runs ---
+    final_data = enrich_data_with_coordinates(final_data)
+    
+    print("\nCleaning, de-duplicating, and sorting final data...")
+    total_records = 0
+    for water_name in list(final_data.keys()):
+        water_data = final_data.get(water_name, {})
+        if 'records' in water_data and water_data['records']:
+            unique_records_map = {}
+            for r in water_data['records']:
+                key = (r['date'], r['species'], r['quantity'], r['length'], r['hatchery'])
+                unique_records_map[key] = r
             
-            generate_static_pages(final_data)
-            generate_sitemap(final_data)
-        except IOError as e:
-            print(f"[!] FATAL: Error writing to file {DATA_FILE}: {e}")
-    else:
-        print("[!] No data was loaded or parsed. The data file was not written.")
+            water_data['records'] = sorted(unique_records_map.values(), key=lambda x: x['date'], reverse=True)
+            total_records += len(water_data['records'])
+        elif rebuild:
+            del final_data[water_name]
+
+    try:
+        if os.path.exists(DATA_FILE): shutil.copy(DATA_FILE, BACKUP_FILE)
+        with open(DATA_FILE, "w") as f:
+            json.dump(final_data, f, indent=4)
+        print(f"Successfully saved data file with {len(final_data)} waters and {total_records} total records.")
+        
+        generate_static_pages_and_sitemap(final_data)
+
+    except IOError as e:
+        print(f"[!] FATAL: Error writing to file {DATA_FILE}: {e}")
+        sys.exit(1)
 
     print(f"--- {job_type} Finished ---")
 

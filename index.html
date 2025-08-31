@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     
     <!-- Favicon and Social Media Meta Tags -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23DBEAFE'/%3E%3Cpath fill='%231E40AF' d='M83.2,28.1c-2.4-2.4-5.6-3.7-8.9-3.7H25.7c-3.3,0-6.5,1.3-8.9,3.7S13,33.7,13,37v26c0,3.3,1.3,6.5,3.7,8.9s5.6,3.7,8.9,3.7h48.5c3.3,0,6.5-1.3,8.9-3.7s3.7-5.6,3.7-8.9V37C86.9,33.7,85.6,30.5,83.2,28.1z M79.5,63c0,1.8-0.7,3.5-2,4.8s-3,2-4.8,2H27.3c-1.8,0-3.5-0.7-4.8-2s-2-3-2-4.8V37c0-1.8,0.7-3.5,2-4.8s3-2,4.8-2h45.3c1.8,0,3.5,0.7,4.8,2s2,3,2,4.8V63z'/%3E%3Cpath fill='%231E40AF' d='M50,38.5c-6.9,0-12.5,5.6-12.5,12.5s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S56.9,38.5,50,38.5z M50,58.5c-4.1,0-7.5-3.4-7.5-7.5s3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5S54.1,58.5,50,58.5z'/%3E%3C/svg%3E">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
     <meta property="og:title" content="NM Stocking Report">
     <meta property="og:description" content="Your source for the latest New Mexico fish stocking information.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
@@ -43,7 +43,7 @@
         #custom-select-options { max-height: 250px; overflow-y: auto; }
         #custom-select-options::-webkit-scrollbar { display: none; }
         #custom-select-options { -ms-overflow-style: none; scrollbar-width: none; }
-        #map { height: 500px; border-radius: 0.75rem; border: 1px solid #e5e7eb; }
+        #map { height: 400px; border-radius: 0.75rem; border: 1px solid #d1d5db; z-index: 0; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -69,10 +69,16 @@
                 </p>
             </div>
         </section>
+        
+        <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Explore the Map</h2>
+             <p class="text-gray-600 mb-4 text-sm italic">Note: Locations are estimated and may not be perfectly accurate.</p>
+            <div id="map"></div>
+        </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             <div class="mb-8">
-                <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Select a Body of Water:</label>
+                <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for a Body of Water:</label>
                 <div class="relative" id="searchable-dropdown">
                     <input type="text" id="water-search-input" class="w-full p-4 text-base bg-white border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search for a water..." disabled>
                     <div id="custom-select-options" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg"></div>
@@ -80,28 +86,7 @@
             </div>
 
             <div id="results-container" class="space-y-6 hidden">
-                <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                    <h2 class="text-xl font-bold text-gray-800"><span id="water-name-title"></span></h2>
-                    <p class="text-gray-700 mt-1">Last stocked on <strong id="last-stocked-date" class="text-blue-700"></strong> with <strong id="last-stocked-species" class="text-blue-700"></strong>.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
-                    <div class="overflow-x-auto rounded-lg border border-gray-200">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
-                                </tr>
-                            </thead>
-                            <tbody id="history-table-body" class="bg-white divide-y divide-gray-200"></tbody>
-                        </table>
-                    </div>
-                     <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
-                </div>
+                <!-- Results will be populated here -->
             </div>
             
             <div id="initial-message" class="py-4">
@@ -109,13 +94,6 @@
                 <div id="initial-message-body" class="text-gray-600">
                     <p>Please wait a moment while we fetch the latest reports.</p>
                 </div>
-            </div>
-
-            <!-- Interactive Map Section -->
-            <div id="map-section" class="mt-8 hidden">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Explore on the Map</h3>
-                <p class="text-sm text-gray-500 mb-4 -mt-2">Note: Locations are estimated and may not be perfectly accurate.</p>
-                <div id="map"></div>
             </div>
 
             <!-- Browse All Waters Section -->
@@ -127,6 +105,14 @@
             </div>
         </main>
         
+        <!-- Articles Section Placeholder -->
+        <section class="mt-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Fishing Articles & News</h2>
+            <div class="space-y-4 text-gray-700">
+                <p>Check back soon for articles and tips for fishing in New Mexico!</p>
+            </div>
+        </section>
+
         <div class="mt-8 text-center">
             <div class="bg-gray-200/80 rounded-lg flex items-center justify-center h-24 text-gray-500">
                 Advertisement
@@ -137,9 +123,10 @@
             <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
         </footer>
     </div>
-
+    
     <!-- Leaflet JS for the map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script>
         let stockingData = {};
         const searchInput = document.getElementById('water-search-input');
@@ -148,19 +135,19 @@
         const initialMessage = document.getElementById('initial-message');
         const initialMessageTitle = document.getElementById('initial-message-title');
         const initialMessageBody = document.getElementById('initial-message-body');
-        const waterNameTitle = document.getElementById('water-name-title');
-        const lastStockedDate = document.getElementById('last-stocked-date');
-        const lastStockedSpecies = document.getElementById('last-stocked-species');
-        const historyTableBody = document.getElementById('history-table-body');
         const copyrightYearSpan = document.getElementById('copyright-year');
         const browseSection = document.getElementById('browse-section');
         const browseLinks = document.getElementById('browse-links');
-        const mapSection = document.getElementById('map-section');
-        let map; // To hold the map instance
+        const mapElement = document.getElementById('map');
+        let map;
 
         function parseDateAsLocal(dateString) {
-            const [year, month, day] = dateString.split('-').map(Number);
-            return new Date(year, month - 1, day);
+            if (!dateString) return null;
+            const parts = dateString.split('-').map(Number);
+            // new Date(year, monthIndex, day) - month is 0-indexed
+            const date = new Date(parts[0], parts[1] - 1, parts[2]);
+             // Adjust for timezone offset to ensure the date is treated as local
+            return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
         }
 
         async function initializeApp() {
@@ -171,10 +158,12 @@
                 if (!text) throw new Error("The stocking data file is empty.");
                 stockingData = JSON.parse(text);
                 if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
+                
                 buildOptionsList();
                 displayStatewideSummary();
                 populateBrowseLinks();
                 initializeMap();
+
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
             } catch (error) {
@@ -184,38 +173,43 @@
                 initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
             }
         }
-
+        
         function initializeMap() {
-            mapSection.classList.remove('hidden');
-            map = L.map('map').setView([34.5, -106.0], 7);
+            if (!mapElement) return;
+            map = L.map('map').setView([34.5, -106], 6); // Centered on NM
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
             for (const waterName in stockingData) {
                 const water = stockingData[waterName];
                 if (water.coords && water.coords.lat && water.coords.lon) {
                     const filename = waterName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + ".html";
-                    const link = `/public/waters/${filename}`;
                     const marker = L.marker([water.coords.lat, water.coords.lon]).addTo(map);
-                    marker.bindPopup(`<b>${waterName}</b><br><a href="${link}" class="text-blue-600 hover:underline">View Stocking History</a>`);
+                    marker.bindPopup(`<b>${waterName}</b><br><a href="/public/waters/${filename}" class="text-blue-600 hover:underline">View Stocking History</a>`);
                 }
             }
         }
+
 
         function displayStatewideSummary() {
             let latestDateStr = '1970-01-01';
             for (const waterName in stockingData) {
                 if (stockingData[waterName].records && stockingData[waterName].records.length > 0) {
-                    if (stockingData[waterName].records[0].date > latestDateStr) {
-                        latestDateStr = stockingData[waterName].records[0].date;
+                    const sortedRecords = [...stockingData[waterName].records].sort((a, b) => new Date(b.date) - new Date(a.date));
+                    if (sortedRecords[0].date > latestDateStr) {
+                        latestDateStr = sortedRecords[0].date;
                     }
                 }
             }
 
             const latestDate = parseDateAsLocal(latestDateStr);
+            if (!latestDate) {
+                 initialMessageTitle.textContent = 'Most Recent Stockings';
+                 initialMessageBody.innerHTML = '<p>Could not determine the latest stocking report.</p>';
+                return;
+            }
             const sevenDaysAgo = new Date(latestDate);
             sevenDaysAgo.setDate(latestDate.getDate() - 6);
 
@@ -237,7 +231,7 @@
             initialMessageBody.innerHTML = '';
 
             if (sortedWaters.length === 0) {
-                initialMessageBody.innerHTML = '<p>Could not determine the latest stocking report.</p>';
+                initialMessageBody.innerHTML = '<p>No recent stocking reports found in the last week.</p>';
                 return;
             }
 
@@ -289,33 +283,67 @@
 
         function displayResults(waterName) {
             const data = stockingData[waterName];
+            resultsContainer.innerHTML = ''; 
+
             if (!data || !data.records || data.records.length === 0) {
-                resultsContainer.classList.add('hidden');
-                initialMessage.classList.remove('hidden');
-                initialMessageTitle.textContent = `No Data for ${waterName}`;
-                initialMessageBody.innerHTML = '<p>There is no stocking history available for this location.</p>';
+                 resultsContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <h2 class="text-2xl font-bold text-gray-800">${waterName}</h2>
+                        <p class="text-gray-600 mt-2">No stocking history available for this location.</p>
+                    </div>`;
+                resultsContainer.classList.remove('hidden');
+                initialMessage.classList.add('hidden');
+                browseSection.classList.add('hidden');
                 return;
             }
             const records = data.records;
-            resultsContainer.classList.remove('hidden');
-            initialMessage.classList.add('hidden');
-            browseSection.classList.add('hidden');
-            mapSection.classList.add('hidden');
+            
             records.sort((a, b) => new Date(b.date) - new Date(a.date));
             const latestRecord = records[0];
             const latestDate = parseDateAsLocal(latestRecord.date);
-            waterNameTitle.textContent = waterName;
-            lastStockedDate.textContent = latestDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-            lastStockedSpecies.textContent = latestRecord.species;
-            historyTableBody.innerHTML = ''; 
+
+            let tableRows = '';
             records.forEach(record => {
-                const row = document.createElement('tr');
-                row.className = 'clickable-row';
-                row.onclick = () => { if(record.reportUrl) window.open(record.reportUrl, '_blank'); };
                 const recordDate = parseDateAsLocal(record.date);
-                row.innerHTML = `<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>`;
-                historyTableBody.appendChild(row);
+                tableRows += `
+                    <tr class="clickable-row" onclick="window.open('${record.reportUrl}', '_blank')">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${recordDate.toLocaleDateString()}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">${record.species}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.quantity}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.length}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${record.hatchery}</td>
+                    </tr>`;
             });
+            
+            resultsContainer.innerHTML = `
+                <div id="summary-card" class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                    <h2 class="text-2xl font-bold text-gray-800">${waterName}</h2>
+                    <p class="text-gray-700 mt-1">Last stocked on <strong class="text-blue-700">${latestDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong> with <strong class="text-blue-700">${latestRecord.species}</strong>.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
+                    <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" class="bg-white divide-y divide-gray-200">
+                                ${tableRows}
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
+                </div>
+            `;
+            resultsContainer.classList.remove('hidden');
+            initialMessage.classList.add('hidden');
+            browseSection.classList.add('hidden');
         }
 
         searchInput.addEventListener('input', () => {
@@ -348,3 +376,4 @@
     </script>
 </body>
 </html>
+

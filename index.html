@@ -73,6 +73,50 @@
             height: 400px;
             border-radius: 0.75rem;
         }
+        
+        /* Error state styles */
+        .error-container {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .error-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .retry-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease-in-out;
+            margin-top: 1rem;
+        }
+        
+        .retry-button:hover {
+            background: #1d4ed8;
+        }
+        
+        .retry-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -149,6 +193,25 @@
                     <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700"></h3>
                     <div id="initial-message-body" class="text-gray-600"></div>
                 </div>
+                
+                <!-- Error state (hidden initially) -->
+                <div id="error-state" class="hidden error-container">
+                    <div class="error-icon">!</div>
+                    <h3 class="text-2xl font-bold text-red-800 mb-2">Unable to Load Data</h3>
+                    <p class="text-red-700 mb-4" id="error-message">We're having trouble loading the stocking reports right now.</p>
+                    <div class="text-sm text-red-600 mb-4">
+                        <p><strong>Possible reasons:</strong></p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>Network connection issues</li>
+                            <li>Data file temporarily unavailable</li>
+                            <li>Server maintenance in progress</li>
+                        </ul>
+                    </div>
+                    <button id="retry-button" class="retry-button">
+                        <span id="retry-text">Try Again</span>
+                    </button>
+                    <p class="text-xs text-red-600 mt-4">If the problem persists, please try again later or contact support.</p>
+                </div>
             </div>
 
             <!-- Browse All Waters Section -->
@@ -189,6 +252,10 @@
         const skeletonLoader = document.getElementById('skeleton-loader');
         const mapSkeleton = document.getElementById('map-skeleton');
         const mapElement = document.getElementById('map');
+        const errorState = document.getElementById('error-state');
+        const errorMessage = document.getElementById('error-message');
+        const retryButton = document.getElementById('retry-button');
+        const retryText = document.getElementById('retry-text');
         let map;
 
         function parseDateAsLocal(dateString) {
@@ -199,11 +266,17 @@
         async function initializeApp() {
             try {
                 const response = await fetch('/stocking_data.json?v=' + new Date().getTime());
-                if (!response.ok) throw new Error(`Could not load data file (status: ${response.status}).`);
+                if (!response.ok) {
+                    throw new Error(`Server returned status ${response.status}. The data file may be temporarily unavailable.`);
+                }
                 const text = await response.text();
-                if (!text) throw new Error("The stocking data file is empty.");
+                if (!text) {
+                    throw new Error("The data file is empty. This may indicate a temporary problem with data collection.");
+                }
                 stockingData = JSON.parse(text);
-                if (Object.keys(stockingData).length === 0) throw new Error("The stocking data file contains no records.");
+                if (Object.keys(stockingData).length === 0) {
+                    throw new Error("No stocking records were found. The database may be updating.");
+                }
                 
                 initMap();
                 buildOptionsList();
@@ -221,12 +294,46 @@
                 mapElement.style.transition = 'opacity 0.3s ease-in-out';
             } catch (error) {
                 console.error("A critical error occurred during initialization:", error);
-                searchInput.placeholder = "Error loading data.";
-                skeletonLoader.classList.add('hidden');
-                initialMessageContent.classList.remove('hidden');
-                initialMessageTitle.textContent = 'Error Loading Data';
-                initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
+                showError(error.message);
             }
+        }
+        
+        function showError(message) {
+            searchInput.placeholder = "Error loading data";
+            searchInput.disabled = true;
+            
+            // Hide skeletons
+            skeletonLoader.classList.add('hidden');
+            initialMessageContent.classList.add('hidden');
+            
+            // Show error state
+            errorState.classList.remove('hidden');
+            errorMessage.textContent = message;
+            
+            // Hide map skeleton and show empty map container
+            mapSkeleton.classList.add('hidden');
+            mapElement.style.opacity = '0.3';
+            mapElement.style.transition = 'opacity 0.3s ease-in-out';
+        }
+        
+        function retryLoad() {
+            // Reset UI
+            errorState.classList.add('hidden');
+            skeletonLoader.classList.remove('hidden');
+            mapSkeleton.classList.remove('hidden');
+            mapElement.style.opacity = '0';
+            
+            // Disable retry button temporarily
+            retryButton.disabled = true;
+            retryText.textContent = 'Retrying...';
+            
+            // Attempt to reload
+            setTimeout(() => {
+                initializeApp().finally(() => {
+                    retryButton.disabled = false;
+                    retryText.textContent = 'Try Again';
+                });
+            }, 500);
         }
 
         function initMap() {
@@ -418,6 +525,9 @@
                 optionsContainer.classList.add('hidden');
             }
         });
+        
+        // Retry button event listener
+        retryButton.addEventListener('click', retryLoad);
         
         copyrightYearSpan.textContent = new Date().getFullYear();
         window.addEventListener('DOMContentLoaded', initializeApp);

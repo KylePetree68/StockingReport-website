@@ -44,6 +44,35 @@
         #custom-select-options::-webkit-scrollbar { display: none; }
         #custom-select-options { -ms-overflow-style: none; scrollbar-width: none; }
         #map { height: 400px; border-radius: 0.75rem; border: 1px solid #d1d5db; z-index: 0; }
+        
+        /* Skeleton loader animations */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        .skeleton {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #e5e7eb 4%, #f3f4f6 25%, #e5e7eb 36%);
+            background-size: 1000px 100%;
+        }
+        
+        .skeleton-text {
+            height: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skeleton-title {
+            height: 1.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skeleton-map {
+            height: 400px;
+            border-radius: 0.75rem;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -76,7 +105,10 @@
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-2">Explore the Map</h2>
             <p class="text-gray-600 mb-4 text-sm italic">Note: Locations are estimated and may not be perfectly accurate.</p>
-            <div id="map"></div>
+            
+            <!-- Map skeleton loader -->
+            <div id="map-skeleton" class="skeleton skeleton-map"></div>
+            <div id="map" class="hidden"></div>
         </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
@@ -93,9 +125,29 @@
             </div>
             
             <div id="initial-message" class="py-4">
-                <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700">Loading Data...</h3>
-                <div id="initial-message-body" class="text-gray-600">
-                    <p>Please wait a moment while we fetch the latest reports.</p>
+                <!-- Skeleton loader for initial message -->
+                <div id="skeleton-loader" class="space-y-4">
+                    <div class="skeleton skeleton-title w-3/4"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </div>
+                
+                <!-- Actual content (hidden initially) -->
+                <div id="initial-message-content" class="hidden">
+                    <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700"></h3>
+                    <div id="initial-message-body" class="text-gray-600"></div>
                 </div>
             </div>
 
@@ -128,11 +180,15 @@
         const optionsContainer = document.getElementById('custom-select-options');
         const resultsContainer = document.getElementById('results-container');
         const initialMessage = document.getElementById('initial-message');
+        const initialMessageContent = document.getElementById('initial-message-content');
         const initialMessageTitle = document.getElementById('initial-message-title');
         const initialMessageBody = document.getElementById('initial-message-body');
         const copyrightYearSpan = document.getElementById('copyright-year');
         const browseSection = document.getElementById('browse-section');
         const browseLinks = document.getElementById('browse-links');
+        const skeletonLoader = document.getElementById('skeleton-loader');
+        const mapSkeleton = document.getElementById('map-skeleton');
+        const mapElement = document.getElementById('map');
         let map;
 
         function parseDateAsLocal(dateString) {
@@ -142,7 +198,6 @@
 
         async function initializeApp() {
             try {
-                // THE FIX IS HERE: Changed from './' to '/' for a root-relative path.
                 const response = await fetch('/stocking_data.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error(`Could not load data file (status: ${response.status}).`);
                 const text = await response.text();
@@ -157,9 +212,17 @@
                 
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
+                
+                // Hide skeletons and show actual content
+                skeletonLoader.classList.add('hidden');
+                initialMessageContent.classList.remove('hidden');
+                mapSkeleton.classList.add('hidden');
+                mapElement.classList.remove('hidden');
             } catch (error) {
                 console.error("A critical error occurred during initialization:", error);
                 searchInput.placeholder = "Error loading data.";
+                skeletonLoader.classList.add('hidden');
+                initialMessageContent.classList.remove('hidden');
                 initialMessageTitle.textContent = 'Error Loading Data';
                 initialMessageBody.innerHTML = `<p>Details: ${error.message} Please try again later.</p>`;
             }
@@ -360,4 +423,3 @@
     </script>
 </body>
 </html>
-

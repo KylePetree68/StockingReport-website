@@ -108,7 +108,7 @@
             
             <!-- Map skeleton loader -->
             <div id="map-skeleton" class="skeleton skeleton-map"></div>
-            <div id="map" class="hidden"></div>
+            <div id="map" style="opacity: 0;"></div>
         </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
@@ -217,7 +217,8 @@
                 skeletonLoader.classList.add('hidden');
                 initialMessageContent.classList.remove('hidden');
                 mapSkeleton.classList.add('hidden');
-                mapElement.classList.remove('hidden');
+                mapElement.style.opacity = '1';
+                mapElement.style.transition = 'opacity 0.3s ease-in-out';
             } catch (error) {
                 console.error("A critical error occurred during initialization:", error);
                 searchInput.placeholder = "Error loading data.";

@@ -11,38 +11,15 @@ Smart incremental daily updates
 Manual coordinate overrides for geocoding accuracy
 
 
-Critical Issues to Fix 🔴
-1. Missing Web Server
-Status: URGENT - Required for deployment
-The repository currently has no web server (app.py). Need to create a Flask application to serve the static files.
-Required file: app.py
-pythonfrom flask import Flask, send_from_directory
-import os
+Issues to Fix 🔴
+1. Missing Web Server - Future
+Option 2: Add Flask Server (Future-Proofing)
 
-app = Flask(__name__, static_folder='.')
+Pros: Can add features like email notifications, user accounts, API endpoints
+Cons: Slightly more complex, may cost more on Render
+When to use: If you plan to add premium features
 
-@app.route('/')
-def index():
-    return send_from_directory('.', 'index.html')
 
-@app.route('/<path:path>')
-def serve_file(path):
-    return send_from_directory('.', path)
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-2. Missing Deployment Configuration
-Status: URGENT - Required for Render.com
-Create render.yaml for proper deployment configuration.
-3. Incomplete Requirements File
-Status: URGENT
-Update requirements.txt to include:
-requests
-beautifulsoup4
-pdfplumber
-flask
-gunicorn
 
 High Priority Improvements 📈
 Performance & Caching

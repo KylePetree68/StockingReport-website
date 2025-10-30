@@ -26,7 +26,7 @@ def get_pdf_links_for_rebuild(start_url):
     """
     Scrapes archive pages starting from a hardcoded year and moving forward.
     """
-    target_year = 2024
+    target_year = 2025
     print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
     all_pdf_links = []
     current_page_url = start_url

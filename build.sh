@@ -6,7 +6,7 @@
 #!/bin/bash
 mkdir -p public/waters
 pip install -r requirements.txt
-python scraper.py --rebuild
+python scraper.py 
 
 # Clean up build artifacts before Render uploads
 rm -rf .venv

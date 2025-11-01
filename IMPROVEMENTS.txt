@@ -9,6 +9,41 @@ Interactive map with Leaflet
 SEO-friendly with sitemap generation and individual water body pages
 Smart incremental daily updates
 Manual coordinate overrides for geocoding accuracy
+Automated data cleanup to merge duplicates and fix malformed names
+Intelligent PDF URL system with automatic validation and fallback
+Automatic PDF downloads and archiving
+Clean 168 water bodies with 5,900+ unique stocking records
+
+
+Recently Completed Improvements ✅ (November 2024)
+
+1. Data Quality & Cleanup
+   ✅ Fixed 168 water body names (merged duplicates like "Tree Lake" + "Trees Lake")
+   ✅ Removed malformed entries with quantity numbers and coordinate fragments
+   ✅ Rescued data from malformed entries by merging with clean versions
+   ✅ Fixed truncated names like "Rock Lake Hatchery Kid's Pond's (Near Ro"
+   ✅ Automated cleanup process runs after every data update
+
+2. PDF Link Management
+   ✅ Fixed 5,657 broken PDF links that used invalid local:// protocol
+   ✅ Removed 933 duplicate records (same report with multiple URLs)
+   ✅ Implemented smart URL preference: NMDGF > local copies
+   ✅ Historical PDFs (2020-2025) hosted in public/reports/ directory
+   ✅ Recent reports link to official NMDGF website for credibility
+
+3. Intelligent URL Validation System
+   ✅ Automatic PDF downloads during weekly updates
+   ✅ URL validation with HTTP HEAD requests (checks if NMDGF links still work)
+   ✅ Automatic fallback to local copies when NMDGF removes old reports
+   ✅ Validation caching to avoid repeated checks
+   ✅ Downloads PDFs to both downloaded_pdfs/ (archive) and public/reports/ (web)
+   ✅ GitHub Actions workflow updated to commit PDFs automatically
+
+4. Search & UX Improvements
+   ✅ Keyboard navigation in search dropdown (arrow keys, Enter, Escape)
+   ✅ Visual feedback for keyboard-selected options
+   ✅ Smooth scrolling in dropdown list
+   ✅ Hover effects with padding animation
 
 
 Issues to Fix 🔴
@@ -34,20 +69,24 @@ User Experience
  Add skeleton loaders instead of "Loading Data..." text
  Improve error states when data fails to load
  Add "Clear search" button
- Implement keyboard navigation in dropdown (arrow keys)
+ ✅ Implement keyboard navigation in dropdown (arrow keys) - COMPLETED
  Make map height responsive for mobile devices
+ Add breadcrumb navigation on detail pages
+ Add "Back to Map" button on detail pages
+ Show metadata on detail pages (total stockings, date range, species count)
 
 Search Functionality
 
  Add fuzzy search (consider Fuse.js library)
  Add species filter in dropdown
  Track popular searches with Google Analytics events
+ Add "no results" message when search returns empty
 
 Mobile Optimization
 
  Test on actual devices
  Adjust map height for mobile (currently 400px)
- Ensure touch targets are large enough
+ Ensure touch targets are large enough (currently too small)
  Test dropdown behavior on mobile
 
 
@@ -100,15 +139,22 @@ scraper.py Enhancements
  Replace print statements with proper logging
  Add rate limiting protection for API calls
  Implement exponential backoff for failed requests
- Add data validation before saving
+ ✅ Add data validation before saving - COMPLETED (cleanup_data.py)
  Create unit tests for parser functions
 
 Error Handling
 
- Graceful degradation when geocoding fails
- Better handling of malformed PDFs
+ ✅ Graceful degradation when geocoding fails - COMPLETED
+ ✅ Better handling of malformed PDFs - COMPLETED (parser handles errors)
  Retry logic for network failures
  User-friendly error messages
+
+Data Quality
+
+ ✅ Automated duplicate detection and merging - COMPLETED
+ ✅ Malformed name detection and cleanup - COMPLETED
+ ✅ URL validation and fallback system - COMPLETED
+ ✅ Deduplication of stocking records - COMPLETED
 
 Security
 
@@ -219,25 +265,39 @@ Leaflet Documentation
 
 
 Version History
-Current Version (v1.0)
+Current Version (v1.1) - November 2024
 
-Basic scraping functionality
-Interactive map
-Search capability
-Individual water body pages
-Daily update job
+✅ Basic scraping functionality
+✅ Interactive map
+✅ Search capability with keyboard navigation
+✅ Individual water body pages
+✅ Daily automated updates via GitHub Actions
+✅ Automated data cleanup and duplicate merging
+✅ Intelligent PDF URL validation and fallback system
+✅ Automatic PDF downloads and archiving
+✅ 168 clean water bodies with 5,900+ unique records
 
-Planned for v1.1
+Completed in v1.1
 
-Flask web server
-Proper deployment configuration
-Enhanced search
-Favorites system
+✅ Data quality improvements (merged duplicates, fixed malformed names)
+✅ PDF link management (5,657 broken links fixed)
+✅ Smart URL validation (NMDGF preferred, local fallback)
+✅ Keyboard navigation in search dropdown
+✅ Automated cleanup workflow integration
+
+Planned for v1.2
+
+ Flask web server (if needed for advanced features)
+ Fuzzy search implementation
+ Mobile responsive improvements
+ Skeleton loaders for better UX
+ Breadcrumb navigation on detail pages
 
 Planned for v2.0
 
-Email notifications
-Historical charts
-Weather integration
-Premium features
+ Email notifications for specific waters
+ Historical charts showing stocking patterns
+ Weather integration
+ Premium features (ad-free, advanced analytics)
+ Favorites system with localStorage
 

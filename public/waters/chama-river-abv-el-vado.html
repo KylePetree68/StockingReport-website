@@ -39,7 +39,11 @@
         .clickable-row:hover { background-color: #f9fafb; }
 
         /* Search dropdown styles */
-        #custom-select-options { max-height: 350px; overflow-y: auto; }
+        #custom-select-options {
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
         #custom-select-options::-webkit-scrollbar { width: 8px; }
         #custom-select-options::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         #custom-select-options::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 4px; }

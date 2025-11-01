@@ -20,6 +20,9 @@
     <!-- Leaflet CSS for the map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
     <!-- Favicon and Social Media Meta Tags -->
     <link rel="icon" href="/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="/logo.png">
@@ -242,6 +245,7 @@
 
     <script>
         let stockingData = {};
+        let fuse;  // Fuse.js instance for fuzzy search
         const searchInput = document.getElementById('water-search-input');
         const optionsContainer = document.getElementById('custom-select-options');
         const initialMessage = document.getElementById('initial-message');
@@ -279,6 +283,15 @@
                 buildOptionsList();
                 displayStatewideSummary();
                 populateBrowseLinks();
+
+                // Initialize Fuse.js for fuzzy search
+                const waterNames = Object.keys(stockingData).map(name => ({ name }));
+                fuse = new Fuse(waterNames, {
+                    keys: ['name'],
+                    threshold: 0.4,  // 0 = exact match, 1 = match anything
+                    ignoreLocation: true,
+                    minMatchCharLength: 2
+                });
 
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search for a water...';
@@ -417,19 +430,25 @@
         }
 
         searchInput.addEventListener('input', () => {
-            const filter = searchInput.value.toLowerCase();
+            const query = searchInput.value;
             selectedIndex = -1;  // Reset selection on new input
 
-            if (filter) {
-                optionsContainer.classList.remove('hidden');
-            } else {
+            if (!query) {
                 optionsContainer.classList.add('hidden');
+                return;
             }
 
+            optionsContainer.classList.remove('hidden');
+
+            // Use Fuse.js for fuzzy search
+            const results = fuse.search(query);
+            const matchedNames = new Set(results.map(result => result.item.name));
+
+            // Show/hide options based on fuzzy search results
             const options = optionsContainer.getElementsByTagName('div');
             for (let i = 0; i < options.length; i++) {
-                const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                const waterName = options[i].textContent;
+                if (matchedNames.has(waterName)) {
                     options[i].style.display = "";
                 } else {
                     options[i].style.display = "none";

@@ -22,6 +22,41 @@ OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 MANUAL_COORDS_FILE = "manual_coordinates.json"
 
+def validate_url(url, timeout=5):
+    """
+    Check if a URL returns a valid PDF response.
+    Returns True if URL is valid and returns PDF content, False otherwise.
+    """
+    try:
+        response = requests.head(url, timeout=timeout, allow_redirects=True)
+        # Check if status is OK and content-type suggests PDF
+        if response.status_code == 200:
+            content_type = response.headers.get('Content-Type', '').lower()
+            if 'pdf' in content_type or 'application/octet-stream' in content_type:
+                return True
+        return False
+    except:
+        return False
+
+def get_fallback_url(nmdgf_url):
+    """
+    Given an NMDGF URL, return the local fallback URL if the file exists.
+    Example: https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=...
+             -> /public/reports/stocking-report-8-29-25.pdf
+    """
+    try:
+        # Extract filename from NMDGF URL
+        parts = nmdgf_url.split('/download/')[1].split('?')[0].strip('/')
+        filename = parts + '.pdf'
+        local_path = os.path.join('public', 'reports', filename)
+
+        # Check if local file exists
+        if os.path.exists(local_path):
+            return f"/public/reports/{filename}"
+    except:
+        pass
+    return None
+
 def get_pdf_links_for_rebuild(start_url):
     """
     Scrapes archive pages starting from a hardcoded year and moving forward.
@@ -335,6 +370,7 @@ def enrich_data_with_coordinates(data, manual_coords):
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
+    Validates NMDGF URLs and falls back to local copies when needed.
     """
     print("\n--- Starting Static Page Generation ---")
     if not os.path.exists(TEMPLATE_FILE):
@@ -343,6 +379,11 @@ def generate_static_pages(data):
 
     with open(TEMPLATE_FILE, "r") as f:
         template_html = f.read()
+
+    # Cache for URL validation to avoid checking same URL multiple times
+    url_validation_cache = {}
+    validated_count = 0
+    fallback_count = 0
 
     generated_count = 0
     for water_name, water_data in data.items():
@@ -354,10 +395,28 @@ def generate_static_pages(data):
         for record in water_data.get("records", []):
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
-            
+
             onclick_attr = ""
             if record.get("reportUrl"):
-                onclick_attr = f"onclick=\"window.open('{record['reportUrl']}', '_blank')\""
+                url = record['reportUrl']
+
+                # If it's an NMDGF URL, validate it and potentially fall back to local
+                if 'wildlife.dgf.nm.gov' in url:
+                    # Check cache first
+                    if url not in url_validation_cache:
+                        url_validation_cache[url] = validate_url(url)
+
+                    if url_validation_cache[url]:
+                        # NMDGF URL is valid, use it
+                        validated_count += 1
+                    else:
+                        # NMDGF URL is broken, try fallback
+                        fallback = get_fallback_url(url)
+                        if fallback:
+                            url = fallback
+                            fallback_count += 1
+
+                onclick_attr = f"onclick=\"window.open('{url}', '_blank')\""
 
             table_rows_html += f"""
                 <tr class="clickable-row hover:bg-gray-50" {onclick_attr}>
@@ -368,15 +427,16 @@ def generate_static_pages(data):
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['hatchery']}</td>
                 </tr>
             """
-        
+
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
 
         with open(filepath, "w") as f:
             f.write(page_html)
         generated_count += 1
-    
+
     print(f"Generated {generated_count} static pages in '{OUTPUT_DIR}'.")
+    print(f"URL validation: {validated_count} NMDGF URLs valid, {fallback_count} fell back to local copies")
     print("--- Static Page Generation Finished ---")
 
 def generate_sitemap(data):

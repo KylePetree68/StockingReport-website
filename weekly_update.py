@@ -14,6 +14,7 @@ Run this weekly via GitHub Actions or cron job.
 import json
 import shutil
 import os
+import requests
 from datetime import datetime
 from scraper import (
     get_pdf_links_from_first_page,
@@ -30,6 +31,37 @@ from scraper import (
 )
 
 CLEAN_DATA_FILE = "stocking_data_clean.json"
+PDF_DOWNLOAD_DIR = "downloaded_pdfs"
+
+def download_pdf(url, filename):
+    """Download a PDF from NMDGF website."""
+    os.makedirs(PDF_DOWNLOAD_DIR, exist_ok=True)
+    os.makedirs("public/reports", exist_ok=True)
+
+    filepath = os.path.join(PDF_DOWNLOAD_DIR, filename)
+    public_filepath = os.path.join("public/reports", filename)
+
+    # Skip if already downloaded
+    if os.path.exists(filepath) and os.path.exists(public_filepath):
+        return True
+
+    try:
+        print(f"  Downloading: {filename}...", end=" ")
+        response = requests.get(url, timeout=30)
+        if response.status_code == 200:
+            # Save to both locations
+            with open(filepath, 'wb') as f:
+                f.write(response.content)
+            with open(public_filepath, 'wb') as f:
+                f.write(response.content)
+            print("OK")
+            return True
+        else:
+            print(f"Failed (status {response.status_code})")
+            return False
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
 
 def weekly_update():
     """Run weekly incremental update."""
@@ -102,6 +134,18 @@ def weekly_update():
     print(f"\nFound {len(new_pdf_links)} NEW reports to process:")
     for i, link in enumerate(new_pdf_links, 1):
         print(f"  {i}. {link}")
+
+    # Download new PDFs
+    print(f"\n--- Downloading {len(new_pdf_links)} PDFs ---\n")
+    for i, pdf_url in enumerate(new_pdf_links, 1):
+        try:
+            # Extract filename from URL
+            # Example: /download/stocking-report-8-29-25/?wpdmdl=...
+            parts = pdf_url.split('/download/')[1].split('?')[0].strip('/')
+            filename = parts + '.pdf'
+            download_pdf(pdf_url, filename)
+        except Exception as e:
+            print(f"  [!] Could not download {pdf_url}: {e}")
 
     # Process new PDFs
     print("\n--- Processing New Reports ---\n")

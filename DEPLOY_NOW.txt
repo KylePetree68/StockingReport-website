@@ -1,0 +1,47 @@
+================================================================================
+TO DEPLOY YOUR UPDATED WEBSITE - RUN THESE COMMANDS NOW
+================================================================================
+
+Step 1: Add all the important files
+------------------------------------
+git add scraper.py
+git add stocking_data_clean.json
+git add stocking_data.json
+git add public/
+git add .github/
+git add cleanup_data.py
+git add weekly_update.py
+git add rebuild_from_local.py
+git add download_pdfs.py
+git add DATA_MANAGEMENT.md
+git add DEPLOYMENT.md
+git add .gitignore
+
+
+Step 2: Commit with a message
+------------------------------
+git commit -m "Major update: Clean data + automated daily updates
+
+- Cleaned data: 201 → 179 water bodies (removed duplicates)
+- Fixed parser to handle 2022+ PDF format correctly
+- Added daily automated updates (6:30 PM MT)
+- Added GitHub Actions workflow
+- Total: 5,657+ clean stocking records (2020-2025)"
+
+
+Step 3: Push to GitHub
+----------------------
+git push origin main
+
+
+Step 4: Check it deployed
+-------------------------
+1. Go to: https://github.com/KylePetree68/StockingReport-website
+2. Wait ~30 seconds for GitHub to process
+3. Go to your Render dashboard
+4. Watch it deploy (takes 2-3 minutes)
+5. Visit your site!
+
+================================================================================
+THAT'S IT! Your site will update automatically DAILY at 6:30 PM MT.
+================================================================================

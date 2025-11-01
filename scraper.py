@@ -26,7 +26,7 @@ def get_pdf_links_for_rebuild(start_url):
     """
     Scrapes archive pages starting from a hardcoded year and moving forward.
     """
-    target_year = 2025
+    target_year = 2020
     print(f"Finding all PDF links for year {target_year} and later, starting from: {start_url}...")
     all_pdf_links = []
     current_page_url = start_url
@@ -133,32 +133,92 @@ def extract_text_from_pdf(pdf_url):
 
 def final_parser(text, report_url):
     """
-    A robust parser that works backwards from the end of the line to identify columns
-    and correctly cleans the water body name using a definitive list.
+    A robust parser that handles two different PDF formats:
+    - Old format (2020-2021): Water Name | Length | Weight | Number | Date | ID
+    - New format (2022+): Water Name | Full Hatchery Name | Length | Weight | Number | Date | ID
+    Note: In 2022 PDFs, text often wraps across multiple lines and needs to be merged.
     """
     all_records = {}
     current_species = None
-    
+
     hatchery_map = {
         'LO': 'Los Ojos Hatchery (Parkview)', 'PVT': 'Private', 'RR': 'Red River Trout Hatchery',
         'LS': 'Lisboa Springs Trout Hatchery', 'RL': 'Rock Lake Trout Rearing Facility',
         'FED': 'Federal Hatchery', 'SS': 'Seven Springs Trout Hatchery', 'GW': 'Glenwood Springs Hatchery'
     }
     hatchery_names_sorted = sorted(hatchery_map.values(), key=len, reverse=True)
-    
+
     species_regex = re.compile(r"^[A-Z][a-zA-Z]+(?:\s[A-Za-z\s]+)*$")
-    
+
     lines = text.split('\n')
-    for line in lines:
-        line = line.strip()
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        i += 1
+
         if not line: continue
-        
-        if species_regex.match(line) and "By Date For" not in line and len(line.split()) < 5:
+
+        # Skip standalone continuation words - these should only be merged with previous lines
+        # Be very specific to avoid skipping actual water names
+        if line in ["FACILITY", "HATCHERY", "PRIVATE", "Beach)"]:
+            continue
+
+        # Detect species headers (but exclude hatchery keywords like "FACILITY")
+        if (species_regex.match(line) and
+            "By Date For" not in line and
+            len(line.split()) < 5 and
+            line.upper() not in ['FACILITY', 'HATCHERY', 'PRIVATE']):
             current_species = line.strip()
             continue
-            
-        if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"): continue
-        
+
+        # Skip header and total lines
+        if line.startswith("Water Name") or line.startswith("TOTAL") or line.startswith("Stocking Report By Date"):
+            continue
+
+        # Check if next line should be merged (wrapped text continuation)
+        # This needs to happen BEFORE we try to parse the record structure
+        while i < len(lines):
+            next_line = lines[i].strip()
+
+            # Don't merge empty lines, headers, or species names
+            if (not next_line or
+                next_line.startswith("Water Name") or
+                next_line.startswith("TOTAL") or
+                next_line.startswith("Stocking Report") or
+                (species_regex.match(next_line) and len(next_line.split()) < 5)):
+                break
+
+            # Check if current line looks like a complete record
+            words = line.split()
+            if len(words) >= 2:
+                potential_id = words[-1]
+                potential_date = words[-2]
+                has_valid_ending = (re.match(r"\d{2}\/\d{2}\/\d{4}", potential_date) and
+                                    potential_id in hatchery_map)
+            else:
+                has_valid_ending = False
+
+            # If record is incomplete, merge next line
+            if not has_valid_ending:
+                line = line + " " + next_line
+                i += 1
+                continue
+
+            # If record looks complete but next line is short wrapper text, merge it too
+            # Examples: "Beach)", "FACILITY", or other 1-3 word continuations ending in )
+            next_words = next_line.split()
+            if (len(next_words) <= 3 and (next_line.endswith(')') or next_line == "FACILITY")):
+                # Insert the continuation BEFORE the data fields, not after
+                # Split: water_name + hatchery + length + weight + number + date + ID
+                # We want to insert before length (5th from end)
+                if len(words) >= 6:
+                    line = " ".join(words[:-5]) + " " + next_line + " " + " ".join(words[-5:])
+                    i += 1
+                    continue
+
+            # Otherwise don't merge
+            break
+
         words = line.split()
         if len(words) < 6: continue
 
@@ -166,41 +226,65 @@ def final_parser(text, report_url):
             hatchery_id = words[-1]
             date_str = words[-2]
             number = words[-3]
-            length = words[-5]
-            
-            name_part = " ".join(words[:-5])
 
+            # Validate hatchery ID and date format
             if not re.match(r"\d{2}\/\d{2}\/\d{4}", date_str): continue
             if hatchery_id not in hatchery_map: continue
 
-            hatchery_name = hatchery_map.get(hatchery_id)
-            
-            water_name = name_part
+            # Get length (4th from end after ID, date, number, weight)
+            length = words[-5]
+
+            # Everything before the last 5 words is the water name + possibly hatchery name
+            name_and_hatchery = " ".join(words[:-5])
+
+            # Remove the full hatchery name from the combined string (case insensitive)
+            # Also remove partial matches for cases where "FACILITY" was merged separately
+            water_name = name_and_hatchery
             for h_name_to_remove in hatchery_names_sorted:
                 if h_name_to_remove == 'Private': continue
-                if water_name.lower().endswith(h_name_to_remove.lower()):
-                    water_name = water_name[:-len(h_name_to_remove)].strip()
+                # Try full match first
+                if h_name_to_remove.upper() in water_name.upper():
+                    idx = water_name.upper().find(h_name_to_remove.upper())
+                    water_name = water_name[:idx] + water_name[idx + len(h_name_to_remove):]
                     break
-            
-            if water_name.lower().endswith(' private'):
-                water_name = water_name[:-len(' private')].strip()
+                # Also try partial matches (e.g., "ROCK LAKE TROUT REARING" without "FACILITY")
+                # Split hatchery name and check if most words are present
+                h_words = h_name_to_remove.upper().split()
+                if len(h_words) > 2:
+                    # Check if at least the first N-1 words are present consecutively
+                    partial = " ".join(h_words[:-1])
+                    if partial in water_name.upper():
+                        idx = water_name.upper().find(partial)
+                        water_name = water_name[:idx] + water_name[idx + len(partial):]
+                        break
 
+            # Also handle standalone "PRIVATE" keyword
+            if 'PRIVATE' in water_name.upper():
+                idx = water_name.upper().find('PRIVATE')
+                water_name = water_name[:idx] + water_name[idx + 7:]
+
+            # Clean up water name: remove extra spaces and title case
             water_name = " ".join(water_name.split()).title()
-            
+
             if not water_name: continue
-            
+
+            # Get hatchery name from ID map
+            hatchery_name = hatchery_map.get(hatchery_id)
+
+            # Format date
             date_obj = datetime.strptime(date_str, "%m/%d/%Y")
             formatted_date = date_obj.strftime("%Y-%m-%d")
-            
+
+            # Create record
             record = {"date": formatted_date, "species": current_species, "quantity": number.replace(',', ''), "length": length, "hatchery": hatchery_name, "reportUrl": report_url}
-            
+
             if water_name not in all_records:
                 all_records[water_name] = {"records": []}
             all_records[water_name]["records"].append(record)
 
         except (ValueError, IndexError):
             continue
-            
+
     return all_records
 
 def enrich_data_with_coordinates(data, manual_coords):

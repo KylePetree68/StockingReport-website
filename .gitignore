@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Downloaded PDFs (don't commit these - too large)
+downloaded_pdfs/
+
+# Backup files
+*.bak
+*_backup.json
+
+# Test files
+test_*.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/

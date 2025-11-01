@@ -19,6 +19,16 @@ def normalize_name(name):
     # Convert to lowercase
     n = name.lower().strip()
 
+    # Remove (Parkview) prefix if present
+    n = re.sub(r'^\(parkview\)\s*', '', n)
+
+    # Remove quantity numbers at the start like "1,500.00 " or "1,435.00 " or "1,100.00 "
+    # This handles formats like "1,500.00 " and "1.435.00 "
+    n = re.sub(r'^\d+[,\.]\d+[\.,]?\d*\s+', '', n)
+
+    # Remove embedded coordinate/date fragments like "0.3 7.04 999,617 04/14/2021 state"
+    n = re.sub(r'\s+\d+\.\d+\s+\d+\.\d+\s+[\d,]+\s+\d{2}/\d{2}/\d{4}.*$', '', n)
+
     # Remove trailing punctuation issues
     n = re.sub(r'\s*\)\s*$', ')', n)  # Fix spacing before )
     n = re.sub(r'\s*\(\s*', '(', n)   # Fix spacing after (
@@ -35,7 +45,7 @@ def normalize_name(name):
     return n
 
 def is_malformed(name):
-    """Check if a water name looks malformed (has hatchery fragments)."""
+    """Check if a water name looks malformed (has hatchery fragments or quantity data)."""
     name_lower = name.lower()
 
     # Check for hatchery keywords that shouldn't be in water names
@@ -47,6 +57,18 @@ def is_malformed(name):
     for keyword in bad_keywords:
         if keyword in name_lower:
             return True
+
+    # Check for names starting with (Parkview) or quantity numbers like "1,500.00"
+    if name.startswith('(Parkview)'):
+        return True
+
+    # Check for names starting with numbers that look like quantities (e.g., "1,500.00")
+    if re.match(r'^\d+[,\.]\d+', name):
+        return True
+
+    # Check for names with embedded coordinates/dates like "Conchas Lake 0.3 7.04 999,617"
+    if re.search(r'\d{2}/\d{2}/\d{4}', name) or re.search(r'\d+,\d{3,}', name):
+        return True
 
     # Check for incomplete parentheses
     if name.count('(') != name.count(')'):

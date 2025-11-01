@@ -4001,6 +4001,14 @@
                 "reportUrl": "local://stocking-report-11_12_21.pdf"
             },
             {
+                "date": "2021-11-01",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "38",
+                "length": "10.1",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-11_05_21.pdf"
+            },
+            {
                 "date": "2021-10-21",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "40",
@@ -5660,6 +5668,14 @@
                 "length": "10.2",
                 "hatchery": "Los Ojos Hatchery (Parkview)",
                 "reportUrl": "local://stocking-report-2-17-23.pdf"
+            },
+            {
+                "date": "2022-12-06",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "984",
+                "length": "10.1",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-12-9-22.pdf"
             },
             {
                 "date": "2022-10-25",
@@ -19145,6 +19161,14 @@
                 "reportUrl": "local://stocking-report-12_10_21.pdf"
             },
             {
+                "date": "2021-11-16",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "300",
+                "length": "9.9",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-11_19_21.pdf"
+            },
+            {
                 "date": "2021-11-02",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "300",
@@ -22725,10 +22749,26 @@
                 "reportUrl": "local://stocking-report-11_19_21.pdf"
             },
             {
+                "date": "2021-11-02",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "756",
+                "length": "12.7",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "local://stocking-report-11_05_21.pdf"
+            },
+            {
                 "date": "2021-10-07",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "60",
                 "length": "19.2",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "local://stocking-report-10_08_21.pdf"
+            },
+            {
+                "date": "2021-10-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "675",
+                "length": "11.8",
                 "hatchery": "Los Ojos Hatchery (Parkview)",
                 "reportUrl": "local://stocking-report-10_08_21.pdf"
             },
@@ -23240,6 +23280,14 @@
                 "length": "10.4",
                 "hatchery": "Lisboa Springs Trout Hatchery",
                 "reportUrl": "local://stocking-report-11_12_21.pdf"
+            },
+            {
+                "date": "2021-10-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "516",
+                "length": "9.9",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-10_15_21.pdf"
             },
             {
                 "date": "2021-09-02",
@@ -24711,6 +24759,14 @@
                 "length": "11.4",
                 "hatchery": "Rock Lake Trout Rearing Facility",
                 "reportUrl": "local://stocking-report-10_22_21.pdf"
+            },
+            {
+                "date": "2021-10-05",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1126",
+                "length": "11.3",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "local://stocking-report-10_08_21.pdf"
             },
             {
                 "date": "2021-09-21",
@@ -26709,6 +26765,14 @@
                 "reportUrl": "local://stocking-report-2-17-23.pdf"
             },
             {
+                "date": "2022-12-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "6331",
+                "length": "6.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-12-9-22.pdf"
+            },
+            {
                 "date": "2022-12-07",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "28059",
@@ -26721,6 +26785,14 @@
                 "species": "Triploid Rainbow Trout",
                 "quantity": "990",
                 "length": "HATCHERY",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-11-23-22.pdf"
+            },
+            {
+                "date": "2022-11-22",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1008",
+                "length": "9.2",
                 "hatchery": "Red River Trout Hatchery",
                 "reportUrl": "local://stocking-report-11-23-22.pdf"
             },
@@ -37340,10 +37412,26 @@
                 "reportUrl": "local://stocking-report-4-28-23.pdf"
             },
             {
+                "date": "2022-11-01",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "21974",
+                "length": "3.7",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-11-4-22.pdf"
+            },
+            {
                 "date": "2021-12-07",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "235",
                 "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-12_10_21.pdf"
+            },
+            {
+                "date": "2021-12-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "21990",
+                "length": "3.2",
                 "hatchery": "Red River Trout Hatchery",
                 "reportUrl": "local://stocking-report-12_10_21.pdf"
             },
@@ -37543,6 +37631,14 @@
                 "date": "2021-04-14",
                 "species": "Walleye",
                 "quantity": "257990",
+                "length": "0.3",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-04_16_21.pdf"
+            },
+            {
+                "date": "2021-04-14",
+                "species": "Walleye",
+                "quantity": "130192",
                 "length": "0.3",
                 "hatchery": "Rock Lake Trout Rearing Facility",
                 "reportUrl": "local://stocking-report-04_16_21.pdf"
@@ -39446,19 +39542,6 @@
                 "length": "9.2",
                 "hatchery": "Los Ojos Hatchery (Parkview)",
                 "reportUrl": "local://stocking-report-08_14_20.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "Conchas Lake 0.3 7.04 999,617 04/14/2021 State Ute Lake": {
-        "records": [
-            {
-                "date": "2021-04-14",
-                "species": "Walleye",
-                "quantity": "130192",
-                "length": "0.3",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-04_16_21.pdf"
             }
         ],
         "coords": null
@@ -48187,32 +48270,6 @@
             "lon": -105.7519069
         }
     },
-    "(Parkview) 1,100.00 Grindstone Reservoir": {
-        "records": [
-            {
-                "date": "2021-10-05",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "1126",
-                "length": "11.3",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "local://stocking-report-10_08_21.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 1,347.00 Tiger Park Pond (Aztec)": {
-        "records": [
-            {
-                "date": "2021-10-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "675",
-                "length": "11.8",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "local://stocking-report-10_08_21.pdf"
-            }
-        ],
-        "coords": null
-    },
     "Springer Lake": {
         "records": [
             {
@@ -48262,19 +48319,6 @@
                 "length": "1.8",
                 "hatchery": "Seven Springs Trout Hatchery",
                 "reportUrl": "local://stocking-report-10_09_20.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "1,435.00 Trees Lake": {
-        "records": [
-            {
-                "date": "2021-10-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "516",
-                "length": "9.9",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-10_15_21.pdf"
             }
         ],
         "coords": null
@@ -48345,19 +48389,6 @@
         ],
         "coords": null
     },
-    "1,500.00 Rio Grande (Pilar To Cochiti Lake)": {
-        "records": [
-            {
-                "date": "2022-11-22",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "1008",
-                "length": "9.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-11-23-22.pdf"
-            }
-        ],
-        "coords": null
-    },
     "Comanche Creek (Lower)": {
         "records": [
             {
@@ -48375,97 +48406,6 @@
                 "length": "2.0",
                 "hatchery": "Seven Springs Trout Hatchery",
                 "reportUrl": "local://stocking-report-11-4-22.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 1,900.00 Snow Lake": {
-        "records": [
-            {
-                "date": "2022-11-01",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "21974",
-                "length": "3.7",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-11-4-22.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "1,518.00 El Rito Creek (Nr Santa Rosa)": {
-        "records": [
-            {
-                "date": "2021-11-01",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "38",
-                "length": "10.1",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-11_05_21.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 2,120.00 Tiger Park Pond (Aztec)": {
-        "records": [
-            {
-                "date": "2021-11-02",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "756",
-                "length": "12.7",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "local://stocking-report-11_05_21.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 1,100.00 Jal Lake": {
-        "records": [
-            {
-                "date": "2021-11-16",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "300",
-                "length": "9.9",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-11_19_21.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 1,350.00 Lake Roberts": {
-        "records": [
-            {
-                "date": "2022-12-06",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "984",
-                "length": "10.1",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-12-9-22.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "3,305.00 Rio Grande (Pilar To Cochiti Lake)": {
-        "records": [
-            {
-                "date": "2022-12-08",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "6331",
-                "length": "6.1",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-12-9-22.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "(Parkview) 1,270.00 Snow Lake": {
-        "records": [
-            {
-                "date": "2021-12-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "21990",
-                "length": "3.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-12_10_21.pdf"
             }
         ],
         "coords": null

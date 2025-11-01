@@ -24,7 +24,7 @@
     <meta property="og:title" content="Santa Rosa Lake - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for Santa Rosa Lake, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="https://stockingreport.com/public/waters/santa-rosa-lake.html">
+    <meta property="og:url" content="{{PAGE_URL}}">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -103,48 +103,55 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-15</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">288666</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-13</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">189580</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-3-28-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-03-27</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">169400</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-21-23.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-04-20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">96299</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-21-23.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-04-20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">114879</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_21_20.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-08-19</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Northern Largemouth Bass</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3103</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.8</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
+                            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 15, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">288666</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 13, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">189580</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-3-28-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 27, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">169400</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-4-21-23.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 20, 2023</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">96299</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-4-21-23.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 20, 2023</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">114879</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-08_21_20.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 19, 2020</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Northern Largemouth Bass</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3103</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.8</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
                         </tbody>
                     </table>
                 </div>

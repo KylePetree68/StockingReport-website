@@ -24,7 +24,7 @@
     <meta property="og:title" content="1,500.00 Rio Grande (Pilar To Cochiti Lake) - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for 1,500.00 Rio Grande (Pilar To Cochiti Lake), including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="https://stockingreport.com/public/waters/1-500-00-rio-grande-pilar-to-cochiti-lake.html">
+    <meta property="og:url" content="{{PAGE_URL}}">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -79,11 +79,11 @@
         </header>
 
         <!-- Search Section -->
-        <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6">
+        <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
             <div class="relative" id="searchable-dropdown">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
-                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96"></div>
+                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1000;"></div>
             </div>
             <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
@@ -103,13 +103,15 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-23-22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/22/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1008</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery</td>
-        </tr>
+                            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-11-23-22.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 22, 2022</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1008</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.2</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery</td>
+                </tr>
+            
                         </tbody>
                     </table>
                 </div>

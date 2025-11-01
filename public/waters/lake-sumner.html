@@ -24,7 +24,7 @@
     <meta property="og:title" content="Lake Sumner - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for Lake Sumner, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="https://stockingreport.com/public/waters/lake-sumner.html">
+    <meta property="og:url" content="{{PAGE_URL}}">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -103,34 +103,39 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-5-2-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-29</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">40209</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-13</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Walleye</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">164303</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.3</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_23_20.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-10-22</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5030</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
-                            </tr>
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_23_20.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-10-22</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">7740</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
-                            </tr>
+                            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-5-2-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 29, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">40209</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 13, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Walleye</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">164303</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">0.3</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-10_23_20.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2020</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5030</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-10_23_20.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2020</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7740</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
+                </tr>
+            
                         </tbody>
                     </table>
                 </div>

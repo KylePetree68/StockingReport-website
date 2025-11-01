@@ -23,6 +23,12 @@ def normalize_name(name):
     n = re.sub(r'\s*\)\s*$', ')', n)  # Fix spacing before )
     n = re.sub(r'\s*\(\s*', '(', n)   # Fix spacing after (
 
+    # Add missing closing parenthesis if there's an unmatched opening one
+    open_count = n.count('(')
+    close_count = n.count(')')
+    if open_count > close_count:
+        n = n + ')' * (open_count - close_count)
+
     # Standardize spacing
     n = ' '.join(n.split())
 
@@ -112,54 +118,61 @@ def cleanup_data():
 
     print(f"\nOriginal: {len(data)} water bodies")
 
-    # Step 1: Remove obviously malformed entries
-    print("\nStep 1: Removing malformed entries...")
-    malformed = []
-    clean_data = {}
-
-    for name, info in data.items():
-        if is_malformed(name):
-            malformed.append(name)
-            print(f"  REMOVE: \"{name}\"")
-        else:
-            clean_data[name] = info
-
-    print(f"  Removed {len(malformed)} malformed entries")
-    print(f"  Remaining: {len(clean_data)} water bodies")
-
-    # Step 2: Group similar names
-    print("\nStep 2: Grouping similar names...")
+    # Step 1: Group ALL names first (including malformed ones)
+    print("\nStep 1: Grouping similar names (including malformed)...")
     grouped = defaultdict(list)
 
-    for name in clean_data.keys():
+    for name in data.keys():
         normalized = normalize_name(name)
         grouped[normalized].append(name)
 
-    # Step 3: Merge duplicates
-    print("\nStep 3: Merging duplicates...")
+    # Step 2: Merge duplicates and handle malformed entries
+    print("\nStep 2: Merging duplicates and rescuing malformed data...")
     final_data = {}
     merge_count = 0
+    malformed_rescued = []
+    malformed_discarded = []
 
     for normalized, variations in grouped.items():
         if len(variations) > 1:
             print(f"\n  Merging {len(variations)} variations:")
             for v in variations:
-                print(f"    - \"{v}\" ({len(clean_data[v]['records'])} records)")
+                malformed_status = " [MALFORMED]" if is_malformed(v) else ""
+                print(f"    - \"{v}\" ({len(data[v]['records'])} records){malformed_status}")
 
-            # Pick best name
-            best_name = find_best_name(variations)
-            print(f"  → Using: \"{best_name}\"")
+            # Pick best name (prefer non-malformed)
+            non_malformed = [v for v in variations if not is_malformed(v)]
+            if non_malformed:
+                best_name = find_best_name(non_malformed)
+            else:
+                # All are malformed, skip this group entirely
+                print(f"  -> All variations are malformed, discarding")
+                malformed_discarded.extend(variations)
+                continue
 
-            # Merge all records
-            all_records = [clean_data[v]['records'] for v in variations]
+            print(f"  -> Using: \"{best_name}\"")
+
+            # Merge all records (including from malformed entries)
+            all_records = [data[v]['records'] for v in variations]
             merged_records = merge_records(all_records)
 
-            # Use coords from any variation that has them
-            coords = None
+            # Track which malformed entries had their data rescued
             for v in variations:
-                if clean_data[v].get('coords'):
-                    coords = clean_data[v]['coords']
+                if is_malformed(v) and v != best_name:
+                    malformed_rescued.append(v)
+                    print(f"  -> Rescued {len(data[v]['records'])} records from \"{v}\"")
+
+            # Use coords from any variation that has them (prefer non-malformed)
+            coords = None
+            for v in non_malformed:
+                if data[v].get('coords'):
+                    coords = data[v]['coords']
                     break
+            if not coords:  # Try malformed if no coords found
+                for v in variations:
+                    if data[v].get('coords'):
+                        coords = data[v]['coords']
+                        break
 
             final_data[best_name] = {
                 'records': merged_records,
@@ -167,12 +180,20 @@ def cleanup_data():
             }
 
             merge_count += 1
-            print(f"  → Total: {len(merged_records)} unique records")
+            print(f"  -> Total: {len(merged_records)} unique records")
         else:
-            # No duplicates, just copy
-            final_data[variations[0]] = clean_data[variations[0]]
+            # Single entry - check if it's malformed
+            name = variations[0]
+            if is_malformed(name):
+                print(f"\n  Discarding isolated malformed entry: \"{name}\"")
+                malformed_discarded.append(name)
+            else:
+                # No duplicates, just copy
+                final_data[name] = data[name]
 
     print(f"\nMerged {merge_count} sets of duplicates")
+    print(f"Malformed entries rescued: {len(malformed_rescued)}")
+    print(f"Malformed entries discarded: {len(malformed_discarded)}")
     print(f"Final count: {len(final_data)} water bodies")
 
     # Calculate total records
@@ -190,6 +211,8 @@ def cleanup_data():
     print(f"\nBefore: {len(data)} water bodies")
     print(f"After:  {len(final_data)} water bodies")
     print(f"Removed: {len(data) - len(final_data)} duplicates/malformed")
+    print(f"  - Rescued and merged: {len(malformed_rescued)} malformed entries")
+    print(f"  - Discarded: {len(malformed_discarded)} isolated malformed entries")
 
     return final_data
 

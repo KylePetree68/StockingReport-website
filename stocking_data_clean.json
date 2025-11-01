@@ -11668,6 +11668,38 @@
     "Conservancy Park Lake (Aka Tingley Beach)": {
         "records": [
             {
+                "date": "2025-10-21",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1499",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
+            },
+            {
+                "date": "2025-10-16",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1500",
+                "length": "10.4",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
+            },
+            {
+                "date": "2025-08-28",
+                "species": "Channel Catfish",
+                "quantity": "133",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
+            },
+            {
+                "date": "2025-08-28",
+                "species": "Channel Catfish",
+                "quantity": "316",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
+            },
+            {
                 "date": "2022-12-06",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "2402",
@@ -48642,191 +48674,6 @@
                 "length": "12.2",
                 "hatchery": "Federal Hatchery",
                 "reportUrl": "local://stocking-report-9-06-24.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "Rock Lake Hatchery Kid'S Pond'S (Near Ro": {
-        "records": [
-            {
-                "date": "2025-10-29",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "21",
-                "length": "10.6",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020"
-            },
-            {
-                "date": "2025-10-21",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "21",
-                "length": "10.2",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
-            },
-            {
-                "date": "2025-10-06",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "20",
-                "length": "10.0",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-10-25/?wpdmdl=52612&refresh=6905355cf3cbf1761949020"
-            },
-            {
-                "date": "2025-09-22",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "20",
-                "length": "10.7",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-26-25/?wpdmdl=52546&refresh=6905355d01bc71761949021"
-            },
-            {
-                "date": "2025-09-02",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "20",
-                "length": "10.0",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021"
-            }
-        ],
-        "coords": null
-    },
-    "Conservancy Park Lake (Aka Tingley Beach": {
-        "records": [
-            {
-                "date": "2025-10-21",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "1499",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
-            },
-            {
-                "date": "2025-10-16",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "1500",
-                "length": "10.4",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
-            },
-            {
-                "date": "2025-08-28",
-                "species": "Channel Catfish",
-                "quantity": "133",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
-            },
-            {
-                "date": "2025-08-28",
-                "species": "Channel Catfish",
-                "quantity": "316",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
-            }
-        ],
-        "coords": null
-    },
-    "Seven Springs Brood Pond": {
-        "records": [
-            {
-                "date": "2025-10-23",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "692",
-                "length": "13.6",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
-            },
-            {
-                "date": "2025-10-15",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "449",
-                "length": "11.3",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
-            },
-            {
-                "date": "2025-08-27",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "450",
-                "length": "11.7",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
-            }
-        ],
-        "coords": null
-    },
-    "Red River Hatchery Pond": {
-        "records": [
-            {
-                "date": "2025-10-15",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "650",
-                "length": "10.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
-            },
-            {
-                "date": "2025-10-02",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "400",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-3-25/?wpdmdl=52577&refresh=6905355d00ba81761949021"
-            },
-            {
-                "date": "2025-09-18",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "400",
-                "length": "12.0",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-19-25/?wpdmdl=52528&refresh=6905355d02baa1761949021"
-            },
-            {
-                "date": "2025-09-18",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "80",
-                "length": "15.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-19-25/?wpdmdl=52528&refresh=6905355d02baa1761949021"
-            },
-            {
-                "date": "2025-09-04",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "399",
-                "length": "12.0",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021"
-            },
-            {
-                "date": "2025-09-04",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "80",
-                "length": "15.4",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021"
-            },
-            {
-                "date": "2025-08-28",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "400",
-                "length": "12.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
-            }
-        ],
-        "coords": null
-    },
-    "Pecos River (South San Isidro To Villanu": {
-        "records": [
-            {
-                "date": "2025-08-28",
-                "species": "Channel Catfish",
-                "quantity": "133",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
             }
         ],
         "coords": null

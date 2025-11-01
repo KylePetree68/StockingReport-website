@@ -24,7 +24,7 @@
     <meta property="og:title" content="Bonito Creek South Fork - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for Bonito Creek South Fork, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="https://stockingreport.com/public/waters/bonito-creek-south-fork.html">
+    <meta property="og:url" content="{{PAGE_URL}}">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -103,13 +103,15 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-1-25.pdf', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-07-30</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Brook Trout YY</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1477</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.7</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
-                            </tr>
+                            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-8-1-25.pdf', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 30, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Brook Trout YY</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1477</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.7</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
+                </tr>
+            
                         </tbody>
                     </table>
                 </div>

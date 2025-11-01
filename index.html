@@ -54,7 +54,8 @@
             border-bottom: 1px solid #f3f4f6;
         }
 
-        .dropdown-option:hover {
+        .dropdown-option:hover,
+        .dropdown-option.keyboard-selected {
             background-color: #eff6ff;
             padding-left: 1.25rem;
         }
@@ -252,6 +253,7 @@
         const mapSkeleton = document.getElementById('map-skeleton');
         const mapElement = document.getElementById('map');
         let map;
+        let selectedIndex = -1;  // Track keyboard selection
 
         function parseDateAsLocal(dateString) {
             const [year, month, day] = dateString.split('-').map(Number);
@@ -389,8 +391,33 @@
             });
         }
 
+        function getVisibleOptions() {
+            return Array.from(optionsContainer.getElementsByTagName('div'))
+                .filter(opt => opt.style.display !== 'none');
+        }
+
+        function clearSelection() {
+            const options = optionsContainer.getElementsByTagName('div');
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove('keyboard-selected');
+            }
+        }
+
+        function updateSelection(index) {
+            clearSelection();
+            const visibleOptions = getVisibleOptions();
+            if (index >= 0 && index < visibleOptions.length) {
+                selectedIndex = index;
+                visibleOptions[index].classList.add('keyboard-selected');
+                // Scroll into view if needed
+                visibleOptions[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        }
+
         searchInput.addEventListener('input', () => {
             const filter = searchInput.value.toLowerCase();
+            selectedIndex = -1;  // Reset selection on new input
+
             if (filter) {
                 optionsContainer.classList.remove('hidden');
             } else {
@@ -406,6 +433,8 @@
                     options[i].style.display = "none";
                 }
             }
+
+            clearSelection();
         });
 
         searchInput.addEventListener('focus', () => {
@@ -414,14 +443,36 @@
             }
         });
 
-        // Allow Enter key to navigate to first result
+        // Keyboard navigation: Arrow keys and Enter
         searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const visibleOptions = Array.from(optionsContainer.getElementsByTagName('div'))
-                    .filter(opt => opt.style.display !== 'none');
+            const visibleOptions = getVisibleOptions();
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
                 if (visibleOptions.length > 0) {
-                    visibleOptions[0].click();
+                    const newIndex = selectedIndex + 1;
+                    if (newIndex < visibleOptions.length) {
+                        updateSelection(newIndex);
+                    }
                 }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (visibleOptions.length > 0 && selectedIndex > 0) {
+                    updateSelection(selectedIndex - 1);
+                }
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (visibleOptions.length > 0) {
+                    // If something is selected, navigate to it; otherwise navigate to first option
+                    const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
+                    if (visibleOptions[targetIndex]) {
+                        visibleOptions[targetIndex].click();
+                    }
+                }
+            } else if (e.key === 'Escape') {
+                optionsContainer.classList.add('hidden');
+                clearSelection();
+                selectedIndex = -1;
             }
         });
 

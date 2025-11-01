@@ -81,9 +81,9 @@
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
-            <div class="relative" id="searchable-dropdown">
+            <div class="relative" id="searchable-dropdown" style="z-index: 1000;">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
-                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96"></div>
+                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1001;"></div>
             </div>
             <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
@@ -104,229 +104,229 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr class="clickable-row" onclick="window.open('local://stocking-report-9-12-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/09/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">687</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-9-12-25/?wpdmdl=52519&refresh=6905355d03bb21761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/09/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">687</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-8-29-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/27/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">749</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/27/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">749</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-5-30-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/28/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">750</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-5-9-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/07/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">578</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/16/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">791</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-4-4-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/01/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">500</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-1-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/29/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1373</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-1-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/29/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5636</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">2.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-9-27-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/25/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">611</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-9-20-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/19/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">749</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-9-13-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/10/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">332</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-5-5-23.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/04/2023</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">600</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-4-28-23.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/26/2023</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">200</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">15.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11_05_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/03/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5314</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_15_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/15/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">300</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_15_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/13/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_01_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/29/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">549</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_17_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/14/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">749</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_03_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/03/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">999</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-08_27_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/24/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">750</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-08_13_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/11/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">179</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_23_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/21/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">158</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_16_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/14/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">776</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_21_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/18/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">750</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_14_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/12/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">748</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-04_16_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/13/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">749</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_25_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/23/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">750</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-08_28_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/26/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">751</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-08_21_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/17/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">710</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-08_14_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/11/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">750</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-09-09</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">687</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-9-12-25/?wpdmdl=52519&refresh=6905355d03bb21761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-09-09</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">687</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-29-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-08-27</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">749</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-08-27</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">749</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-5-30-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-05-28</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-5-9-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-05-07</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">578</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-16</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">791</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-4-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">500</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-1-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1373</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">6.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-1-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5636</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-9-27-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-09-25</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">611</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-9-20-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-09-19</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">749</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-9-13-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-09-10</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">332</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-5-5-23.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-05-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">600</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-28-23.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-04-26</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">15.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11_05_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-11-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5314</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_15_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-10-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">300</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">7.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_15_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-10-13</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1020</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">7.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_01_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-09-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">549</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_17_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-09-14</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">749</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_03_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-09-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">999</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">6.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_27_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-08-24</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_13_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-08-11</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">179</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_23_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-07-21</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">158</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_16_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-07-14</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">776</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_21_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-18</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_14_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-12</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">748</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-04_16_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-04-13</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">749</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_25_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-09-23</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_28_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-08-26</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">751</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_21_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-08-17</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">710</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-08_14_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-08-11</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

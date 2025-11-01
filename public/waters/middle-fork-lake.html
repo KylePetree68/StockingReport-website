@@ -81,9 +81,9 @@
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
-            <div class="relative" id="searchable-dropdown">
+            <div class="relative" id="searchable-dropdown" style="z-index: 1000;">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
-                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96"></div>
+                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1001;"></div>
             </div>
             <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
@@ -104,33 +104,33 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr class="clickable-row" onclick="window.open('local://stocking-report-10-3-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/01/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1498</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-3-25/?wpdmdl=52577&refresh=6905355d00ba81761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/01/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1498</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_08_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/04/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1239</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.9</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_16_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/15/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Rio Grande Cutthroat Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1004</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Seven Springs Trout Hatchery</td>
-        </tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1498</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-3-25/?wpdmdl=52577&refresh=6905355d00ba81761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1498</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_08_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-10-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1239</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.9</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_16_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-10-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rio Grande Cutthroat Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1004</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Seven Springs Trout Hatchery</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

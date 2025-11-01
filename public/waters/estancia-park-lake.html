@@ -81,9 +81,9 @@
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
-            <div class="relative" id="searchable-dropdown">
+            <div class="relative" id="searchable-dropdown" style="z-index: 1000;">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
-                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96"></div>
+                <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1001;"></div>
             </div>
             <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
@@ -104,509 +104,509 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr class="clickable-row" onclick="window.open('local://stocking-report-10-31-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/29/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">54</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/29/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">54</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10-24-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/22/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">56</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/22/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">56</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10-3-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/02/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-3-25/?wpdmdl=52577&refresh=6905355d00ba81761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/02/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-9-5-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/04/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/04/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-8-29-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/28/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">133</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/28/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">133</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-8-1-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/31/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">125</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-6-27-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">06/26/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">133</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/15/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-4-4-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/03/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-3-28-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/24/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.5</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-3-7-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/04/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">56</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-2-14-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/12/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-1-31-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">01/28/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">54</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.5</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-1-17-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">01/16/2025</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-1-3-25.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/31/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">56</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.5</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12-20-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/18/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">41</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12-6-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/03/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">41</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-22-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/20/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">42</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-15-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/12/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.6</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10-25-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/21/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">110</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10-11-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/07/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-9-27-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/25/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">55</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-8-30-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/29/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">135</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-8-2-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">08/01/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">127</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-7-5-24.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/02/2024</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">128</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-3-17-23.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/15/2023</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-3-3-23.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/28/2023</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">251</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-2-17-23.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/16/2023</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">151</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12-9-22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/08/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-23-22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/21/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">250</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">9.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11-4-22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/01/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">250</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10-28-22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/26/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">250</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-01_14_22.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">01/12/2022</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">150</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12_23_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/22/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">188</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12_17_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/13/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">188</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11_12_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/09/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">188</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.5</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_22_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/21/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">189</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.1</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_08_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10/05/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">224</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_10_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/07/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Largemouth Bass</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">14</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">14.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_03_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/02/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">85</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_30_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/29/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">91</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_02_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/01/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">96</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_28_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/27/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">92</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_21_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/18/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_07_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/06/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">92</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-05_07_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">05/04/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">250</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-04_23_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/20/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12.5</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-04_09_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">04/06/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">251</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-03_26_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/25/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Largemouth Bass</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">72</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.3</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-03_19_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/16/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-03_12_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/09/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">250</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-02_26_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/23/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">249</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.9</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-02_05_21.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/03/2021</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">150</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12_18_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/16/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">73</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.9</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-12_04_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/03/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">76</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-11_06_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11/03/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">74</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-10_02_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/29/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">150</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_25_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/22/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">149</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.8</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-09_04_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">09/03/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">102</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_31_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/30/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">129</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_17_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/14/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Northern Largemouth Bass</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">20</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">15.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-07_03_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">07/02/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">96</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-06_05_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">06/04/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">102</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-03_06_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">03/02/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">150</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.2</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-02_14_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">02/13/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">73</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.7</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-01_31_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">01/29/2020</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">75</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.9</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
-<tr class="clickable-row" onclick="window.open('local://stocking-report-01_03_20.pdf', '_blank')">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12/30/2019</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">74</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.4</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Rock Lake Trout Rearing Facility</td>
-        </tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">54</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">54</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10-24-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">56</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">56</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10-3-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-10-3-25/?wpdmdl=52577&refresh=6905355d00ba81761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-9-5-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-09-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-09-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-29-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-08-28</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">133</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-08-28</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">133</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-1-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-07-31</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">125</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-6-27-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-06-26</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">133</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-18-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-4-4-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-04-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-3-28-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-03-24</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-3-7-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-03-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">56</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-2-14-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-02-12</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-1-31-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-01-28</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">54</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Red River Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-1-17-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-01-16</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-1-3-25.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-12-31</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">56</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12-20-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-12-18</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">41</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12-6-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-12-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">41</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Red River Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-22-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-11-20</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">42</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-15-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-11-12</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.6</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10-25-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-21</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">110</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10-11-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-07</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-9-27-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-09-25</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">55</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-30-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-08-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">135</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-8-2-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-08-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">127</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-7-5-24.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-07-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">128</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-3-17-23.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-03-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-3-3-23.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-02-28</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">251</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-2-17-23.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-02-16</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">151</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12-9-22.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2022-12-08</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-23-22.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2022-11-21</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11-4-22.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2022-11-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10-28-22.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2022-10-26</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-01_14_22.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2022-01-12</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12_23_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-12-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">188</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12_17_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-12-13</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">188</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Lisboa Springs Trout Hatchery</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11_12_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-11-09</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">188</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_22_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-10-21</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">189</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_08_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-10-05</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">224</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Los Ojos Hatchery (Parkview)</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_10_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-09-07</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Largemouth Bass</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">14</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">14.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_03_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-09-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">85</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_30_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-07-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">91</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_02_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-07-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">96</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_28_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-27</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">92</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_21_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-18</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_07_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-06</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">92</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-05_07_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-05-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-04_23_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-04-20</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-04_09_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-04-06</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">251</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-03_26_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-03-25</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Largemouth Bass</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">72</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">7.3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-03_19_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-03-16</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-03_12_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-03-09</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-02_26_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-02-23</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">249</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.9</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-02_05_21.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2021-02-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12_18_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-12-16</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">73</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.9</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-12_04_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-12-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">76</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-11_06_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-11-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">74</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">11.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-10_02_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-09-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_25_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-09-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">149</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.8</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-09_04_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-09-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">102</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_31_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-07-30</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">129</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_17_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-07-14</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Northern Largemouth Bass</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">20</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">15.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-07_03_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-07-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">96</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-06_05_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-06-04</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">102</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-03_06_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-03-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-02_14_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-02-13</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">73</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.7</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-01_31_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2020-01-29</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">75</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.9</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
+                            <tr class="clickable-row" onclick="window.open('local://stocking-report-01_03_20.pdf', '_blank')">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2019-12-30</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Triploid Rainbow Trout</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">74</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10.4</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rock Lake Trout Rearing Facility</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

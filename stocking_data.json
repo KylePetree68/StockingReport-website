@@ -7805,8 +7805,632 @@
             "lon": -105.6815009
         }
     },
-    "Tree Lake": {
+    "Trees Lake": {
         "records": [
+            {
+                "date": "2025-10-29",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "249",
+                "length": "10.0",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-31-25.pdf"
+            },
+            {
+                "date": "2025-10-29",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "249",
+                "length": "10.0",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020"
+            },
+            {
+                "date": "2025-10-23",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "502",
+                "length": "10.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-24-25.pdf"
+            },
+            {
+                "date": "2025-10-23",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "502",
+                "length": "10.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
+            },
+            {
+                "date": "2025-10-15",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "422",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-17-25.pdf"
+            },
+            {
+                "date": "2025-10-15",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "422",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
+            },
+            {
+                "date": "2025-10-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "499",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-10-25.pdf"
+            },
+            {
+                "date": "2025-10-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "499",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-10-25/?wpdmdl=52612&refresh=6905355cf3cbf1761949020"
+            },
+            {
+                "date": "2025-08-28",
+                "species": "Channel Catfish",
+                "quantity": "134",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-8-29-25.pdf"
+            },
+            {
+                "date": "2025-08-28",
+                "species": "Channel Catfish",
+                "quantity": "134",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
+            },
+            {
+                "date": "2025-07-31",
+                "species": "Channel Catfish",
+                "quantity": "134",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-8-1-25.pdf"
+            },
+            {
+                "date": "2025-06-26",
+                "species": "Channel Catfish",
+                "quantity": "134",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-6-27-25.pdf"
+            },
+            {
+                "date": "2025-05-22",
+                "species": "Channel Catfish",
+                "quantity": "134",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-5-23-25.pdf"
+            },
+            {
+                "date": "2025-04-24",
+                "species": "Channel Catfish",
+                "quantity": "141",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-4-25-25.pdf"
+            },
+            {
+                "date": "2025-03-25",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "218",
+                "length": "10.7",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-3-28-25.pdf"
+            },
+            {
+                "date": "2025-03-18",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "484",
+                "length": "10.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-3-21-25.pdf"
+            },
+            {
+                "date": "2025-03-04",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "478",
+                "length": "10.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-3-7-25.pdf"
+            },
+            {
+                "date": "2025-02-26",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "450",
+                "length": "10.3",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-2-28-25.pdf"
+            },
+            {
+                "date": "2025-02-05",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "450",
+                "length": "10.3",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-2-7-25.pdf"
+            },
+            {
+                "date": "2025-01-22",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "462",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-1-24-25.pdf"
+            },
+            {
+                "date": "2025-01-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "416",
+                "length": "10.6",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-1-10-25.pdf"
+            },
+            {
+                "date": "2024-12-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "462",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-12-13-24.pdf"
+            },
+            {
+                "date": "2024-12-03",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "400",
+                "length": "10.6",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-12-6-24.pdf"
+            },
+            {
+                "date": "2024-11-19",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "200",
+                "length": "10.1",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-11-22-24.pdf"
+            },
+            {
+                "date": "2024-11-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "474",
+                "length": "10.1",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-11-15-24.pdf"
+            },
+            {
+                "date": "2024-10-25",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "624",
+                "length": "11.6",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-10-25-24.pdf"
+            },
+            {
+                "date": "2024-10-09",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "499",
+                "length": "10.2",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-11-24.pdf"
+            },
+            {
+                "date": "2024-08-29",
+                "species": "Channel Catfish",
+                "quantity": "135",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-8-30-24.pdf"
+            },
+            {
+                "date": "2024-08-01",
+                "species": "Channel Catfish",
+                "quantity": "127",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-8-2-24.pdf"
+            },
+            {
+                "date": "2024-07-02",
+                "species": "Channel Catfish",
+                "quantity": "128",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-7-5-24.pdf"
+            },
+            {
+                "date": "2023-04-27",
+                "species": "Channel Catfish",
+                "quantity": "285",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-4-28-23.pdf"
+            },
+            {
+                "date": "2023-03-15",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "492",
+                "length": "10.0",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-3-17-23.pdf"
+            },
+            {
+                "date": "2023-02-28",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "302",
+                "length": "10.3",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-3-3-23.pdf"
+            },
+            {
+                "date": "2022-12-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "498",
+                "length": "9.8",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-12-9-22.pdf"
+            },
+            {
+                "date": "2022-11-21",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "502",
+                "length": "9.8",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-11-23-22.pdf"
+            },
+            {
+                "date": "2022-11-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "501",
+                "length": "9.6",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-11-10-22.pdf"
+            },
+            {
+                "date": "2022-10-28",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "502",
+                "length": "9.9",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-10-28-22.pdf"
+            },
+            {
+                "date": "2021-12-28",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "239",
+                "length": "11.1",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "local://stocking-report-12_30_21.pdf"
+            },
+            {
+                "date": "2021-11-30",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "275",
+                "length": "9.8",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-12_03_21.pdf"
+            },
+            {
+                "date": "2021-11-17",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "275",
+                "length": "9.9",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-11_19_21.pdf"
+            },
+            {
+                "date": "2021-11-09",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "431",
+                "length": "10.4",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-11_12_21.pdf"
+            },
+            {
+                "date": "2021-10-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "516",
+                "length": "9.9",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-10_15_21.pdf"
+            },
+            {
+                "date": "2021-09-02",
+                "species": "Channel Catfish",
+                "quantity": "113",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-09_03_21.pdf"
+            },
+            {
+                "date": "2021-07-29",
+                "species": "Channel Catfish",
+                "quantity": "106",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-07_30_21.pdf"
+            },
+            {
+                "date": "2021-07-16",
+                "species": "Largemouth Bass",
+                "quantity": "101",
+                "length": "13.7",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-07_16_21.pdf"
+            },
+            {
+                "date": "2021-07-01",
+                "species": "Channel Catfish",
+                "quantity": "96",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-07_02_21.pdf"
+            },
+            {
+                "date": "2021-05-27",
+                "species": "Channel Catfish",
+                "quantity": "104",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-05_28_21.pdf"
+            },
+            {
+                "date": "2021-05-06",
+                "species": "Channel Catfish",
+                "quantity": "92",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-05_07_21.pdf"
+            },
+            {
+                "date": "2021-03-30",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "422",
+                "length": "9.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-04_01_21.pdf"
+            },
+            {
+                "date": "2021-03-24",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "499",
+                "length": "9.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-03_26_21.pdf"
+            },
+            {
+                "date": "2021-03-11",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "325",
+                "length": "10.0",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "local://stocking-report-03_12_21.pdf"
+            },
+            {
+                "date": "2021-02-24",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "250",
+                "length": "10.6",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-02_26_21.pdf"
+            },
+            {
+                "date": "2021-02-17",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "253",
+                "length": "10.7",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-02_19_21.pdf"
+            },
+            {
+                "date": "2021-02-03",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "499",
+                "length": "10.1",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-02_05_21.pdf"
+            },
+            {
+                "date": "2021-01-27",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "498",
+                "length": "9.4",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-01_29_21.pdf"
+            },
+            {
+                "date": "2021-01-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "248",
+                "length": "9.9",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-01_15_21.pdf"
+            },
+            {
+                "date": "2021-01-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "498",
+                "length": "9.6",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-01_08_21.pdf"
+            },
+            {
+                "date": "2020-12-04",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "560",
+                "length": "9.6",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-12_04_20.pdf"
+            },
+            {
+                "date": "2020-11-18",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "249",
+                "length": "9.6",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-11_20_20.pdf"
+            },
+            {
+                "date": "2020-11-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "250",
+                "length": "9.2",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-11_13_20.pdf"
+            },
+            {
+                "date": "2020-11-03",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "248",
+                "length": "9.7",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-11_06_20.pdf"
+            },
+            {
+                "date": "2020-10-27",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "250",
+                "length": "10.0",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-10_30_20.pdf"
+            },
+            {
+                "date": "2020-10-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "534",
+                "length": "9.2",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-10_16_20.pdf"
+            },
+            {
+                "date": "2020-10-05",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "251",
+                "length": "9.7",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-10_09_20.pdf"
+            },
+            {
+                "date": "2020-09-03",
+                "species": "Channel Catfish",
+                "quantity": "102",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-09_04_20.pdf"
+            },
+            {
+                "date": "2020-07-30",
+                "species": "Channel Catfish",
+                "quantity": "270",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-07_31_20.pdf"
+            },
+            {
+                "date": "2020-07-14",
+                "species": "Northern Largemouth Bass",
+                "quantity": "75",
+                "length": "15.0",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "local://stocking-report-07_17_20.pdf"
+            },
+            {
+                "date": "2020-07-02",
+                "species": "Channel Catfish",
+                "quantity": "96",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-07_03_20.pdf"
+            },
+            {
+                "date": "2020-06-04",
+                "species": "Channel Catfish",
+                "quantity": "192",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "local://stocking-report-06_05_20.pdf"
+            },
+            {
+                "date": "2020-03-10",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "300",
+                "length": "9.4",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-03_13_20.pdf"
+            },
+            {
+                "date": "2020-03-03",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "300",
+                "length": "9.7",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-03_06_20.pdf"
+            },
+            {
+                "date": "2020-02-26",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "299",
+                "length": "9.5",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-02_28_20.pdf"
+            },
+            {
+                "date": "2020-02-19",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "250",
+                "length": "10.1",
+                "hatchery": "Glenwood Springs Hatchery",
+                "reportUrl": "local://stocking-report-02_21_20.pdf"
+            },
+            {
+                "date": "2020-02-13",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "232",
+                "length": "10.9",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-02_14_20.pdf"
+            },
+            {
+                "date": "2020-02-05",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "282",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-02_07_20.pdf"
+            },
+            {
+                "date": "2020-01-28",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "239",
+                "length": "10.6",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-01_31_20.pdf"
+            },
+            {
+                "date": "2020-01-16",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "281",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-01_17_20.pdf"
+            },
+            {
+                "date": "2020-01-09",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "274",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "local://stocking-report-01_10_20.pdf"
+            },
             {
                 "date": "2020-01-03",
                 "species": "Triploid Rainbow Trout",
@@ -22947,635 +23571,6 @@
                 "length": "12.5",
                 "hatchery": "Los Ojos Hatchery (Parkview)",
                 "reportUrl": "local://stocking-report-01_31_20.pdf"
-            }
-        ],
-        "coords": null
-    },
-    "Trees Lake": {
-        "records": [
-            {
-                "date": "2025-10-29",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "249",
-                "length": "10.0",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-31-25.pdf"
-            },
-            {
-                "date": "2025-10-29",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "249",
-                "length": "10.0",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020"
-            },
-            {
-                "date": "2025-10-23",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "502",
-                "length": "10.1",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-24-25.pdf"
-            },
-            {
-                "date": "2025-10-23",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "502",
-                "length": "10.1",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
-            },
-            {
-                "date": "2025-10-15",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "422",
-                "length": "10.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-17-25.pdf"
-            },
-            {
-                "date": "2025-10-15",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "422",
-                "length": "10.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
-            },
-            {
-                "date": "2025-10-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "499",
-                "length": "10.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-10-25.pdf"
-            },
-            {
-                "date": "2025-10-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "499",
-                "length": "10.5",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-10-25/?wpdmdl=52612&refresh=6905355cf3cbf1761949020"
-            },
-            {
-                "date": "2025-08-28",
-                "species": "Channel Catfish",
-                "quantity": "134",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-8-29-25.pdf"
-            },
-            {
-                "date": "2025-08-28",
-                "species": "Channel Catfish",
-                "quantity": "134",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
-            },
-            {
-                "date": "2025-07-31",
-                "species": "Channel Catfish",
-                "quantity": "134",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-8-1-25.pdf"
-            },
-            {
-                "date": "2025-06-26",
-                "species": "Channel Catfish",
-                "quantity": "134",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-6-27-25.pdf"
-            },
-            {
-                "date": "2025-05-22",
-                "species": "Channel Catfish",
-                "quantity": "134",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-5-23-25.pdf"
-            },
-            {
-                "date": "2025-04-24",
-                "species": "Channel Catfish",
-                "quantity": "141",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-4-25-25.pdf"
-            },
-            {
-                "date": "2025-03-25",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "218",
-                "length": "10.7",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-3-28-25.pdf"
-            },
-            {
-                "date": "2025-03-18",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "484",
-                "length": "10.1",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-3-21-25.pdf"
-            },
-            {
-                "date": "2025-03-04",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "478",
-                "length": "10.1",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-3-7-25.pdf"
-            },
-            {
-                "date": "2025-02-26",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "450",
-                "length": "10.3",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-2-28-25.pdf"
-            },
-            {
-                "date": "2025-02-05",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "450",
-                "length": "10.3",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-2-7-25.pdf"
-            },
-            {
-                "date": "2025-01-22",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "462",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-1-24-25.pdf"
-            },
-            {
-                "date": "2025-01-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "416",
-                "length": "10.6",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-1-10-25.pdf"
-            },
-            {
-                "date": "2024-12-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "462",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-12-13-24.pdf"
-            },
-            {
-                "date": "2024-12-03",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "400",
-                "length": "10.6",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-12-6-24.pdf"
-            },
-            {
-                "date": "2024-11-19",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "200",
-                "length": "10.1",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-11-22-24.pdf"
-            },
-            {
-                "date": "2024-11-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "474",
-                "length": "10.1",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-11-15-24.pdf"
-            },
-            {
-                "date": "2024-10-25",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "624",
-                "length": "11.6",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-10-25-24.pdf"
-            },
-            {
-                "date": "2024-10-09",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "499",
-                "length": "10.2",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-11-24.pdf"
-            },
-            {
-                "date": "2024-08-29",
-                "species": "Channel Catfish",
-                "quantity": "135",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-8-30-24.pdf"
-            },
-            {
-                "date": "2024-08-01",
-                "species": "Channel Catfish",
-                "quantity": "127",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-8-2-24.pdf"
-            },
-            {
-                "date": "2024-07-02",
-                "species": "Channel Catfish",
-                "quantity": "128",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-7-5-24.pdf"
-            },
-            {
-                "date": "2023-04-27",
-                "species": "Channel Catfish",
-                "quantity": "285",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-4-28-23.pdf"
-            },
-            {
-                "date": "2023-03-15",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "492",
-                "length": "10.0",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-3-17-23.pdf"
-            },
-            {
-                "date": "2023-02-28",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "302",
-                "length": "10.3",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-3-3-23.pdf"
-            },
-            {
-                "date": "2022-12-08",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "498",
-                "length": "9.8",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-12-9-22.pdf"
-            },
-            {
-                "date": "2022-11-21",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "502",
-                "length": "9.8",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-11-23-22.pdf"
-            },
-            {
-                "date": "2022-11-08",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "501",
-                "length": "9.6",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-11-10-22.pdf"
-            },
-            {
-                "date": "2022-10-28",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "502",
-                "length": "9.9",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-10-28-22.pdf"
-            },
-            {
-                "date": "2021-12-28",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "239",
-                "length": "11.1",
-                "hatchery": "Los Ojos Hatchery (Parkview)",
-                "reportUrl": "local://stocking-report-12_30_21.pdf"
-            },
-            {
-                "date": "2021-11-30",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "275",
-                "length": "9.8",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-12_03_21.pdf"
-            },
-            {
-                "date": "2021-11-17",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "275",
-                "length": "9.9",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-11_19_21.pdf"
-            },
-            {
-                "date": "2021-11-09",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "431",
-                "length": "10.4",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-11_12_21.pdf"
-            },
-            {
-                "date": "2021-10-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "516",
-                "length": "9.9",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-10_15_21.pdf"
-            },
-            {
-                "date": "2021-09-02",
-                "species": "Channel Catfish",
-                "quantity": "113",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-09_03_21.pdf"
-            },
-            {
-                "date": "2021-07-29",
-                "species": "Channel Catfish",
-                "quantity": "106",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-07_30_21.pdf"
-            },
-            {
-                "date": "2021-07-16",
-                "species": "Largemouth Bass",
-                "quantity": "101",
-                "length": "13.7",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-07_16_21.pdf"
-            },
-            {
-                "date": "2021-07-01",
-                "species": "Channel Catfish",
-                "quantity": "96",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-07_02_21.pdf"
-            },
-            {
-                "date": "2021-05-27",
-                "species": "Channel Catfish",
-                "quantity": "104",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-05_28_21.pdf"
-            },
-            {
-                "date": "2021-05-06",
-                "species": "Channel Catfish",
-                "quantity": "92",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-05_07_21.pdf"
-            },
-            {
-                "date": "2021-03-30",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "422",
-                "length": "9.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-04_01_21.pdf"
-            },
-            {
-                "date": "2021-03-24",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "499",
-                "length": "9.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-03_26_21.pdf"
-            },
-            {
-                "date": "2021-03-11",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "325",
-                "length": "10.0",
-                "hatchery": "Lisboa Springs Trout Hatchery",
-                "reportUrl": "local://stocking-report-03_12_21.pdf"
-            },
-            {
-                "date": "2021-02-24",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "250",
-                "length": "10.6",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-02_26_21.pdf"
-            },
-            {
-                "date": "2021-02-17",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "253",
-                "length": "10.7",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-02_19_21.pdf"
-            },
-            {
-                "date": "2021-02-03",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "499",
-                "length": "10.1",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-02_05_21.pdf"
-            },
-            {
-                "date": "2021-01-27",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "498",
-                "length": "9.4",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-01_29_21.pdf"
-            },
-            {
-                "date": "2021-01-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "248",
-                "length": "9.9",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-01_15_21.pdf"
-            },
-            {
-                "date": "2021-01-07",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "498",
-                "length": "9.6",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-01_08_21.pdf"
-            },
-            {
-                "date": "2020-12-04",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "560",
-                "length": "9.6",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-12_04_20.pdf"
-            },
-            {
-                "date": "2020-11-18",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "249",
-                "length": "9.6",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-11_20_20.pdf"
-            },
-            {
-                "date": "2020-11-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "250",
-                "length": "9.2",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-11_13_20.pdf"
-            },
-            {
-                "date": "2020-11-03",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "248",
-                "length": "9.7",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-11_06_20.pdf"
-            },
-            {
-                "date": "2020-10-27",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "250",
-                "length": "10.0",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-10_30_20.pdf"
-            },
-            {
-                "date": "2020-10-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "534",
-                "length": "9.2",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-10_16_20.pdf"
-            },
-            {
-                "date": "2020-10-05",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "251",
-                "length": "9.7",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-10_09_20.pdf"
-            },
-            {
-                "date": "2020-09-03",
-                "species": "Channel Catfish",
-                "quantity": "102",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-09_04_20.pdf"
-            },
-            {
-                "date": "2020-07-30",
-                "species": "Channel Catfish",
-                "quantity": "270",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-07_31_20.pdf"
-            },
-            {
-                "date": "2020-07-14",
-                "species": "Northern Largemouth Bass",
-                "quantity": "75",
-                "length": "15.0",
-                "hatchery": "Rock Lake Trout Rearing Facility",
-                "reportUrl": "local://stocking-report-07_17_20.pdf"
-            },
-            {
-                "date": "2020-07-02",
-                "species": "Channel Catfish",
-                "quantity": "96",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-07_03_20.pdf"
-            },
-            {
-                "date": "2020-06-04",
-                "species": "Channel Catfish",
-                "quantity": "192",
-                "length": "18.0",
-                "hatchery": "Private",
-                "reportUrl": "local://stocking-report-06_05_20.pdf"
-            },
-            {
-                "date": "2020-03-10",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "300",
-                "length": "9.4",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-03_13_20.pdf"
-            },
-            {
-                "date": "2020-03-03",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "300",
-                "length": "9.7",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-03_06_20.pdf"
-            },
-            {
-                "date": "2020-02-26",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "299",
-                "length": "9.5",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-02_28_20.pdf"
-            },
-            {
-                "date": "2020-02-19",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "250",
-                "length": "10.1",
-                "hatchery": "Glenwood Springs Hatchery",
-                "reportUrl": "local://stocking-report-02_21_20.pdf"
-            },
-            {
-                "date": "2020-02-13",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "232",
-                "length": "10.9",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-02_14_20.pdf"
-            },
-            {
-                "date": "2020-02-05",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "282",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-02_07_20.pdf"
-            },
-            {
-                "date": "2020-01-28",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "239",
-                "length": "10.6",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-01_31_20.pdf"
-            },
-            {
-                "date": "2020-01-16",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "281",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-01_17_20.pdf"
-            },
-            {
-                "date": "2020-01-09",
-                "species": "Triploid Rainbow Trout",
-                "quantity": "274",
-                "length": "10.2",
-                "hatchery": "Red River Trout Hatchery",
-                "reportUrl": "local://stocking-report-01_10_20.pdf"
             }
         ],
         "coords": null
@@ -48614,6 +48609,80 @@
                 "length": "12.2",
                 "hatchery": "Federal Hatchery",
                 "reportUrl": "local://stocking-report-9-06-24.pdf"
+            }
+        ],
+        "coords": null
+    },
+    "Rock Lake Hatchery Kids Ponds (Near Roswell)": {
+        "records": [
+            {
+                "date": "2025-10-29",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "21",
+                "length": "10.6",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-31-25/?wpdmdl=52728&refresh=6905355cef1e91761949020"
+            },
+            {
+                "date": "2025-10-21",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "21",
+                "length": "10.2",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
+            },
+            {
+                "date": "2025-10-06",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "20",
+                "length": "10.0",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-10-25/?wpdmdl=52612&refresh=6905355cf3cbf1761949020"
+            },
+            {
+                "date": "2025-09-22",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "20",
+                "length": "10.7",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-26-25/?wpdmdl=52546&refresh=6905355d01bc71761949021"
+            },
+            {
+                "date": "2025-09-02",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "20",
+                "length": "10.0",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021"
+            }
+        ],
+        "coords": null
+    },
+    "Seven Springs Brood Pond": {
+        "records": [
+            {
+                "date": "2025-10-23",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "692",
+                "length": "13.6",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-24-25/?wpdmdl=52672&refresh=6905355cf11fd1761949020"
+            },
+            {
+                "date": "2025-10-15",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "449",
+                "length": "11.3",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-17-25/?wpdmdl=52660&refresh=6905355cf295a1761949020"
+            },
+            {
+                "date": "2025-08-27",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "450",
+                "length": "11.7",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021"
             }
         ],
         "coords": null

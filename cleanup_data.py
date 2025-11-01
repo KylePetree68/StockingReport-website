@@ -29,6 +29,14 @@ def normalize_name(name):
     # Remove embedded coordinate/date fragments like "0.3 7.04 999,617 04/14/2021 state"
     n = re.sub(r'\s+\d+\.\d+\s+\d+\.\d+\s+[\d,]+\s+\d{2}/\d{2}/\d{4}.*$', '', n)
 
+    # Fix truncated Rock Lake Hatchery name
+    if n.startswith("rock lake hatchery kid's pond's (near ro"):
+        n = "rock lake hatchery kids ponds (near roswell)"
+
+    # Normalize "Tree Lake" vs "Trees Lake" - both should map to "trees lake"
+    if n == 'tree lake':
+        n = 'trees lake'
+
     # Remove trailing punctuation issues
     n = re.sub(r'\s*\)\s*$', ')', n)  # Fix spacing before )
     n = re.sub(r'\s*\(\s*', '(', n)   # Fix spacing after (
@@ -49,9 +57,10 @@ def is_malformed(name):
     name_lower = name.lower()
 
     # Check for hatchery keywords that shouldn't be in water names
+    # Note: "Rock Lake Hatchery Kids Ponds" and "Seven Springs Brood Pond" are legitimate public waters
     bad_keywords = [
-        'hatchery', 'facility', 'lisboa springs', 'red river trout',
-        'rock lake trout', 'los ojos', 'seven springs'
+        'red river hatchery pond',  # This is the actual hatchery, not public
+        'lisboa springs', 'red river trout', 'rock lake trout', 'los ojos'
     ]
 
     for keyword in bad_keywords:

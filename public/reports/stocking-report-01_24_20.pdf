@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html style="background: transparent">
+<head>
+    <title>Download </title>
+    <script>
+        var wpdm_url = {"home":"https:\/\/wildlife.dgf.nm.gov\/","site":"https:\/\/wildlife.dgf.nm.gov\/","ajax":"https:\/\/wildlife.dgf.nm.gov\/wp-admin\/admin-ajax.php"};
+    </script>
+    <link rel="stylesheet" href="https://wildlife.dgf.nm.gov/wp-content/plugins/download-manager/assets/css/front.min.css" />
+    <link rel="stylesheet" href="https://wildlife.dgf.nm.gov/wp-content/plugins/download-manager/assets/fontawesome/css/fontawesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:400,700" rel="stylesheet">
+        <style>
+        body{
+            font-family: Overpass, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        .w3eden .alert:before{
+            text-transform: uppercase !important;
+        }
+        .w3eden .alert{
+            letter-spacing: 0.5px !important;
+        }
+        .w3eden .card .card-header{
+            font-size: 13pt;
+        }
+        .w3eden .card .card-body{
+            font-size: 13pt;
+        }
+    </style>
+</head>
+<body class="w3eden">
+<div style='display: table;vertical-align: middle;height: 90%;position: absolute;width: 90%;margin-left: 5%;'>
+    <div style='text-align: center;height: 100%;display: table-cell;vertical-align: middle'>
+        <div style='max-width: 70% !important;display: inline-block;font-size: 13pt'>
+            No file is attached with this package!        </div></div></div>
+
+
+</body>
+</html>

@@ -28,9 +28,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 pdfplumber
 
-      - name: Run daily update
+      - name: Fetch new stocking data
         run: |
           python weekly_update.py
+
+      - name: Clean and merge duplicate water bodies
+        run: |
+          python cleanup_data.py
 
       - name: Commit and push changes
         run: |

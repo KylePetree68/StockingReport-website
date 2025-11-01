@@ -89,7 +89,7 @@ def weekly_update():
             new_pdf_links.append(link)
 
     if not new_pdf_links:
-        print("\n✓ No new reports to process. Data is already up-to-date!")
+        print("\nNo new reports to process. Data is already up-to-date!")
         # Still regenerate pages/sitemap in case template changed
         print("\nRegenerating static pages and sitemap...")
         generate_static_pages(final_data)

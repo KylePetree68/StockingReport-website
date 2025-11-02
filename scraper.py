@@ -397,20 +397,20 @@ def generate_regulation_html(water_name, regulations_data):
     html_parts.append('Special Regulations</h3>')
 
     def get_designation_badge(designation):
-        """Get the appropriate badge color for a designation."""
+        """Get the appropriate designation image for a chile water designation."""
         designation_lower = designation.lower()
 
         if 'green' in designation_lower:
-            # Green chile: green background
-            return f'<span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
+            # Green chile: green chile image
+            return f'<img src="/images/designations/green-chile.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         elif 'red' in designation_lower:
-            # Red chile: red background
-            return f'<span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
+            # Red chile: red chile image
+            return f'<img src="/images/designations/red-chile.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         elif 'xmas' in designation_lower or 'x-mas' in designation_lower:
-            # Christmas chile: red and green split
-            return f'<span class="inline-block px-3 py-1 rounded-full text-sm font-semibold" style="background: linear-gradient(to right, #fee2e2 0%, #fee2e2 50%, #dcfce7 50%, #dcfce7 100%); color: #991b1b;">{designation}</span>'
+            # Christmas chile: red and green chile image
+            return f'<img src="/images/designations/xmas-chile.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         else:
-            # Default: blue
+            # Default: text badge for any other designation types
             return f'<span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
 
     # Special Trout Water - Lake

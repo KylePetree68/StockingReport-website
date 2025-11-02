@@ -172,13 +172,43 @@
       "match_score": 1.0,
       "regulation_water_name": "Rio Guadalupe",
       "manual_mapping": true
+    },
+    "San Juan River (Quality)": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile",
+          "info": "From Navajo Dam downstream 3.75 miles to the Crusher Hole Day Use Area.  It is illegal to fish with more than 2 flies on a single line.",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+          "trout_present": "rainbow trout, brown trout",
+          "miles": 4.3
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "San Juan River",
+      "manual_mapping": true
+    },
+    "Cimarron River (West Of Cimarron)": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile",
+          "info": "From east end of Tolby Campground downstream 1.4 miles to first US 64 bridge",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+          "trout_present": "rainbow trout, brown trout",
+          "miles": 1.7
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Cimarron River",
+      "manual_mapping": true
     }
   },
   "metadata": {
     "total_stocking_waters": 168,
     "total_regulation_waters": 43,
-    "matched_count": 12,
-    "match_rate": "7.1%",
+    "matched_count": 14,
+    "match_rate": "8.3%",
     "regulation_metadata": {
       "last_updated": "2025-11-01T20:14:49",
       "source": "NM Game & Fish ArcGIS Feature Service",

@@ -180,6 +180,10 @@ def create_manual_mapping() -> Dict[str, str]:
         "Costilla River": "Rio Costilla",
         "Ruidoso River": "Rio Ruidoso",
         "Guadalupe River": "Rio Guadalupe",
+
+        # User-requested waters
+        "San Juan River (Quality)": "San Juan River",
+        "Cimarron River (West Of Cimarron)": "Cimarron River",
     }
     return manual_mappings
 

@@ -396,13 +396,30 @@ def generate_regulation_html(water_name, regulations_data):
     html_parts.append('</svg>')
     html_parts.append('Special Regulations</h3>')
 
+    def get_designation_badge(designation):
+        """Get the appropriate badge color for a designation."""
+        designation_lower = designation.lower()
+
+        if 'green' in designation_lower:
+            # Green chile: green background
+            return f'<span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
+        elif 'red' in designation_lower:
+            # Red chile: red background
+            return f'<span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
+        elif 'xmas' in designation_lower or 'x-mas' in designation_lower:
+            # Christmas chile: red and green split
+            return f'<span class="inline-block px-3 py-1 rounded-full text-sm font-semibold" style="background: linear-gradient(to right, #fee2e2 0%, #fee2e2 50%, #dcfce7 50%, #dcfce7 100%); color: #991b1b;">{designation}</span>'
+        else:
+            # Default: blue
+            return f'<span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
+
     # Special Trout Water - Lake
     if "special_trout_water_lake" in regulations:
         stw = regulations["special_trout_water_lake"]
         designation = stw.get("designation", "")
 
         if designation:
-            html_parts.append(f'<div class="mb-4"><span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span></div>')
+            html_parts.append(f'<div class="mb-4">{get_designation_badge(designation)}</div>')
 
         if stw.get("info"):
             html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')
@@ -422,7 +439,7 @@ def generate_regulation_html(water_name, regulations_data):
         designation = stw.get("designation", "")
 
         if designation:
-            html_parts.append(f'<div class="mb-4"><span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span></div>')
+            html_parts.append(f'<div class="mb-4">{get_designation_badge(designation)}</div>')
 
         if stw.get("info"):
             html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')

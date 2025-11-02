@@ -1,0 +1,198 @@
+{
+  "matched_waters": {
+    "Rio Las Vacas": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile, non-native suppression",
+          "info": "From fish migration barrier located about 0.2 miles upstream of NM Road 70 to its headwaters",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout, brown trout",
+          "miles": 12.4
+        }
+      },
+      "match_score": 0.8666666666666667,
+      "regulation_water_name": "Rio del Las Vacas"
+    },
+    "San Antonio River": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Green chile",
+          "info": "From Valles Caldera Preserve boundary downstream 2 miles",
+          "tackle_regulation": "",
+          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+          "trout_present": "brown trout",
+          "miles": 2.1
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio San Antonio",
+      "manual_mapping": true
+    },
+    "Black Canyon": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile, non-native suppression",
+          "info": "From waterfall barrier at Black Canyon campground upstream.  Open July 1-Oct 31.",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+          "trout_present": "Gila trout, brown trout",
+          "miles": 10.6
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Black Canyon"
+    },
+    "Shuree Ponds": {
+      "regulations": {
+        "special_trout_water_lake": {
+          "designation": "Green chile",
+          "info": "Valle Vidal, small pond located directly south of larger upper pond is designated for anglers 11 years old and younger",
+          "tackle_regulation": "Artificial fly or lure, single barbless hood",
+          "pro_regulation": "2 fish any length, artificial fly or lure with single barbless hook",
+          "trout_present": "rainbow trout, cutthroat trout-hybrid",
+          "acres": "9.5"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Shuree Ponds"
+    },
+    "Tajique Creek": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile, non-native suppression",
+          "info": "From USFS Road 93 crossing upstream to its headwaters",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout, brown trout",
+          "miles": 2
+        }
+      },
+      "match_score": 0.8461538461538461,
+      "regulation_water_name": "Tanques Creek"
+    },
+    "White Water Creek": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "X-mas chile",
+          "info": "Catwalk National Recreational Trail parking area upstream to headwaters including all tribs",
+          "tackle_regulation": "",
+          "pro_regulation": "2 trout any length, any legal bait and tackle",
+          "trout_present": "Gila trout",
+          "miles": 28.5
+        }
+      },
+      "match_score": 0.9696969696969697,
+      "regulation_water_name": "Whitewater Creek"
+    },
+    "Rito De Los Pinos": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Green chile",
+          "info": "From USFS Roads 284 & 87A , 2.5 miles upstream to the private land boundary",
+          "tackle_regulation": "",
+          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+          "trout_present": "rainbow trout, brown trout",
+          "miles": 2.5
+        }
+      },
+      "match_score": 0.9696969696969697,
+      "regulation_water_name": "Rio de Los Pinos"
+    },
+    "Leandro Creek": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile, non-native suppression",
+          "info": "Within the Valle Vidal boundary.  Open July 1-Dec 31",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout, brook trout",
+          "miles": 2.9
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Leandro Creek"
+    },
+    "Pecos River": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile",
+          "info": "Pecos Wilderness above Pecos Falls",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout",
+          "miles": 3.9
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Pecos River",
+      "manual_mapping": true
+    },
+    "Costilla River": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Red chile",
+          "info": "From its confluence with Latir Creek upstream 2.4 miles to the Valle Viday boundary",
+          "tackle_regulation": "",
+          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
+          "miles": 3
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Costilla",
+      "manual_mapping": true
+    },
+    "Ruidoso River": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "X-mas chile",
+          "info": "From Fridenbloom Drive upstream to teh Mescalero Reservation",
+          "tackle_regulation": "",
+          "pro_regulation": "2 trout any length, any legal bait and tackle",
+          "trout_present": "brown trout",
+          "miles": 6.48
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Ruidoso",
+      "manual_mapping": true
+    },
+    "Guadalupe River": {
+      "regulations": {
+        "special_trout_water_stream": {
+          "designation": "Green chile",
+          "info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
+          "tackle_regulation": "",
+          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+          "trout_present": "Rio Grande cutthroat trout, brown trout",
+          "miles": 6
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Guadalupe",
+      "manual_mapping": true
+    }
+  },
+  "metadata": {
+    "total_stocking_waters": 168,
+    "total_regulation_waters": 43,
+    "matched_count": 12,
+    "match_rate": "7.1%",
+    "regulation_metadata": {
+      "last_updated": "2025-11-01T20:14:49",
+      "source": "NM Game & Fish ArcGIS Feature Service",
+      "source_url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer",
+      "total_records": 163,
+      "layers_queried": [
+        "Trophy_Bass_Waters",
+        "Summer_Catfish_Waters",
+        "Boat_Ramps",
+        "Special_Trout_Waters_Streams",
+        "Special_Trout_Waters_Lakes",
+        "Habitat_Improvements_Streams",
+        "Habitat_Improvements_Lakes"
+      ]
+    }
+  }
+}

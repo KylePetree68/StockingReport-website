@@ -1,0 +1,449 @@
+{
+  "waters": {
+    "Tingley Beach southern most pond": {
+      "special_trout_water_lake": {
+        "designation": "Red chile",
+        "info": "Southern most pond, stocked with catchable rainbows",
+        "tackle_regulation": "Artificial fly or lure, single barbless hook",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout",
+        "acres": "1.6"
+      }
+    },
+    "Nabor Lake": {
+      "special_trout_water_lake": {
+        "designation": "Red chile",
+        "info": "Sargent Wildlife Area",
+        "tackle_regulation": "Artificial fly or lure, single barbless hook",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "acres": "3.2"
+      }
+    },
+    "Shuree Ponds": {
+      "special_trout_water_lake": {
+        "designation": "Green chile",
+        "info": "Valle Vidal, small pond located directly south of larger upper pond is designated for anglers 11 years old and younger",
+        "tackle_regulation": "Artificial fly or lure, single barbless hood",
+        "pro_regulation": "2 fish any length, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout, cutthroat trout-hybrid",
+        "acres": "9.5"
+      }
+    },
+    "Pecos River": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "Pecos Wilderness above Pecos Falls",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 3.9
+      }
+    },
+    "Rio Guadalupe": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 6
+      }
+    },
+    "Jack's Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From the waterfalls located 0.25 miles downstream of NM63 crossing upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 7
+      }
+    },
+    "Rio Cebolla": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From Seven Springs Day Use Area upstream to its headwaters including McKinney Pond.",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 9.6
+      }
+    },
+    "Rio Valdez": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "Pecos Wilderness from the waterfall barrier 0.8 miles below USFS Trail 239 upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 2.4
+      }
+    },
+    "Rio San Antonio": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "From Valles Caldera Preserve boundary downstream 2 miles",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "brown trout",
+        "miles": 2.1
+      }
+    },
+    "Rio del Las Vacas": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From fish migration barrier located about 0.2 miles upstream of NM Road 70 to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 12.4
+      }
+    },
+    "Cimarron River": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From east end of Tolby Campground downstream 1.4 miles to first US 64 bridge",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout, brown trout",
+        "miles": 1.7
+      }
+    },
+    "Red River": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "From the confluence with Goose Creek for 1.1 miles upstream to the Carson NF boundary",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, rainbow trout, brook trout, brown trout",
+        "miles": 1
+      }
+    },
+    "Valle Vidal": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "All stream within the Valle Vidal.  Open July 1-Dec 31",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 69.9
+      }
+    },
+    "Rio Costilla": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From its confluence with Latir Creek upstream 2.4 miles to the Valle Viday boundary",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
+        "miles": 3
+      }
+    },
+    "Sargent Wildlife Management Area": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "All waters within the WMA ncluding the Rio Chama, Rio Chamita, and Sexton Creek, exlcuding Nabor Creek and Nabor Lake",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat, brown trout",
+        "miles": 16
+      }
+    },
+    "Rio de Los Pinos": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "From USFS Roads 284 & 87A , 2.5 miles upstream to the private land boundary",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout, brown trout",
+        "miles": 2.5
+      }
+    },
+    "Nabor Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "Sargent Wildlife Area",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 3.9
+      }
+    },
+    "Rio Las Animas": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "Within Gila National Forest, Black Range District",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 24.8
+      }
+    },
+    "Black Canyon": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From waterfall barrier at Black Canyon campground upstream.  Open July 1-Oct 31.",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Gila trout, brown trout",
+        "miles": 10.6
+      }
+    },
+    "Mogollon Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From barrier at waterfalls near USFS Trail 153 upstream to confluence of Trail Canyon.  Open from July 1-Oct 31.",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Gila trout",
+        "miles": 5.2
+      }
+    },
+    "Whitewater Creek": {
+      "special_trout_water_stream": {
+        "designation": "X-mas chile",
+        "info": "Catwalk National Recreational Trail parking area upstream to headwaters including all tribs",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, any legal bait and tackle",
+        "trout_present": "Gila trout",
+        "miles": 28.5
+      }
+    },
+    "Rio Ruidoso": {
+      "special_trout_water_stream": {
+        "designation": "X-mas chile",
+        "info": "From Fridenbloom Drive upstream to teh Mescalero Reservation",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, any legal bait and tackle",
+        "trout_present": "brown trout",
+        "miles": 6.48
+      }
+    },
+    "Mineral Creek": {
+      "special_trout_water_stream": {
+        "designation": "X-mas chile",
+        "info": "From confluence with San Francisco River to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, any legal bait and tackle",
+        "trout_present": "Gila trout",
+        "miles": 18.2
+      }
+    },
+    "Gilita Creek and Willow Creek": {
+      "special_trout_water_stream": {
+        "designation": "X-mas chile",
+        "info": "Upstream from confluence of Snow Creek to headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length (Native), unlimited (NN), any legal bait and tackle",
+        "trout_present": "Gila trout",
+        "miles": 30.1
+      }
+    },
+    "Capulin Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From the confluence with the Rio Grande to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout",
+        "miles": 13
+      }
+    },
+    "Valles Caldera National Perserve": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "All streams within the Valles Caldera National Perserve",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "brown trout",
+        "miles": 44.5
+      }
+    },
+    "Rito del Padre": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From fish migration barrier located about 0.3 miles above confluence with Rito Sebadilloses upstream to headwaters including Rito de los Chimayosos",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 10.3
+      }
+    },
+    "Rio Santa Barbara": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From West Fork and Middle Fork confluence to its headwaters including the East Fork",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 15.1
+      }
+    },
+    "Rio Chama": {
+      "special_trout_water_stream": {
+        "designation": "Green chile",
+        "info": "Within boundaries of Rio Chama WMA from Heron Reservoir outlet 2.9 miles upstream to Cottonwood Flats",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout, brown trout",
+        "miles": 3.2
+      }
+    },
+    "West Fork Luna Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From the USFS Carson NF boundary upstream to its headwater",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2.5
+      }
+    },
+    "Palociento Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rito de la Olla to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2.4
+      }
+    },
+    "Frijoles Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rito de la Olla to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2.2
+      }
+    },
+    "South Fork Rio Hondo": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rio Hondo upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 4.1
+      }
+    },
+    "Yerba Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rio Hondo upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2.7
+      }
+    },
+    "Italianos Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rio Hondo upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2.3
+      }
+    },
+    "Gavilan Canyon": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From confluence with Rio Hondo upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 1.9
+      }
+    },
+    "Columbine Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From the confluence with the Red River to its headwaters.",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 7
+      }
+    },
+    "Cabresto Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From Cabresto Canyon upstream to headwaters, excluding Lake Fork and Cabresto Lake",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
+        "miles": 14.8
+      }
+    },
+    "Canada Tio Grande": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "Within the Carson NF, excluding private land",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 9.3
+      }
+    },
+    "Tanques Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "From USFS Road 93 crossing upstream to its headwaters",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brown trout",
+        "miles": 2
+      }
+    },
+    "San Juan River": {
+      "special_trout_water_stream": {
+        "designation": "Red chile",
+        "info": "From Navajo Dam downstream 3.75 miles to the Crusher Hole Day Use Area.  It is illegal to fish with more than 2 flies on a single line.",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+        "trout_present": "rainbow trout, brown trout",
+        "miles": 4.3
+      }
+    },
+    "Leandro Creek": {
+      "special_trout_water_stream": {
+        "designation": "Red chile, non-native suppression",
+        "info": "Within the Valle Vidal boundary.  Open July 1-Dec 31",
+        "tackle_regulation": "",
+        "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+        "trout_present": "Rio Grande cutthroat trout, brook trout",
+        "miles": 2.9
+      }
+    },
+    "Rio Grande": {
+      "special_trout_water_stream": {
+        "designation": "X-mas chile",
+        "info": "From Colorado line downstream to the Taos Junction Bridge at NM 567",
+        "tackle_regulation": "",
+        "pro_regulation": "2 trout any length, any legal bait and tackle",
+        "trout_present": "rainbow trout, brown trout",
+        "miles": 52.4
+      }
+    }
+  },
+  "metadata": {
+    "last_updated": "2025-11-01T20:14:49",
+    "source": "NM Game & Fish ArcGIS Feature Service",
+    "source_url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer",
+    "total_records": 163,
+    "layers_queried": [
+      "Trophy_Bass_Waters",
+      "Summer_Catfish_Waters",
+      "Boat_Ramps",
+      "Special_Trout_Waters_Streams",
+      "Special_Trout_Waters_Lakes",
+      "Habitat_Improvements_Streams",
+      "Habitat_Improvements_Lakes"
+    ]
+  }
+}

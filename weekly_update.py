@@ -219,6 +219,26 @@ def weekly_update():
                 json.dump(final_data, f, indent=4)
             print(f"Saved: {OUTPUT_FILE}")
 
+            # Fetch and match fishing regulations
+            print("\nFetching fishing regulations from NM Game & Fish ArcGIS...")
+            try:
+                import subprocess
+                # Fetch regulations from ArcGIS
+                result = subprocess.run(["python", "fetch_regulations.py"], capture_output=True, text=True)
+                if result.returncode == 0:
+                    print("Regulations fetched successfully")
+                    # Match with stocking data
+                    result = subprocess.run(["python", "match_regulations.py"], capture_output=True, text=True)
+                    if result.returncode == 0:
+                        print("Regulations matched successfully")
+                    else:
+                        print(f"Warning: Regulation matching failed: {result.stderr}")
+                else:
+                    print(f"Warning: Regulation fetch failed: {result.stderr}")
+            except Exception as e:
+                print(f"Warning: Could not update regulations: {e}")
+                print("Continuing with existing regulation data...")
+
             # Generate static pages and sitemap
             print("\nGenerating static pages and sitemap...")
             generate_static_pages(final_data)

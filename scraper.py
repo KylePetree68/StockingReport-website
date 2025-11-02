@@ -367,6 +367,107 @@ def enrich_data_with_coordinates(data, manual_coords):
     print("--- Geocoding Enrichment Finished ---")
     return data
 
+def generate_regulation_html(water_name, regulations_data):
+    """
+    Generate HTML for fishing regulations if available for this water body.
+
+    Args:
+        water_name: Name of the water body
+        regulations_data: Dict of matched regulations
+
+    Returns:
+        HTML string or empty string if no regulations
+    """
+    if water_name not in regulations_data:
+        return ""
+
+    reg_info = regulations_data[water_name]
+    regulations = reg_info.get("regulations", {})
+
+    if not regulations:
+        return ""
+
+    # Build the HTML
+    html_parts = []
+    html_parts.append('<div class="mb-6 border-l-4 border-blue-500 bg-blue-50 p-6 rounded-r-lg">')
+    html_parts.append('<h3 class="text-xl font-bold text-blue-900 mb-4 flex items-center">')
+    html_parts.append('<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">')
+    html_parts.append('<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>')
+    html_parts.append('</svg>')
+    html_parts.append('Special Regulations</h3>')
+
+    # Special Trout Water - Lake
+    if "special_trout_water_lake" in regulations:
+        stw = regulations["special_trout_water_lake"]
+        designation = stw.get("designation", "")
+
+        if designation:
+            html_parts.append(f'<div class="mb-4"><span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span></div>')
+
+        if stw.get("info"):
+            html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')
+
+        if stw.get("tackle_regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Tackle:</strong> {stw["tackle_regulation"]}</p>')
+
+        if stw.get("pro_regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Bag Limit:</strong> {stw["pro_regulation"]}</p>')
+
+        if stw.get("trout_present"):
+            html_parts.append(f'<p class="text-gray-600 text-sm mt-3"><strong>Species:</strong> {stw["trout_present"]}</p>')
+
+    # Special Trout Water - Stream
+    if "special_trout_water_stream" in regulations:
+        stw = regulations["special_trout_water_stream"]
+        designation = stw.get("designation", "")
+
+        if designation:
+            html_parts.append(f'<div class="mb-4"><span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span></div>')
+
+        if stw.get("info"):
+            html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')
+
+        if stw.get("tackle_regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Tackle:</strong> {stw["tackle_regulation"]}</p>')
+
+        if stw.get("pro_regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Bag Limit:</strong> {stw["pro_regulation"]}</p>')
+
+        if stw.get("trout_present"):
+            html_parts.append(f'<p class="text-gray-600 text-sm mt-3"><strong>Species:</strong> {stw["trout_present"]}</p>')
+
+    # Trophy Bass
+    if "trophy_bass" in regulations:
+        tb = regulations["trophy_bass"]
+        html_parts.append('<div class="mt-4 pt-4 border-t border-blue-200">')
+        html_parts.append('<p class="text-gray-700 font-semibold mb-2">Trophy Bass Water</p>')
+        if tb.get("regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2">{tb["regulation"]}</p>')
+        if tb.get("info"):
+            html_parts.append(f'<p class="text-gray-600 text-sm">{tb["info"]}</p>')
+        html_parts.append('</div>')
+
+    # Summer Catfish
+    if "summer_catfish" in regulations:
+        sc = regulations["summer_catfish"]
+        html_parts.append('<div class="mt-4 pt-4 border-t border-blue-200">')
+        html_parts.append('<p class="text-gray-700 font-semibold mb-2">Special Summer Catfish Water</p>')
+        if sc.get("regulation"):
+            html_parts.append(f'<p class="text-gray-700 mb-2">{sc["regulation"]}</p>')
+        if sc.get("info"):
+            html_parts.append(f'<p class="text-gray-600 text-sm">{sc["info"]}</p>')
+        html_parts.append('</div>')
+
+    # Disclaimer
+    html_parts.append('<p class="text-xs text-gray-500 mt-4 pt-4 border-t border-blue-200">')
+    html_parts.append('<strong>Note:</strong> This information is sourced from NM Game & Fish GIS data. ')
+    html_parts.append('Always check the official <a href="https://wildlife.dgf.nm.gov/fishing/" target="_blank" class="text-blue-600 hover:underline">NM Game & Fish fishing regulations</a> for the most current rules.')
+    html_parts.append('</p>')
+
+    html_parts.append('</div>')
+
+    return ''.join(html_parts)
+
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
@@ -379,6 +480,18 @@ def generate_static_pages(data):
 
     with open(TEMPLATE_FILE, "r") as f:
         template_html = f.read()
+
+    # Load regulation data if available
+    regulations_data = {}
+    regulations_file = "matched_regulations.json"
+    if os.path.exists(regulations_file):
+        try:
+            with open(regulations_file, 'r', encoding='utf-8') as f:
+                regulations_json = json.load(f)
+                regulations_data = regulations_json.get("matched_waters", {})
+            print(f"Loaded regulation data for {len(regulations_data)} water bodies.")
+        except Exception as e:
+            print(f"Warning: Could not load regulation data: {e}")
 
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}
@@ -428,8 +541,12 @@ def generate_static_pages(data):
                 </tr>
             """
 
+        # Generate regulation HTML if available
+        regulation_html = generate_regulation_html(water_name, regulations_data)
+
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
+        page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
 
         with open(filepath, "w") as f:
             f.write(page_html)

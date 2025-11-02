@@ -402,13 +402,13 @@ def generate_regulation_html(water_name, regulations_data):
 
         if 'green' in designation_lower:
             # Green chile: green chile image
-            return f'<img src="/images/designations/Green_Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
+            return f'<img src="/public/images/designations/Green_Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         elif 'red' in designation_lower:
             # Red chile: red chile image
-            return f'<img src="/images/designations/Red_Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
+            return f'<img src="/public/images/designations/Red_Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         elif 'xmas' in designation_lower or 'x-mas' in designation_lower:
             # Christmas chile: red and green chile image
-            return f'<img src="/images/designations/Xmas-Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
+            return f'<img src="/public/images/designations/Xmas-Chile_Water.png" alt="{designation}" class="inline-block h-16 w-auto" title="{designation}">'
         else:
             # Default: text badge for any other designation types
             return f'<span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'

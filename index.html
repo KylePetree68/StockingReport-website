@@ -114,6 +114,8 @@
             <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
                 <a href="/" class="text-blue-800 font-semibold">Home</a>
                 <span class="text-gray-400">•</span>
+                <a href="/waters.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Browse All Waters</a>
+                <span class="text-gray-400">•</span>
                 <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
                 <span class="text-gray-400">•</span>
                 <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
@@ -164,14 +166,6 @@
                 <div id="initial-message-content" class="hidden">
                     <h3 id="initial-message-title" class="text-xl font-semibold mb-4 text-gray-700"></h3>
                     <div id="initial-message-body" class="text-gray-600"></div>
-                </div>
-            </div>
-
-            <!-- Browse All Waters Section -->
-            <div id="browse-section" class="mt-8 hidden">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Browse All Waters</h3>
-                <div id="browse-links" class="columns-2 md:columns-3 lg:columns-4 gap-x-6">
-                    <!-- Links will be populated by JavaScript -->
                 </div>
             </div>
         </main>
@@ -236,6 +230,7 @@
         <footer class="text-center mt-8 text-sm text-gray-500">
             <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
             <p class="mt-2">
+                <a href="/waters.html" class="hover:underline">Browse All Waters</a> •
                 <a href="/about.html" class="hover:underline">About</a> •
                 <a href="/contact.html" class="hover:underline">Contact</a> •
                 <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
@@ -256,8 +251,6 @@
         const initialMessageTitle = document.getElementById('initial-message-title');
         const initialMessageBody = document.getElementById('initial-message-body');
         const copyrightYearSpan = document.getElementById('copyright-year');
-        const browseSection = document.getElementById('browse-section');
-        const browseLinks = document.getElementById('browse-links');
         const skeletonLoader = document.getElementById('skeleton-loader');
         const mapSkeleton = document.getElementById('map-skeleton');
         const mapElement = document.getElementById('map');
@@ -285,7 +278,6 @@
                 initMap();
                 buildOptionsList();
                 displayStatewideSummary();
-                populateBrowseLinks();
 
                 // Initialize Fuse.js for fuzzy search
                 const waterNames = Object.keys(stockingData).map(name => ({ name }));
@@ -378,19 +370,6 @@
             });
 
             initialMessageBody.appendChild(summaryList);
-        }
-
-        function populateBrowseLinks() {
-            const waterNames = Object.keys(stockingData).sort();
-            browseLinks.innerHTML = '';
-            waterNames.forEach(name => {
-                const link = document.createElement('a');
-                link.href = getWaterUrl(name);
-                link.textContent = name;
-                link.className = 'block text-blue-600 hover:underline py-1';
-                browseLinks.appendChild(link);
-            });
-            browseSection.classList.remove('hidden');
         }
 
         function buildOptionsList() {

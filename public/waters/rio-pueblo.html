@@ -17,7 +17,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
     <!-- Favicon and Social Media Meta Tags -->
     <link rel="icon" href="/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="/logo.png">
@@ -77,6 +80,19 @@
                 <p class="text-gray-600 mt-1 text-left">The complete stocking history for Rio Pueblo.</p>
             </div>
         </header>
+
+        <!-- Navigation -->
+        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
+            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="text-gray-400">•</span>
+                <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
+                <span class="text-gray-400">•</span>
+                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="text-gray-400">•</span>
+                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+            </div>
+        </nav>
 
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
@@ -440,7 +456,12 @@
         </main>
         
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p class="mt-2">
+                <a href="/about.html" class="hover:underline">About</a> •
+                <a href="/contact.html" class="hover:underline">Contact</a> •
+                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+            </p>
         </footer>
     </div>
     <script>
@@ -448,6 +469,7 @@
 
         // Search functionality
         let stockingData = {};
+        let fuse;  // Fuse.js instance for fuzzy search
         const searchInput = document.getElementById('water-search-input');
         const optionsContainer = document.getElementById('custom-select-options');
         let selectedIndex = -1;
@@ -498,6 +520,15 @@
                     optionsContainer.appendChild(optionDiv);
                 });
 
+                // Initialize Fuse.js for fuzzy search
+                const waterNamesArray = waterNames.map(name => ({ name }));
+                fuse = new Fuse(waterNamesArray, {
+                    keys: ['name'],
+                    threshold: 0.4,  // 0 = exact match, 1 = match anything
+                    ignoreLocation: true,
+                    minMatchCharLength: 2
+                });
+
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search...';
             } catch (error) {
@@ -506,19 +537,25 @@
         }
 
         searchInput.addEventListener('input', () => {
-            const filter = searchInput.value.toLowerCase();
+            const query = searchInput.value;
             selectedIndex = -1;
 
-            if (filter) {
-                optionsContainer.classList.remove('hidden');
-            } else {
+            if (!query) {
                 optionsContainer.classList.add('hidden');
+                return;
             }
 
+            optionsContainer.classList.remove('hidden');
+
+            // Use Fuse.js for fuzzy search
+            const results = fuse.search(query);
+            const matchedNames = new Set(results.map(result => result.item.name));
+
+            // Show/hide options based on fuzzy search results
             const options = optionsContainer.getElementsByTagName('div');
             for (let i = 0; i < options.length; i++) {
-                const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                const waterName = options[i].textContent;
+                if (matchedNames.has(waterName)) {
                     options[i].style.display = "";
                 } else {
                     options[i].style.display = "none";

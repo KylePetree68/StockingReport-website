@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK0ZMTQ9X9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TK0ZMTQ9X9');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - NM Stocking Report</title>
+    <meta name="description" content="Learn about StockingReport.com and how we help New Mexico anglers track fish stocking data across the state.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon and Social Media Meta Tags -->
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <meta property="og:title" content="About - NM Stocking Report">
+    <meta property="og:description" content="Learn about StockingReport.com and how we help New Mexico anglers track fish stocking data.">
+    <meta property="og:image" content="https://stockingreport.com/og-image.png">
+    <meta property="og:url" content="https://stockingreport.com/about.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            background-image: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), url('https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=2070');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+
+        <header class="flex items-center justify-center mb-8">
+            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4"></a>
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-blue-800 text-left">NM Stocking Report</h1>
+                <p class="text-gray-600 mt-1 text-left">Your source for the latest New Mexico fish stocking information.</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
+            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="text-gray-400">•</span>
+                <a href="/about.html" class="text-blue-800 font-semibold">About</a>
+                <span class="text-gray-400">•</span>
+                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="text-gray-400">•</span>
+                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+            </div>
+        </nav>
+
+        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About StockingReport.com</h2>
+
+            <div class="prose prose-lg max-w-none space-y-6 text-gray-700">
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Our Mission</h3>
+                    <p>
+                        StockingReport.com was created to solve a simple problem: anglers in New Mexico want to know when and where fish are being stocked, but finding this information can be challenging. While the <a href="https://wildlife.dgf.nm.gov/fishing/weekly-report/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">New Mexico Department of Game & Fish</a> publishes weekly stocking reports, these reports are only kept online for a limited time, making it difficult to track historical patterns or plan fishing trips effectively.
+                    </p>
+                    <p>
+                        We built this site to archive and organize all stocking data in one searchable, permanent location. Whether you're planning your next fishing trip or researching the best times to visit your favorite water, we've got you covered.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">What We Do</h3>
+                    <ul class="list-disc list-inside space-y-2 pl-4">
+                        <li><strong>Collect Official Data:</strong> We automatically gather stocking reports published by NM Game & Fish every week</li>
+                        <li><strong>Build Historical Records:</strong> We maintain a permanent archive dating back to 2020, including data that's no longer available on the official site</li>
+                        <li><strong>Make It Searchable:</strong> Find any water body in seconds with our fuzzy search and interactive map</li>
+                        <li><strong>Provide Details:</strong> See exactly what species, sizes, and quantities were stocked, along with the original PDF reports</li>
+                        <li><strong>Keep It Current:</strong> Our system updates daily to ensure you always have the latest information</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">How It Works</h3>
+                    <p>
+                        Behind the scenes, we use automated scripts to:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 pl-4">
+                        <li>Download new stocking reports from the official NM Game & Fish website</li>
+                        <li>Extract and parse the data from PDF documents</li>
+                        <li>Organize stockings by location, date, species, and quantity</li>
+                        <li>Geocode water bodies so they appear on our interactive map</li>
+                        <li>Generate individual pages for each water with complete stocking history</li>
+                    </ol>
+                    <p class="mt-4">
+                        All data is sourced directly from official New Mexico Department of Game & Fish stocking reports. We don't modify or estimate any numbers - what you see is what was officially reported.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Who We Are</h3>
+                    <p>
+                        We're anglers and technologists who love fishing in New Mexico's diverse waters. Frustrated by the difficulty of tracking stocking patterns, we decided to build a better solution - not just for ourselves, but for the entire angling community.
+                    </p>
+                    <p>
+                        This is an independent project and is not affiliated with or endorsed by the New Mexico Department of Game & Fish. We simply provide easier access to their publicly available data.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Data Accuracy</h3>
+                    <p>
+                        While we strive for accuracy, please note:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 pl-4">
+                        <li><strong>Geocoding:</strong> Map locations are estimated and may not be perfectly accurate. Always verify directions before heading out.</li>
+                        <li><strong>Report Timing:</strong> We update our database daily, but there may be a brief delay between when NM Game & Fish publishes a report and when it appears on our site.</li>
+                        <li><strong>Historical Data:</strong> We've been collecting data since 2020. Earlier stockings may not be in our database.</li>
+                    </ul>
+                    <p class="mt-4">
+                        For the most official and up-to-date information, always refer to the <a href="https://wildlife.dgf.nm.gov/fishing/weekly-report/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">NM Game & Fish official stocking reports</a>.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Get Involved</h3>
+                    <p>
+                        Found an error? Have a suggestion? Want to report a missing water body or incorrect location? We'd love to hear from you! Visit our <a href="/contact.html" class="text-blue-600 hover:underline">Contact page</a> to get in touch.
+                    </p>
+                </section>
+
+                <section class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg mt-8">
+                    <p class="text-lg font-semibold text-blue-900 mb-2">Support This Project</p>
+                    <p class="text-gray-700">
+                        StockingReport.com is free to use and always will be. If you find it useful, consider purchasing your fishing gear through our Amazon affiliate links. It costs you nothing extra and helps keep this site running. Tight lines!
+                    </p>
+                </section>
+            </div>
+        </main>
+
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p class="mt-2">
+                <a href="/about.html" class="hover:underline">About</a> •
+                <a href="/contact.html" class="hover:underline">Contact</a> •
+                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

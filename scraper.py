@@ -495,7 +495,7 @@ def generate_static_pages(data):
         print(f"Error: Template file '{TEMPLATE_FILE}' not found. Cannot generate pages.")
         return
 
-    with open(TEMPLATE_FILE, "r") as f:
+    with open(TEMPLATE_FILE, "r", encoding="utf-8") as f:
         template_html = f.read()
 
     # Load regulation data if available
@@ -565,7 +565,7 @@ def generate_static_pages(data):
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
 
-        with open(filepath, "w") as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.write(page_html)
         generated_count += 1
 

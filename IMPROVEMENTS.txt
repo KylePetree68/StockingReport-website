@@ -45,6 +45,19 @@ Recently Completed Improvements ✅ (November 2024)
    ✅ Smooth scrolling in dropdown list
    ✅ Hover effects with padding animation
 
+5. Fishing Regulations Integration ✅
+   ✅ Automated regulation fetching from NM Game & Fish ArcGIS Feature Service
+   ✅ Created fetch_regulations.py to query 7 regulation layers via REST API
+   ✅ Created match_regulations.py for fuzzy string matching water names
+   ✅ Manual mapping system for water name variations (Rio vs River)
+   ✅ Chile designation image display (Green, Red, X-mas Chile Waters)
+   ✅ Official NMDGF designation logos in /public/images/designations/
+   ✅ Regulation HTML generation with tackle rules, bag limits, species info
+   ✅ Weekly automation integration (fetches fresh regulations automatically)
+   ✅ 14 water bodies now display special regulations (out of 43 with regulations)
+   ✅ Disclaimer linking to official NM Game & Fish for accuracy
+   ✅ Data files: regulations_data.json, regulations_raw.json, matched_regulations.json
+
 
 Issues to Fix 🔴
 1. Missing Web Server - Future
@@ -129,7 +142,6 @@ Data Enhancements
 
  Add driving directions to each location
  Show nearby water bodies
- Add fishing regulations information
  Link to fishing license purchase
 
 
@@ -289,6 +301,7 @@ Completed in v1.1
 ✅ About, Contact, and Privacy Policy pages
 ✅ Navigation menu across all pages
 ✅ Migrated to Vercel hosting
+✅ Fishing regulations integration (ArcGIS API, chile designation badges)
 
 Planned for v1.2
 

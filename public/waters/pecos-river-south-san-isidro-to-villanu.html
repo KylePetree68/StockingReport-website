@@ -17,14 +17,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
     <!-- Favicon and Social Media Meta Tags -->
     <link rel="icon" href="/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="/logo.png">
     <meta property="og:title" content="Pecos River (South San Isidro To Villanu - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for Pecos River (South San Isidro To Villanu, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="https://stockingreport.com/public/waters/pecos-river-south-san-isidro-to-villanu.html">
+    <meta property="og:url" content="{{PAGE_URL}}">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -78,6 +81,19 @@
             </div>
         </header>
 
+        <!-- Navigation -->
+        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
+            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="text-gray-400">•</span>
+                <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
+                <span class="text-gray-400">•</span>
+                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="text-gray-400">•</span>
+                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+            </div>
+        </nav>
+
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
@@ -89,6 +105,7 @@
         </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
+            
             <div>
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
                 <div class="overflow-x-auto rounded-lg border border-gray-200">
@@ -103,22 +120,98 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="clickable-row" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-8-29-25/?wpdmdl=52386&refresh=6905355d05bf71761949021', '_blank')">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-08-28</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Channel Catfish</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">133</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18.0</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Private</td>
-                            </tr>
+                            
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-11-7-25/?wpdmdl=52759&refresh=690e5989065d21762548105', '_blank')">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 04, 2025</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">501</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10.6</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery</td>
+                </tr>
+            
                         </tbody>
                     </table>
                 </div>
                  <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
             </div>
         </main>
-        
+
+        <!-- Recommended Gear Section -->
+        <section class="mt-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-xl shadow-lg p-6 md:p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">🎣 Recommended Fishing Gear</h2>
+                <p class="text-gray-600">Top-rated gear for catching trout in New Mexico's stocked waters</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Panther Martin Spinners -->
+                <a href="https://amzn.to/4nKQRKn" target="_blank" rel="noopener noreferrer" class="block group">
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full border-2 border-transparent hover:border-blue-500">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-50 p-8 flex items-center justify-center" style="height: 200px;">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">🎣</div>
+                                <div class="text-blue-700 font-semibold text-lg">Panther Martin</div>
+                                <div class="text-blue-600 text-sm">Inline Spinners</div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Panther Martin Spinners</h3>
+                                <span class="text-yellow-500 text-lg">★★★★★</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Legendary inline spinners. 60+ years of proven trout-catching performance. Multiple colors for any water condition.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-blue-600 font-semibold group-hover:underline">View on Amazon</span>
+                                <svg class="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Berkley PowerBait -->
+                <a href="https://amzn.to/4nWyz8w" target="_blank" rel="noopener noreferrer" class="block group">
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full border-2 border-transparent hover:border-green-500">
+                        <div class="bg-gradient-to-br from-green-100 to-green-50 p-8 flex items-center justify-center" style="height: 200px;">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">🐟</div>
+                                <div class="text-green-700 font-semibold text-lg">Berkley</div>
+                                <div class="text-green-600 text-sm">PowerBait</div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Berkley PowerBait</h3>
+                                <span class="text-yellow-500 text-lg">★★★★★</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">The #1 bait for stocked trout. Scientifically formulated scent and flavor. Rainbow color variety pack included.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-600 font-semibold group-hover:underline">View on Amazon</span>
+                                <svg class="w-5 h-5 text-green-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Affiliate Disclaimer -->
+            <div class="mt-8 pt-6 border-t border-gray-300 text-center">
+                <p class="text-xs text-gray-600 max-w-3xl mx-auto">
+                    <strong>Affiliate Disclosure:</strong> As an Amazon Associate, we earn from qualifying purchases. Clicking these links costs you nothing extra but helps support this site. We only recommend gear we trust for New Mexico trout fishing.
+                </p>
+            </div>
+        </section>
+
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p class="mt-2">
+                <a href="/about.html" class="hover:underline">About</a> •
+                <a href="/contact.html" class="hover:underline">Contact</a> •
+                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+            </p>
         </footer>
     </div>
     <script>
@@ -126,6 +219,7 @@
 
         // Search functionality
         let stockingData = {};
+        let fuse;  // Fuse.js instance for fuzzy search
         const searchInput = document.getElementById('water-search-input');
         const optionsContainer = document.getElementById('custom-select-options');
         let selectedIndex = -1;
@@ -176,6 +270,15 @@
                     optionsContainer.appendChild(optionDiv);
                 });
 
+                // Initialize Fuse.js for fuzzy search
+                const waterNamesArray = waterNames.map(name => ({ name }));
+                fuse = new Fuse(waterNamesArray, {
+                    keys: ['name'],
+                    threshold: 0.4,  // 0 = exact match, 1 = match anything
+                    ignoreLocation: true,
+                    minMatchCharLength: 2
+                });
+
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search...';
             } catch (error) {
@@ -184,19 +287,25 @@
         }
 
         searchInput.addEventListener('input', () => {
-            const filter = searchInput.value.toLowerCase();
+            const query = searchInput.value;
             selectedIndex = -1;
 
-            if (filter) {
-                optionsContainer.classList.remove('hidden');
-            } else {
+            if (!query) {
                 optionsContainer.classList.add('hidden');
+                return;
             }
 
+            optionsContainer.classList.remove('hidden');
+
+            // Use Fuse.js for fuzzy search
+            const results = fuse.search(query);
+            const matchedNames = new Set(results.map(result => result.item.name));
+
+            // Show/hide options based on fuzzy search results
             const options = optionsContainer.getElementsByTagName('div');
             for (let i = 0; i < options.length; i++) {
-                const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                const waterName = options[i].textContent;
+                if (matchedNames.has(waterName)) {
                     options[i].style.display = "";
                 } else {
                     options[i].style.display = "none";

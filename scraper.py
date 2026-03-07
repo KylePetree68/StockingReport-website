@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import re
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import pdfplumber
 import io
 import os
@@ -369,97 +369,96 @@ def enrich_data_with_coordinates(data, manual_coords):
 
 def generate_summary_stats(records):
     """
-    Generate summary statistics from stocking records.
+    Generate summary statistics from stocking records, including recent activity.
 
     Args:
         records: List of stocking records
 
     Returns:
-        Dict containing summary statistics
+        Dict containing summary statistics with both recent (6-month) and lifetime data
     """
     if not records:
         return None
 
-    # Total stockings
     total_stockings = len(records)
 
-    # Species breakdown
-    species_counts = {}
-    for record in records:
-        species = record.get('species', 'Unknown')
-        species_counts[species] = species_counts.get(species, 0) + 1
-
-    # Total fish stocked
-    total_fish = 0
-    for record in records:
+    # Parse all dates
+    dated_records = []
+    for r in records:
         try:
-            quantity = int(record.get('quantity', 0))
-            total_fish += quantity
-        except (ValueError, TypeError):
+            d = datetime.strptime(r['date'], '%Y-%m-%d')
+            dated_records.append((d, r))
+        except (ValueError, KeyError):
             pass
 
-    # Average fish length (only numeric values)
-    lengths = []
-    for record in records:
-        length = record.get('length', '')
-        # Handle ranges like "8-10" by taking the average
+    if not dated_records:
+        return None
+
+    dated_records.sort(key=lambda x: x[0], reverse=True)
+    most_recent_date = dated_records[0][0]
+    earliest_date = dated_records[-1][0]
+
+    # --- Recent stats (last 6 months from today) ---
+    today = datetime.now()
+    six_months_ago = today - timedelta(days=182)
+    recent_records = [(d, r) for d, r in dated_records if d >= six_months_ago]
+
+    recent_species_counts = {}
+    recent_fish = 0
+    recent_lengths = []
+    for d, r in recent_records:
+        species = r.get('species', 'Unknown')
+        recent_species_counts[species] = recent_species_counts.get(species, 0) + 1
+        try:
+            recent_fish += int(r.get('quantity', 0))
+        except (ValueError, TypeError):
+            pass
+        length = r.get('length', '')
         if '-' in str(length):
             try:
                 parts = str(length).split('-')
-                avg_length = (float(parts[0]) + float(parts[1])) / 2
-                lengths.append(avg_length)
+                recent_lengths.append((float(parts[0]) + float(parts[1])) / 2)
             except (ValueError, IndexError):
                 pass
         else:
             try:
-                lengths.append(float(length))
+                recent_lengths.append(float(length))
             except (ValueError, TypeError):
                 pass
 
-    avg_length = round(sum(lengths) / len(lengths), 1) if lengths else None
+    recent_avg_length = round(sum(recent_lengths) / len(recent_lengths), 1) if recent_lengths else None
 
-    # Hatchery sources
+    # --- Lifetime stats ---
+    species_counts = {}
+    total_fish = 0
     hatcheries = set()
-    for record in records:
-        hatchery = record.get('hatchery')
+    for d, r in dated_records:
+        species = r.get('species', 'Unknown')
+        species_counts[species] = species_counts.get(species, 0) + 1
+        try:
+            total_fish += int(r.get('quantity', 0))
+        except (ValueError, TypeError):
+            pass
+        hatchery = r.get('hatchery')
         if hatchery:
             hatcheries.add(hatchery)
-
-    # Most recent stocking date
-    most_recent = None
-    if records:
-        # Records are sorted by date in descending order
-        most_recent = records[0].get('date')
-
-    # Calculate stocking frequency (stockings per year)
-    if len(records) >= 2:
-        dates = [datetime.strptime(r['date'], '%Y-%m-%d') for r in records if r.get('date')]
-        if dates:
-            dates.sort()
-            date_range_days = (dates[-1] - dates[0]).days
-            if date_range_days > 0:
-                years = date_range_days / 365.25
-                frequency = total_stockings / years if years > 0 else total_stockings
-            else:
-                frequency = total_stockings
-        else:
-            frequency = None
-    else:
-        frequency = None
 
     return {
         'total_stockings': total_stockings,
         'total_fish': total_fish,
         'species_counts': species_counts,
-        'avg_length': avg_length,
         'hatcheries': sorted(list(hatcheries)),
-        'most_recent': most_recent,
-        'frequency': round(frequency, 1) if frequency else None
+        'most_recent': most_recent_date.strftime('%Y-%m-%d'),
+        'earliest': earliest_date.strftime('%Y-%m-%d'),
+        'recent_stockings': len(recent_records),
+        'recent_fish': recent_fish,
+        'recent_species_counts': recent_species_counts,
+        'recent_avg_length': recent_avg_length,
     }
 
 def generate_summary_html(water_name, stats):
     """
-    Generate HTML summary paragraph from statistics.
+    Generate HTML summary with recent activity up top, compact historical below.
 
     Args:
         water_name: Name of the water body
@@ -471,64 +470,80 @@ def generate_summary_html(water_name, stats):
     if not stats:
         return ""
 
-    # Format most recent date
-    recent_date_str = ""
-    if stats['most_recent']:
-        try:
-            date_obj = datetime.strptime(stats['most_recent'], '%Y-%m-%d')
-            recent_date_str = date_obj.strftime('%B %d, %Y')
-        except:
-            recent_date_str = stats['most_recent']
-
-    # Build species list
-    species_list = []
-    for species, count in sorted(stats['species_counts'].items(), key=lambda x: x[1], reverse=True):
-        species_list.append(f"{species} ({count:,})")
-    species_str = ", ".join(species_list[:3])  # Top 3 species
-    if len(species_list) > 3:
-        species_str += f", and {len(species_list) - 3} other species"
-
-    # Build summary paragraph
     html = '<div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg">'
-    html += '<h3 class="text-xl font-bold text-gray-800 mb-3">📊 Stocking Summary</h3>'
-    html += '<div class="text-gray-700 space-y-2">'
 
-    # Main summary
-    html += f'<p><strong>{water_name}</strong> has been stocked <strong>{stats["total_stockings"]:,} times</strong>'
-    if stats['total_fish'] > 0:
-        html += f' with a total of <strong>{stats["total_fish"]:,} fish</strong>'
-    html += '.'
+    # Format most recent date
+    most_recent_str = ""
+    try:
+        most_recent_str = datetime.strptime(stats['most_recent'], '%Y-%m-%d').strftime('%B %d, %Y')
+    except:
+        most_recent_str = stats['most_recent']
 
-    if stats['most_recent']:
-        html += f' The most recent stocking occurred on <strong>{recent_date_str}</strong>.'
+    # --- Recent Activity (the good stuff up top) ---
+    if stats['recent_stockings'] > 0:
+        html += '<h3 class="text-xl font-bold text-gray-800 mb-3">🎣 Recent Activity</h3>'
+        html += '<div class="text-gray-700 space-y-2">'
+
+        # Build recent species string
+        recent_species = stats['recent_species_counts']
+        if len(recent_species) == 1:
+            species_name = list(recent_species.keys())[0]
+            fish_str = f"<strong>{stats['recent_fish']:,} {species_name}</strong>"
+        else:
+            sorted_species = sorted(recent_species.items(), key=lambda x: x[1], reverse=True)
+            parts = [sp for sp, count in sorted_species]
+            if len(parts) == 2:
+                species_name = f"{parts[0]} and {parts[1]}"
+            else:
+                species_name = ", ".join(parts[:-1]) + f", and {parts[-1]}"
+            fish_str = f"<strong>{stats['recent_fish']:,}</strong> fish ({species_name})"
+
+        times_word = "time" if stats['recent_stockings'] == 1 else "times"
+
+        p1 = f"In the last 6 months, {water_name} has been stocked <strong>{stats['recent_stockings']} {times_word}</strong> with {fish_str}"
+        if stats['recent_avg_length']:
+            p1 += f", averaging <strong>{stats['recent_avg_length']:.1f} inches</strong>"
+        p1 += f". Most recent stocking: <strong>{most_recent_str}</strong>."
+
+        html += f'<p>{p1}</p>'
+        html += '</div>'
+    else:
+        # No recent activity
+        html += '<h3 class="text-xl font-bold text-gray-800 mb-3">🎣 Stocking Summary</h3>'
+        html += '<div class="text-gray-700 space-y-2">'
+        html += f'<p>{water_name} has not been stocked in the last 6 months. The most recent stocking was on <strong>{most_recent_str}</strong>.</p>'
+        html += '</div>'
+
+    # --- Compact historical line ---
+    earliest_str = ""
+    try:
+        earliest_str = datetime.strptime(stats['earliest'], '%Y-%m-%d').strftime('%B %Y')
+    except:
+        earliest_str = stats['earliest']
+
+    # Build hatchery string
+    hatcheries = stats.get('hatcheries', [])
+    if len(hatcheries) == 1:
+        hatchery_str = hatcheries[0]
+    elif len(hatcheries) == 2:
+        hatchery_str = f"{hatcheries[0]} and {hatcheries[1]}"
+    elif len(hatcheries) > 2:
+        hatchery_str = f"{hatcheries[0]}, {hatcheries[1]}, and {len(hatcheries) - 2} {'other' if len(hatcheries) - 2 == 1 else 'others'}"
+    else:
+        hatchery_str = ""
+
+    html += f'<p class="text-sm text-gray-500 mt-3 pt-3 border-t border-gray-200">'
+    html += f'<strong>Since {earliest_str}:</strong> {stats["total_stockings"]:,} total stockings · {stats["total_fish"]:,} fish'
+    if hatchery_str:
+        html += f' · Supplied by {hatchery_str}'
     html += '</p>'
 
-    # Species breakdown
-    if species_str:
-        html += f'<p><strong>Species stocked:</strong> {species_str}.</p>'
-
-    # Average length
-    if stats['avg_length']:
-        html += f'<p><strong>Average fish length:</strong> {stats["avg_length"]}" (inches).</p>'
-
-    # Stocking frequency
-    if stats['frequency']:
-        html += f'<p><strong>Stocking frequency:</strong> Approximately {stats["frequency"]:.1f} times per year.</p>'
-
-    # Hatchery sources
-    if stats['hatcheries']:
-        hatchery_str = ", ".join(stats['hatcheries'][:3])
-        if len(stats['hatcheries']) > 3:
-            hatchery_str += f", and {len(stats['hatcheries']) - 3} others"
-        html += f'<p><strong>Hatchery sources:</strong> {hatchery_str}.</p>'
-
-    html += '</div></div>'
-
+    html += '</div>'
     return html
 
 def generate_meta_description(water_name, stats):
     """
-    Generate SEO meta description from statistics.
+    Generate SEO meta description focused on recent activity.
 
     Args:
         water_name: Name of the water body
@@ -540,27 +555,30 @@ def generate_meta_description(water_name, stats):
     if not stats:
         return f"Complete stocking history for {water_name} in New Mexico. View dates, species, and quantities."
 
-    # Get primary species
     primary_species = ""
-    if stats['species_counts']:
+    if stats['recent_species_counts']:
+        primary_species = max(stats['recent_species_counts'].items(), key=lambda x: x[1])[0]
+    elif stats['species_counts']:
         primary_species = max(stats['species_counts'].items(), key=lambda x: x[1])[0]
 
-    description = f"{water_name} stocking report: {stats['total_stockings']} stockings"
+    most_recent_str = ""
+    try:
+        most_recent_str = datetime.strptime(stats['most_recent'], '%Y-%m-%d').strftime('%b %d, %Y')
+    except:
+        most_recent_str = stats['most_recent']
 
-    if primary_species:
-        description += f", primarily {primary_species}"
+    if stats['recent_stockings'] > 0:
+        description = f"{water_name}: stocked {stats['recent_stockings']} times in the last 6 months"
+        if primary_species:
+            description += f" with {primary_species}"
+        description += f". Last stocked {most_recent_str}."
+    else:
+        description = f"{water_name}: last stocked {most_recent_str}."
+        if primary_species:
+            description += f" {stats['total_stockings']} total stockings of {primary_species}."
 
-    if stats['most_recent']:
-        try:
-            date_obj = datetime.strptime(stats['most_recent'], '%Y-%m-%d')
-            recent_str = date_obj.strftime('%b %Y')
-            description += f". Last stocked {recent_str}"
-        except:
-            pass
+    description += " View complete NM stocking history."
 
-    description += ". Complete NM fish stocking data."
-
-    # Trim to ~160 characters
     if len(description) > 160:
         description = description[:157] + "..."
 

@@ -80,8 +80,8 @@
         "lon": -104.3656848
     },
     "Los Pinos River": {
-        "lat": 37.1117802,
-        "lon": -107.6283675
+        "lat": 36.622,
+        "lon": -106.207
     },
     "Mcgaffey Lake": {
         "lat": 35.3776704,
@@ -96,8 +96,8 @@
         "lon": -107.6068026
     },
     "Pecos River (Pecos Canyon)": {
-        "lat": 32.4198705,
-        "lon": -104.2275725
+        "lat": 35.716,
+        "lon": -105.683
     },
     "Perch Lake (Guadalupe County)": {
         "lat": 34.9258533,
@@ -156,8 +156,8 @@
         "lon": -106.6702174
     },
     "Animas River": {
-        "lat": 37.3044229,
-        "lon": -107.856431
+        "lat": 36.728,
+        "lon": -108.195
     },
     "Bear Canyon Reservoir": {
         "lat": 32.8828722,
@@ -194,5 +194,9 @@
     "Green Meadow Lake": {
         "lat": 32.7494276,
         "lon": -103.1664136
+    },
+    "Brazos River": {
+        "lat": 36.708,
+        "lon": -106.440
     }
 }

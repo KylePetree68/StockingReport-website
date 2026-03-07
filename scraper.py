@@ -367,6 +367,205 @@ def enrich_data_with_coordinates(data, manual_coords):
     print("--- Geocoding Enrichment Finished ---")
     return data
 
+def generate_summary_stats(records):
+    """
+    Generate summary statistics from stocking records.
+
+    Args:
+        records: List of stocking records
+
+    Returns:
+        Dict containing summary statistics
+    """
+    if not records:
+        return None
+
+    # Total stockings
+    total_stockings = len(records)
+
+    # Species breakdown
+    species_counts = {}
+    for record in records:
+        species = record.get('species', 'Unknown')
+        species_counts[species] = species_counts.get(species, 0) + 1
+
+    # Total fish stocked
+    total_fish = 0
+    for record in records:
+        try:
+            quantity = int(record.get('quantity', 0))
+            total_fish += quantity
+        except (ValueError, TypeError):
+            pass
+
+    # Average fish length (only numeric values)
+    lengths = []
+    for record in records:
+        length = record.get('length', '')
+        # Handle ranges like "8-10" by taking the average
+        if '-' in str(length):
+            try:
+                parts = str(length).split('-')
+                avg_length = (float(parts[0]) + float(parts[1])) / 2
+                lengths.append(avg_length)
+            except (ValueError, IndexError):
+                pass
+        else:
+            try:
+                lengths.append(float(length))
+            except (ValueError, TypeError):
+                pass
+
+    avg_length = round(sum(lengths) / len(lengths), 1) if lengths else None
+
+    # Hatchery sources
+    hatcheries = set()
+    for record in records:
+        hatchery = record.get('hatchery')
+        if hatchery:
+            hatcheries.add(hatchery)
+
+    # Most recent stocking date
+    most_recent = None
+    if records:
+        # Records are sorted by date in descending order
+        most_recent = records[0].get('date')
+
+    # Calculate stocking frequency (stockings per year)
+    if len(records) >= 2:
+        dates = [datetime.strptime(r['date'], '%Y-%m-%d') for r in records if r.get('date')]
+        if dates:
+            dates.sort()
+            date_range_days = (dates[-1] - dates[0]).days
+            if date_range_days > 0:
+                years = date_range_days / 365.25
+                frequency = total_stockings / years if years > 0 else total_stockings
+            else:
+                frequency = total_stockings
+        else:
+            frequency = None
+    else:
+        frequency = None
+
+    return {
+        'total_stockings': total_stockings,
+        'total_fish': total_fish,
+        'species_counts': species_counts,
+        'avg_length': avg_length,
+        'hatcheries': sorted(list(hatcheries)),
+        'most_recent': most_recent,
+        'frequency': round(frequency, 1) if frequency else None
+    }
+
+def generate_summary_html(water_name, stats):
+    """
+    Generate HTML summary paragraph from statistics.
+
+    Args:
+        water_name: Name of the water body
+        stats: Dict of summary statistics
+
+    Returns:
+        HTML string with summary
+    """
+    if not stats:
+        return ""
+
+    # Format most recent date
+    recent_date_str = ""
+    if stats['most_recent']:
+        try:
+            date_obj = datetime.strptime(stats['most_recent'], '%Y-%m-%d')
+            recent_date_str = date_obj.strftime('%B %d, %Y')
+        except:
+            recent_date_str = stats['most_recent']
+
+    # Build species list
+    species_list = []
+    for species, count in sorted(stats['species_counts'].items(), key=lambda x: x[1], reverse=True):
+        species_list.append(f"{species} ({count:,})")
+    species_str = ", ".join(species_list[:3])  # Top 3 species
+    if len(species_list) > 3:
+        species_str += f", and {len(species_list) - 3} other species"
+
+    # Build summary paragraph
+    html = '<div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg">'
+    html += '<h3 class="text-xl font-bold text-gray-800 mb-3">📊 Stocking Summary</h3>'
+    html += '<div class="text-gray-700 space-y-2">'
+
+    # Main summary
+    html += f'<p><strong>{water_name}</strong> has been stocked <strong>{stats["total_stockings"]:,} times</strong>'
+    if stats['total_fish'] > 0:
+        html += f' with a total of <strong>{stats["total_fish"]:,} fish</strong>'
+    html += '.'
+
+    if stats['most_recent']:
+        html += f' The most recent stocking occurred on <strong>{recent_date_str}</strong>.'
+    html += '</p>'
+
+    # Species breakdown
+    if species_str:
+        html += f'<p><strong>Species stocked:</strong> {species_str}.</p>'
+
+    # Average length
+    if stats['avg_length']:
+        html += f'<p><strong>Average fish length:</strong> {stats["avg_length"]}" (inches).</p>'
+
+    # Stocking frequency
+    if stats['frequency']:
+        html += f'<p><strong>Stocking frequency:</strong> Approximately {stats["frequency"]:.1f} times per year.</p>'
+
+    # Hatchery sources
+    if stats['hatcheries']:
+        hatchery_str = ", ".join(stats['hatcheries'][:3])
+        if len(stats['hatcheries']) > 3:
+            hatchery_str += f", and {len(stats['hatcheries']) - 3} others"
+        html += f'<p><strong>Hatchery sources:</strong> {hatchery_str}.</p>'
+
+    html += '</div></div>'
+
+    return html
+
+def generate_meta_description(water_name, stats):
+    """
+    Generate SEO meta description from statistics.
+
+    Args:
+        water_name: Name of the water body
+        stats: Dict of summary statistics
+
+    Returns:
+        Meta description string (max 160 characters recommended)
+    """
+    if not stats:
+        return f"Complete stocking history for {water_name} in New Mexico. View dates, species, and quantities."
+
+    # Get primary species
+    primary_species = ""
+    if stats['species_counts']:
+        primary_species = max(stats['species_counts'].items(), key=lambda x: x[1])[0]
+
+    description = f"{water_name} stocking report: {stats['total_stockings']} stockings"
+
+    if primary_species:
+        description += f", primarily {primary_species}"
+
+    if stats['most_recent']:
+        try:
+            date_obj = datetime.strptime(stats['most_recent'], '%Y-%m-%d')
+            recent_str = date_obj.strftime('%b %Y')
+            description += f". Last stocked {recent_str}"
+        except:
+            pass
+
+    description += ". Complete NM fish stocking data."
+
+    # Trim to ~160 characters
+    if len(description) > 160:
+        description = description[:157] + "..."
+
+    return description
+
 def generate_regulation_html(water_name, regulations_data):
     """
     Generate HTML for fishing regulations if available for this water body.
@@ -521,8 +720,14 @@ def generate_static_pages(data):
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         filepath = os.path.join(OUTPUT_DIR, filename)
 
+        # Generate summary statistics
+        records = water_data.get("records", [])
+        summary_stats = generate_summary_stats(records)
+        summary_html = generate_summary_html(water_name, summary_stats)
+        meta_description = generate_meta_description(water_name, summary_stats)
+
         table_rows_html = ""
-        for record in water_data.get("records", []):
+        for record in records:
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
 
@@ -561,9 +766,15 @@ def generate_static_pages(data):
         # Generate regulation HTML if available
         regulation_html = generate_regulation_html(water_name, regulations_data)
 
+        # Generate page URL for social media tags
+        page_url = f"https://stockingreport.com/public/waters/{filename}"
+
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
+        page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
+        page_html = page_html.replace("{{META_DESCRIPTION}}", meta_description)
+        page_html = page_html.replace("{{PAGE_URL}}", page_url)
 
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(page_html)

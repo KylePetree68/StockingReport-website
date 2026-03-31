@@ -10,21 +10,29 @@
 
       gtag('config', 'G-TK0ZMTQ9X9');
     </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6546924017294618"
+         crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>(Parkview) 1,350.00 Lake Roberts - NM Stocking Report</title>
+    <meta name="description" content="(Parkview) 1,350.00 Lake Roberts: last stocked Dec 06, 2022. 1 total stockings of Triploid Rainbow Trout. View complete NM stocking history.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
     <!-- Favicon and Social Media Meta Tags -->
     <link rel="icon" href="/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="/logo.png">
     <meta property="og:title" content="(Parkview) 1,350.00 Lake Roberts - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for (Parkview) 1,350.00 Lake Roberts, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
-    <meta property="og:url" content="{{PAGE_URL}}">
+    <meta property="og:url" content="https://stockingreport.com/public/waters/parkview-1-350-00-lake-roberts.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <style>
@@ -78,6 +86,19 @@
             </div>
         </header>
 
+        <!-- Navigation -->
+        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
+            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="text-gray-400">•</span>
+                <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
+                <span class="text-gray-400">•</span>
+                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="text-gray-400">•</span>
+                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+            </div>
+        </nav>
+
         <!-- Search Section -->
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
@@ -89,6 +110,14 @@
         </section>
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
+            <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><h3 class="text-xl font-bold text-gray-800 mb-3">🎣 Stocking Summary</h3><div class="text-gray-700 space-y-2"><p>(Parkview) 1,350.00 Lake Roberts has not been stocked in the last 6 months. The most recent stocking was on <strong>December 06, 2022</strong>.</p></div><p class="text-sm text-gray-500 mt-3 pt-3 border-t border-gray-200"><strong>Since December 2022:</strong> 1 total stockings · 984 fish · Supplied by Lisboa Springs Trout Hatchery</p></div>
+            
+
+            <!-- Contextual gear tip -->
+            <div class="mb-6 bg-amber-50 border border-amber-200 rounded-lg px-5 py-4">
+                <p class="text-sm text-gray-700"><strong>Heading out?</strong> Freshly stocked trout hit <a href="https://amzn.to/4nWyz8w" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">PowerBait</a> hard in the first few days. Inline spinners like <a href="https://amzn.to/4nKQRKn" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">Panther Martins</a> are another reliable choice for stocked trout.
+                <span class="text-xs text-gray-400 ml-1">(affiliate links)</span></p>
+            </div>
             <div>
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Complete Stocking History</h3>
                 <div class="overflow-x-auto rounded-lg border border-gray-200">
@@ -104,7 +133,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             
-                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('local://stocking-report-12-9-22.pdf', '_blank')">
+                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-12-9-22/?wpdmdl=45421&refresh=69cb14448c4a71774916676', '_blank')">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 06, 2022</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">984</td>
@@ -118,9 +147,14 @@
                  <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
             </div>
         </main>
-        
+
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>&copy; <span id="copyright-year"></span> stockingreport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
+            <p class="mt-2">
+                <a href="/about.html" class="hover:underline">About</a> •
+                <a href="/contact.html" class="hover:underline">Contact</a> •
+                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+            </p>
         </footer>
     </div>
     <script>
@@ -128,6 +162,7 @@
 
         // Search functionality
         let stockingData = {};
+        let fuse;  // Fuse.js instance for fuzzy search
         const searchInput = document.getElementById('water-search-input');
         const optionsContainer = document.getElementById('custom-select-options');
         let selectedIndex = -1;
@@ -178,6 +213,15 @@
                     optionsContainer.appendChild(optionDiv);
                 });
 
+                // Initialize Fuse.js for fuzzy search
+                const waterNamesArray = waterNames.map(name => ({ name }));
+                fuse = new Fuse(waterNamesArray, {
+                    keys: ['name'],
+                    threshold: 0.4,  // 0 = exact match, 1 = match anything
+                    ignoreLocation: true,
+                    minMatchCharLength: 2
+                });
+
                 searchInput.disabled = false;
                 searchInput.placeholder = 'Type to search...';
             } catch (error) {
@@ -186,19 +230,25 @@
         }
 
         searchInput.addEventListener('input', () => {
-            const filter = searchInput.value.toLowerCase();
+            const query = searchInput.value;
             selectedIndex = -1;
 
-            if (filter) {
-                optionsContainer.classList.remove('hidden');
-            } else {
+            if (!query) {
                 optionsContainer.classList.add('hidden');
+                return;
             }
 
+            optionsContainer.classList.remove('hidden');
+
+            // Use Fuse.js for fuzzy search
+            const results = fuse.search(query);
+            const matchedNames = new Set(results.map(result => result.item.name));
+
+            // Show/hide options based on fuzzy search results
             const options = optionsContainer.getElementsByTagName('div');
             for (let i = 0; i < options.length; i++) {
-                const txtValue = options[i].textContent || options[i].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                const waterName = options[i].textContent;
+                if (matchedNames.has(waterName)) {
                     options[i].style.display = "";
                 } else {
                     options[i].style.display = "none";

@@ -543,7 +543,7 @@ def generate_summary_stats(records):
         'lifetime_avg_length': lifetime_avg_length,
     }
 
-def generate_summary_html(water_name, stats, reg_species=None, booklet_species=None):
+def generate_summary_html(water_name, stats, reg_species=None, booklet_species=None, advisory_url=None):
     """
     Generate HTML summary with recent activity up top, compact historical below.
 
@@ -552,6 +552,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
         stats: Dict of summary statistics
         reg_species: Species from ArcGIS regulation data (trout_present field)
         booklet_species: Species from NMDGF fishing rules booklet (water_species.json)
+        advisory_url: URL to the consumption advisory page in the NMDGF regulations PDF
 
     Returns:
         HTML string with summary
@@ -717,7 +718,11 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
         html += '</div>'
         if wild_species:
             html += '<p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p>'
+        if advisory_url:
+            html += f'<p class="text-xs mt-2"><a href="{advisory_url}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p>'
         html += '</div>'
+    elif advisory_url:
+        html += f'<div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs"><a href="{advisory_url}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p></div>'
 
     html += '</div>'
     return html
@@ -990,6 +995,18 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load water_species.json: {e}")
 
+    # Load consumption advisory page numbers
+    consumption_advisories = {}
+    if os.path.exists("consumption_advisories.json"):
+        try:
+            with open("consumption_advisories.json", 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                advisory_pdf_url = raw.get("_pdf_url", "")
+                consumption_advisories = {k: v for k, v in raw.items() if not k.startswith('_')}
+            print(f"Loaded consumption advisory data for {len(consumption_advisories)} water bodies.")
+        except Exception as e:
+            print(f"Warning: Could not load consumption_advisories.json: {e}")
+
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}
     validated_count = 0
@@ -1018,7 +1035,11 @@ def generate_static_pages(data):
         # Pull species from NMDGF fishing rules booklet
         booklet_species = water_species_data.get(water_name, [])
 
-        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species)
+        # Pull consumption advisory page number if applicable
+        advisory_page = consumption_advisories.get(water_name)
+        advisory_url = f"{advisory_pdf_url}#page={advisory_page}" if advisory_page and advisory_pdf_url else None
+
+        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species, advisory_url=advisory_url)
         meta_description = generate_meta_description(water_name, summary_stats)
 
         table_rows_html = ""

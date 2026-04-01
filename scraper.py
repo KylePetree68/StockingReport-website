@@ -974,8 +974,9 @@ def generate_static_pages(data):
                             url = fallback
                             fallback_count += 1
 
-                # rel="nofollow" so Google doesn't pass authority to the NMDGF PDF
-                report_link_html = f'<a href="{url}" target="_blank" rel="nofollow noopener noreferrer" class="text-blue-500 hover:text-blue-700 text-xs font-medium" onclick="event.stopPropagation()">PDF ↗</a>'
+                # rel="nofollow" so Google doesn't pass authority to the NMDGF PDF.
+                # Hidden anchor — gives Google a proper tag to read, no visible UI change.
+                report_link_html = f'<a href="{url}" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a>'
 
             table_rows_html += f"""
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
@@ -983,8 +984,7 @@ def generate_static_pages(data):
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['quantity']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['length']}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['hatchery']}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{report_link_html}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['hatchery']}{report_link_html}</td>
                 </tr>
             """
 

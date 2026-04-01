@@ -20,6 +20,7 @@ from scraper import (
     get_pdf_links_from_first_page,
     extract_text_from_pdf,
     final_parser,
+    is_valid_length,
     enrich_data_with_coordinates,
     generate_static_pages,
     generate_sitemap,
@@ -166,15 +167,23 @@ def weekly_update():
 
         # Merge into final data
         for water_body, data in parsed_data.items():
+            # Filter out malformed records (e.g. OCR misreads length as "HATCHERY")
+            valid_records = [r for r in data['records'] if is_valid_length(r.get('length'))]
+            skipped = len(data['records']) - len(valid_records)
+            if skipped:
+                print(f"  [!] {water_body}: skipped {skipped} malformed record(s)")
+            if not valid_records:
+                continue
+
             if water_body not in final_data:
-                final_data[water_body] = data
-                new_records_count += len(data['records'])
-                print(f"  [+] New water body: {water_body} ({len(data['records'])} records)")
+                final_data[water_body] = {"records": valid_records}
+                new_records_count += len(valid_records)
+                print(f"  [+] New water body: {water_body} ({len(valid_records)} records)")
             else:
                 # Add new records, avoiding duplicates
                 existing_records_set = {json.dumps(rec, sort_keys=True) for rec in final_data[water_body]['records']}
                 added = 0
-                for new_record in data['records']:
+                for new_record in valid_records:
                     new_record_str = json.dumps(new_record, sort_keys=True)
                     if new_record_str not in existing_records_set:
                         final_data[water_body]['records'].append(new_record)

@@ -146,6 +146,17 @@ def get_pdf_links_from_first_page(page_url):
         print(f"Error fetching page {page_url}: {e}")
         return []
 
+def is_valid_length(length_str):
+    """Return True if length looks like a real fish measurement (numeric or range like 8-10)."""
+    if not length_str:
+        return False
+    s = str(length_str).strip()
+    if re.match(r'^\d+(\.\d+)?$', s):
+        return True
+    if re.match(r'^\d+(\.\d+)?-\d+(\.\d+)?$', s):
+        return True
+    return False
+
 TESSERACT_CMD = r'C:\Users\kyle\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 
 def _is_garbled(text):

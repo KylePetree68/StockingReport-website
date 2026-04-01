@@ -632,6 +632,76 @@ def generate_meta_description(water_name, stats):
 
     return description
 
+def generate_schema_org(water_name, stats, coords, page_url):
+    """
+    Generate Schema.org JSON-LD structured data for a water body page.
+    Produces a Dataset (stocking records) + BreadcrumbList.
+    """
+    import json as _json
+
+    species_list = sorted(stats['species_counts'].keys()) if stats else []
+    keywords = ["fish stocking", "New Mexico", water_name, "NMDGF", "fishing"] + species_list
+
+    dataset = {
+        "@type": "Dataset",
+        "name": f"{water_name} Fish Stocking Records",
+        "description": f"Complete fish stocking history for {water_name} in New Mexico, sourced from the NM Department of Game and Fish. Includes dates, species, quantities, fish length, and hatchery sources from 2020 to present.",
+        "url": page_url,
+        "keywords": keywords,
+        "isAccessibleForFree": True,
+        "creator": {
+            "@type": "Organization",
+            "name": "StockingReport.com",
+            "url": "https://stockingreport.com"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "New Mexico Department of Game and Fish",
+            "url": "https://wildlife.dgf.nm.gov"
+        },
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "spatialCoverage": {
+            "@type": "Place",
+            "name": water_name,
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "NM",
+                "addressCountry": "US"
+            }
+        }
+    }
+
+    if coords and coords.get('lat') and coords.get('lng'):
+        dataset["spatialCoverage"]["geo"] = {
+            "@type": "GeoCoordinates",
+            "latitude": coords['lat'],
+            "longitude": coords['lng']
+        }
+
+    if stats:
+        dataset["temporalCoverage"] = f"{stats['earliest']}/{stats['most_recent']}"
+        if stats['total_stockings']:
+            dataset["variableMeasured"] = [
+                {"@type": "PropertyValue", "name": "Total Stockings", "value": stats['total_stockings']},
+                {"@type": "PropertyValue", "name": "Total Fish Stocked", "value": stats['total_fish']}
+            ]
+
+    breadcrumb = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stockingreport.com"},
+            {"@type": "ListItem", "position": 2, "name": water_name, "item": page_url}
+        ]
+    }
+
+    schema = {
+        "@context": "https://schema.org",
+        "@graph": [dataset, breadcrumb]
+    }
+
+    return f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2)}\n</script>'
+
+
 def generate_regulation_html(water_name, regulations_data):
     """
     Generate HTML for fishing regulations if available for this water body.
@@ -788,6 +858,7 @@ def generate_static_pages(data):
 
         # Generate summary statistics
         records = water_data.get("records", [])
+        coords = water_data.get("coords")
         summary_stats = generate_summary_stats(records)
         summary_html = generate_summary_html(water_name, summary_stats)
         meta_description = generate_meta_description(water_name, summary_stats)
@@ -834,6 +905,7 @@ def generate_static_pages(data):
 
         # Generate page URL for social media tags
         page_url = f"https://stockingreport.com/public/waters/{filename}"
+        schema_org = generate_schema_org(water_name, summary_stats, coords, page_url)
 
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
@@ -841,6 +913,7 @@ def generate_static_pages(data):
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
         page_html = page_html.replace("{{META_DESCRIPTION}}", meta_description)
         page_html = page_html.replace("{{PAGE_URL}}", page_url)
+        page_html = page_html.replace("{{SCHEMA_ORG}}", schema_org)
 
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(page_html)

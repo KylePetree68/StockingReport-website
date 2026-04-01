@@ -37,6 +37,35 @@
     <meta property="og:url" content="https://stockingreport.com">
     <meta name="twitter:card" content="summary_large_image">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "NM Stocking Report",
+          "url": "https://stockingreport.com",
+          "description": "Track when and where New Mexico Game & Fish stocks lakes, rivers, and ponds. Search 170+ waters with species, quantity, and hatchery data updated weekly.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://stockingreport.com/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "StockingReport.com",
+          "url": "https://stockingreport.com",
+          "logo": "https://stockingreport.com/logo.png",
+          "sameAs": []
+        }
+      ]
+    }
+    </script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;

@@ -956,7 +956,7 @@ def generate_static_pages(data):
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
 
-            onclick_attr = ""
+            report_link_html = ""
             if record.get("reportUrl"):
                 url = record['reportUrl']
 
@@ -967,24 +967,24 @@ def generate_static_pages(data):
                         url_validation_cache[url] = validate_url(url)
 
                     if url_validation_cache[url]:
-                        # NMDGF URL is valid, use it
                         validated_count += 1
                     else:
-                        # NMDGF URL is broken, try fallback
                         fallback = get_fallback_url(url)
                         if fallback:
                             url = fallback
                             fallback_count += 1
 
-                onclick_attr = f"onclick=\"window.open('{url}', '_blank')\""
+                # rel="nofollow" so Google doesn't pass authority to the NMDGF PDF
+                report_link_html = f'<a href="{url}" target="_blank" rel="nofollow noopener noreferrer" class="text-blue-500 hover:text-blue-700 text-xs font-medium" onclick="event.stopPropagation()">PDF ↗</a>'
 
             table_rows_html += f"""
-                <tr class="clickable-row hover:bg-gray-50" {onclick_attr}>
+                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['quantity']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['length']}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['hatchery']}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{report_link_html}</td>
                 </tr>
             """
 

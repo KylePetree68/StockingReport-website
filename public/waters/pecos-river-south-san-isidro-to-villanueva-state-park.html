@@ -202,30 +202,33 @@
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Report</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             
-                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('/public/reports/stocking-report-09_03_21.pdf', '_blank')">
+                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 02, 2021</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">85</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><a href="/public/reports/stocking-report-09_03_21.pdf" target="_blank" rel="nofollow noopener noreferrer" class="text-blue-500 hover:text-blue-700 text-xs font-medium" onclick="event.stopPropagation()">PDF ↗</a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="window.open('https://wildlife.dgf.nm.gov/download/stocking-report-09_03_21/?wpdmdl=44525&refresh=69cb144f1d4ee1774916687', '_blank')">
+                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 02, 2021</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Channel Catfish</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">85</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18.0</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Private</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><a href="https://wildlife.dgf.nm.gov/download/stocking-report-09_03_21/?wpdmdl=44525&refresh=69cb144f1d4ee1774916687" target="_blank" rel="nofollow noopener noreferrer" class="text-blue-500 hover:text-blue-700 text-xs font-medium" onclick="event.stopPropagation()">PDF ↗</a></td>
                 </tr>
             
                         </tbody>
                     </table>
                 </div>
-                 <p class="text-xs text-gray-500 mt-2 text-right">Click a row to view the original report on the NMDGF website.</p>
+                 <p class="text-xs text-gray-500 mt-2 text-right">Click any row or the PDF link to view the original NMDGF stocking report.</p>
             </div>
         </main>
 

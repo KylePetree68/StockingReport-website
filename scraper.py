@@ -491,6 +491,41 @@ def generate_summary_stats(records):
         if hatchery:
             hatcheries.add(hatchery)
 
+    # --- Days since last stocking ---
+    days_since_last = (today - most_recent_date).days
+
+    # --- Average days between stockings (all records, need 2+) ---
+    avg_days_between = None
+    if len(dated_records) >= 2:
+        unique_dates = sorted(set(d for d, r in dated_records))
+        if len(unique_dates) >= 2:
+            gaps = [(unique_dates[i+1] - unique_dates[i]).days for i in range(len(unique_dates)-1)]
+            avg_days_between = round(sum(gaps) / len(gaps))
+
+    # --- Peak months (top 3 by stocking count) ---
+    month_counts = {}
+    for d, r in dated_records:
+        month_counts[d.month] = month_counts.get(d.month, 0) + 1
+    sorted_months = sorted(month_counts.items(), key=lambda x: x[1], reverse=True)
+    peak_months = [m for m, _ in sorted_months[:3]]
+
+    # --- Lifetime avg length ---
+    all_lengths = []
+    for d, r in dated_records:
+        length = r.get('length', '')
+        if '-' in str(length):
+            try:
+                parts = str(length).split('-')
+                all_lengths.append((float(parts[0]) + float(parts[1])) / 2)
+            except (ValueError, IndexError):
+                pass
+        else:
+            try:
+                all_lengths.append(float(length))
+            except (ValueError, TypeError):
+                pass
+    lifetime_avg_length = round(sum(all_lengths) / len(all_lengths), 1) if all_lengths else None
+
     return {
         'total_stockings': total_stockings,
         'total_fish': total_fish,
@@ -502,6 +537,10 @@ def generate_summary_stats(records):
         'recent_fish': recent_fish,
         'recent_species_counts': recent_species_counts,
         'recent_avg_length': recent_avg_length,
+        'days_since_last': days_since_last,
+        'avg_days_between': avg_days_between,
+        'peak_months': peak_months,
+        'lifetime_avg_length': lifetime_avg_length,
     }
 
 def generate_summary_html(water_name, stats):
@@ -519,6 +558,7 @@ def generate_summary_html(water_name, stats):
         return ""
 
     html = '<div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg">'
+    html += '<h3 class="text-xl font-bold text-gray-800 mb-4">🎣 Recent Activity</h3>'
 
     # Format most recent date
     most_recent_str = ""
@@ -527,12 +567,33 @@ def generate_summary_html(water_name, stats):
     except:
         most_recent_str = stats['most_recent']
 
-    # --- Recent Activity (the good stuff up top) ---
-    if stats['recent_stockings'] > 0:
-        html += '<h3 class="text-xl font-bold text-gray-800 mb-3">🎣 Recent Activity</h3>'
-        html += '<div class="text-gray-700 space-y-2">'
+    # --- Freshness badge ---
+    days = stats.get('days_since_last', 9999)
+    if days == 0:
+        freshness_color = "bg-green-100 text-green-800 border-green-300"
+        freshness_label = "Stocked Today — Prime Fishing Window!"
+    elif days <= 7:
+        freshness_color = "bg-green-100 text-green-800 border-green-300"
+        freshness_label = f"Stocked {days} day{'s' if days > 1 else ''} ago — Prime Fishing Window"
+    elif days <= 21:
+        freshness_color = "bg-yellow-100 text-yellow-800 border-yellow-300"
+        freshness_label = f"Stocked {days} days ago — Fish Are Active"
+    elif days <= 60:
+        freshness_color = "bg-orange-100 text-orange-800 border-orange-300"
+        freshness_label = f"Stocked {days} days ago — Worth a Trip"
+    elif days <= 182:
+        months = round(days / 30)
+        freshness_color = "bg-gray-100 text-gray-600 border-gray-300"
+        freshness_label = f"Last stocked ~{months} month{'s' if months > 1 else ''} ago"
+    else:
+        freshness_color = "bg-gray-100 text-gray-500 border-gray-300"
+        freshness_label = f"Last stocked on {most_recent_str}"
 
-        # Build recent species string
+    html += f'<div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-4 {freshness_color}">{freshness_label}</div>'
+
+    # --- Recent activity sentence ---
+    html += '<div class="text-gray-700 space-y-2">'
+    if stats['recent_stockings'] > 0:
         recent_species = stats['recent_species_counts']
         if len(recent_species) == 1:
             species_name = list(recent_species.keys())[0]
@@ -547,20 +608,48 @@ def generate_summary_html(water_name, stats):
             fish_str = f"<strong>{stats['recent_fish']:,}</strong> fish ({species_name})"
 
         times_word = "time" if stats['recent_stockings'] == 1 else "times"
-
-        p1 = f"In the last 6 months, {water_name} has been stocked <strong>{stats['recent_stockings']} {times_word}</strong> with {fish_str}"
+        p1 = f"Stocked <strong>{stats['recent_stockings']} {times_word}</strong> in the last 6 months with {fish_str}"
         if stats['recent_avg_length']:
             p1 += f", averaging <strong>{stats['recent_avg_length']:.1f} inches</strong>"
-        p1 += f". Most recent stocking: <strong>{most_recent_str}</strong>."
-
+        p1 += "."
         html += f'<p>{p1}</p>'
-        html += '</div>'
+
+        # Size trend note
+        recent_len = stats.get('recent_avg_length')
+        lifetime_len = stats.get('lifetime_avg_length')
+        if recent_len and lifetime_len and abs(recent_len - lifetime_len) >= 1.0:
+            if recent_len > lifetime_len:
+                html += f'<p class="text-sm text-green-700">Stocking larger fish lately (recent avg {recent_len:.1f}" vs. all-time avg {lifetime_len:.1f}").</p>'
+            else:
+                html += f'<p class="text-sm text-gray-500">Recent stockings are running smaller than average ({recent_len:.1f}" vs. all-time avg {lifetime_len:.1f}").</p>'
     else:
-        # No recent activity
-        html += '<h3 class="text-xl font-bold text-gray-800 mb-3">🎣 Stocking Summary</h3>'
-        html += '<div class="text-gray-700 space-y-2">'
-        html += f'<p>{water_name} has not been stocked in the last 6 months. The most recent stocking was on <strong>{most_recent_str}</strong>.</p>'
-        html += '</div>'
+        html += f'<p>{water_name} has not been stocked in the last 6 months. Most recent: <strong>{most_recent_str}</strong>.</p>'
+
+    html += '</div>'
+
+    # --- Frequency + Peak months row ---
+    meta_parts = []
+    avg_days = stats.get('avg_days_between')
+    if avg_days:
+        if avg_days <= 7:
+            freq_str = f"Stocked <strong>weekly</strong> on average"
+        elif avg_days <= 16:
+            freq_str = f"Stocked about <strong>every {avg_days} days</strong> on average"
+        elif avg_days <= 45:
+            freq_str = f"Stocked roughly <strong>every {avg_days} days</strong>"
+        else:
+            freq_str = f"Stocked infrequently (avg every {avg_days} days)"
+        meta_parts.append(freq_str)
+
+    peak_months = stats.get('peak_months', [])
+    if peak_months:
+        month_names = {1:'Jan',2:'Feb',3:'Mar',4:'Apr',5:'May',6:'Jun',
+                       7:'Jul',8:'Aug',9:'Sep',10:'Oct',11:'Nov',12:'Dec'}
+        peak_str = "Peak months: <strong>" + ", ".join(month_names[m] for m in peak_months) + "</strong>"
+        meta_parts.append(peak_str)
+
+    if meta_parts:
+        html += '<p class="text-sm text-gray-600 mt-3">' + " &nbsp;·&nbsp; ".join(meta_parts) + '</p>'
 
     # --- Compact historical line ---
     earliest_str = ""
@@ -569,7 +658,6 @@ def generate_summary_html(water_name, stats):
     except:
         earliest_str = stats['earliest']
 
-    # Build hatchery string
     hatcheries = stats.get('hatcheries', [])
     if len(hatcheries) == 1:
         hatchery_str = hatcheries[0]

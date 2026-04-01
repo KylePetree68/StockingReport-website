@@ -146,21 +146,58 @@ def get_pdf_links_from_first_page(page_url):
         print(f"Error fetching page {page_url}: {e}")
         return []
 
+TESSERACT_CMD = r'C:\Users\kyle\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+
+def _is_garbled(text):
+    """Return True if extracted text contains mostly (cid:XX) encoding artifacts."""
+    if not text:
+        return True
+    cid_count = text.count('(cid:')
+    total_chars = len(text)
+    return total_chars > 0 and (cid_count / total_chars) > 0.05
+
+def _ocr_pdf(pdf_bytes):
+    """Render PDF pages to images and OCR them. Used as fallback for garbled PDFs."""
+    try:
+        import pytesseract
+        from PIL import Image as PILImage
+        if os.path.exists(TESSERACT_CMD):
+            pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+        full_text = ""
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            for page in pdf.pages:
+                img = page.to_image(resolution=200).original
+                page_text = pytesseract.image_to_string(img, config='--psm 4')
+                if page_text:
+                    full_text += page_text + "\n"
+        return full_text
+    except Exception as e:
+        print(f"    [!] OCR fallback failed: {e}")
+        return ""
+
 def extract_text_from_pdf(pdf_url):
     """
     Downloads a PDF from a URL and extracts all text from it.
+    Falls back to OCR if the PDF uses an unreadable font encoding.
     """
     print(f"  > Processing {pdf_url}...")
     try:
         response = requests.get(pdf_url, timeout=30)
         response.raise_for_status()
-        pdf_file = io.BytesIO(response.content)
+        pdf_bytes = response.content
         full_text = ""
-        with pdfplumber.open(pdf_file) as pdf:
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
             for page in pdf.pages:
                 page_text = page.extract_text(x_tolerance=2, y_tolerance=2, layout=False)
                 if page_text:
                     full_text += page_text + "\n"
+
+        if _is_garbled(full_text):
+            print(f"    [!] Garbled text detected (custom font encoding), falling back to OCR...")
+            full_text = _ocr_pdf(pdf_bytes)
+            if full_text:
+                print(f"    [+] OCR succeeded")
+
         return full_text
     except Exception as e:
         print(f"    [!] Failed to extract text from {pdf_url}: {e}")

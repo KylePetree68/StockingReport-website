@@ -1,6 +1,8 @@
 requests
 beautifulsoup4
 pdfplumber
+pytesseract
+pillow
 flask
 gunicorn
 

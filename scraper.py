@@ -543,13 +543,15 @@ def generate_summary_stats(records):
         'lifetime_avg_length': lifetime_avg_length,
     }
 
-def generate_summary_html(water_name, stats, reg_species=None):
+def generate_summary_html(water_name, stats, reg_species=None, booklet_species=None):
     """
     Generate HTML summary with recent activity up top, compact historical below.
 
     Args:
         water_name: Name of the water body
         stats: Dict of summary statistics
+        reg_species: Species from ArcGIS regulation data (trout_present field)
+        booklet_species: Species from NMDGF fishing rules booklet (water_species.json)
 
     Returns:
         HTML string with summary
@@ -676,16 +678,33 @@ def generate_summary_html(water_name, stats, reg_species=None):
 
     # --- Species Present ---
     stocked_species = sorted(stats.get('species_counts', {}).keys())
+    # Normalize for deduplication: lowercase and strip trailing 's' for singular/plural matching
+    def _norm(s):
+        return s.lower().rstrip('s')
+    stocked_norm = {_norm(s) for s in stocked_species}
 
-    # Parse reg_species (comma-separated string or list)
+    def _already_covered(name, existing_norm_set):
+        n = _norm(name)
+        return n in existing_norm_set
+
+    # Parse reg_species (comma-separated string or list) from ArcGIS trout_present field
     wild_species = []
     if reg_species:
         if isinstance(reg_species, str):
             candidates = [s.strip().title() for s in reg_species.split(',')]
         else:
             candidates = [s.strip().title() for s in reg_species]
-        stocked_lower = {s.lower() for s in stocked_species}
-        wild_species = [s for s in candidates if s.lower() not in stocked_lower]
+        wild_species = [s for s in candidates if not _already_covered(s, stocked_norm)]
+
+    # Merge booklet_species from water_species.json, deduplicating against stocked + reg
+    if booklet_species:
+        existing_norm = stocked_norm | {_norm(s) for s in wild_species}
+        for sp in booklet_species:
+            sp_title = sp.strip().title()
+            if not _already_covered(sp_title, existing_norm):
+                wild_species.append(sp_title)
+                existing_norm.add(_norm(sp_title))
+    wild_species = sorted(wild_species)
 
     if stocked_species or wild_species:
         html += '<div class="mt-4 pt-3 border-t border-gray-200">'
@@ -959,6 +978,18 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load regulation data: {e}")
 
+    # Load booklet species data from NMDGF fishing rules PDF
+    water_species_data = {}
+    if os.path.exists("water_species.json"):
+        try:
+            with open("water_species.json", 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                # Strip metadata keys starting with underscore
+                water_species_data = {k: v for k, v in raw.items() if not k.startswith('_')}
+            print(f"Loaded booklet species data for {len(water_species_data)} water bodies.")
+        except Exception as e:
+            print(f"Warning: Could not load water_species.json: {e}")
+
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}
     validated_count = 0
@@ -984,7 +1015,10 @@ def generate_static_pages(data):
                     reg_species = trout_present
                     break
 
-        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species)
+        # Pull species from NMDGF fishing rules booklet
+        booklet_species = water_species_data.get(water_name, [])
+
+        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species)
         meta_description = generate_meta_description(water_name, summary_stats)
 
         table_rows_html = ""

@@ -543,7 +543,7 @@ def generate_summary_stats(records):
         'lifetime_avg_length': lifetime_avg_length,
     }
 
-def generate_summary_html(water_name, stats):
+def generate_summary_html(water_name, stats, reg_species=None):
     """
     Generate HTML summary with recent activity up top, compact historical below.
 
@@ -673,6 +673,32 @@ def generate_summary_html(water_name, stats):
     if hatchery_str:
         html += f' · Supplied by {hatchery_str}'
     html += '</p>'
+
+    # --- Species Present ---
+    stocked_species = sorted(stats.get('species_counts', {}).keys())
+
+    # Parse reg_species (comma-separated string or list)
+    wild_species = []
+    if reg_species:
+        if isinstance(reg_species, str):
+            candidates = [s.strip().title() for s in reg_species.split(',')]
+        else:
+            candidates = [s.strip().title() for s in reg_species]
+        stocked_lower = {s.lower() for s in stocked_species}
+        wild_species = [s for s in candidates if s.lower() not in stocked_lower]
+
+    if stocked_species or wild_species:
+        html += '<div class="mt-4 pt-3 border-t border-gray-200">'
+        html += '<p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p>'
+        html += '<div class="flex flex-wrap gap-2">'
+        for sp in stocked_species:
+            html += f'<span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">{sp}</span>'
+        for sp in wild_species:
+            html += f'<span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">{sp} ✦</span>'
+        html += '</div>'
+        if wild_species:
+            html += '<p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p>'
+        html += '</div>'
 
     html += '</div>'
     return html
@@ -948,7 +974,17 @@ def generate_static_pages(data):
         records = water_data.get("records", [])
         coords = water_data.get("coords")
         summary_stats = generate_summary_stats(records)
-        summary_html = generate_summary_html(water_name, summary_stats)
+
+        # Pull native/wild species from regulation data if available
+        reg_species = None
+        if water_name in regulations_data:
+            for reg_block in regulations_data[water_name].get('regulations', {}).values():
+                trout_present = reg_block.get('trout_present', '')
+                if trout_present:
+                    reg_species = trout_present
+                    break
+
+        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species)
         meta_description = generate_meta_description(water_name, summary_stats)
 
         table_rows_html = ""

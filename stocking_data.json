@@ -26226,6 +26226,566 @@
         "length": "10.3",
         "hatchery": "Lisboa Springs Trout Hatchery",
         "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_24_21/?wpdmdl=44549&refresh=69cb144a014901774916682"
+      },
+      {
+        "date": "2021-12-27",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "375",
+        "length": "10.2",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_30_21/?wpdmdl=44559&refresh=69cb14475f5b01774916679"
+      },
+      {
+        "date": "2021-12-14",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1516",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_17_21/?wpdmdl=44555&refresh=69cb14476414b1774916679"
+      },
+      {
+        "date": "2021-11-22",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1426",
+        "length": "10.2",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_24_21/?wpdmdl=44549&refresh=69cb144a014901774916682"
+      },
+      {
+        "date": "2021-09-20",
+        "species": "Largemouth Bass",
+        "quantity": "40",
+        "length": "14.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-09_24_21/?wpdmdl=44531&refresh=69cb144f13eb51774916687"
+      },
+      {
+        "date": "2021-07-20",
+        "species": "Largemouth Bass",
+        "quantity": "98",
+        "length": "14.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-07_23_21/?wpdmdl=44513&refresh=69cb145238d911774916690"
+      },
+      {
+        "date": "2026-03-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2278",
+        "length": "10.1",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-27-26/?wpdmdl=54352&refresh=69cc456a8cd261774994794"
+      },
+      {
+        "date": "2025-07-31",
+        "species": "Channel Catfish",
+        "quantity": "442",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
+      },
+      {
+        "date": "2025-06-26",
+        "species": "Channel Catfish",
+        "quantity": "449",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-27-25/?wpdmdl=51906&refresh=69cb143260f181774916658"
+      },
+      {
+        "date": "2025-06-12",
+        "species": "Largemouth Bass",
+        "quantity": "99",
+        "length": "17.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-13-25/?wpdmdl=51853&refresh=69cb1435057b41774916661"
+      },
+      {
+        "date": "2025-05-22",
+        "species": "Channel Catfish",
+        "quantity": "448",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-23-25/?wpdmdl=51189&refresh=69cb1435094611774916661"
+      },
+      {
+        "date": "2025-04-24",
+        "species": "Channel Catfish",
+        "quantity": "621",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-25-25/?wpdmdl=50948&refresh=69cb14350deee1774916661"
+      },
+      {
+        "date": "2025-03-26",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "678",
+        "length": "10.1",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
+      },
+      {
+        "date": "2025-03-24",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1600",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
+      },
+      {
+        "date": "2025-03-18",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2282",
+        "length": "10.1",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
+      },
+      {
+        "date": "2025-03-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "15.4",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
+      },
+      {
+        "date": "2025-03-11",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1579",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
+      },
+      {
+        "date": "2025-03-10",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "702",
+        "length": "10.2",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
+      },
+      {
+        "date": "2025-03-04",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2276",
+        "length": "10.4",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
+      },
+      {
+        "date": "2025-03-04",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "15.0",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
+      },
+      {
+        "date": "2025-02-26",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "351",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
+      },
+      {
+        "date": "2025-02-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "441",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
+      },
+      {
+        "date": "2025-02-24",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1490",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
+      },
+      {
+        "date": "2025-02-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2281",
+        "length": "10.4",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
+      },
+      {
+        "date": "2025-02-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "15.0",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
+      },
+      {
+        "date": "2025-02-11",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "385",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
+      },
+      {
+        "date": "2025-02-11",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "440",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
+      },
+      {
+        "date": "2025-02-10",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1455",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
+      },
+      {
+        "date": "2025-02-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2279",
+        "length": "12.3",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
+      },
+      {
+        "date": "2025-02-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "15.0",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
+      },
+      {
+        "date": "2025-01-28",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1118",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
+      },
+      {
+        "date": "2025-01-27",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1282",
+        "length": "10.8",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
+      },
+      {
+        "date": "2025-01-22",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2443",
+        "length": "10.6",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
+      },
+      {
+        "date": "2025-01-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "699",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-17-25/?wpdmdl=50323&refresh=69cb1439eba721774916665"
+      },
+      {
+        "date": "2025-01-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1899",
+        "length": "10.6",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-17-25/?wpdmdl=50323&refresh=69cb1439eba721774916665"
+      },
+      {
+        "date": "2025-01-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2399",
+        "length": "10.7",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
+      },
+      {
+        "date": "2024-12-30",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "374",
+        "length": "10.6",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-3-25/?wpdmdl=50206&refresh=69cb1439edf2b1774916665"
+      },
+      {
+        "date": "2024-12-23",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1423",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665"
+      },
+      {
+        "date": "2024-12-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "151",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
+      },
+      {
+        "date": "2024-12-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1803",
+        "length": "10.3",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
+      },
+      {
+        "date": "2024-12-10",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "413",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665"
+      },
+      {
+        "date": "2024-12-09",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1425",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665"
+      },
+      {
+        "date": "2024-12-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1797",
+        "length": "10.1",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-6-24/?wpdmdl=50066&refresh=69cb143a0029d1774916666"
+      },
+      {
+        "date": "2024-11-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1240",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
+      },
+      {
+        "date": "2024-11-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "561",
+        "length": "11.5",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
+      },
+      {
+        "date": "2024-11-19",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "559",
+        "length": "10.1",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
+      },
+      {
+        "date": "2024-11-18",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1241",
+        "length": "10.8",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
+      },
+      {
+        "date": "2024-11-13",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1401",
+        "length": "10.1",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
+      },
+      {
+        "date": "2024-11-12",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1000",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
+      },
+      {
+        "date": "2024-11-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2880",
+        "length": "10.4",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
+      },
+      {
+        "date": "2024-10-28",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1802",
+        "length": "10.2",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-1-24/?wpdmdl=49809&refresh=69cb143c52e241774916668"
+      },
+      {
+        "date": "2024-10-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1800",
+        "length": "10.3",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-18-24/?wpdmdl=49772&refresh=69cb143c552ce1774916668"
+      },
+      {
+        "date": "2024-08-29",
+        "species": "Channel Catfish",
+        "quantity": "135",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
+      },
+      {
+        "date": "2024-08-29",
+        "species": "Channel Catfish",
+        "quantity": "330",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
+      },
+      {
+        "date": "2024-08-01",
+        "species": "Channel Catfish",
+        "quantity": "451",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670"
+      },
+      {
+        "date": "2024-07-02",
+        "species": "Channel Catfish",
+        "quantity": "316",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
+      },
+      {
+        "date": "2024-07-02",
+        "species": "Channel Catfish",
+        "quantity": "128",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
+      },
+      {
+        "date": "2023-04-27",
+        "species": "Channel Catfish",
+        "quantity": "144",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673"
+      },
+      {
+        "date": "2023-04-27",
+        "species": "Channel Catfish",
+        "quantity": "480",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673"
+      },
+      {
+        "date": "2023-03-23",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "731",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-24-23/?wpdmdl=46213&refresh=69cb14412bcf01774916673"
+      },
+      {
+        "date": "2023-03-22",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1548",
+        "length": "10.6",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-24-23/?wpdmdl=46213&refresh=69cb14412bcf01774916673"
+      },
+      {
+        "date": "2023-03-13",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "2280",
+        "length": "10.0",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
+      },
+      {
+        "date": "2023-03-13",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "16.2",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
+      },
+      {
+        "date": "2023-03-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1399",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-10-23/?wpdmdl=46210&refresh=69cb1444819771774916676"
+      },
+      {
+        "date": "2023-03-06",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "240",
+        "length": "14.3",
+        "hatchery": "Los Ojos Hatchery (Parkview)",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-10-23/?wpdmdl=46210&refresh=69cb1444819771774916676"
+      },
+      {
+        "date": "2023-02-28",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1403",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-3-23/?wpdmdl=45807&refresh=69cb1444836c41774916676"
+      },
+      {
+        "date": "2023-02-21",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1399",
+        "length": "10.2",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-24-23/?wpdmdl=45805&refresh=69cb144484d281774916676"
+      },
+      {
+        "date": "2023-02-16",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1399",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-17-23/?wpdmdl=45803&refresh=69cb14448672f1774916676"
+      },
+      {
+        "date": "2023-02-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "499",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
+      },
+      {
+        "date": "2023-02-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "731",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
+      },
+      {
+        "date": "2023-02-06",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1101",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
       }
     ],
     "coords": null
@@ -88093,6 +88653,222 @@
         "length": "18.0",
         "hatchery": "Private",
         "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-09_03_21/?wpdmdl=44525&refresh=69cb144f1d4ee1774916687"
+      },
+      {
+        "date": "2025-07-31",
+        "species": "Channel Catfish",
+        "quantity": "125",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
+      },
+      {
+        "date": "2025-06-26",
+        "species": "Channel Catfish",
+        "quantity": "133",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-27-25/?wpdmdl=51906&refresh=69cb143260f181774916658"
+      },
+      {
+        "date": "2025-05-22",
+        "species": "Channel Catfish",
+        "quantity": "133",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-23-25/?wpdmdl=51189&refresh=69cb1435094611774916661"
+      },
+      {
+        "date": "2025-04-02",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "1000",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-4-25/?wpdmdl=50750&refresh=69cb1437683cb1774916663"
+      },
+      {
+        "date": "2025-03-18",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "500",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
+      },
+      {
+        "date": "2025-03-04",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "495",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
+      },
+      {
+        "date": "2025-02-17",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "495",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
+      },
+      {
+        "date": "2025-02-04",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "502",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
+      },
+      {
+        "date": "2025-01-22",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "499",
+        "length": "10.8",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
+      },
+      {
+        "date": "2025-01-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "520",
+        "length": "10.6",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
+      },
+      {
+        "date": "2024-12-16",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "376",
+        "length": "10.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
+      },
+      {
+        "date": "2024-12-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "373",
+        "length": "10.6",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-6-24/?wpdmdl=50066&refresh=69cb143a0029d1774916666"
+      },
+      {
+        "date": "2024-11-20",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "375",
+        "length": "10.1",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
+      },
+      {
+        "date": "2024-11-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "510",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
+      },
+      {
+        "date": "2024-08-29",
+        "species": "Channel Catfish",
+        "quantity": "135",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
+      },
+      {
+        "date": "2024-08-01",
+        "species": "Channel Catfish",
+        "quantity": "127",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670"
+      },
+      {
+        "date": "2024-07-02",
+        "species": "Channel Catfish",
+        "quantity": "128",
+        "length": "18.0",
+        "hatchery": "Private",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
+      },
+      {
+        "date": "2023-03-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "500",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
+      },
+      {
+        "date": "2023-03-01",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "500",
+        "length": "10.0",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-3-23/?wpdmdl=45807&refresh=69cb1444836c41774916676"
+      },
+      {
+        "date": "2023-02-13",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "500",
+        "length": "10.3",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-17-23/?wpdmdl=45803&refresh=69cb14448672f1774916676"
+      },
+      {
+        "date": "2022-12-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "499",
+        "length": "10.1",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-9-22/?wpdmdl=45421&refresh=69cb14448c4a71774916676"
+      },
+      {
+        "date": "2022-11-02",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "509",
+        "length": "9.7",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-4-22/?wpdmdl=45328&refresh=69cb1444921161774916676"
+      },
+      {
+        "date": "2022-01-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "374",
+        "length": "10.8",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_07_22/?wpdmdl=44465&refresh=69cb145ebd4a91774916702"
+      },
+      {
+        "date": "2021-12-20",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "375",
+        "length": "10.2",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_23_21/?wpdmdl=44557&refresh=69cb144761b231774916679"
+      },
+      {
+        "date": "2021-12-07",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "375",
+        "length": "11.5",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_10_21/?wpdmdl=44553&refresh=69cb1447665d91774916679"
+      },
+      {
+        "date": "2021-11-16",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "374",
+        "length": "10.4",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_19_21/?wpdmdl=44547&refresh=69cb144a03a7a1774916682"
+      },
+      {
+        "date": "2021-11-02",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "501",
+        "length": "9.9",
+        "hatchery": "Lisboa Springs Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_05_21/?wpdmdl=44543&refresh=69cb144a082971774916682"
       }
     ],
     "coords": null
@@ -91002,802 +91778,6 @@
         "length": "10.4",
         "hatchery": "Red River Trout Hatchery",
         "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-14-24/?wpdmdl=48302&refresh=69cb144125b381774916673"
-      }
-    ],
-    "coords": null
-  },
-  "Conservancy Park Lake (Aka Tingley Beach": {
-    "records": [
-      {
-        "date": "2026-03-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2278",
-        "length": "10.1",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-27-26/?wpdmdl=54352&refresh=69cc456a8cd261774994794"
-      },
-      {
-        "date": "2025-07-31",
-        "species": "Channel Catfish",
-        "quantity": "442",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
-      },
-      {
-        "date": "2025-06-26",
-        "species": "Channel Catfish",
-        "quantity": "449",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-27-25/?wpdmdl=51906&refresh=69cb143260f181774916658"
-      },
-      {
-        "date": "2025-06-12",
-        "species": "Largemouth Bass",
-        "quantity": "99",
-        "length": "17.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-13-25/?wpdmdl=51853&refresh=69cb1435057b41774916661"
-      },
-      {
-        "date": "2025-05-22",
-        "species": "Channel Catfish",
-        "quantity": "448",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-23-25/?wpdmdl=51189&refresh=69cb1435094611774916661"
-      },
-      {
-        "date": "2025-04-24",
-        "species": "Channel Catfish",
-        "quantity": "621",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-25-25/?wpdmdl=50948&refresh=69cb14350deee1774916661"
-      },
-      {
-        "date": "2025-03-26",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "678",
-        "length": "10.1",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
-      },
-      {
-        "date": "2025-03-24",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1600",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
-      },
-      {
-        "date": "2025-03-18",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2282",
-        "length": "10.1",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
-      },
-      {
-        "date": "2025-03-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "15.4",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
-      },
-      {
-        "date": "2025-03-11",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1579",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
-      },
-      {
-        "date": "2025-03-10",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "702",
-        "length": "10.2",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
-      },
-      {
-        "date": "2025-03-04",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2276",
-        "length": "10.4",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
-      },
-      {
-        "date": "2025-03-04",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "15.0",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
-      },
-      {
-        "date": "2025-02-26",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "351",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
-      },
-      {
-        "date": "2025-02-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "441",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
-      },
-      {
-        "date": "2025-02-24",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1490",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
-      },
-      {
-        "date": "2025-02-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2281",
-        "length": "10.4",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
-      },
-      {
-        "date": "2025-02-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "15.0",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
-      },
-      {
-        "date": "2025-02-11",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "385",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
-      },
-      {
-        "date": "2025-02-11",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "440",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
-      },
-      {
-        "date": "2025-02-10",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1455",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
-      },
-      {
-        "date": "2025-02-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2279",
-        "length": "12.3",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
-      },
-      {
-        "date": "2025-02-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "15.0",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
-      },
-      {
-        "date": "2025-01-28",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1118",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
-      },
-      {
-        "date": "2025-01-27",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1282",
-        "length": "10.8",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
-      },
-      {
-        "date": "2025-01-22",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2443",
-        "length": "10.6",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
-      },
-      {
-        "date": "2025-01-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "699",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-17-25/?wpdmdl=50323&refresh=69cb1439eba721774916665"
-      },
-      {
-        "date": "2025-01-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1899",
-        "length": "10.6",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-17-25/?wpdmdl=50323&refresh=69cb1439eba721774916665"
-      },
-      {
-        "date": "2025-01-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2399",
-        "length": "10.7",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
-      },
-      {
-        "date": "2024-12-30",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "374",
-        "length": "10.6",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-3-25/?wpdmdl=50206&refresh=69cb1439edf2b1774916665"
-      },
-      {
-        "date": "2024-12-23",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1423",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665"
-      },
-      {
-        "date": "2024-12-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "151",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
-      },
-      {
-        "date": "2024-12-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1803",
-        "length": "10.3",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
-      },
-      {
-        "date": "2024-12-10",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "413",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665"
-      },
-      {
-        "date": "2024-12-09",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1425",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665"
-      },
-      {
-        "date": "2024-12-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1797",
-        "length": "10.1",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-6-24/?wpdmdl=50066&refresh=69cb143a0029d1774916666"
-      },
-      {
-        "date": "2024-11-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1240",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
-      },
-      {
-        "date": "2024-11-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "561",
-        "length": "11.5",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
-      },
-      {
-        "date": "2024-11-19",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "559",
-        "length": "10.1",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
-      },
-      {
-        "date": "2024-11-18",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1241",
-        "length": "10.8",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
-      },
-      {
-        "date": "2024-11-13",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1401",
-        "length": "10.1",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
-      },
-      {
-        "date": "2024-11-12",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1000",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
-      },
-      {
-        "date": "2024-11-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2880",
-        "length": "10.4",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
-      },
-      {
-        "date": "2024-10-28",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1802",
-        "length": "10.2",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-1-24/?wpdmdl=49809&refresh=69cb143c52e241774916668"
-      },
-      {
-        "date": "2024-10-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1800",
-        "length": "10.3",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-18-24/?wpdmdl=49772&refresh=69cb143c552ce1774916668"
-      },
-      {
-        "date": "2024-08-29",
-        "species": "Channel Catfish",
-        "quantity": "135",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
-      },
-      {
-        "date": "2024-08-29",
-        "species": "Channel Catfish",
-        "quantity": "330",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
-      },
-      {
-        "date": "2024-08-01",
-        "species": "Channel Catfish",
-        "quantity": "451",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670"
-      },
-      {
-        "date": "2024-07-02",
-        "species": "Channel Catfish",
-        "quantity": "316",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
-      },
-      {
-        "date": "2024-07-02",
-        "species": "Channel Catfish",
-        "quantity": "128",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
-      },
-      {
-        "date": "2023-04-27",
-        "species": "Channel Catfish",
-        "quantity": "144",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673"
-      },
-      {
-        "date": "2023-04-27",
-        "species": "Channel Catfish",
-        "quantity": "480",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673"
-      },
-      {
-        "date": "2023-03-23",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "731",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-24-23/?wpdmdl=46213&refresh=69cb14412bcf01774916673"
-      },
-      {
-        "date": "2023-03-22",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1548",
-        "length": "10.6",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-24-23/?wpdmdl=46213&refresh=69cb14412bcf01774916673"
-      },
-      {
-        "date": "2023-03-13",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "2280",
-        "length": "10.0",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
-      },
-      {
-        "date": "2023-03-13",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "16.2",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
-      },
-      {
-        "date": "2023-03-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1399",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-10-23/?wpdmdl=46210&refresh=69cb1444819771774916676"
-      },
-      {
-        "date": "2023-03-06",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "240",
-        "length": "14.3",
-        "hatchery": "Los Ojos Hatchery (Parkview)",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-10-23/?wpdmdl=46210&refresh=69cb1444819771774916676"
-      },
-      {
-        "date": "2023-02-28",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1403",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-3-23/?wpdmdl=45807&refresh=69cb1444836c41774916676"
-      },
-      {
-        "date": "2023-02-21",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1399",
-        "length": "10.2",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-24-23/?wpdmdl=45805&refresh=69cb144484d281774916676"
-      },
-      {
-        "date": "2023-02-16",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1399",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-17-23/?wpdmdl=45803&refresh=69cb14448672f1774916676"
-      },
-      {
-        "date": "2023-02-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "499",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
-      },
-      {
-        "date": "2023-02-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "731",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
-      },
-      {
-        "date": "2023-02-06",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1101",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-10-23/?wpdmdl=45801&refresh=69cb14448ab241774916676"
-      }
-    ],
-    "coords": null
-  },
-  "Pecos River (South San Isidro To Villanu": {
-    "records": [
-      {
-        "date": "2025-07-31",
-        "species": "Channel Catfish",
-        "quantity": "125",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
-      },
-      {
-        "date": "2025-06-26",
-        "species": "Channel Catfish",
-        "quantity": "133",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-27-25/?wpdmdl=51906&refresh=69cb143260f181774916658"
-      },
-      {
-        "date": "2025-05-22",
-        "species": "Channel Catfish",
-        "quantity": "133",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-23-25/?wpdmdl=51189&refresh=69cb1435094611774916661"
-      },
-      {
-        "date": "2025-04-02",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1000",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-4-25/?wpdmdl=50750&refresh=69cb1437683cb1774916663"
-      },
-      {
-        "date": "2025-03-18",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "500",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
-      },
-      {
-        "date": "2025-03-04",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "495",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
-      },
-      {
-        "date": "2025-02-17",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "495",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-21-25/?wpdmdl=50600&refresh=69cb143772c0e1774916663"
-      },
-      {
-        "date": "2025-02-04",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "502",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
-      },
-      {
-        "date": "2025-01-22",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "499",
-        "length": "10.8",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
-      },
-      {
-        "date": "2025-01-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "520",
-        "length": "10.6",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
-      },
-      {
-        "date": "2024-12-16",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "376",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
-      },
-      {
-        "date": "2024-12-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "373",
-        "length": "10.6",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-6-24/?wpdmdl=50066&refresh=69cb143a0029d1774916666"
-      },
-      {
-        "date": "2024-11-20",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "375",
-        "length": "10.1",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
-      },
-      {
-        "date": "2024-11-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "510",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
-      },
-      {
-        "date": "2024-08-29",
-        "species": "Channel Catfish",
-        "quantity": "135",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-30-24/?wpdmdl=49268&refresh=69cb143eb87f11774916670"
-      },
-      {
-        "date": "2024-08-01",
-        "species": "Channel Catfish",
-        "quantity": "127",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670"
-      },
-      {
-        "date": "2024-07-02",
-        "species": "Channel Catfish",
-        "quantity": "128",
-        "length": "18.0",
-        "hatchery": "Private",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
-      },
-      {
-        "date": "2023-03-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "500",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-17-23/?wpdmdl=46212&refresh=69cb14412d23c1774916673"
-      },
-      {
-        "date": "2023-03-01",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "500",
-        "length": "10.0",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-3-23/?wpdmdl=45807&refresh=69cb1444836c41774916676"
-      },
-      {
-        "date": "2023-02-13",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "500",
-        "length": "10.3",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-17-23/?wpdmdl=45803&refresh=69cb14448672f1774916676"
-      }
-    ],
-    "coords": null
-  },
-  "Pecos River (South San Isidro To Villanueva": {
-    "records": [
-      {
-        "date": "2022-12-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "499",
-        "length": "10.1",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-9-22/?wpdmdl=45421&refresh=69cb14448c4a71774916676"
-      },
-      {
-        "date": "2022-11-02",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "509",
-        "length": "9.7",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-4-22/?wpdmdl=45328&refresh=69cb1444921161774916676"
-      },
-      {
-        "date": "2022-01-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "374",
-        "length": "10.8",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_07_22/?wpdmdl=44465&refresh=69cb145ebd4a91774916702"
-      },
-      {
-        "date": "2021-12-20",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "375",
-        "length": "10.2",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_23_21/?wpdmdl=44557&refresh=69cb144761b231774916679"
-      },
-      {
-        "date": "2021-12-07",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "375",
-        "length": "11.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_10_21/?wpdmdl=44553&refresh=69cb1447665d91774916679"
-      },
-      {
-        "date": "2021-11-16",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "374",
-        "length": "10.4",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_19_21/?wpdmdl=44547&refresh=69cb144a03a7a1774916682"
-      },
-      {
-        "date": "2021-11-02",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "501",
-        "length": "9.9",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_05_21/?wpdmdl=44543&refresh=69cb144a082971774916682"
-      }
-    ],
-    "coords": null
-  },
-  "Conservancy Park Lake (Aka Tingley": {
-    "records": [
-      {
-        "date": "2021-12-27",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "375",
-        "length": "10.2",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_30_21/?wpdmdl=44559&refresh=69cb14475f5b01774916679"
-      },
-      {
-        "date": "2021-12-14",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1516",
-        "length": "10.5",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12_17_21/?wpdmdl=44555&refresh=69cb14476414b1774916679"
-      },
-      {
-        "date": "2021-11-22",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "1426",
-        "length": "10.2",
-        "hatchery": "Lisboa Springs Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_24_21/?wpdmdl=44549&refresh=69cb144a014901774916682"
-      },
-      {
-        "date": "2021-09-20",
-        "species": "Largemouth Bass",
-        "quantity": "40",
-        "length": "14.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-09_24_21/?wpdmdl=44531&refresh=69cb144f13eb51774916687"
-      },
-      {
-        "date": "2021-07-20",
-        "species": "Largemouth Bass",
-        "quantity": "98",
-        "length": "14.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-07_23_21/?wpdmdl=44513&refresh=69cb145238d911774916690"
       }
     ],
     "coords": null

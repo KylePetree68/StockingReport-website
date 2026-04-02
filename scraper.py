@@ -357,6 +357,15 @@ def final_parser(text, report_url):
                 print(f"    Skipping malformed water name: {water_name!r}")
                 continue
 
+            # Normalize truncated water names to their canonical form
+            WATER_NAME_ALIASES = {
+                'Conservancy Park Lake (Aka Tingley': 'Conservancy Park Lake (Aka Tingley Beach)',
+                'Conservancy Park Lake (Aka Tingley Beach': 'Conservancy Park Lake (Aka Tingley Beach)',
+                'Pecos River (South San Isidro To Villanu': 'Pecos River (South San Isidro To Villanueva State Park)',
+                'Pecos River (South San Isidro To Villanueva': 'Pecos River (South San Isidro To Villanueva State Park)',
+            }
+            water_name = WATER_NAME_ALIASES.get(water_name, water_name)
+
             # Get hatchery name from ID map
             hatchery_name = hatchery_map.get(hatchery_id)
 

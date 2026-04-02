@@ -364,6 +364,7 @@ def final_parser(text, report_url):
                 'Pecos River (South San Isidro To Villanu': 'Pecos River (Vill Of Pecos - Villanueva)',
                 'Pecos River (South San Isidro To Villanueva': 'Pecos River (Vill Of Pecos - Villanueva)',
                 'Pecos River (South San Isidro To Villanueva State Park)': 'Pecos River (Vill Of Pecos - Villanueva)',
+                "Rock Lake Hatchery Kid'S Pond'S (Near Ro": 'Rock Lake Hatchery Kids Ponds (Near Roswell)',
             }
             water_name = WATER_NAME_ALIASES.get(water_name, water_name)
 

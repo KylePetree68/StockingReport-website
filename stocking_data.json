@@ -90545,6 +90545,278 @@
         "length": "10.0",
         "hatchery": "Rock Lake Trout Rearing Facility",
         "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-5-25/?wpdmdl=52434&refresh=6905355d04b271761949021"
+      },
+      {
+        "date": "2026-03-26",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-27-26/?wpdmdl=54352&refresh=69cc456a8cd261774994794"
+      },
+      {
+        "date": "2025-08-19",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.2",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-22-25/?wpdmdl=52365&refresh=69cb14325732d1774916658"
+      },
+      {
+        "date": "2025-08-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-8-25/?wpdmdl=52242&refresh=69cb1432598cb1774916658"
+      },
+      {
+        "date": "2025-07-29",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
+      },
+      {
+        "date": "2025-07-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-18-25/?wpdmdl=52012&refresh=69cb14325d4241774916658"
+      },
+      {
+        "date": "2025-06-30",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.4",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-3-25/?wpdmdl=51955&refresh=69cb14325fb061774916658"
+      },
+      {
+        "date": "2025-06-09",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.8",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-13-25/?wpdmdl=51853&refresh=69cb1435057b41774916661"
+      },
+      {
+        "date": "2025-05-30",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "50",
+        "length": "10.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-30-25/?wpdmdl=51275&refresh=69cb1435081d61774916661"
+      },
+      {
+        "date": "2025-05-13",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "19",
+        "length": "10.1",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-16-25/?wpdmdl=51114&refresh=69cb14350a8271774916661"
+      },
+      {
+        "date": "2025-04-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-18-25/?wpdmdl=50930&refresh=69cb14350f2721774916661"
+      },
+      {
+        "date": "2025-04-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.4",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-4-25/?wpdmdl=50750&refresh=69cb1437683cb1774916663"
+      },
+      {
+        "date": "2025-03-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.6",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
+      },
+      {
+        "date": "2025-03-19",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
+      },
+      {
+        "date": "2025-03-11",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
+      },
+      {
+        "date": "2025-03-03",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.2",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
+      },
+      {
+        "date": "2025-02-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "19",
+        "length": "10.5",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
+      },
+      {
+        "date": "2025-02-12",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.2",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
+      },
+      {
+        "date": "2025-02-06",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
+      },
+      {
+        "date": "2025-01-27",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.2",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
+      },
+      {
+        "date": "2025-01-23",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "10.6",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
+      },
+      {
+        "date": "2025-01-06",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "40",
+        "length": "10.1",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
+      },
+      {
+        "date": "2024-12-31",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "19",
+        "length": "10.5",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-3-25/?wpdmdl=50206&refresh=69cb1439edf2b1774916665"
+      },
+      {
+        "date": "2024-12-26",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "16",
+        "length": "10.4",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665"
+      },
+      {
+        "date": "2024-12-18",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "16",
+        "length": "10.3",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
+      },
+      {
+        "date": "2024-11-25",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "10",
+        "length": "10.9",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
+      },
+      {
+        "date": "2024-11-19",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "16",
+        "length": "12.3",
+        "hatchery": "Los Ojos Hatchery (Parkview)",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
+      },
+      {
+        "date": "2024-11-14",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "11.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
+      },
+      {
+        "date": "2024-11-05",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "11.9",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
+      },
+      {
+        "date": "2024-10-21",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "40",
+        "length": "11.2",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-25-24/?wpdmdl=49785&refresh=69cb143c5401d1774916668"
+      },
+      {
+        "date": "2024-09-30",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "21",
+        "length": "11.0",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-4-24/?wpdmdl=49629&refresh=69cb143c5770c1774916668"
+      },
+      {
+        "date": "2024-09-10",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "40",
+        "length": "10.4",
+        "hatchery": "Los Ojos Hatchery (Parkview)",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-13-24/?wpdmdl=49395&refresh=69cb143eb5e801774916670"
+      },
+      {
+        "date": "2024-08-15",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "40",
+        "length": "11.1",
+        "hatchery": "Rock Lake Trout Rearing Facility",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-16-24/?wpdmdl=49050&refresh=69cb143ebac841774916670"
+      },
+      {
+        "date": "2024-07-16",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "40",
+        "length": "10.7",
+        "hatchery": "Los Ojos Hatchery (Parkview)",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-19-24/?wpdmdl=48755&refresh=69cb143ebf9861774916670"
+      },
+      {
+        "date": "2024-06-11",
+        "species": "Triploid Rainbow Trout",
+        "quantity": "20",
+        "length": "10.4",
+        "hatchery": "Red River Trout Hatchery",
+        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-14-24/?wpdmdl=48302&refresh=69cb144125b381774916673"
       }
     ],
     "coords": null
@@ -91488,283 +91760,6 @@
         "length": "14.9",
         "hatchery": "Red River Trout Hatchery",
         "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10_09_20/?wpdmdl=44536&refresh=69cb144c723f81774916684"
-      }
-    ],
-    "coords": null
-  },
-  "Rock Lake Hatchery Kid'S Pond'S (Near Ro": {
-    "records": [
-      {
-        "date": "2026-03-26",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-27-26/?wpdmdl=54352&refresh=69cc456a8cd261774994794"
-      },
-      {
-        "date": "2025-08-19",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.2",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-22-25/?wpdmdl=52365&refresh=69cb14325732d1774916658"
-      },
-      {
-        "date": "2025-08-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-8-25/?wpdmdl=52242&refresh=69cb1432598cb1774916658"
-      },
-      {
-        "date": "2025-07-29",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
-      },
-      {
-        "date": "2025-07-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-18-25/?wpdmdl=52012&refresh=69cb14325d4241774916658"
-      },
-      {
-        "date": "2025-06-30",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.4",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-3-25/?wpdmdl=51955&refresh=69cb14325fb061774916658"
-      },
-      {
-        "date": "2025-06-09",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.8",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-13-25/?wpdmdl=51853&refresh=69cb1435057b41774916661"
-      },
-      {
-        "date": "2025-05-30",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "50",
-        "length": "10.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-30-25/?wpdmdl=51275&refresh=69cb1435081d61774916661"
-      },
-      {
-        "date": "2025-05-13",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "19",
-        "length": "10.1",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-16-25/?wpdmdl=51114&refresh=69cb14350a8271774916661"
-      },
-      {
-        "date": "2025-04-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-18-25/?wpdmdl=50930&refresh=69cb14350f2721774916661"
-      },
-      {
-        "date": "2025-04-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.4",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-4-25/?wpdmdl=50750&refresh=69cb1437683cb1774916663"
-      },
-      {
-        "date": "2025-03-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.6",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-28-25/?wpdmdl=50693&refresh=69cb14376b0e11774916663"
-      },
-      {
-        "date": "2025-03-19",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663"
-      },
-      {
-        "date": "2025-03-11",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-14-25/?wpdmdl=50633&refresh=69cb14376f0691774916663"
-      },
-      {
-        "date": "2025-03-03",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.2",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-3-7-25/?wpdmdl=50621&refresh=69cb1437704791774916663"
-      },
-      {
-        "date": "2025-02-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "19",
-        "length": "10.5",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663"
-      },
-      {
-        "date": "2025-02-12",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.2",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663"
-      },
-      {
-        "date": "2025-02-06",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663"
-      },
-      {
-        "date": "2025-01-27",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.2",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665"
-      },
-      {
-        "date": "2025-01-23",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "10.6",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665"
-      },
-      {
-        "date": "2025-01-06",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "40",
-        "length": "10.1",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-10-25/?wpdmdl=50261&refresh=69cb1439ecd181774916665"
-      },
-      {
-        "date": "2024-12-31",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "19",
-        "length": "10.5",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-1-3-25/?wpdmdl=50206&refresh=69cb1439edf2b1774916665"
-      },
-      {
-        "date": "2024-12-26",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "16",
-        "length": "10.4",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665"
-      },
-      {
-        "date": "2024-12-18",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "16",
-        "length": "10.3",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-12-20-24/?wpdmdl=50153&refresh=69cb1439f04781774916665"
-      },
-      {
-        "date": "2024-11-25",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "10",
-        "length": "10.9",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-27-24/?wpdmdl=50035&refresh=69cb143a014371774916666"
-      },
-      {
-        "date": "2024-11-19",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "16",
-        "length": "12.3",
-        "hatchery": "Los Ojos Hatchery (Parkview)",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-22-24/?wpdmdl=49965&refresh=69cb143c4f0821774916668"
-      },
-      {
-        "date": "2024-11-14",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "11.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-15-24/?wpdmdl=49873&refresh=69cb143c506f21774916668"
-      },
-      {
-        "date": "2024-11-05",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "11.9",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-8-24/?wpdmdl=49843&refresh=69cb143c51ad81774916668"
-      },
-      {
-        "date": "2024-10-21",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "40",
-        "length": "11.2",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-25-24/?wpdmdl=49785&refresh=69cb143c5401d1774916668"
-      },
-      {
-        "date": "2024-09-30",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "21",
-        "length": "11.0",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-4-24/?wpdmdl=49629&refresh=69cb143c5770c1774916668"
-      },
-      {
-        "date": "2024-09-10",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "40",
-        "length": "10.4",
-        "hatchery": "Los Ojos Hatchery (Parkview)",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-13-24/?wpdmdl=49395&refresh=69cb143eb5e801774916670"
-      },
-      {
-        "date": "2024-08-15",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "40",
-        "length": "11.1",
-        "hatchery": "Rock Lake Trout Rearing Facility",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-16-24/?wpdmdl=49050&refresh=69cb143ebac841774916670"
-      },
-      {
-        "date": "2024-07-16",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "40",
-        "length": "10.7",
-        "hatchery": "Los Ojos Hatchery (Parkview)",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-19-24/?wpdmdl=48755&refresh=69cb143ebf9861774916670"
-      },
-      {
-        "date": "2024-06-11",
-        "species": "Triploid Rainbow Trout",
-        "quantity": "20",
-        "length": "10.4",
-        "hatchery": "Red River Trout Hatchery",
-        "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-14-24/?wpdmdl=48302&refresh=69cb144125b381774916673"
       }
     ],
     "coords": null

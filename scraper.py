@@ -351,6 +351,12 @@ def final_parser(text, report_url):
 
             if not water_name: continue
 
+            # Reject malformed water names: starts with a number, or starts with
+            # a partial hatchery fragment like "(Parkview)", "Beach)", "State Park)"
+            if re.match(r'^\d|^\(|^[A-Za-z]+\)', water_name):
+                print(f"    Skipping malformed water name: {water_name!r}")
+                continue
+
             # Get hatchery name from ID map
             hatchery_name = hatchery_map.get(hatchery_id)
 

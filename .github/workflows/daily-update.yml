@@ -40,6 +40,10 @@ jobs:
         run: |
           python cleanup_data.py
 
+      - name: Apply verified GNIS coordinates
+        run: |
+          cd geocoding && python apply_coords.py
+
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"

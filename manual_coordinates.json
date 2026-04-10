@@ -198,5 +198,57 @@
     "Brazos River": {
         "lat": 36.708,
         "lon": -106.440
+    },
+    "Chama River (Abv El Vado)": {
+        "lat": 36.763034,
+        "lon": -106.665740
+    },
+    "Chama River (Blw El Vado)": {
+        "lat": 36.409000,
+        "lon": -106.571000
+    },
+    "Chama River (Below Abiquiu)": {
+        "lat": 36.163000,
+        "lon": -106.237000
+    },
+    "Pecos River (Cowles To Village Of Pecos)": {
+        "lat": 35.708350,
+        "lon": -105.682703
+    },
+    "Pecos River (Villanueva To I-40)": {
+        "lat": 35.178669,
+        "lon": -105.108803
+    },
+    "Pecos River (I-40 To Lake Sumner)": {
+        "lat": 34.773724,
+        "lon": -104.543537
+    },
+    "Pecos River (Lake Sumner To Roswell)": {
+        "lat": 34.011500,
+        "lon": -104.454500
+    },
+    "Red River (Abv Questa)": {
+        "lat": 36.706042,
+        "lon": -105.500058
+    },
+    "Red River (Below Questa)": {
+        "lat": 36.700000,
+        "lon": -105.640000
+    },
+    "Rio Grande (Gorge- Abv Pilar)": {
+        "lat": 36.530025,
+        "lon": -105.718943
+    },
+    "Rio Grande (Pilar To Cochiti Lake)": {
+        "lat": 35.874500,
+        "lon": -106.142444
+    },
+    "Rio Grande (Elephant Butte To Caballo)": {
+        "lat": 33.016711,
+        "lon": -107.249740
+    },
+    "San Juan River (Blw Quality)": {
+        "lat": 36.699675,
+        "lon": -107.981442
     }
 }

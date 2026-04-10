@@ -1,5 +1,137 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "buildCommand": null
+  "buildCommand": null,
+  "redirects": [
+    {
+      "source": "/public/waters/rock-lake-hatchery-kid-s-pond-s-near-ro.html",
+      "destination": "/public/waters/rock-lake-hatchery-kids-ponds-near-roswell.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conservancy-park-lake-aka-tingley.html",
+      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-south-san-isidro-to-villanu.html",
+      "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-south-san-isidro-to-villanueva.html",
+      "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-south-san-isidro-to-villanueva-state-park.html",
+      "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-100-00-grindstone-reservoir.html",
+      "destination": "/public/waters/grindstone-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-100-00-jal-lake.html",
+      "destination": "/public/waters/jal-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-270-00-snow-lake.html",
+      "destination": "/public/waters/snow-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-347-00-tiger-park-pond-aztec.html",
+      "destination": "/public/waters/tiger-park-pond-aztec.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-350-00-lake-roberts.html",
+      "destination": "/public/waters/lake-roberts.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-900-00-snow-lake.html",
+      "destination": "/public/waters/snow-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-2-120-00-tiger-park-pond-aztec.html",
+      "destination": "/public/waters/tiger-park-pond-aztec.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/1-435-00-trees-lake.html",
+      "destination": "/public/waters/trees-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/1-500-00-rio-grande-pilar-to-cochiti-lake.html",
+      "destination": "/public/waters/rio-grande-pilar-to-cochiti-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/1-518-00-el-rito-creek-nr-santa-rosa.html",
+      "destination": "/public/waters/el-rito-creek-nr-santa-rosa.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/1-930-00-seven-springs-brood-pond.html",
+      "destination": "/public/waters/seven-springs-brood-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/3-305-00-rio-grande-pilar-to-cochiti-lake.html",
+      "destination": "/public/waters/rio-grande-pilar-to-cochiti-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-facility-perch-lake-guadalupe-county.html",
+      "destination": "/public/waters/perch-lake-guadalupe-county.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-facility-ute-lake.html",
+      "destination": "/public/waters/ute-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-hatchery-conservancy-park-lake-aka-tingley.html",
+      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-hatchery-corrales-riverside-drain.html",
+      "destination": "/public/waters/corrales-riverside-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-hatchery-escondida-lake.html",
+      "destination": "/public/waters/escondida-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/beach-hatchery-jackson-lake.html",
+      "destination": "/public/waters/jackson-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conchas-lake-0-3-7-04-999-617-04-14-2021-state-ute-lake.html",
+      "destination": "/public/waters/ute-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/state-park-hatchery-peralta-drain.html",
+      "destination": "/public/waters/peralta-drain.html",
+      "permanent": true
+    }
+  ]
 }

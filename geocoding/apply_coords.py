@@ -90,8 +90,16 @@ APPROVED_SCORE_9 = {
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-with open('gnis_results.csv', newline='', encoding='utf-8') as f:
-    rows = {r['water_name']: r for r in csv.DictReader(f)}
+# GNIS results are only present locally (large file, not committed).
+# On the GitHub Actions runner this will be empty — that's fine, manual
+# coords still get applied and GNIS coords are already in stocking_data.json.
+import os
+if os.path.exists('gnis_results.csv'):
+    with open('gnis_results.csv', newline='', encoding='utf-8') as f:
+        rows = {r['water_name']: r for r in csv.DictReader(f)}
+else:
+    rows = {}
+    print("Note: gnis_results.csv not found — skipping GNIS matching (manual coords only)")
 
 with open('../stocking_data.json', encoding='utf-8') as f:
     data = json.load(f)

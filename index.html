@@ -545,30 +545,35 @@
         copyrightYearSpan.textContent = new Date().getFullYear();
         window.addEventListener('DOMContentLoaded', initializeApp);
 
-        // Hero image crossfade rotation
+        // Hero image crossfade rotation — { url, pos } for per-image crop control
         const heroImages = [
-            '/hero.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Eagle_Nest_Lake.JPG/1280px-Eagle_Nest_Lake.JPG',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Elephant_Butte_Reservoir_Panorama.jpg/1280px-Elephant_Butte_Reservoir_Panorama.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg/1280px-Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg',
+            { url: '/hero.jpg',                                                                                                                                                          pos: 'center 60%' },
+            { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Eagle_Nest_Lake%2C_NM_Picture_1969.jpg/1280px-Eagle_Nest_Lake%2C_NM_Picture_1969.jpg',                    pos: 'center 50%' },
+            { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Elephant_Butte_Reservoir_Panorama.jpg/1280px-Elephant_Butte_Reservoir_Panorama.jpg',                      pos: 'center 40%' },
+            { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg/1280px-Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg',      pos: 'center 55%' },
         ];
         // Preload all images so transitions are smooth
-        heroImages.forEach(url => { const img = new Image(); img.src = url; });
+        heroImages.forEach(({ url }) => { const img = new Image(); img.src = url; });
+
+        function applyHeroSlide(el, { url, pos }) {
+            el.style.backgroundImage = `url('${url}')`;
+            el.style.backgroundPosition = pos;
+        }
 
         let heroIdx = Math.floor(Math.random() * heroImages.length);
         let heroAOnTop = true;
         const heroSlideA = document.getElementById('hero-slide-a');
         const heroSlideB = document.getElementById('hero-slide-b');
-        heroSlideA.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
+        applyHeroSlide(heroSlideA, heroImages[heroIdx]);
 
         function rotateHero() {
             heroIdx = (heroIdx + 1) % heroImages.length;
             if (heroAOnTop) {
-                heroSlideB.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
+                applyHeroSlide(heroSlideB, heroImages[heroIdx]);
                 heroSlideB.style.opacity = '1';
                 heroSlideA.style.opacity = '0';
             } else {
-                heroSlideA.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
+                applyHeroSlide(heroSlideA, heroImages[heroIdx]);
                 heroSlideA.style.opacity = '1';
                 heroSlideB.style.opacity = '0';
             }

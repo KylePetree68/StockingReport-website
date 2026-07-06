@@ -148,7 +148,7 @@
              role="img"
              aria-label="New Mexico fishing lakes — Navajo Lake, Eagle Nest Lake, Elephant Butte Reservoir, and Williams Lake">
             <!-- Crossfade image layers -->
-            <div id="hero-slide-a" style="position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('/hero.jpg');opacity:1;transition:opacity 1.5s ease-in-out;"></div>
+            <div id="hero-slide-a" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:1;transition:opacity 1.5s ease-in-out;"></div>
             <div id="hero-slide-b" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease-in-out;"></div>
             <!-- Permanent dark overlay -->
             <div style="position:absolute;inset:0;background:rgba(10,30,90,0.48);"></div>
@@ -555,10 +555,11 @@
         // Preload all images so transitions are smooth
         heroImages.forEach(url => { const img = new Image(); img.src = url; });
 
-        let heroIdx = 0;
+        let heroIdx = Math.floor(Math.random() * heroImages.length);
         let heroAOnTop = true;
         const heroSlideA = document.getElementById('hero-slide-a');
         const heroSlideB = document.getElementById('hero-slide-b');
+        heroSlideA.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
 
         function rotateHero() {
             heroIdx = (heroIdx + 1) % heroImages.length;

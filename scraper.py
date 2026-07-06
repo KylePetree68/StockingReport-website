@@ -21,6 +21,7 @@ TEMPLATE_FILE = "template.html"
 OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 MANUAL_COORDS_FILE = "manual_coordinates.json"
+WATER_IMAGES_FILE  = "water_images.json"
 
 def validate_url(url, timeout=5):
     """
@@ -936,6 +937,35 @@ def generate_regulation_html(water_name, regulations_data):
 
     return ''.join(html_parts)
 
+def generate_water_image_html(water_name, water_images):
+    """
+    Returns a narrow banner HTML block if an approved image exists for this water,
+    otherwise returns an empty string so the page looks identical to today.
+    """
+    entry = water_images.get(water_name)
+    if not entry or not entry.get("image"):
+        return ""
+    img = entry["image"]
+    url = img.get("url", "")
+    attribution = img.get("attribution", "Wikimedia Commons")
+    if not url:
+        return ""
+    # Strip any HTML tags from attribution (Wikimedia sometimes returns markup)
+    attribution = re.sub(r'<[^>]+>', '', attribution).strip()
+    # Escape any double-quotes in attribution for HTML attribute safety
+    attribution_safe = attribution.replace('"', '&quot;')
+    return (
+        f'<div class="mb-6 rounded-lg overflow-hidden shadow" '
+        f'style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), '
+        f'url(\'{url}\') center/cover no-repeat; height: 160px;" '
+        f'role="img" '
+        f'aria-label="{water_name}, New Mexico">'
+        f'<div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;">'
+        f'<span style="color:rgba(255,255,255,0.7);font-size:0.65rem;">'
+        f'{attribution_safe}'
+        f'</span></div></div>'
+    )
+
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
@@ -972,6 +1002,17 @@ def generate_static_pages(data):
             print(f"Loaded booklet species data for {len(water_species_data)} water bodies.")
         except Exception as e:
             print(f"Warning: Could not load water_species.json: {e}")
+
+    # Load water images
+    water_images = {}
+    if os.path.exists(WATER_IMAGES_FILE):
+        try:
+            with open(WATER_IMAGES_FILE, 'r', encoding='utf-8') as f:
+                water_images = json.load(f)
+            img_count = sum(1 for v in water_images.values() if v.get("image"))
+            print(f"Loaded water images for {img_count} water bodies.")
+        except Exception as e:
+            print(f"Warning: Could not load water_images.json: {e}")
 
     # Load consumption advisory page numbers
     consumption_advisories = {}
@@ -1064,10 +1105,13 @@ def generate_static_pages(data):
         page_url = f"https://stockingreport.com/public/waters/{filename}"
         schema_org = generate_schema_org(water_name, summary_stats, coords, page_url)
 
+        water_image_html = generate_water_image_html(water_name, water_images)
+
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
         page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
+        page_html = page_html.replace("{{WATER_IMAGE}}", water_image_html)
         page_html = page_html.replace("{{META_DESCRIPTION}}", meta_description)
         page_html = page_html.replace("{{PAGE_URL}}", page_url)
         page_html = page_html.replace("{{SCHEMA_ORG}}", schema_org)

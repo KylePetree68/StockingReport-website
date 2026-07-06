@@ -70,7 +70,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
-            background-image: linear-gradient(rgba(240, 244, 248, 0.9), rgba(240, 244, 248, 0.9)), url('https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=2070');
+            background-image: linear-gradient(rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.6)), url('https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=2070');
             background-attachment: fixed;
             background-size: cover;
         }
@@ -143,6 +143,34 @@
             </div>
         </header>
 
+        <!-- Hero Image & Stats Banner -->
+        <div class="mb-8 rounded-xl overflow-hidden shadow-lg relative bg-blue-900">
+            <img src="https://images.unsplash.com/photo-1541783244259-83568194458f?q=80&w=1200&auto=format&fit=crop"
+                 alt="New Mexico mountain lake at sunrise — NM Stocking Report tracks fish stocking data at 170+ waters statewide"
+                 class="w-full h-44 md:h-56 object-cover opacity-50">
+            <div class="absolute inset-0 flex items-center justify-around px-4 text-center text-white">
+                <div class="px-2">
+                    <div class="text-3xl md:text-4xl font-bold drop-shadow-lg">170+</div>
+                    <div class="text-xs md:text-sm uppercase tracking-widest drop-shadow">Waters</div>
+                </div>
+                <div class="hidden sm:block w-px h-10 bg-white opacity-30"></div>
+                <div class="px-2">
+                    <div class="text-3xl md:text-4xl font-bold drop-shadow-lg">5,000+</div>
+                    <div class="text-xs md:text-sm uppercase tracking-widest drop-shadow">Records</div>
+                </div>
+                <div class="hidden sm:block w-px h-10 bg-white opacity-30"></div>
+                <div class="px-2">
+                    <div class="text-3xl md:text-4xl font-bold drop-shadow-lg">Weekly</div>
+                    <div class="text-xs md:text-sm uppercase tracking-widest drop-shadow">Updates</div>
+                </div>
+                <div class="hidden sm:block w-px h-10 bg-white opacity-30"></div>
+                <div class="px-2">
+                    <div class="text-3xl md:text-4xl font-bold drop-shadow-lg">Since '19</div>
+                    <div class="text-xs md:text-sm uppercase tracking-widest drop-shadow">History</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Navigation -->
         <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
             <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
@@ -159,7 +187,9 @@
         </nav>
 
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8" style="position: relative; z-index: 100;">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Search for a Body of Water</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                <svg class="inline w-6 h-6 mr-2 text-blue-600 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>Search for a Body of Water
+            </h2>
             <label for="water-search-input" class="block text-base font-medium text-gray-700 mb-2">Find stocking reports for any water in New Mexico:</label>
             <div class="relative" id="searchable-dropdown">
                 <input type="text" id="water-search-input" class="w-full p-4 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search for a water..." disabled>
@@ -169,8 +199,14 @@
         </section>
 
         <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Explore the Map</h2>
-            <p class="text-gray-600 mb-4 text-sm italic">Pins show general water locations — not access points or boat ramps. Click a marker to view stocking details.</p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                <svg class="inline w-6 h-6 mr-2 text-blue-600 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>Explore the Map
+            </h2>
+            <p class="text-gray-600 mb-2 text-sm italic">Markers show general water locations — not access points or boat ramps. Click to view stocking details.</p>
+            <p class="text-xs text-gray-500 mb-4">
+                <span class="inline-block w-3 h-3 rounded-full bg-green-600 border-2 border-white shadow mr-1 align-middle"></span>Stocked in last 30 days&ensp;
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-800 border-2 border-white shadow mr-1 align-middle"></span>Older data
+            </p>
 
             <!-- Map skeleton loader -->
             <div id="map-skeleton" class="skeleton skeleton-map"></div>
@@ -294,13 +330,27 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
+            const now = new Date();
             for (const waterName in stockingData) {
                 const data = stockingData[waterName];
                 if (data.coords && data.coords.lat && data.coords.lon) {
                     const url = getWaterUrl(waterName);
-                    L.marker([data.coords.lat, data.coords.lon])
-                     .addTo(map)
-                     .bindPopup(`<b><a href="${url}" class="text-blue-600 hover:underline">${waterName}</a></b>`);
+                    let isRecent = false;
+                    if (data.records && data.records.length > 0) {
+                        const latestDate = parseDateAsLocal(data.records[0].date);
+                        const daysSince = Math.floor((now - latestDate) / (1000 * 60 * 60 * 24));
+                        isRecent = daysSince <= 30;
+                    }
+                    L.circleMarker([data.coords.lat, data.coords.lon], {
+                        radius: isRecent ? 8 : 6,
+                        fillColor: isRecent ? '#16a34a' : '#1e40af',
+                        color: '#ffffff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.85
+                    })
+                    .addTo(map)
+                    .bindPopup(`<b><a href="${url}">${waterName}</a></b>${isRecent ? '<br><small style="color:#16a34a">&#10003; Recently stocked</small>' : ''}`);
                 }
             }
         }
@@ -333,7 +383,7 @@
             const startDateString = sevenDaysAgo.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' });
             const endDateString = latestDate.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' });
 
-            initialMessageTitle.textContent = `Most Recent Stockings (${startDateString} - ${endDateString})`;
+            initialMessageTitle.innerHTML = `<svg class="inline w-5 h-5 mr-1.5 -mt-0.5 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 12L5 7V17L2 12Z"/><path d="M5 12C8 6 19 6 22 12C19 18 8 18 5 12Z"/><circle cx="18" cy="10" r="1.5" fill="white"/></svg>Most Recent Stockings (${startDateString} &ndash; ${endDateString})`;
             initialMessageBody.innerHTML = '';
 
             if (sortedWaters.length === 0) {
@@ -342,14 +392,32 @@
             }
 
             const summaryList = document.createElement('div');
-            summaryList.className = 'columns-2 md:columns-3 gap-x-6';
+            summaryList.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3';
 
             sortedWaters.forEach(name => {
-                const link = document.createElement('a');
-                link.href = getWaterUrl(name);
-                link.textContent = name;
-                link.className = 'block text-blue-600 hover:underline py-1';
-                summaryList.appendChild(link);
+                const recentRecords = stockingData[name].records.filter(r => {
+                    const d = parseDateAsLocal(r.date);
+                    return d >= sevenDaysAgo && d <= latestDate;
+                });
+                const speciesSet = [...new Set(recentRecords.map(r => r.species))];
+                const totalQty = recentRecords.reduce((sum, r) => sum + (parseInt(r.quantity) || 0), 0);
+                const latestRecord = recentRecords[0];
+                const dateStr = latestRecord
+                    ? parseDateAsLocal(latestRecord.date).toLocaleDateString('en-US', {timeZone: 'UTC', month: 'short', day: 'numeric'})
+                    : '';
+                const speciesDisplay = speciesSet.length > 0
+                    ? (speciesSet.length === 1 ? speciesSet[0] : `${speciesSet[0]} +${speciesSet.length - 1} more`)
+                    : '';
+
+                const card = document.createElement('a');
+                card.href = getWaterUrl(name);
+                card.className = 'block p-3 bg-blue-50 hover:bg-blue-100 border border-blue-100 rounded-lg transition-colors group';
+                card.innerHTML = `
+                    <div class="font-semibold text-blue-800 group-hover:text-blue-900 text-sm leading-snug">${name}</div>
+                    ${totalQty > 0 ? `<div class="text-xs text-gray-600 mt-1">${totalQty.toLocaleString()} ${speciesDisplay}</div>` : ''}
+                    ${dateStr ? `<div class="text-xs text-gray-400 mt-0.5">${dateStr}</div>` : ''}
+                `;
+                summaryList.appendChild(card);
             });
 
             initialMessageBody.appendChild(summaryList);

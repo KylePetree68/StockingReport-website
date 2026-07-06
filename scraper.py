@@ -948,6 +948,7 @@ def generate_water_image_html(water_name, water_images):
     img = entry["image"]
     url = img.get("url", "")
     attribution = img.get("attribution", "Wikimedia Commons")
+    position = img.get("position", "center 50%")
     if not url:
         return ""
     # Strip any HTML tags from attribution (Wikimedia sometimes returns markup)
@@ -957,7 +958,7 @@ def generate_water_image_html(water_name, water_images):
     return (
         f'<div class="mb-6 rounded-lg overflow-hidden shadow" '
         f'style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), '
-        f'url(\'{url}\') center/cover no-repeat; height: 160px;" '
+        f'url(\'{url}\') {position}/cover no-repeat; height: 160px;" '
         f'role="img" '
         f'aria-label="{water_name}, New Mexico">'
         f'<div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;">'

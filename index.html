@@ -143,12 +143,17 @@
             </div>
         </header>
 
-        <!-- Hero Image & Stats Banner -->
-        <div class="mb-8 rounded-xl overflow-hidden shadow-lg relative"
-             style="background: linear-gradient(rgba(10,30,90,0.48), rgba(10,30,90,0.48)), url('/hero.jpg') center/cover no-repeat;"
+        <!-- Hero Image & Stats Banner (crossfade slideshow) -->
+        <div id="hero-banner" class="mb-8 rounded-xl overflow-hidden shadow-lg relative"
              role="img"
-             aria-label="Navajo Lake, New Mexico — rocky shoreline and turquoise water at one of NM's premier fishing destinations">
-            <div class="flex items-center justify-around px-4 py-14 md:py-16 text-center text-white">
+             aria-label="New Mexico fishing lakes — Navajo Lake, Eagle Nest Lake, Elephant Butte Reservoir, and Williams Lake">
+            <!-- Crossfade image layers -->
+            <div id="hero-slide-a" style="position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('/hero.jpg');opacity:1;transition:opacity 1.5s ease-in-out;"></div>
+            <div id="hero-slide-b" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease-in-out;"></div>
+            <!-- Permanent dark overlay -->
+            <div style="position:absolute;inset:0;background:rgba(10,30,90,0.48);"></div>
+            <!-- Stats content -->
+            <div class="relative flex items-center justify-around px-4 py-14 md:py-16 text-center text-white">
                 <div class="px-2">
                     <div class="text-3xl md:text-4xl font-bold drop-shadow-lg">170+</div>
                     <div class="text-xs md:text-sm uppercase tracking-widest drop-shadow">Waters</div>
@@ -539,6 +544,37 @@
 
         copyrightYearSpan.textContent = new Date().getFullYear();
         window.addEventListener('DOMContentLoaded', initializeApp);
+
+        // Hero image crossfade rotation
+        const heroImages = [
+            '/hero.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Eagle_Nest_Lake.JPG/1200px-Eagle_Nest_Lake.JPG',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Elephant_Butte_Reservoir_Panorama.jpg/1200px-Elephant_Butte_Reservoir_Panorama.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg/1200px-Williams_Lake_in_New_Mexico%2C_as_of_2024.jpg',
+        ];
+        // Preload all images so transitions are smooth
+        heroImages.forEach(url => { const img = new Image(); img.src = url; });
+
+        let heroIdx = 0;
+        let heroAOnTop = true;
+        const heroSlideA = document.getElementById('hero-slide-a');
+        const heroSlideB = document.getElementById('hero-slide-b');
+
+        function rotateHero() {
+            heroIdx = (heroIdx + 1) % heroImages.length;
+            if (heroAOnTop) {
+                heroSlideB.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
+                heroSlideB.style.opacity = '1';
+                heroSlideA.style.opacity = '0';
+            } else {
+                heroSlideA.style.backgroundImage = `url('${heroImages[heroIdx]}')`;
+                heroSlideA.style.opacity = '1';
+                heroSlideB.style.opacity = '0';
+            }
+            heroAOnTop = !heroAOnTop;
+        }
+
+        setInterval(rotateHero, 7000);
     </script>
 </body>
 </html>

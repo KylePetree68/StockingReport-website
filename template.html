@@ -238,20 +238,21 @@
 
             optionsContainer.classList.remove('hidden');
 
-            // Use Fuse.js for fuzzy search
+            // Use Fuse.js for fuzzy search — results are ordered by score (best first)
             const results = fuse.search(query);
-            const matchedNames = new Set(results.map(result => result.item.name));
+            const allOptions = Array.from(optionsContainer.getElementsByTagName('div'));
 
-            // Show/hide options based on fuzzy search results
-            const options = optionsContainer.getElementsByTagName('div');
-            for (let i = 0; i < options.length; i++) {
-                const waterName = options[i].textContent;
-                if (matchedNames.has(waterName)) {
-                    options[i].style.display = "";
-                } else {
-                    options[i].style.display = "none";
+            // Hide all first
+            allOptions.forEach(opt => { opt.style.display = "none"; });
+
+            // Show matched options in Fuse.js score order by moving them to end of container
+            results.forEach(result => {
+                const opt = allOptions.find(o => o.textContent === result.item.name);
+                if (opt) {
+                    opt.style.display = "";
+                    optionsContainer.appendChild(opt);
                 }
-            }
+            });
 
             clearSelection();
         });

@@ -187,8 +187,8 @@
 
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Conchas Lake</h2>
-            <div class="mb-6 rounded-lg overflow-hidden shadow" style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Conchas_Lake%2C_NM.jpg/1280px-Conchas_Lake%2C_NM.jpg') center/cover no-repeat; height: 160px;" role="img" aria-label="Conchas Lake, New Mexico"><div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;"><span style="color:rgba(255,255,255,0.7);font-size:0.65rem;">Lieff222 / Wikimedia Commons (CC BY-SA 4.0)</span></div></div>
-            <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-yellow-100 text-yellow-800 border-yellow-300">Stocked 19 days ago — Fish Are Active</div><p class="text-gray-700 mt-1"><strong>10</strong> stockings in the past 6 months &nbsp;·&nbsp; <strong>1,940,563 fish</strong> (Walleye and Largemouth Bass) &nbsp;·&nbsp; avg <strong>0.9 in.</strong></p><p class="text-sm text-gray-400 mt-2 pt-2 border-t border-gray-200">~76-day intervals &nbsp;·&nbsp; Peak: <strong>Apr, Jul, Oct</strong> &nbsp;·&nbsp; 42 stockings since 2020 &nbsp;·&nbsp; 8,917,031 fish</p><div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Walleye</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Bluegill ✦</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Smallmouth Bass ✦</span></div><p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p><p class="text-xs mt-2"><a href="https://wildlife.dgf.nm.gov/wp-content/uploads/2026/03/2026-2027-FISH-RIB_Online.pdf#page=42" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p></div></div>
+            <div class="mb-6 rounded-lg overflow-hidden shadow" style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Conchas_Lake%2C_NM.jpg/1280px-Conchas_Lake%2C_NM.jpg') center 50%/cover no-repeat; height: 160px;" role="img" aria-label="Conchas Lake, New Mexico"><div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;"><span style="color:rgba(255,255,255,0.7);font-size:0.65rem;">Lieff222 / Wikimedia Commons (CC BY-SA 4.0)</span></div></div>
+            <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-yellow-100 text-yellow-800 border-yellow-300">Stocked 20 days ago — Fish Are Active</div><p class="text-gray-700 mt-1"><strong>10</strong> stockings in the past 6 months &nbsp;·&nbsp; <strong>1,940,563 fish</strong> (Walleye and Largemouth Bass) &nbsp;·&nbsp; avg <strong>0.9 in.</strong></p><p class="text-sm text-gray-400 mt-2 pt-2 border-t border-gray-200">~76-day intervals &nbsp;·&nbsp; Peak: <strong>Apr, Jul, Oct</strong> &nbsp;·&nbsp; 42 stockings since 2020 &nbsp;·&nbsp; 8,917,031 fish</p><div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Walleye</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Bluegill ✦</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Smallmouth Bass ✦</span></div><p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p><p class="text-xs mt-2"><a href="https://wildlife.dgf.nm.gov/wp-content/uploads/2026/03/2026-2027-FISH-RIB_Online.pdf#page=42" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p></div></div>
             
 
             <!-- Contextual gear tip -->
@@ -646,20 +646,21 @@
 
             optionsContainer.classList.remove('hidden');
 
-            // Use Fuse.js for fuzzy search
+            // Use Fuse.js for fuzzy search — results are ordered by score (best first)
             const results = fuse.search(query);
-            const matchedNames = new Set(results.map(result => result.item.name));
+            const allOptions = Array.from(optionsContainer.getElementsByTagName('div'));
 
-            // Show/hide options based on fuzzy search results
-            const options = optionsContainer.getElementsByTagName('div');
-            for (let i = 0; i < options.length; i++) {
-                const waterName = options[i].textContent;
-                if (matchedNames.has(waterName)) {
-                    options[i].style.display = "";
-                } else {
-                    options[i].style.display = "none";
+            // Hide all first
+            allOptions.forEach(opt => { opt.style.display = "none"; });
+
+            // Show matched options in Fuse.js score order by moving them to end of container
+            results.forEach(result => {
+                const opt = allOptions.find(o => o.textContent === result.item.name);
+                if (opt) {
+                    opt.style.display = "";
+                    optionsContainer.appendChild(opt);
                 }
-            }
+            });
 
             clearSelection();
         });

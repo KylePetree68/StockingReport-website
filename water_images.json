@@ -148,9 +148,19 @@
     "image": null
   },
   "Bottomless Lakes": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 30,
+    "image": {
+      "url": "https://live.staticflickr.com/152/335023735_e13798a2d4_b.jpg",
+      "page_title": "bottomless lakes state park souther new mexico 100ft deep no swimming",
+      "page_url": "https://www.flickr.com/photos/19429588@N00/335023735",
+      "attribution": "AndrewEick / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 683,
+      "score": 30,
+      "position": "center 52%"
+    }
   },
   "Brantley Dam": {
     "confidence": "high",
@@ -213,19 +223,49 @@
     "image": null
   },
   "Chama River (Abv El Vado)": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 36,
+    "image": {
+      "url": "https://live.staticflickr.com/3083/3207179648_6f173b9189_b.jpg",
+      "page_title": "Confluence 3:Chama River, New Mexico",
+      "page_url": "https://www.flickr.com/photos/79394475@N00/3207179648",
+      "attribution": "Digapony / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 769,
+      "score": 36,
+      "position": "center 46%"
+    }
   },
   "Chama River (Below Abiquiu)": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 36,
+    "image": {
+      "url": "https://live.staticflickr.com/3083/3207179648_6f173b9189_b.jpg",
+      "page_title": "Confluence 3:Chama River, New Mexico",
+      "page_url": "https://www.flickr.com/photos/79394475@N00/3207179648",
+      "attribution": "Digapony / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 769,
+      "score": 36,
+      "position": "center 46%"
+    }
   },
   "Chama River (Blw El Vado)": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 36,
+    "image": {
+      "url": "https://live.staticflickr.com/3083/3207179648_6f173b9189_b.jpg",
+      "page_title": "Confluence 3:Chama River, New Mexico",
+      "page_url": "https://www.flickr.com/photos/79394475@N00/3207179648",
+      "attribution": "Digapony / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 769,
+      "score": 36,
+      "position": "center 46%"
+    }
   },
   "Chaparral Park Lake": {
     "confidence": "none",
@@ -444,9 +484,19 @@
     "image": null
   },
   "Gila River (East, Middle, West Forks)": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 22,
+    "image": {
+      "url": "https://live.staticflickr.com/3840/14903023477_f46cabb90c_b.jpg",
+      "page_title": "Good Morning Gila River",
+      "page_url": "https://www.flickr.com/photos/37996646802@N01/14903023477",
+      "attribution": "cogdogblog / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 683,
+      "score": 22,
+      "position": "center 60%"
+    }
   },
   "Gilita Creek": {
     "confidence": "none",
@@ -620,9 +670,19 @@
     }
   },
   "Lake Roberts": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 30,
+    "image": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Lake_Roberts_%2841759435714%29.jpg",
+      "page_title": "Lake Roberts (41759435714)",
+      "page_url": "https://commons.wikimedia.org/w/index.php?curid=98376775",
+      "attribution": "Gila National Forest / Wikimedia (CC BY-SA 2.0)",
+      "license": "by-sa 2.0",
+      "width": 3088,
+      "height": 2056,
+      "score": 30,
+      "position": "center 46%"
+    }
   },
   "Lake Roberts Glenwood Trout Hatchery": {
     "confidence": "none",
@@ -694,9 +754,19 @@
     "note": "aspidoscelis photo showed conifer forest; name search only finds Stanislaus/CA (wrong lake)"
   },
   "Monastery Lake": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 31,
+    "image": {
+      "url": "https://live.staticflickr.com/2005/5773213472_58c5bc1a21_b.jpg",
+      "page_title": "Monastery Lake - Pecos, NM",
+      "page_url": "https://www.flickr.com/photos/27698646@N04/5773213472",
+      "attribution": "Artotem / Flickr (CC BY 2.0)",
+      "license": "by 2.0",
+      "width": 1024,
+      "height": 682,
+      "score": 31,
+      "position": "center 55%"
+    }
   },
   "Mora (Pecos River Drainage)": {
     "confidence": "high",

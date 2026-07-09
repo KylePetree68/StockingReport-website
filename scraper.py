@@ -949,12 +949,24 @@ def generate_water_image_html(water_name, water_images):
     url = img.get("url", "")
     attribution = img.get("attribution", "Wikimedia Commons")
     position = img.get("position", "center 50%")
+    page_url = img.get("page_url", "")
     if not url:
         return ""
     # Strip any HTML tags from attribution (Wikimedia sometimes returns markup)
     attribution = re.sub(r'<[^>]+>', '', attribution).strip()
     # Escape any double-quotes in attribution for HTML attribute safety
     attribution_safe = attribution.replace('"', '&quot;')
+    # CC/Flickr licenses require linking back to the source page. If we have one,
+    # render the credit as a link; otherwise plain text (Wikimedia dam photos etc.).
+    if page_url:
+        page_url_safe = page_url.replace('"', '&quot;')
+        credit = (
+            f'<a href="{page_url_safe}" target="_blank" rel="noopener noreferrer nofollow" '
+            f'style="color:rgba(255,255,255,0.8);text-decoration:underline;">'
+            f'{attribution_safe}</a>'
+        )
+    else:
+        credit = attribution_safe
     return (
         f'<div class="mb-6 rounded-lg overflow-hidden shadow" '
         f'style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), '
@@ -963,7 +975,7 @@ def generate_water_image_html(water_name, water_images):
         f'aria-label="{water_name}, New Mexico">'
         f'<div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;">'
         f'<span style="color:rgba(255,255,255,0.7);font-size:0.65rem;">'
-        f'{attribution_safe}'
+        f'{credit}'
         f'</span></div></div>'
     )
 

@@ -81,16 +81,10 @@
     "image": null
   },
   "Bill Evans Lake": {
-    "confidence": "high",
-    "score": 77,
-    "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Near_Bill_Evans_Lake_-_Flickr_-_aspidoscelis.jpg/1280px-Near_Bill_Evans_Lake_-_Flickr_-_aspidoscelis.jpg",
-      "page_title": "File:Near Bill Evans Lake - Flickr - aspidoscelis.jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/26246711@N00\">Patrick Alexander</a> from Las Cruces, NM / Wikimedia Commons (CC0)",
-      "width": 3600,
-      "height": 2400,
-      "score": 77
-    }
+    "confidence": "none",
+    "score": 0,
+    "image": null,
+    "note": "aspidoscelis botanical photo — scrubland, no water; no NM replacement on Commons"
   },
   "Black Canyon": {
     "confidence": "none",
@@ -193,16 +187,10 @@
     }
   },
   "Canjilon Lakes": {
-    "confidence": "high",
-    "score": 34,
-    "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Near_Canjilon_Creek_-_Flickr_-_aspidoscelis.jpg/1280px-Near_Canjilon_Creek_-_Flickr_-_aspidoscelis.jpg",
-      "page_title": "File:Near Canjilon Creek - Flickr - aspidoscelis.jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/26246711@N00\">Patrick Alexander</a> from Las Cruces, NM / Wikimedia Commons (CC0)",
-      "width": 3600,
-      "height": 2400,
-      "score": 34
-    }
+    "confidence": "none",
+    "score": 0,
+    "image": null,
+    "note": "aspidoscelis botanical photo — brush hillside, no water; no replacement on Commons"
   },
   "Carlsbad Municipal Lake": {
     "confidence": "none",
@@ -538,16 +526,10 @@
     "image": null
   },
   "Hopewell Lake": {
-    "confidence": "high",
-    "score": 54,
-    "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Near_Hopewell_Lake_-_Flickr_-_aspidoscelis.jpg/1280px-Near_Hopewell_Lake_-_Flickr_-_aspidoscelis.jpg",
-      "page_title": "File:Near Hopewell Lake - Flickr - aspidoscelis.jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/26246711@N00\">Patrick Alexander</a> from Las Cruces, NM / Wikimedia Commons (CC0)",
-      "width": 3600,
-      "height": 2400,
-      "score": 54
-    }
+    "confidence": "none",
+    "score": 0,
+    "image": null,
+    "note": "aspidoscelis photo showed aspen forest; name search only finds Hopewell Lake PA (wrong lake)"
   },
   "Horseshoe Lake": {
     "confidence": "none",
@@ -680,16 +662,10 @@
     "image": null
   },
   "Lost Lake": {
-    "confidence": "high",
-    "score": 30,
-    "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/North-northeast_of_Wheeler_Peak_-_Flickr_-_aspidoscelis_%281%29.jpg/1280px-North-northeast_of_Wheeler_Peak_-_Flickr_-_aspidoscelis_%281%29.jpg",
-      "page_title": "File:North-northeast of Wheeler Peak - Flickr - aspidoscelis (1).jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/26246711@N00\">Patrick Alexander</a> from Las Cruces, NM / Wikimedia Commons (CC0)",
-      "width": 3600,
-      "height": 2400,
-      "score": 30
-    }
+    "confidence": "none",
+    "score": 0,
+    "image": null,
+    "note": "aspidoscelis photo showed alpine slope; name search only finds Lost Lakes CO (wrong lake)"
   },
   "Lower Trampas (Aka Lake Ruth)": {
     "confidence": "none",
@@ -712,16 +688,10 @@
     "image": null
   },
   "Middle Fork Lake": {
-    "confidence": "high",
-    "score": 22,
-    "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/East-northeast_of_Wheeler_Peak_-_Flickr_-_aspidoscelis_%282%29.jpg/1280px-East-northeast_of_Wheeler_Peak_-_Flickr_-_aspidoscelis_%282%29.jpg",
-      "page_title": "File:East-northeast of Wheeler Peak - Flickr - aspidoscelis (2).jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/26246711@N00\">Patrick Alexander</a> from Las Cruces, NM / Wikimedia Commons (CC0)",
-      "width": 3600,
-      "height": 2400,
-      "score": 22
-    }
+    "confidence": "none",
+    "score": 0,
+    "image": null,
+    "note": "aspidoscelis photo showed conifer forest; name search only finds Stanislaus/CA (wrong lake)"
   },
   "Monastery Lake": {
     "confidence": "none",
@@ -934,7 +904,7 @@
     "score": 27,
     "image": {
       "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Rio_San_Antonio_%28Colorado%E2%80%93New_Mexico%29.JPG/1280px-Rio_San_Antonio_%28Colorado%E2%80%93New_Mexico%29.JPG",
-      "page_title": "File:Rio San Antonio (Colorado\u2013New Mexico).JPG",
+      "page_title": "File:Rio San Antonio (Colorado–New Mexico).JPG",
       "attribution": "<a href=\"//commons.wikimedia.org/wiki/User:Jeffrey_Beall\" title=\"User:Jeffrey Beall\">Jeffrey Beall</a> / Wikimedia Commons (CC BY 4.0)",
       "width": 5594,
       "height": 3465,

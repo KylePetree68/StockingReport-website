@@ -12030,6 +12030,14 @@
     "Lake Van": {
         "records": [
             {
+                "date": "2026-07-09",
+                "species": "Channel Catfish",
+                "quantity": "174",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-30",
                 "species": "Channel Catfish",
                 "quantity": "315",
@@ -39768,6 +39776,14 @@
     "Harry Mcadams Park Pond": {
         "records": [
             {
+                "date": "2026-07-09",
+                "species": "Channel Catfish",
+                "quantity": "180",
+                "length": "18.0",
+                "hatchery": "Private",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-03-24",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "100",
@@ -41316,6 +41332,14 @@
     },
     "Lake Maloya": {
         "records": [
+            {
+                "date": "2026-07-09",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "4320",
+                "length": "10.1",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-04",
                 "species": "Triploid Rainbow Trout",
@@ -50256,6 +50280,14 @@
     "Grindstone Reservoir": {
         "records": [
             {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1499",
+                "length": "10.3",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-29",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "1500",
@@ -58281,6 +58313,14 @@
     "San Juan River (Blw Quality)": {
         "records": [
             {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "3080",
+                "length": "11.7",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-16",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "2310",
@@ -62890,6 +62930,22 @@
     },
     "Monastery Lake": {
         "records": [
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "76",
+                "length": "16.9",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1718",
+                "length": "10.3",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-07-02",
                 "species": "Triploid Rainbow Trout",
@@ -68015,6 +68071,22 @@
     "Morphy Reservoir": {
         "records": [
             {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1355",
+                "length": "10.2",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "150",
+                "length": "12.6",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-02",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "300",
@@ -68688,6 +68760,22 @@
     },
     "Eagle Rock Lake": {
         "records": [
+            {
+                "date": "2026-07-10",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "350",
+                "length": "10.3",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-10",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "54",
+                "length": "12.4",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-25",
                 "species": "Triploid Rainbow Trout",
@@ -69936,6 +70024,14 @@
     },
     "Red River (Abv Questa)": {
         "records": [
+            {
+                "date": "2026-07-06",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1800",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-24",
                 "species": "Triploid Rainbow Trout",
@@ -72008,6 +72104,14 @@
     },
     "Chama River (Abv El Vado)": {
         "records": [
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1015",
+                "length": "11.9",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-16",
                 "species": "Triploid Rainbow Trout",
@@ -75021,6 +75125,14 @@
     },
     "Costilla River": {
         "records": [
+            {
+                "date": "2026-07-10",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "401",
+                "length": "10.3",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-25",
                 "species": "Triploid Rainbow Trout",
@@ -79929,6 +80041,14 @@
     "Cimarron River (West Of Cimarron)": {
         "records": [
             {
+                "date": "2026-07-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "2424",
+                "length": "10.4",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-22",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "2424",
@@ -80733,6 +80853,22 @@
     },
     "Cimarron River Gravel Pit Lakes": {
         "records": [
+            {
+                "date": "2026-07-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "355",
+                "length": "10.4",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "45",
+                "length": "12.4",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-22",
                 "species": "Triploid Rainbow Trout",
@@ -81754,6 +81890,14 @@
     },
     "Cow Creek": {
         "records": [
+            {
+                "date": "2026-07-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "252",
+                "length": "10.3",
+                "hatchery": "Lisboa Springs Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-24",
                 "species": "Triploid Rainbow Trout",
@@ -87781,6 +87925,22 @@
     "Hopewell Lake": {
         "records": [
             {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1740",
+                "length": "11.9",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "185",
+                "length": "16.3",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-23",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "1898",
@@ -88380,6 +88540,14 @@
     },
     "Nutrias Lakes (Aka Trout Lakes)": {
         "records": [
+            {
+                "date": "2026-07-08",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "522",
+                "length": "11.8",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-24",
                 "species": "Triploid Rainbow Trout",
@@ -90475,6 +90643,14 @@
     "Hondo River (Lower)": {
         "records": [
             {
+                "date": "2026-07-10",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "202",
+                "length": "10.3",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-17",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "200",
@@ -90855,6 +91031,22 @@
     },
     "Red River City Ponds": {
         "records": [
+            {
+                "date": "2026-07-06",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "249",
+                "length": "10.5",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
+                "date": "2026-07-06",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "71",
+                "length": "12.6",
+                "hatchery": "Red River Trout Hatchery",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-24",
                 "species": "Triploid Rainbow Trout",
@@ -92326,6 +92518,14 @@
     "Bonito Lake": {
         "records": [
             {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "1499",
+                "length": "10.3",
+                "hatchery": "Rock Lake Trout Rearing Facility",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2026-06-29",
                 "species": "Triploid Rainbow Trout",
                 "quantity": "1500",
@@ -93791,6 +93991,14 @@
     "Leandro Creek": {
         "records": [
             {
+                "date": "2026-07-09",
+                "species": "Brook Trout YY",
+                "quantity": "1881",
+                "length": "3.2",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
+            {
                 "date": "2024-07-25",
                 "species": "Brook Trout YY",
                 "quantity": "1885",
@@ -94447,6 +94655,14 @@
     },
     "Seven Springs Brood Pond": {
         "records": [
+            {
+                "date": "2026-07-07",
+                "species": "Triploid Rainbow Trout",
+                "quantity": "65",
+                "length": "16.3",
+                "hatchery": "Los Ojos Hatchery (Parkview)",
+                "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-10-26/?wpdmdl=55776&refresh=6a5182fa843de1783726842"
+            },
             {
                 "date": "2026-06-30",
                 "species": "Triploid Rainbow Trout",

@@ -1,0 +1,76 @@
+name: Data Freshness Check
+
+# Separate from the daily update ON PURPOSE: if the update workflow itself
+# breaks or stops running, this still fires and catches the staleness.
+
+on:
+  schedule:
+    # 15:00 UTC (~9 AM Mountain) -- well after the overnight update run
+    - cron: '0 15 * * *'
+  workflow_dispatch:  # allow manual "run now"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Check data freshness
+        id: check
+        run: |
+          set +e
+          python check_freshness.py | tee freshness.log
+          echo "status=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure alert label exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create stale-data --color B60205 --description "Stocking data freshness alert" 2>/dev/null || true
+
+      - name: Open alert issue if stale
+        if: steps.check.outputs.status != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # De-dupe: don't open another issue if one is already open.
+          existing=$(gh issue list --state open --label stale-data --json number --jq 'length')
+          if [ "$existing" != "0" ]; then
+            echo "An open stale-data issue already exists; not creating another."
+            exit 0
+          fi
+          detail=$(grep '::stale::' freshness.log | sed 's/.*::stale:://')
+          {
+            echo "$detail"
+            echo ""
+            echo "Detected by the daily **Data Freshness Check** workflow."
+            echo ""
+            echo "If NMDGF simply hasn't published yet (e.g., a holiday week), just close this. Otherwise \`weekly_update.py\` may be broken or NMDGF may have changed their site — check the latest [update run](../../actions)."
+            echo ""
+            echo "cc @KylePetree68"
+            echo ""
+            echo "_Auto-generated. Tune sensitivity via \`STALE_DAYS\` in \`check_freshness.py\`._"
+          } > issue_body.md
+          gh issue create \
+            --title "⚠️ Stocking data may be stale — no new report" \
+            --label stale-data \
+            --body-file issue_body.md
+
+      - name: Auto-close alert if data is fresh again
+        if: steps.check.outputs.status == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for n in $(gh issue list --state open --label stale-data --json number --jq '.[].number'); do
+            gh issue comment "$n" --body "✅ A new report arrived — data is fresh again. Auto-closing."
+            gh issue close "$n"
+          done

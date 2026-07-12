@@ -72,6 +72,35 @@ jobs:
             --label stale-data \
             --body-file issue_body.md
 
+      # Direct email is the reliable path -- GitHub suppresses @mention emails for
+      # self-triggered runs and bot-created content. Stays dormant until the
+      # MAIL_USERNAME / MAIL_PASSWORD secrets are added (see repo setup).
+      - name: Detect email config
+        id: mail
+        env:
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: |
+          if [ -n "$MAIL_PASSWORD" ]; then
+            echo "configured=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=no" >> "$GITHUB_OUTPUT"
+            echo "MAIL_PASSWORD secret not set; skipping direct email."
+          fi
+
+      - name: Email alert if stale
+        if: steps.check.outputs.status != '0' && steps.mail.outputs.configured == 'yes'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "⚠️ StockingReport: no new stocking report (data may be stale)"
+          to: ${{ secrets.MAIL_USERNAME }}
+          from: StockingReport Canary <${{ secrets.MAIL_USERNAME }}>
+          body: file://freshness.log
+
       - name: Auto-close alert if data is fresh again
         if: steps.check.outputs.status == '0'
         env:

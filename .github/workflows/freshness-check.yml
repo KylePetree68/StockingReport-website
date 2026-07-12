@@ -89,7 +89,7 @@ jobs:
 
       - name: Email alert if stale
         if: steps.check.outputs.status != '0' && steps.mail.outputs.configured == 'yes'
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v14
         with:
           server_address: smtp.gmail.com
           server_port: 465

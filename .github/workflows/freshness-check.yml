@@ -8,6 +8,11 @@ on:
     # 15:00 UTC (~9 AM Mountain) -- well after the overnight update run
     - cron: '0 15 * * *'
   workflow_dispatch:  # allow manual "run now"
+    inputs:
+      stale_days:
+        description: 'Days threshold (set low, e.g. 1, to force a test alert)'
+        required: false
+        default: '10'
 
 jobs:
   check:
@@ -26,6 +31,8 @@ jobs:
 
       - name: Check data freshness
         id: check
+        env:
+          STALE_DAYS: ${{ github.event.inputs.stale_days || '10' }}
         run: |
           set +e
           python check_freshness.py | tee freshness.log

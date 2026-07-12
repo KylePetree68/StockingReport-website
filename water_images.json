@@ -29,9 +29,18 @@
     }
   },
   "Alto Lake": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 100,
+    "image": {
+      "url": "/alto.jpg",
+      "page_title": "Alto Lake, New Mexico",
+      "page_url": "https://www.discoverruidoso.com",
+      "attribution": "Photo courtesy of Discover Ruidoso",
+      "license": "Used with permission (Discover Ruidoso)",
+      "width": 1280,
+      "height": 960,
+      "position": "center 62%"
+    }
   },
   "Alumni Pond": {
     "confidence": "none",
@@ -133,15 +142,16 @@
   },
   "Bonito Lake": {
     "confidence": "high",
-    "score": 51,
+    "score": 100,
     "image": {
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Bonito_Lake.jpg/1280px-Bonito_Lake.jpg",
-      "page_title": "File:Bonito Lake.jpg",
-      "attribution": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/7442558@N04\">Felix Garcia</a> / Wikimedia Commons (CC BY 2.0)",
-      "width": 3648,
-      "height": 2736,
-      "score": 51,
-      "position": "center 80%"
+      "url": "/bonito.jpg",
+      "page_title": "Bonito Lake, New Mexico",
+      "page_url": "https://www.discoverruidoso.com",
+      "attribution": "Photo courtesy of Discover Ruidoso",
+      "license": "Used with permission (Discover Ruidoso)",
+      "width": 1000,
+      "height": 699,
+      "position": "center 68%"
     }
   },
   "Bosque Redondo": {
@@ -531,9 +541,18 @@
     "image": null
   },
   "Grindstone Reservoir": {
-    "confidence": "none",
-    "score": 0,
-    "image": null
+    "confidence": "high",
+    "score": 100,
+    "image": {
+      "url": "/grindstone.jpg",
+      "page_title": "Grindstone Reservoir, New Mexico",
+      "page_url": "https://www.discoverruidoso.com",
+      "attribution": "Photo courtesy of Discover Ruidoso",
+      "license": "Used with permission (Discover Ruidoso)",
+      "width": 1280,
+      "height": 854,
+      "position": "center 16%"
+    }
   },
   "Guadalupe River": {
     "confidence": "none",

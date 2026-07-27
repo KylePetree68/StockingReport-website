@@ -979,6 +979,56 @@ def generate_water_image_html(water_name, water_images):
         f'</span></div></div>'
     )
 
+def _canonical_water_key(name):
+    """Normalize a water-body name for fuzzy matching across data sources.
+
+    Auxiliary data (fishing-rules booklet, ArcGIS regs, consumption advisories)
+    names waters slightly differently than the stocking data does -- e.g.
+    "Navajo Lake" vs "Navajo Reservoir", "Sumner Lake" vs "Lake Sumner". This
+    collapses those differences by lowercasing, dropping parenthetical segment
+    qualifiers, treating Lake/Reservoir as equivalent, and ignoring word order.
+    """
+    s = name.lower()
+    s = re.sub(r'\(.*?\)', '', s)                    # drop segment qualifiers e.g. "(Quality)"
+    s = re.sub(r'[^a-z0-9 ]', ' ', s)
+    s = re.sub(r'\b(reservoir|lake)\b', 'water', s)  # lake == reservoir
+    return ' '.join(sorted(t for t in s.split() if t))  # word-order insensitive
+
+
+def _resolve_by_canonical(source, canonical_names):
+    """Re-key a display-name-keyed dict onto canonical stocking water names.
+
+    Exact matches always win. A non-exact source key is attached only when it
+    normalizes to exactly ONE canonical water name; keys that are ambiguous
+    (normalize to several waters, e.g. a generic "Pecos River" matching six
+    river segments) or orphaned (match no stocked water) are left out and
+    returned in `unmatched` for reporting.
+
+    Returns (resolved_dict_keyed_by_canonical_name, unmatched_list).
+    """
+    canonical_set = set(canonical_names)
+    canon_by_norm = {}
+    for c in canonical_names:
+        canon_by_norm.setdefault(_canonical_water_key(c), []).append(c)
+
+    resolved = {}
+    # Pass 1: exact matches take priority.
+    for key, val in source.items():
+        if key in canonical_set:
+            resolved[key] = val
+    # Pass 2: unambiguous fuzzy matches for keys not already resolved exactly.
+    unmatched = []
+    for key, val in source.items():
+        if key in canonical_set:
+            continue
+        targets = canon_by_norm.get(_canonical_water_key(key), [])
+        if len(targets) == 1 and targets[0] not in resolved:
+            resolved[targets[0]] = val
+        else:
+            unmatched.append((key, targets))
+    return resolved, unmatched
+
+
 def generate_static_pages(data):
     """
     Generates an individual HTML page for each water body.
@@ -1038,6 +1088,23 @@ def generate_static_pages(data):
             print(f"Loaded consumption advisory data for {len(consumption_advisories)} water bodies.")
         except Exception as e:
             print(f"Warning: Could not load consumption_advisories.json: {e}")
+
+    # Re-key auxiliary data sources onto canonical stocking water names so that
+    # naming differences (Navajo Lake -> Navajo Reservoir, Sumner Lake -> Lake
+    # Sumner, etc.) don't cause silent lookup misses. Ambiguous/orphan keys are
+    # reported so mismatches surface on every build instead of failing quietly.
+    canonical_names = list(data.keys())
+    water_species_data, booklet_unmatched = _resolve_by_canonical(water_species_data, canonical_names)
+    regulations_data, regs_unmatched = _resolve_by_canonical(regulations_data, canonical_names)
+    consumption_advisories, advisory_unmatched = _resolve_by_canonical(consumption_advisories, canonical_names)
+    for src_label, unmatched in (
+        ("water_species.json", booklet_unmatched),
+        ("matched_regulations.json", regs_unmatched),
+        ("consumption_advisories.json", advisory_unmatched),
+    ):
+        for key, targets in unmatched:
+            reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
+            print(f"  [species-match] {src_label}: '{key}' not attached ({reason}).")
 
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}

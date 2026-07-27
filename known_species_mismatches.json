@@ -1,0 +1,17 @@
+{
+    "_note": "Auxiliary-data water names that intentionally do NOT attach to a stocked-water page. Orphans = water not stocked (no page exists); ambiguous = a generic river key that maps to several stocked segments and is left for explicit per-segment keys. check_species_matches.py treats anything unmatched but NOT listed here as an error and fails CI, so a genuinely new/typo'd mismatch gets emailed. Update this list when you intentionally add such an entry.",
+    "water_species.json": [
+        "Cabresto Lake",
+        "Cochiti Lake",
+        "Pecos River",
+        "Rio Grande",
+        "San Juan River"
+    ],
+    "matched_regulations.json": [
+        "Pecos River"
+    ],
+    "consumption_advisories.json": [
+        "Cabresto Lake",
+        "Cochiti Lake"
+    ]
+}

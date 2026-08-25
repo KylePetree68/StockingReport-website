@@ -10,6 +10,8 @@ import shutil
 import time
 import sys
 
+import proclamation
+
 # This is the single, definitive script for all scraping operations.
 
 BASE_URL = "https://wildlife.dgf.nm.gov"
@@ -22,8 +24,6 @@ OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 MANUAL_COORDS_FILE = "manual_coordinates.json"
 WATER_IMAGES_FILE  = "water_images.json"
-# NMDOW publications index -- fallback when the proclamation PDF URL is unavailable.
-PUBLICATIONS_URL = f"{BASE_URL}/home/publications/"
 
 def validate_url(url, timeout=5):
     """
@@ -1079,14 +1079,13 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load water_images.json: {e}")
 
-    # Load consumption advisory page numbers
+    # Load consumption advisory page numbers (the booklet URL they point into
+    # comes from proclamation.json, not from this file).
     consumption_advisories = {}
-    advisory_pdf_url = ""
     if os.path.exists("consumption_advisories.json"):
         try:
             with open("consumption_advisories.json", 'r', encoding='utf-8') as f:
                 raw = json.load(f)
-                advisory_pdf_url = raw.get("_pdf_url", "")
                 consumption_advisories = {k: v for k, v in raw.items() if not k.startswith('_')}
             print(f"Loaded consumption advisory data for {len(consumption_advisories)} water bodies.")
         except Exception as e:
@@ -1109,10 +1108,10 @@ def generate_static_pages(data):
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
             print(f"  [species-match] {src_label}: '{key}' not attached ({reason}).")
 
-    # Link every page to the current year's fishing proclamation. The booklet URL
-    # is maintained in one place ("_pdf_url" in consumption_advisories.json); if it
-    # is ever missing, fall back to the NMDOW publications index.
-    proclamation_url = advisory_pdf_url or PUBLICATIONS_URL
+    # Current year's fishing proclamation, from the single source of truth in
+    # proclamation.json. Used for each page's "Fishing Rules" link and as the
+    # base for consumption-advisory deep links.
+    proclamation_url, _season, _publications_url = proclamation.load()
 
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}
@@ -1144,7 +1143,7 @@ def generate_static_pages(data):
 
         # Pull consumption advisory page number if applicable
         advisory_page = consumption_advisories.get(water_name)
-        advisory_url = f"{advisory_pdf_url}#page={advisory_page}" if advisory_page and advisory_pdf_url else None
+        advisory_url = f"{proclamation_url}#page={advisory_page}" if advisory_page else None
 
         summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species, advisory_url=advisory_url)
         meta_description = generate_meta_description(water_name, summary_stats)

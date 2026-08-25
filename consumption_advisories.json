@@ -1,6 +1,5 @@
 {
-  "_pdf_url": "https://wildlife.dgf.nm.gov/wp-content/uploads/2026/03/2026-2027-FISH-RIB_Online.pdf",
-  "_note": "Page numbers reference the 2026-2027 NMDGF Fishing Rules & Information booklet (pages 40-44)",
+  "_note": "Page numbers reference the NM fishing rules booklet. The booklet URL itself lives in proclamation.json -- update it there, not here.",
   "Bataan Lake": 44,
   "Bear Canyon Reservoir": 43,
   "Bill Evans Lake": 43,

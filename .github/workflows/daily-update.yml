@@ -44,6 +44,13 @@ jobs:
         run: |
           cd geocoding && python apply_coords.py
 
+      # Re-renders the "Fishing Rules" links in the static pages from
+      # proclamation.json, so updating that one file is enough to roll the site
+      # over to a new booklet. Fails if a page's marked region has gone missing.
+      - name: Sync proclamation links
+        run: |
+          python update_proclamation.py
+
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,7 +59,7 @@ jobs:
           git stash
           git rebase origin/main
           git stash pop
-          git add stocking_data_clean.json stocking_data.json public/
+          git add stocking_data_clean.json stocking_data.json public/ index.html waters.html about.html contact.html privacy.html
           git diff --staged --quiet || git commit -m "Daily stocking data update - $(date +'%Y-%m-%d')"
           git push origin main
 

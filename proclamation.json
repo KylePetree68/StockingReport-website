@@ -1,0 +1,6 @@
+{
+  "_comment": "Single source of truth for the current year's NM fishing proclamation. Update pdf_url each spring when NMDOW publishes the new booklet, then run: python update_proclamation.py (the daily workflow also runs it). 'season' is derived from the PDF filename unless set explicitly here.",
+  "pdf_url": "https://wildlife.dgf.nm.gov/wp-content/uploads/2026/03/2026-2027-FISH-RIB_Online.pdf",
+  "publications_url": "https://wildlife.dgf.nm.gov/home/publications/",
+  "season": null
+}

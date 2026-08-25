@@ -14,11 +14,6 @@
       "permanent": true
     },
     {
-      "source": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
-      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
-      "permanent": true
-    },
-    {
       "source": "/public/waters/pecos-river-south-san-isidro-to-villanu.html",
       "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
       "permanent": true
@@ -131,6 +126,596 @@
     {
       "source": "/public/waters/state-park-hatchery-peralta-drain.html",
       "destination": "/public/waters/peralta-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/143500-trees-lake.html",
+      "destination": "/public/waters/trees-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/150000-rio-grande-pilar-to-cochiti-lake.html",
+      "destination": "/public/waters/rio-grande-pilar-to-cochiti-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/151800-el-rito-creek-nr-santa-rosa.html",
+      "destination": "/public/waters/el-rito-creek-nr-santa-rosa.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/330500-rio-grande-pilar-to-cochiti-lake.html",
+      "destination": "/public/waters/rio-grande-pilar-to-cochiti-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/albuquerque-drain-lisboa-springs-trout.html",
+      "destination": "/public/waters/albuquerque-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/albuquerque-drain-south-lisboa-springs-trout.html",
+      "destination": "/public/waters/albuquerque-drain-south.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/alto-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/alto-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/alto-lake-los-ojos-hatchery.html",
+      "destination": "/public/waters/alto-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/alto-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/alto-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/alumni-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/alumni-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/animas-river-los-ojos-hatchery.html",
+      "destination": "/public/waters/animas-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/aztec-pond-#1.html",
+      "destination": "/public/waters/aztec-pond-1.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/aztec-pond-1-los-ojos-hatchery.html",
+      "destination": "/public/waters/aztec-pond-1.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bataan-lake-los-ojos-hatchery.html",
+      "destination": "/public/waters/bataan-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bataan-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/bataan-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bear-canyon-reservoir-lisboa-springs-trout.html",
+      "destination": "/public/waters/bear-canyon-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/belen-riverside-drain-lisboa-springs-trout.html",
+      "destination": "/public/waters/belen-riverside-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bernalillo-drain-lisboa-springs-trout.html",
+      "destination": "/public/waters/bernalillo-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/berrendo-creek-los-ojos-hatchery.html",
+      "destination": "/public/waters/berrendo-creek.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/berrendo-creek-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/berrendo-creek.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bill-evans-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/bill-evans-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/black-river-los-ojos-hatchery.html",
+      "destination": "/public/waters/black-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/black-river-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/black-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/blue-hole-park-pond-lisboa-springs-trout.html",
+      "destination": "/public/waters/blue-hole-park-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/blue-hole-park-pond-los-ojos-hatchery.html",
+      "destination": "/public/waters/blue-hole-park-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/blue-hole-park-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/blue-hole-park-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bosque-redondo-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/bosque-redondo.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bottomless-lakes-los-ojos-hatchery.html",
+      "destination": "/public/waters/bottomless-lakes.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/bottomless-lakes-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/bottomless-lakes.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/caballo-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/caballo-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/carlsbad-municipal-lake-los-ojos-hatchery.html",
+      "destination": "/public/waters/carlsbad-municipal-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/carlsbad-municipal-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/carlsbad-municipal-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/carrizozo-recreation-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/carrizozo-recreation-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/carrizozo-recreation-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/carrizozo-recreation-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/chama-river-below-abiquiu-los-ojos-hatchery.html",
+      "destination": "/public/waters/chama-river-below-abiquiu.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/chaparral-park-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/chaparral-park-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conchas-lake-03-704-999617-04142021-state-ute-lake.html",
+      "destination": "/public/waters/conchas-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conchas-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/conchas-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conservancy-park-lake-aka-tingley-lisboa-springs-trout.html",
+      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/conservancy-park-lake-aka-tingley-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/conservancy-park-lake-aka-tingley-beach.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/corona-pond-lisboa-springs-trout.html",
+      "destination": "/public/waters/corona-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/corona-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/corona-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/corrales-riverside-drain-lisboa-springs-trout.html",
+      "destination": "/public/waters/corrales-riverside-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/dennis-chaves-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/dennis-chaves-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/eagle-nest-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/eagle-nest-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/eagle-nest-lake-red-river-trout.html",
+      "destination": "/public/waters/eagle-nest-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/el-rito-creek-nr-santa-rosa-lisboa-springs-trout.html",
+      "destination": "/public/waters/el-rito-creek-nr-santa-rosa.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/el-rito-creek-nr-santa-rosa-los-ojos-hatchery.html",
+      "destination": "/public/waters/el-rito-creek-nr-santa-rosa.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/el-rito-creek-nr-santa-rosa-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/el-rito-creek-nr-santa-rosa.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/escondida-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/escondida-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/escondida-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/escondida-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/estancia-park-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/estancia-park-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/estancia-park-lake-los-ojos-hatchery.html",
+      "destination": "/public/waters/estancia-park-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/estancia-park-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/estancia-park-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/eunice-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/eunice-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/fenton-lake-los-ojos.html",
+      "destination": "/public/waters/fenton-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/fenton-lake-los-ojos-hatchery.html",
+      "destination": "/public/waters/fenton-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/grants-municipal-pond-river-walk-pond-lisboa-springs-trout.html",
+      "destination": "/public/waters/grants-municipal-pond-river-walk-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/green-meadow-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/green-meadow-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/greene-acres-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/greene-acres-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/grindstone-reservoir-lisboa-springs-trout.html",
+      "destination": "/public/waters/grindstone-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/grindstone-reservoir-los-ojos-hatchery.html",
+      "destination": "/public/waters/grindstone-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/grindstone-reservoir-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/grindstone-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/harry-mcadams-park-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/harry-mcadams-park-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/jackson-lake-los-ojos.html",
+      "destination": "/public/waters/jackson-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/jal-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/jal-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/jemez-river-los-ojos-hatchery.html",
+      "destination": "/public/waters/jemez-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/lake-farmington-los-ojos.html",
+      "destination": "/public/waters/lake-farmington.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/lake-maloya-red-river-trout.html",
+      "destination": "/public/waters/lake-maloya.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/lake-roberts-lisboa-springs-trout.html",
+      "destination": "/public/waters/lake-roberts.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/lake-van-los-ojos-hatchery.html",
+      "destination": "/public/waters/lake-van.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/lake-van-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/lake-van.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/liam-knight-pond-lisboa-springs-trout.html",
+      "destination": "/public/waters/liam-knight-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/monastery-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/monastery-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/ned-houk-ponds-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/ned-houk-ponds.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/oasis-park-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/oasis-park-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-385-00-santa-cruz-reservoir-los-ojos.html",
+      "destination": "/public/waters/santa-cruz-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-1-900-00-santa-cruz-reservoir-los-ojos.html",
+      "destination": "/public/waters/santa-cruz-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-110000-grindstone-reservoir.html",
+      "destination": "/public/waters/grindstone-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-110000-jal-lake.html",
+      "destination": "/public/waters/jal-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-127000-snow-lake.html",
+      "destination": "/public/waters/snow-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-134700-tiger-park-pond-aztec.html",
+      "destination": "/public/waters/tiger-park-pond-aztec.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-135000-lake-roberts.html",
+      "destination": "/public/waters/lake-roberts.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-190000-snow-lake.html",
+      "destination": "/public/waters/snow-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/parkview-212000-tiger-park-pond-aztec.html",
+      "destination": "/public/waters/tiger-park-pond-aztec.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-lake-sumner-to-roswell-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/pecos-river-lake-sumner-to-roswell.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-south-san-isidro-to-villanueva-lisboa-springs-trout.html",
+      "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/pecos-river-vill-of-pecos---villanueva.html",
+      "destination": "/public/waters/pecos-river-vill-of-pecos-villanueva.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/peralta-drain-lisboa-springs-trout.html",
+      "destination": "/public/waters/peralta-drain.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/perch-lake-guadalupe-county-lisboa-springs-trout.html",
+      "destination": "/public/waters/perch-lake-guadalupe-county.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/perch-lake-guadalupe-county-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/perch-lake-guadalupe-county.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/red-river-hatchery-pond.html",
+      "destination": "/waters.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rio-bonito-lower-lisboa-springs-trout.html",
+      "destination": "/public/waters/rio-bonito-lower.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rio-bonito-lower-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/rio-bonito-lower.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rio-grande-elephant-butte-to.html",
+      "destination": "/public/waters/rio-grande-elephant-butte-to-caballo.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rio-grande-gorge--abv-pilar.html",
+      "destination": "/public/waters/rio-grande-gorge-abv-pilar.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rio-grande-pilar-to-cochiti-lake-red-river-trout.html",
+      "destination": "/public/waters/rio-grande-pilar-to-cochiti-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/rock-lake-hatchery-kids-ponds-near-ro.html",
+      "destination": "/public/waters/rock-lake-hatchery-kids-ponds-near-roswell.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/ruidoso-river-lisboa-springs-trout.html",
+      "destination": "/public/waters/ruidoso-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/ruidoso-river-los-ojos-hatchery.html",
+      "destination": "/public/waters/ruidoso-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/ruidoso-river-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/ruidoso-river.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/san-juan-river-blw-quality-los-ojos.html",
+      "destination": "/public/waters/san-juan-river-blw-quality.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/san-juan-river-blw-quality-los-ojos-hatchery.html",
+      "destination": "/public/waters/san-juan-river-blw-quality.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/san-juan-river-quality-los-ojos-hatchery.html",
+      "destination": "/public/waters/san-juan-river-quality.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/santa-cruz-reservoir-los-ojos.html",
+      "destination": "/public/waters/santa-cruz-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/santa-cruz-reservoir-los-ojos-hatchery.html",
+      "destination": "/public/waters/santa-cruz-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/seven-springs-brood-pond-los-ojos-hatchery.html",
+      "destination": "/public/waters/seven-springs-brood-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/storrie-reservoir-los-ojos.html",
+      "destination": "/public/waters/storrie-reservoir.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/tiger-park-pond-aztec-los-ojos-hatchery.html",
+      "destination": "/public/waters/tiger-park-pond-aztec.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/timberon-ponds-lisboa-springs-trout.html",
+      "destination": "/public/waters/timberon-ponds.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/timberon-ponds-los-ojos-hatchery.html",
+      "destination": "/public/waters/timberon-ponds.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/timberon-ponds-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/timberon-ponds.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/tree-lake.html",
+      "destination": "/public/waters/trees-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/trees-lake-lisboa-springs-trout.html",
+      "destination": "/public/waters/trees-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/trees-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/trees-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/ute-lake-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/ute-lake.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/young-pond-lisboa-springs-trout.html",
+      "destination": "/public/waters/young-pond.html",
+      "permanent": true
+    },
+    {
+      "source": "/public/waters/young-pond-rock-lake-trout-rearing.html",
+      "destination": "/public/waters/young-pond.html",
       "permanent": true
     }
   ]

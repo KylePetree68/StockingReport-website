@@ -22,6 +22,8 @@ OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 MANUAL_COORDS_FILE = "manual_coordinates.json"
 WATER_IMAGES_FILE  = "water_images.json"
+# NMDOW publications index -- fallback when the proclamation PDF URL is unavailable.
+PUBLICATIONS_URL = f"{BASE_URL}/home/publications/"
 
 def validate_url(url, timeout=5):
     """
@@ -1079,6 +1081,7 @@ def generate_static_pages(data):
 
     # Load consumption advisory page numbers
     consumption_advisories = {}
+    advisory_pdf_url = ""
     if os.path.exists("consumption_advisories.json"):
         try:
             with open("consumption_advisories.json", 'r', encoding='utf-8') as f:
@@ -1105,6 +1108,11 @@ def generate_static_pages(data):
         for key, targets in unmatched:
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
             print(f"  [species-match] {src_label}: '{key}' not attached ({reason}).")
+
+    # Link every page to the current year's fishing proclamation. The booklet URL
+    # is maintained in one place ("_pdf_url" in consumption_advisories.json); if it
+    # is ever missing, fall back to the NMDOW publications index.
+    proclamation_url = advisory_pdf_url or PUBLICATIONS_URL
 
     # Cache for URL validation to avoid checking same URL multiple times
     url_validation_cache = {}
@@ -1195,6 +1203,7 @@ def generate_static_pages(data):
         page_html = page_html.replace("{{META_DESCRIPTION}}", meta_description)
         page_html = page_html.replace("{{PAGE_URL}}", page_url)
         page_html = page_html.replace("{{SCHEMA_ORG}}", schema_org)
+        page_html = page_html.replace("{{PROCLAMATION_URL}}", proclamation_url)
 
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(page_html)

@@ -169,6 +169,18 @@
                 }
                 const stockingData = JSON.parse(await response.text());
 
+                // Waters that have a page but no NMDGF stocking records (extra_waters.json)
+                try {
+                    const extraResp = await fetch('/extra_waters.json?v=' + new Date().getTime());
+                    if (extraResp.ok) {
+                        const extras = JSON.parse(await extraResp.text());
+                        for (const [name, info] of Object.entries(extras)) {
+                            if (name.startsWith('_') || stockingData[name]) continue;
+                            stockingData[name] = { records: [], coords: info.coords || null, unstocked: true };
+                        }
+                    }
+                } catch (e) { console.warn('extra_waters.json not loaded', e); }
+
                 const waterNames = Object.keys(stockingData).sort();
                 waterCount.textContent = waterNames.length;
 

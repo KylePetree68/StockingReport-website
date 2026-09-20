@@ -313,6 +313,18 @@
                 }
                 stockingData = JSON.parse(await response.text());
 
+                // Waters that have a page but no NMDGF stocking records (extra_waters.json)
+                try {
+                    const extraResp = await fetch('/extra_waters.json?v=' + new Date().getTime());
+                    if (extraResp.ok) {
+                        const extras = JSON.parse(await extraResp.text());
+                        for (const [name, info] of Object.entries(extras)) {
+                            if (name.startsWith('_') || stockingData[name]) continue;
+                            stockingData[name] = { records: [], coords: info.coords || null, unstocked: true };
+                        }
+                    }
+                } catch (e) { console.warn('extra_waters.json not loaded', e); }
+
                 initMap();
                 buildOptionsList();
                 displayStatewideSummary();
@@ -362,14 +374,14 @@
                     }
                     L.circleMarker([data.coords.lat, data.coords.lon], {
                         radius: isRecent ? 8 : 6,
-                        fillColor: isRecent ? '#16a34a' : '#1e40af',
+                        fillColor: isRecent ? '#16a34a' : (data.unstocked ? '#6b7280' : '#1e40af'),
                         color: '#ffffff',
                         weight: 2,
                         opacity: 1,
                         fillOpacity: 0.85
                     })
                     .addTo(map)
-                    .bindPopup(`<b><a href="${url}">${waterName}</a></b>${isRecent ? '<br><small style="color:#16a34a">&#10003; Recently stocked</small>' : ''}`);
+                    .bindPopup(`<b><a href="${url}">${waterName}</a></b>${isRecent ? '<br><small style="color:#16a34a">&#10003; Recently stocked</small>' : ''}${data.unstocked ? '<br><small style="color:#6b7280">Not stocked by NMDGF (self-sustaining fishery)</small>' : ''}`);
                 }
             }
         }

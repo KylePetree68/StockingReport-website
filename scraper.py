@@ -834,6 +834,9 @@ WATER_NOTES_FILE = "water_notes.json"
 # only high/medium entries are rendered.
 WATER_AUTHORITY_FILE = "water_authority.json"
 
+# Boating / motor restrictions from the NMDGF rules booklet (hand-maintained).
+BOAT_RULES_FILE = "boat_rules.json"
+
 AUTHORITY_CATEGORY_LABELS = {
     "state_park": "State park",
     "usfs": "National Forest",
@@ -1056,6 +1059,18 @@ def generate_regulation_html(water_name, regulations_data):
             html_parts.append(f'<p class="text-gray-600 text-sm">{sc["info"]}</p>')
         html_parts.append('</div>')
 
+    # Boating restriction from the rules booklet (takes precedence over the
+    # generic "motorized craft allowed" wording on the ramp layer)
+    boating = regulations.get("boating")
+    if isinstance(boating, dict) and boating.get("text"):
+        label = BOAT_LABELS.get(boating.get("rule", ""), "")
+        html_parts.append('<div class="mt-4 pt-4 border-t border-blue-200">')
+        html_parts.append('<p class="text-gray-700 font-semibold mb-2">Boating' + (f' <span class="font-normal text-gray-500">&middot; {html_lib.escape(label)}</span>' if label else '') + '</p>')
+        html_parts.append(f'<p class="text-gray-700 mb-1">{html_lib.escape(boating["text"])}</p>')
+        if boating.get("source"):
+            html_parts.append(f'<p class="text-xs text-gray-500">Source: {html_lib.escape(boating["source"])}</p>')
+        html_parts.append('</div>')
+
     # Boat ramps (NMDGF Fishing Waters Map): ramp type, who runs it, motor rules
     ramps = regulations.get("boat_ramps") or []
     if ramps:
@@ -1266,12 +1281,37 @@ def generate_static_pages(data):
     consumption_advisories, advisory_unmatched = _resolve_by_canonical(consumption_advisories, canonical_names)
     water_notes, notes_unmatched = _resolve_by_canonical(water_notes, canonical_names)
     water_authority, authority_unmatched = _resolve_by_canonical(water_authority, canonical_names)
+
+    # Boating rules from the booklet: merged into the regulations block so they
+    # render next to the boat ramps. A water with a boat rule but no other
+    # regulation gets a regulations entry containing only "boating".
+    boat_rules, boat_source_default = {}, ""
+    if os.path.exists(BOAT_RULES_FILE):
+        try:
+            with open(BOAT_RULES_FILE, 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                boat_source_default = raw.get("_source_default", "")
+                boat_rules = {k: v for k, v in raw.items() if not k.startswith('_')}
+            print(f"Loaded boat rules for {len(boat_rules)} water bodies.")
+        except Exception as e:
+            print(f"Warning: Could not load {BOAT_RULES_FILE}: {e}")
+    boat_rules, boats_unmatched = _resolve_by_canonical(boat_rules, canonical_names)
+    for name, rule in boat_rules.items():
+        if not isinstance(rule, dict) or not (rule.get("text") or "").strip():
+            continue
+        entry = regulations_data.setdefault(name, {"regulations": {}})
+        entry.setdefault("regulations", {})["boating"] = {
+            "rule": rule.get("rule", ""),
+            "text": rule["text"].strip(),
+            "source": (rule.get("source") or "").strip() or boat_source_default,
+        }
     for src_label, unmatched in (
         ("water_species.json", booklet_unmatched),
         ("matched_regulations.json", regs_unmatched),
         ("consumption_advisories.json", advisory_unmatched),
         (WATER_NOTES_FILE, notes_unmatched),
         (WATER_AUTHORITY_FILE, authority_unmatched),
+        (BOAT_RULES_FILE, boats_unmatched),
     ):
         for key, targets in unmatched:
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"

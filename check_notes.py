@@ -118,6 +118,25 @@ def main():
     errors += a_errors
     warnings += a_warnings
 
+    # boat_rules.json: keys must resolve, rule must be a known enum value
+    try:
+        with open("boat_rules.json", encoding="utf-8") as f:
+            braw = json.load(f)
+        brules = {k: v for k, v in braw.items() if not k.startswith("_")}
+        for key, val in brules.items():
+            if not isinstance(val, dict) or not (val.get("text") or "").strip():
+                errors.append(f"boat_rules '{key}': needs a non-empty text")
+            elif val.get("rule") not in BOAT_LABELS:
+                errors.append(f"boat_rules '{key}': rule '{val.get('rule')}' not one of {sorted(BOAT_LABELS)}")
+        _, b_unmatched = _resolve_by_canonical(brules, canonical)
+        for key, targets in b_unmatched:
+            errors.append(f"boat_rules '{key}': " + (f"ambiguous, matches {targets}" if targets else "no matching stocked water"))
+        print(f"{len(brules)} boat-rule entries.")
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        errors.append(f"boat_rules.json does not parse: {e}")
+
     for w in warnings:
         print(f"WARN  {w}")
     for e in errors:

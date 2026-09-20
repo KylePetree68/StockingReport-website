@@ -1,5 +1,5 @@
 {
- "_generated": "2026-09-20T03:57:19Z",
+ "_generated": "2026-09-20T04:11:10Z",
  "_readme": "Daily water-surface elevation (ft) or storage (ac-ft) per reservoir; see lake_level_sources.json. Written by fetch_lake_levels.py.",
  "Bluewater Lake": {
   "source": "usgs",
@@ -7770,7 +7770,7 @@
    ],
    [
     "2026-09-20",
-    4177.48
+    4177.5
    ]
   ]
  },

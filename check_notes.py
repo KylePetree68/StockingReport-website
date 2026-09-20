@@ -82,6 +82,11 @@ def main():
 
     with open("stocking_data_clean.json", encoding="utf-8") as f:
         canonical = list(json.load(f).keys())
+    try:
+        with open("extra_waters.json", encoding="utf-8") as f:
+            canonical += [k for k in json.load(f) if not k.startswith("_")]
+    except FileNotFoundError:
+        pass
 
     notes = {k: v for k, v in raw.items() if not k.startswith("_")}
     errors = []

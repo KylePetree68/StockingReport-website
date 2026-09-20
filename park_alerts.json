@@ -1,0 +1,335 @@
+{
+ "_fetched": "2026-09-20T03:44:06Z",
+ "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
+ "Caballo Lake": {
+  "phone": "(575) 743-3942",
+  "alerts": [
+   {
+    "text": "East side boat ramp closed",
+    "posted": "7/4/2020",
+    "until": "ongoing",
+    "boating": true
+   }
+  ]
+ },
+ "Cimarron Canyon": {
+  "phone": "(575) 377-6271",
+  "alerts": [
+   {
+    "text": "General Alert for Cimarron: Cimarron Canyon is undergoing improvements and upgrades as part of New Mexico State Parks Statewide – Outdoor Recreation Restroom Improvement Project. Construction efforts will impact both day use areas and campgrounds. Be sure to check for and review park alerts and notifications prior to your visit. For the affected areas, we anticipate noise and other construction-related impacts for the duration of these construction activities. Please adhere to all signage and electronic alerts for your safety. For up-to-date information, please call the park at 505-414-9840. We apologize for any inconvenience this may cause for your planning purposes and during your visit. We thank you for your cooperation.",
+    "posted": "9/3/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Tolby Day Use area is currently closed for construction. Once the construction is completed, we will reopen the day use area.",
+    "posted": "9/3/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Blackjack Tent Camping area will be closed on September 7th, 2026 and will reopen on May 1st, 2027",
+    "posted": "9/3/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Maverick Campground/ Gravel pit lakes will be closed on September 15th, 2026. The campground will reopen on March 1st 2027.",
+    "posted": "9/3/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Ponderosa Campground will be closed on September 15th and will reopen when construction is completed.",
+    "posted": "9/3/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Tolby Campground will remain open during construction with limited sites that will be walkup up or first come first serve sites. There may be short, partial closure for the demo of the comfort stations. Check back for more updates.",
+    "posted": "8/31/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Trail Closures-The Colin Neblett backcountry including Tolby and Maverick Trails are closed to all entry during deer fawning and elk calving May 15-July 31. Clear Creek Trail remains open May 15-July 31. The backcountry and ALL trails are closed during big game hunts as published in the NM Rules and Info Booklet. Licensed hunters and their hunting party are exempt from closures during their hunt/scouting period.",
+    "posted": "8/21/2023",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Clayton Lake & Dinosaur Trackways": {
+  "phone": "575-374-8808",
+  "alerts": [
+   {
+    "text": "Clayton Lake State Park and Dinosaur Trackway has closed access to the boat ramp and is prohibiting the use of motorized boats due to declining water levels and related safety concerns. The lake remains open for non-motorized vessels, including canoes and kayaks. Motorized boat access will be restored once water levels improve and conditions allow for safe use of the boat ramp.",
+    "posted": "7/31/2026",
+    "until": "7/31/2999",
+    "boating": true
+   },
+   {
+    "text": "Due to ongoing construction to replace vault toilets at Clayton Lake State Park & Dinosaur Trackways, the vault toilet facilities located at the dinosaur parking lot, Camp Cove, the South Loop, and the Rock Gardens will be closed. The comfort station, as well as the double vault toilets at North Point and along the Nature Trail, will remain open for visitor use. Please exercise caution and be aware of construction activity while visiting the park.",
+    "posted": "7/31/2026",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Elephant Butte Lake": {
+  "phone": "(575) 744-5923",
+  "alerts": [
+   {
+    "text": "Please be advised that all boat ramps in the park are closed due to low water levels. We anticipate reopening when water levels increase, and conditions allow. All launching and retrieving of vessels is at the operators own risk.",
+    "posted": "8/18/2026",
+    "until": "ongoing",
+    "boating": true
+   },
+   {
+    "text": "Due to the inherent hazards posed by low water levels, the Cliffs Area of the state park will remain closed indefinitely.",
+    "posted": "6/20/2025",
+    "until": "ongoing",
+    "boating": true
+   }
+  ]
+ },
+ "Heron Lake": {
+  "phone": "(575) 588-7470",
+  "alerts": [
+   {
+    "text": "All boat ramps (and courtesy docks) at Heron Lake State Park are currently unavailable for boaters due to extremely low lake levels. These ramps and docks will remain unavailable until lake levels improve. Those visitors planning to launch watercraft should call the park office to check for conditions prior to arriving. (575)588-7470",
+    "posted": "5/26/2026",
+    "until": "ongoing",
+    "boating": true
+   },
+   {
+    "text": "Rio Chama Trailhead and access to the Rio Chama Trail is closed due to construction in the area. Access to the Rio Chama River can be gained at the North El Vado Day Use Area.",
+    "posted": "12/20/2021",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Heron Lake is closed to the use of operation of all Off Highway Vehicles (OHV's). This includes but is not limited to Off Highway Motorcycles, Side-By Sides, Quad Runners, and Snowmobiles.",
+    "posted": "7/27/2021",
+    "until": "ongoing",
+    "boating": true
+   }
+  ]
+ },
+ "Hyde Memorial": {
+  "phone": "505-983-7175",
+  "alerts": [
+   {
+    "text": "Seasonal closure of the Main Camping Loop, all group shelters, and all first-come, first-serve sites from November 1, 2026, through April 30, 2027, depending on weather conditions.",
+    "posted": "9/18/2026",
+    "until": "4/30/2027",
+    "boating": false
+   },
+   {
+    "text": "The RV Loop and Yurts will remain open, depending on weather conditions. Seasonal closure of the Lodge from October 31, 2026, through April 30, 2027. Seasonal availability of the Lodge is from May 1 through October 31 each year.",
+    "posted": "9/18/2026",
+    "until": "4/30/2027",
+    "boating": false
+   }
+  ]
+ },
+ "Manzano Mountains": {
+  "phone": "(505) 469-7608",
+  "alerts": [
+   {
+    "text": "Park closed for winter season from December 1 through March 31, however, the actual opening and closing dates will depend on weather and road conditions.",
+    "posted": "9/8/2026",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Mesilla Valley Bosque": {
+  "phone": "(575) 523-4398",
+  "alerts": [
+   {
+    "text": "Mesilla Valley Bosque Park is closed on Thanksgiving Day, Christmas Day and New Year's Day.",
+    "posted": "11/19/2021",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Pancho Villa": {
+  "phone": "(575) 531-2711",
+  "alerts": [
+   {
+    "text": "Both comfort stations and the park dump station are CLOSED until further notice due to a septic issue;",
+    "posted": "12/6/2022",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Playground is closed until further notice, due to safety concerns;",
+    "posted": "2/24/2021",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Pecos Canyon": {
+  "phone": "(505) 670-8196",
+  "alerts": [
+   {
+    "text": "Bert Clancy campground and parking will be closed for construction from Sundays at 4pm through Fridays at 10am. We apologize for any inconvenience this may cause, it is for the safety of visitors. These campground improvements will be open soon.",
+    "posted": "9/17/2026",
+    "until": "10/2/2026",
+    "boating": false
+   },
+   {
+    "text": "Seasonal Closures - Pecos Canyon State Park: Green Chili Waters Day Use Angler site November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
+    "posted": "9/17/2026",
+    "until": "3/31/2027",
+    "boating": false
+   },
+   {
+    "text": "Periodic operational closures due to construction of new park facilities.",
+    "posted": "9/17/2026",
+    "until": "9/30/2028",
+    "boating": false
+   },
+   {
+    "text": "Mora Campground will be closed to the public starting May 28, 2025, for bridge and campground construction. Expected re-opening will be summer 2027.",
+    "posted": "5/23/2025",
+    "until": "10/1/2027",
+    "boating": false
+   }
+  ]
+ },
+ "Rio Grande Nature Ctr.": {
+  "phone": "(505) 344-7240",
+  "alerts": [
+   {
+    "text": "New Years Day the park will close at 12 noon. On New Years Day the park will be open from 8am-12pm only.",
+    "posted": "9/18/2026",
+    "until": "1/2/2027",
+    "boating": false
+   },
+   {
+    "text": "The Rio Grande Nature Center State Park is closed on Thanksgiving Day and Christmas Day.",
+    "posted": "9/8/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "The Rio Grande Nature Center State Park is closed on Thanksgiving Day and Christmas Day.",
+    "posted": "3/16/2026",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Santa Rosa Lake": {
+  "phone": "(575) 472-3110",
+  "alerts": [
+   {
+    "text": "Boat Ramp closed due to low water levels.",
+    "posted": "7/28/2026",
+    "until": "4/1/2027",
+    "boating": true
+   }
+  ]
+ },
+ "Storrie Lake": {
+  "phone": "(505) 425-7278",
+  "alerts": [
+   {
+    "text": "From October 1, 2026, through March 31, 2027: The park entrance gate will open at 7am and close at 5pm;",
+    "posted": "9/18/2026",
+    "until": "4/1/2027",
+    "boating": false
+   },
+   {
+    "text": "Water lines throughout the park will be shut down to prevent freezing; One hydrant near the comfort station will remain open;",
+    "posted": "9/18/2026",
+    "until": "4/1/2027",
+    "boating": false
+   },
+   {
+    "text": "From October 1, 2026, through March 31, 2027, seasonal closure of the Main Comfort Station; Seasonal closure of the Vault Toilets near the boat dock on the north side of the park. Other vault toilets and chemical toilets remain open; located near the Group Shelter, the South Campground, and the Comfort Station.",
+    "posted": "9/18/2026",
+    "until": "4/1/2027",
+    "boating": true
+   },
+   {
+    "text": "Construction of New Vault Toilets",
+    "posted": "8/27/2026",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Sugarite Canyon": {
+  "phone": "(575) 445-5607",
+  "alerts": [
+   {
+    "text": "General Alert for Sugarite Canyon: Sugarite Canyon is undergoing improvements and upgrades as part of New Mexico State Parks Statewide – Outdoor Recreation Restroom Improvement Project. Construction efforts will impact both day use areas and campgrounds. Be sure to check for and review park alerts and notifications prior to your visit. For the affected areas, we anticipate noise and other construction-related impacts for the duration of these construction activities. Please adhere to all signage and electronic alerts for your safety. For up-to-date information, please call the park at 557-445-5607. We apologize for any inconvenience this may cause for your planning purposes and during your visit. We thank you for your cooperation. Lake Alice Campground will be closed on October 1, 2026, and will reopen when construction is completed.",
+    "posted": "9/16/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Horse Corrals Campground is Closed due to renovation",
+    "posted": "9/13/2026",
+    "until": "5/1/2027",
+    "boating": false
+   },
+   {
+    "text": "Comfort Station (Shower House) currently closed due to lack of water",
+    "posted": "7/4/2026",
+    "until": "5/1/2027",
+    "boating": false
+   }
+  ]
+ },
+ "Sumner Lake": {
+  "phone": "(575) 355-2541",
+  "alerts": [
+   {
+    "text": "Main Boat Ramp is closed due to low water levels until further notice.",
+    "posted": "9/12/2026",
+    "until": "1/1/2027",
+    "boating": true
+   },
+   {
+    "text": "Alamo boat ramp is closed due to low water levels until further notice.",
+    "posted": "7/9/2026",
+    "until": "1/1/2027",
+    "boating": true
+   }
+  ]
+ },
+ "Ute Lake": {
+  "phone": "(575) 487-2284",
+  "alerts": [
+   {
+    "text": "Windy Point remains closed.",
+    "posted": "4/15/2021",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Villanueva": {
+  "phone": "(575) 421-2957",
+  "alerts": [
+   {
+    "text": "Seasonal closure of El Cerro Campground (First come, First serve campground) from November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
+    "posted": "9/18/2026",
+    "until": "4/1/2027",
+    "boating": false
+   },
+   {
+    "text": "From October 1, 2026, through March 31, 2027: The park entrance gate will open at 7am and close at 7pm.",
+    "posted": "9/18/2026",
+    "until": "4/1/2027",
+    "boating": false
+   }
+  ]
+ }
+}

@@ -233,6 +233,12 @@ def main():
     # Load data files
     print("Loading data files...")
     stocking_data = load_json("stocking_data.json")
+    # Waters that get a page without stocking records (extra_waters.json) also get regulations.
+    import os
+    if os.path.exists("extra_waters.json"):
+        for name in load_json("extra_waters.json"):
+            if not name.startswith("_"):
+                stocking_data.setdefault(name, {"records": []})
     regulations_data = load_json("regulations_data.json")
     print(f"  Loaded {len(stocking_data)} water bodies from stocking_data.json")
     print(f"  Loaded {len(regulations_data['waters'])} water bodies from regulations_data.json")

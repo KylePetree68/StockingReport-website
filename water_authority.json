@@ -373,6 +373,15 @@
     "confidence": "high",
     "source": "Location"
   },
+  "Cochiti Lake": {
+    "authority": "US Army Corps of Engineers",
+    "category": "usace",
+    "unit": "Cochiti Lake (on Pueblo de Cochiti land; recreation areas run by the Corps)",
+    "url": "https://www.spa.usace.army.mil/Missions/Civil-Works/Recreation/Cochiti-Lake/",
+    "notes": "Flood-control reservoir operated by the Corps under lease from Pueblo de Cochiti. Cochiti and Tetilla Peak recreation areas are Corps-run; the spillway is closed to fishing and the pueblo's shoreline outside the recreation areas is closed without tribal permission.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramps: USACE); NMDGF Rules booklet"
+  },
   "Comanche Creek (Lower)": {
     "authority": "Carson National Forest",
     "category": "usfs",

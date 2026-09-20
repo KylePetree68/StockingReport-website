@@ -49,6 +49,10 @@ def _load(path):
 
 def main():
     canonical_names = list(_load(STOCKING_FILE).keys())
+    # Waters that get a page without stocking records (extra_waters.json) are
+    # valid attach targets too.
+    if os.path.exists("extra_waters.json"):
+        canonical_names += [k for k in _load("extra_waters.json") if not k.startswith("_")]
     allowlist = _load(ALLOWLIST_FILE) if os.path.exists(ALLOWLIST_FILE) else {}
 
     total_unexpected = 0

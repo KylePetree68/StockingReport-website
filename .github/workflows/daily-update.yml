@@ -32,6 +32,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 pdfplumber pytesseract pillow
 
+      # Reservoir levels (USGS / Reclamation / Corps) and NM State Parks alerts.
+      # Both keep the previous JSON if a source is down, and neither may block
+      # the stocking update, so failures only log.
+      - name: Fetch reservoir levels
+        continue-on-error: true
+        run: |
+          python fetch_lake_levels.py
+
+      - name: Fetch NM State Parks alerts
+        continue-on-error: true
+        run: |
+          python fetch_park_alerts.py
+
       - name: Fetch new stocking data
         run: |
           python weekly_update.py
@@ -52,7 +65,7 @@ jobs:
           git stash
           git rebase origin/main
           git stash pop
-          git add stocking_data_clean.json stocking_data.json public/
+          git add stocking_data_clean.json stocking_data.json lake_levels.json park_alerts.json public/
           git diff --staged --quiet || git commit -m "Daily stocking data update - $(date +'%Y-%m-%d')"
           git push origin main
 

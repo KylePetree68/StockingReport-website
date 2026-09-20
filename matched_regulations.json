@@ -886,6 +886,28 @@
       "match_score": 1.0,
       "regulation_water_name": "Leandro Creek"
     },
+    "Cochiti Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed, trolling speed only",
+            "latitude": 35.63583261719979,
+            "longitude": -106.3229549053547
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed, trolling speed only",
+            "latitude": 35.64410815005272,
+            "longitude": -106.3131508190063
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Cochiti Lake"
+    },
     "Costilla River": {
       "regulations": {
         "special_trout_water_stream": [
@@ -1453,10 +1475,10 @@
     }
   },
   "metadata": {
-    "total_stocking_waters": 170,
+    "total_stocking_waters": 171,
     "total_regulation_waters": 105,
-    "matched_count": 82,
-    "match_rate": "48.2%",
+    "matched_count": 83,
+    "match_rate": "48.5%",
     "regulation_metadata": {
       "last_updated": "2026-09-19T20:57:34",
       "source": "NM Game & Fish ArcGIS Feature Service",

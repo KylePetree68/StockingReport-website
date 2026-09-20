@@ -898,6 +898,244 @@ def generate_water_authority_html(water_name, water_authority):
     return "\n".join(parts)
 
 
+# Daily reservoir levels (fetch_lake_levels.py), NM State Parks alerts
+# (fetch_park_alerts.py) and waters that get a page without being stocked.
+LAKE_LEVELS_FILE = "lake_levels.json"
+PARK_ALERTS_FILE = "park_alerts.json"
+EXTRA_WATERS_FILE = "extra_waters.json"
+
+AGENCY_LINKS = {
+    "usgs": "https://waterdata.usgs.gov/",
+    "usbr": "https://www.usbr.gov/uc/water/hydrodata/",
+    "usace": "https://water.usace.army.mil/",
+}
+
+
+def _fmt_level(v, unit):
+    return f"{v:,.0f} {unit}" if unit == "ac-ft" else f"{v:,.1f} {unit}"
+
+
+def _level_svg(series, unit, W, H, L, R, T, B, compact):
+    """Line chart of (date, value) pairs. compact=True draws a sparkline with no axes."""
+    import html as _html
+    from datetime import datetime as _dt
+    vals = [v for _, v in series]
+    hi, lo = max(vals), min(vals)
+    pw, ph = W - L - R, H - T - B
+    pad = max((hi - lo) * 0.08, 0.5 if unit == "ft" else max(hi * 0.01, 1))
+    ymin, ymax = lo - pad, hi + pad
+    x0 = _dt.strptime(series[0][0], "%Y-%m-%d")
+    last_date = _dt.strptime(series[-1][0], "%Y-%m-%d")
+    span_days = max((last_date - x0).days, 1)
+
+    def X(d):
+        return L + pw * ((_dt.strptime(d, "%Y-%m-%d") - x0).days / span_days)
+
+    def Y(v):
+        return T + ph * (1 - (v - ymin) / (ymax - ymin))
+
+    pts = " ".join(f"{X(d):.1f},{Y(v):.1f}" for d, v in series)
+    area = f"M{X(series[0][0]):.1f},{T + ph:.1f} L" + pts.replace(" ", " L") + f" L{X(series[-1][0]):.1f},{T + ph:.1f} Z"
+    cx, cy = X(series[-1][0]), Y(vals[-1])
+    body = ""
+    if not compact:
+        ticks = []
+        m = _dt(x0.year, x0.month, 1)
+        while m <= last_date:
+            if m >= x0:
+                ticks.append(m)
+            m = _dt(m.year + (m.month == 12), 1 if m.month == 12 else m.month + 1, 1)
+        for i, m in enumerate(ticks):
+            x = X(m.strftime("%Y-%m-%d"))
+            label = m.strftime("%b") + (m.strftime(" %y") if m.month == 1 else "")
+            body += f'<line x1="{x:.1f}" y1="{T}" x2="{x:.1f}" y2="{T + ph}" stroke="#e5e7eb" stroke-width="1"/>'
+            if len(ticks) <= 13 or i % 2 == 0:
+                body += f'<text x="{x:.1f}" y="{H - 10}" font-size="11" fill="#6b7280" text-anchor="middle">{label}</text>'
+        for v in (lo, (lo + hi) / 2, hi):
+            y = Y(v)
+            body += f'<line x1="{L}" y1="{y:.1f}" x2="{L + pw}" y2="{y:.1f}" stroke="#e5e7eb" stroke-dasharray="3 3"/>'
+            body += f'<text x="{L - 6}" y="{y + 4:.1f}" font-size="11" fill="#6b7280" text-anchor="end">{v:,.0f}</text>'
+        body += f'<text x="{L - 6}" y="{T - 2}" font-size="10" fill="#9ca3af" text-anchor="end">{_html.escape(unit)}</text>'
+    body += (f'<path d="{area}" fill="#bfdbfe" fill-opacity="0.45"/>'
+             f'<polyline points="{pts}" fill="none" stroke="#2563eb" stroke-width="{1.5 if compact else 2}" stroke-linejoin="round"/>'
+             f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{3 if compact else 4}" fill="#1d4ed8"/>')
+    if not compact:
+        anchor = "end" if cx > L + pw * 0.7 else "start"
+        lx = cx - 8 if anchor == "end" else cx + 8
+        body += f'<text x="{lx:.1f}" y="{cy - 8:.1f}" font-size="12" font-weight="600" fill="#1e3a8a" text-anchor="{anchor}">{_html.escape(_fmt_level(vals[-1], unit))}</text>'
+    style = "display:block;height:auto;font-family:ui-sans-serif,system-ui,sans-serif"
+    return f'<svg viewBox="0 0 {W} {H}" width="100%" preserveAspectRatio="none" aria-hidden="true" style="{style}">{body}</svg>' if compact else \
+           f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" style="max-width:100%;{style}">{body}</svg>'
+
+
+def generate_lake_level_html(water_name, lake_levels):
+    """
+    Compact water-level card (one-line stats + sparkline) that opens a
+    full 12-month chart in a <dialog> when clicked. Returns "" when there
+    is no series for this water.
+    """
+    import html as _html
+    from datetime import datetime as _dt, timedelta as _td
+
+    info = lake_levels.get(water_name)
+    if not isinstance(info, dict) or not info.get("series"):
+        return ""
+    unit = info.get("unit", "ft")
+    series = [(d, float(v)) for d, v in info["series"] if v is not None]
+    if len(series) < 2:
+        return ""
+    last_date = _dt.strptime(series[-1][0], "%Y-%m-%d")
+    start = last_date - _td(days=365)
+    series = [(d, v) for d, v in series if _dt.strptime(d, "%Y-%m-%d") >= start]
+    if len(series) < 2:
+        return ""
+
+    vals = [v for _, v in series]
+    cur, hi, lo = vals[-1], max(vals), min(vals)
+    hi_date = series[vals.index(hi)][0]
+    lo_date = series[vals.index(lo)][0]
+    d30 = last_date - _td(days=30)
+    before = [v for d, v in series if _dt.strptime(d, "%Y-%m-%d") <= d30]
+    change30 = (cur - before[-1]) if before else None
+
+    def dstr(d):
+        return _dt.strptime(d, "%Y-%m-%d").strftime("%b %d")
+
+    what = "Storage" if unit == "ac-ft" else "Water level"
+    chg = ""
+    if change30 is not None:
+        sign = "+" if change30 >= 0 else "&minus;"
+        color = "text-green-700" if change30 >= 0 else "text-red-700"
+        chg = f'<span class="{color}">{sign}{abs(change30):,.1f} {unit} in 30 days</span>'
+    src_url = AGENCY_LINKS.get(info.get("source", ""), "")
+    src = _html.escape(info.get("label", "") or info.get("source", ""))
+    if src_url:
+        src = f'<a href="{src_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">{src}</a>'
+
+    spark = _level_svg(series, unit, 240, 48, 2, 2, 4, 4, compact=True)
+    full = _level_svg(series, unit, 720, 240, 64, 16, 16, 30, compact=False)
+    dlg = "lake-level-dialog"
+
+    parts = [
+        # compact card
+        f'<button type="button" onclick="document.getElementById(\'{dlg}\').showModal()" '
+        'class="mb-6 w-full text-left bg-white border border-gray-200 rounded-lg px-4 py-2 flex items-center gap-4 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300" '
+        f'aria-label="Show 12-month {what.lower()} chart for {_html.escape(water_name)}">',
+        '<div class="flex-1 min-w-0 text-sm text-gray-800">',
+        f'<span class="font-semibold">{what}:</span> <strong>{_html.escape(_fmt_level(cur, unit))}</strong> '
+        f'<span class="text-gray-500">({dstr(series[-1][0])})</span>' + (f' &nbsp;&middot;&nbsp; {chg}' if chg else '') +
+        ' <span class="text-xs text-blue-600 whitespace-nowrap">&nbsp;&middot; 12-month chart &#9656;</span>',
+        '</div>',
+        f'<div class="w-40 sm:w-60 h-12 flex-none">{spark}</div>',
+        '</button>',
+        # full chart dialog
+        f'<dialog id="{dlg}" class="rounded-lg p-0 w-11/12 max-w-3xl shadow-xl" onclick="if(event.target===this)this.close()">',
+        '<div class="p-5">',
+        '<div class="flex items-start justify-between gap-4 mb-1">',
+        f'<h3 class="text-lg font-bold text-gray-800">{_html.escape(water_name)} &mdash; {what.lower()}, last 12 months</h3>',
+        f'<button type="button" onclick="document.getElementById(\'{dlg}\').close()" class="text-gray-500 hover:text-gray-800 text-2xl leading-none" aria-label="Close">&times;</button>',
+        '</div>',
+        '<p class="text-sm text-gray-700 mb-3">'
+        f'<strong>{_html.escape(_fmt_level(cur, unit))}</strong> on {dstr(series[-1][0])} &nbsp;&middot;&nbsp; '
+        f'12-mo high {_html.escape(_fmt_level(hi, unit))} ({dstr(hi_date)}) &nbsp;&middot;&nbsp; '
+        f'low {_html.escape(_fmt_level(lo, unit))} ({dstr(lo_date)})' + (f' &nbsp;&middot;&nbsp; {chg}' if chg else '') + '</p>',
+        full,
+        f'<p class="text-xs text-gray-500 mt-2">Daily readings from {src}. Elevation is the water surface above sea level; a falling line means ramps and shoreline access get longer. This is not a ramp-status feed &mdash; see park alerts and call ahead before towing.</p>',
+        '</div></dialog>',
+    ]
+    return "\n".join(parts)
+
+
+def _park_key(name):
+    """Normalize a NM State Parks park name for matching against water_authority units."""
+    n = re.sub(r'\(.*?\)', ' ', name.lower())
+    n = n.replace('&', ' and ').replace('ctr.', 'center')
+    n = re.sub(r'\bstate park\b', ' ', n)
+    n = re.sub(r'[^a-z0-9 ]', ' ', n)
+    return ' '.join(n.split())
+
+
+def find_park_alerts(water_name, park_alerts, water_authority):
+    """Return (park_name, alerts) for the state park that manages this water, or (None, [])."""
+    info = water_authority.get(water_name)
+    if not isinstance(info, dict) or info.get("category") not in ("state_park", "mixed"):
+        return None, []
+    unit = _park_key(info.get("unit", "") or "")
+    if not unit:
+        return None, []
+    for park, pdata in park_alerts.items():
+        if park.startswith("_"):
+            continue
+        pk = _park_key(park)
+        if pk and (unit.startswith(pk) or pk in unit):
+            return park, pdata.get("alerts", [])
+    return None, []
+
+
+def generate_park_alerts_html(water_name, park_alerts, water_authority, fetched=""):
+    """
+    Current NM State Parks alerts for the park that manages this water.
+    Boating/ramp/lake-level alerts are shown inline; everything else is
+    collapsed behind a "more park alerts" toggle so the top of the page
+    stays short.
+    """
+    import html as _html
+    park, alerts = find_park_alerts(water_name, park_alerts, water_authority)
+    if not alerts:
+        return ""
+    alerts = sorted(alerts, key=lambda a: (not a.get("boating"), a.get("posted", "")))[:10]
+    boating = [a for a in alerts if a.get("boating")]
+    other = [a for a in alerts if not a.get("boating")]
+    phone = (park_alerts.get(park) or {}).get("phone", "")
+
+    def li(a):
+        when = a.get("posted", "")
+        if a.get("until") and a["until"] != "ongoing" and not a["until"].endswith("/2999"):
+            when += f' &ndash; {a["until"]}'
+        elif when:
+            when += ' &ndash; ongoing'
+        return (f'<li class="text-sm text-gray-800">{_html.escape(a.get("text", ""))}'
+                + (f' <span class="text-xs text-gray-500 whitespace-nowrap">({when})</span>' if when else '') + '</li>')
+
+    parts = ['<div class="mb-6 border-l-4 border-amber-500 bg-amber-50 px-5 py-3 rounded-r-lg">']
+    parts.append(f'<p class="text-sm font-bold text-amber-900 mb-1">Park Alerts &mdash; {_html.escape(park)} State Park</p>')
+    if boating:
+        parts.append('<ul class="space-y-1">' + "".join(li(a) for a in boating) + '</ul>')
+    if other:
+        label = f'{len(other)} more park alert{"s" if len(other) != 1 else ""}' if boating else f'{len(other)} park alert{"s" if len(other) != 1 else ""}'
+        parts.append(f'<details class="mt-1"><summary class="text-sm text-amber-900 cursor-pointer select-none">{label} (campgrounds, trails, seasonal closures)</summary>')
+        parts.append('<ul class="space-y-1 mt-2">' + "".join(li(a) for a in other) + '</ul></details>')
+    foot = 'Source: <a href="https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">NM State Parks alerts</a>'
+    if fetched:
+        foot += f', checked {_html.escape(fetched[:10])}'
+    if phone:
+        foot += f'. Park office {_html.escape(phone)}'
+    parts.append(f'<p class="text-xs text-gray-500 mt-2">{foot}.</p></div>')
+    return "\n".join(parts)
+
+
+def generate_unstocked_html(water_name, note, booklet_species=None, advisory_url=None):
+    """Summary block for a water that gets a page but has no NMDGF stocking records."""
+    import html as _html
+    parts = ['<div class="mb-6 bg-gradient-to-r from-gray-50 to-blue-50 border-l-4 border-gray-400 p-6 rounded-r-lg">',
+             '<div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-gray-100 text-gray-700 border-gray-300">Not on the NMDGF stocking schedule</div>']
+    if note:
+        for para in re.split(r'\n\s*\n', note.strip()):
+            parts.append(f'<p class="text-gray-700 mt-1">{_html.escape(para.strip())}</p>')
+    if booklet_species:
+        parts.append('<div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2">')
+        for sp in booklet_species:
+            parts.append(f'<span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">{_html.escape(sp)} &#10022;</span>')
+        parts.append('</div><p class="text-xs text-gray-400 mt-1">&#10022; Listed in fishing regulations (not stocked)</p>')
+        if advisory_url:
+            parts.append(f'<p class="text-xs mt-2"><a href="{_html.escape(advisory_url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p>')
+        parts.append('</div>')
+    elif advisory_url:
+        parts.append(f'<p class="text-xs mt-3"><a href="{_html.escape(advisory_url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p>')
+    parts.append('</div>')
+    return "".join(parts)
+
+
 BOAT_LABELS = {
     "none": "No boats",
     "non_motorized": "Non-motorized only (kayaks, float tubes, canoes)",
@@ -1200,6 +1438,43 @@ def generate_static_pages(data):
     with open(TEMPLATE_FILE, "r", encoding="utf-8") as f:
         template_html = f.read()
 
+    # Waters that get a page without NMDGF stocking records (e.g. Cochiti Lake).
+    # Merged here only; the stocking data files are left alone.
+    extra_notes = {}
+    if os.path.exists(EXTRA_WATERS_FILE):
+        try:
+            with open(EXTRA_WATERS_FILE, 'r', encoding='utf-8') as f:
+                extras = {k: v for k, v in json.load(f).items() if not k.startswith('_')}
+            data = dict(data)
+            for name, info in extras.items():
+                if name in data:
+                    continue
+                data[name] = {"records": [], "coords": info.get("coords")}
+                extra_notes[name] = info.get("stocking_note", "")
+            print(f"Loaded {len(extras)} extra (unstocked) waters.")
+        except Exception as e:
+            print(f"Warning: Could not load {EXTRA_WATERS_FILE}: {e}")
+
+    # Daily reservoir levels and NM State Parks alerts
+    lake_levels = {}
+    if os.path.exists(LAKE_LEVELS_FILE):
+        try:
+            with open(LAKE_LEVELS_FILE, 'r', encoding='utf-8') as f:
+                lake_levels = {k: v for k, v in json.load(f).items() if not k.startswith('_')}
+            print(f"Loaded lake levels for {len(lake_levels)} reservoirs.")
+        except Exception as e:
+            print(f"Warning: Could not load {LAKE_LEVELS_FILE}: {e}")
+    park_alerts, alerts_fetched = {}, ""
+    if os.path.exists(PARK_ALERTS_FILE):
+        try:
+            with open(PARK_ALERTS_FILE, 'r', encoding='utf-8') as f:
+                raw_alerts = json.load(f)
+            alerts_fetched = raw_alerts.get("_fetched", "")
+            park_alerts = {k: v for k, v in raw_alerts.items() if not k.startswith('_')}
+            print(f"Loaded park alerts for {len(park_alerts)} state parks.")
+        except Exception as e:
+            print(f"Warning: Could not load {PARK_ALERTS_FILE}: {e}")
+
     # Load regulation data if available
     regulations_data = {}
     regulations_file = "matched_regulations.json"
@@ -1296,6 +1571,7 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load {BOAT_RULES_FILE}: {e}")
     boat_rules, boats_unmatched = _resolve_by_canonical(boat_rules, canonical_names)
+    lake_levels, levels_unmatched = _resolve_by_canonical(lake_levels, canonical_names)
     for name, rule in boat_rules.items():
         if not isinstance(rule, dict) or not (rule.get("text") or "").strip():
             continue
@@ -1312,6 +1588,7 @@ def generate_static_pages(data):
         (WATER_NOTES_FILE, notes_unmatched),
         (WATER_AUTHORITY_FILE, authority_unmatched),
         (BOAT_RULES_FILE, boats_unmatched),
+        (LAKE_LEVELS_FILE, levels_unmatched),
     ):
         for key, targets in unmatched:
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
@@ -1354,7 +1631,10 @@ def generate_static_pages(data):
         advisory_page = consumption_advisories.get(water_name)
         advisory_url = f"{advisory_pdf_url}#page={advisory_page}" if advisory_page and advisory_pdf_url else None
 
-        summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species, advisory_url=advisory_url)
+        if water_name in extra_notes:
+            summary_html = generate_unstocked_html(water_name, extra_notes[water_name], booklet_species=booklet_species, advisory_url=advisory_url)
+        else:
+            summary_html = generate_summary_html(water_name, summary_stats, reg_species=reg_species, booklet_species=booklet_species, advisory_url=advisory_url)
         meta_description = generate_meta_description(water_name, summary_stats)
 
         table_rows_html = ""
@@ -1394,6 +1674,11 @@ def generate_static_pages(data):
                 </tr>
             """
 
+        if not records and water_name in extra_notes:
+            table_rows_html = """
+                <tr><td colspan="5" class="px-6 py-4 text-sm text-gray-500">No NMDGF stocking records for this water.</td></tr>
+            """
+
         # Generate regulation HTML if available
         regulation_html = generate_regulation_html(water_name, regulations_data)
 
@@ -1404,6 +1689,8 @@ def generate_static_pages(data):
         water_image_html = generate_water_image_html(water_name, water_images)
         water_notes_html = generate_water_notes_html(water_name, water_notes)
         water_authority_html = generate_water_authority_html(water_name, water_authority)
+        lake_level_html = generate_lake_level_html(water_name, lake_levels)
+        park_alerts_html = generate_park_alerts_html(water_name, park_alerts, water_authority, alerts_fetched)
 
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         if water_notes_html:
@@ -1415,6 +1702,14 @@ def generate_static_pages(data):
             page_html = page_html.replace("{{AUTHORITY}}", water_authority_html)
         else:
             page_html = re.sub(r'[ \t]*\{\{AUTHORITY\}\}\r?\n', '', page_html)
+        if lake_level_html:
+            page_html = page_html.replace("{{LAKE_LEVEL}}", lake_level_html)
+        else:
+            page_html = re.sub(r'[ \t]*\{\{LAKE_LEVEL\}\}\r?\n', '', page_html)
+        if park_alerts_html:
+            page_html = page_html.replace("{{PARK_ALERTS}}", park_alerts_html)
+        else:
+            page_html = re.sub(r'[ \t]*\{\{PARK_ALERTS\}\}\r?\n', '', page_html)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
         page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)

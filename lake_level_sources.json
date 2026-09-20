@@ -1,0 +1,26 @@
+{
+  "_readme": [
+    "Where fetch_lake_levels.py gets daily water-surface elevation for each reservoir. Keys match water names in stocking_data_clean.json (or extra_waters.json).",
+    "  source  - usgs  : USGS NWIS daily values (waterservices.usgs.gov). id = site number. param 62614 = elevation ft NGVD29, 00054 = storage acre-ft.",
+    "            usbr  : Bureau of Reclamation UC hydrodata daily CSV (usbr.gov/uc/water/hydrodata/reservoir_data/<id>/csv/49.csv = pool elevation).",
+    "            usace : Army Corps CDA API, 15-minute series aggregated to a daily value. id = timeseries id (tsid).",
+    "  unit    - ft (elevation) or ac-ft (storage, only where no elevation series exists).",
+    "  full_pool_ft - optional. Leave blank unless taken from the operating agency; the chart works without it.",
+    "  label   - how the operating agency names the site, for the source credit."
+  ],
+  "Bluewater Lake":        {"source": "usgs",  "id": "08341400", "param": "62614", "unit": "ft",    "label": "USGS 08341400 Bluewater Lake near Bluewater"},
+  "Eagle Nest Lake":       {"source": "usgs",  "id": "07205500", "param": "62614", "unit": "ft",    "label": "USGS 07205500 Eagle Nest Lake near Eagle Nest"},
+  "Lake Maloya":           {"source": "usgs",  "id": "07199450", "param": "62614", "unit": "ft",    "label": "USGS 07199450 Lake Maloya near Raton"},
+  "Ute Lake":              {"source": "usgs",  "id": "07226800", "param": "00054", "unit": "ac-ft", "label": "USGS 07226800 Ute Reservoir near Logan (storage)"},
+  "Conchas Lake":          {"source": "usace", "id": "Conchas.Elev.Inst.15Minutes.0.DCP-rev",    "unit": "ft", "label": "USACE Albuquerque District, Conchas Lake"},
+  "Santa Rosa Lake":       {"source": "usace", "id": "Santa Rosa.Elev.Inst.15Minutes.0.DCP-rev", "unit": "ft", "label": "USACE Albuquerque District, Santa Rosa Lake"},
+  "Abiquiu Reservoir":     {"source": "usace", "id": "Abiquiu.Elev.Inst.15Minutes.0.DCP-rev",    "unit": "ft", "label": "USACE Albuquerque District, Abiquiu Reservoir"},
+  "Cochiti Lake":          {"source": "usace", "id": "Cochiti.Elev.Inst.15Minutes.0.DCP-rev",    "unit": "ft", "label": "USACE Albuquerque District, Cochiti Lake"},
+  "Heron Reservoir":       {"source": "usbr",  "id": "2686", "unit": "ft", "label": "Bureau of Reclamation, Heron Reservoir"},
+  "Navajo Reservoir":      {"source": "usbr",  "id": "920",  "unit": "ft", "label": "Bureau of Reclamation, Navajo Reservoir"},
+  "El Vado Lake":          {"source": "usbr",  "id": "2685", "unit": "ft", "label": "Bureau of Reclamation, El Vado Lake"},
+  "Elephant Butte Lake":   {"source": "usbr",  "id": "1119", "unit": "ft", "label": "Bureau of Reclamation, Elephant Butte Reservoir"},
+  "Caballo Lake":          {"source": "usbr",  "id": "1094", "unit": "ft", "label": "Bureau of Reclamation, Caballo Reservoir"},
+  "Lake Sumner":           {"source": "usbr",  "id": "943",  "unit": "ft", "label": "Bureau of Reclamation, Lake Sumner"},
+  "Brantley Dam":          {"source": "usbr",  "id": "937",  "unit": "ft", "label": "Bureau of Reclamation, Brantley Lake"}
+}

@@ -7,36 +7,169 @@
     "  source - booklet edition and page, or the agency page if not from the booklet."
   ],
   "_source_default": "NMDGF 2026-2027 Fishing Rules & Info, pp. 32-38",
-  "Alto Lake": {"rule": "none", "text": "Boats without motors only; village boating permit required; boat hours sunrise to sundown.", "source": ""},
-  "Bear Canyon Reservoir": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Bill Evans Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Bonito Lake": {"rule": "none", "text": "No boats or floating devices allowed.", "source": ""},
-  "Charette Lake Lower": {"rule": "no_wake", "text": "Boats restricted to trolling speeds; boats may be used only during the fishing season (noon March 1 to noon Oct 31).", "source": ""},
-  "Clayton Lake": {"rule": "no_wake", "text": "Boats restricted to trolling speeds; boats may be used only during the fishing season (noon March 1 to noon Oct 31).", "source": ""},
-  "Conoco Pond": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Conservancy Park Lake (Aka Tingley Beach)": {"rule": "none", "text": "No boats or flotation devices.", "source": ""},
-  "Eagle Rock Lake": {"rule": "none", "text": "No boating, wading or swimming (protects the lake liner).", "source": "Carson National Forest, Eagle Rock Lake Day Use Area page"},
-  "Fenton Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Green Meadow Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Grindstone Reservoir": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only, trolling speeds; village boat permit required; boat hours sunrise to sundown; stay out of fenced or buoyed areas near the intake.", "source": ""},
-  "Heron Reservoir": {"rule": "no_wake", "text": "No-wake lake: boats restricted to trolling speeds everywhere on the lake.", "source": ""},
-  "Hopewell Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Jackson Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Laguna Del Campo (Burns Lake)": {"rule": "none", "text": "No boats or flotation devices allowed.", "source": ""},
-  "Lake Alice (Sugarite Canyon)": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only; daylight hours only.", "source": ""},
-  "Lake Farmington": {"rule": "non_motorized", "text": "Non-motorized watercraft only April 11 to Oct 25; open sunrise to sunset.", "source": ""},
-  "Lake Maloya": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only; daylight hours only.", "source": ""},
-  "Lake Roberts": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Maxwell Lake 13": {"rule": "no_wake", "text": "Boats restricted to trolling speed; open noon March 1 to Oct 31.", "source": ""},
-  "Mcgaffey Lake": {"rule": "non_motorized", "text": "Boats without motors only.", "source": ""},
-  "Monastery Lake": {"rule": "none", "text": "No boats or floating devices allowed.", "source": ""},
-  "Morphy Reservoir": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors; open March 1 to Oct 31, weather permitting.", "source": ""},
-  "Navajo Reservoir": {"rule": "unrestricted", "text": "Motors allowed; designated no-wake areas are posted (and closed to kokanee snagging).", "source": ""},
-  "Oasis Park Lake": {"rule": "none", "text": "Boats and flotation devices are not allowed.", "source": ""},
-  "Quemado Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "San Gregorio Lake": {"rule": "non_motorized", "text": "Boats without motors only.", "source": ""},
-  "Shuree Ponds": {"rule": "non_motorized", "text": "Boats without motors only; open July 1 to Dec 31, daylight hours.", "source": ""},
-  "Snow Lake": {"rule": "electric_only", "text": "Boats restricted to oars or electric motors only.", "source": ""},
-  "Springer Lake": {"rule": "no_wake", "text": "Motorboats only when the lake holds 2,000 acre-feet or more; trolling speeds only when below that. No ice fishing.", "source": ""},
-  "Trees Lake": {"rule": "none", "text": "No boats allowed; open sunrise to sunset.", "source": ""}
+  "Alto Lake": {
+    "rule": "none",
+    "text": "Boats without motors only; village boating permit required; boat hours sunrise to sundown.",
+    "source": ""
+  },
+  "Bear Canyon Reservoir": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Bill Evans Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Bonito Lake": {
+    "rule": "none",
+    "text": "No boats or floating devices allowed.",
+    "source": ""
+  },
+  "Charette Lake Lower": {
+    "rule": "no_wake",
+    "text": "Boats restricted to trolling speeds; boats may be used only during the fishing season (noon March 1 to noon Oct 31).",
+    "source": ""
+  },
+  "Clayton Lake": {
+    "rule": "no_wake",
+    "text": "Boats restricted to trolling speeds; boats may be used only during the fishing season (noon March 1 to noon Oct 31).",
+    "source": ""
+  },
+  "Conoco Pond": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Conservancy Park Lake (Aka Tingley Beach)": {
+    "rule": "none",
+    "text": "No boats or flotation devices.",
+    "source": ""
+  },
+  "Eagle Rock Lake": {
+    "rule": "none",
+    "text": "No boating, wading or swimming (protects the lake liner).",
+    "source": "Carson National Forest, Eagle Rock Lake Day Use Area page"
+  },
+  "Fenton Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Green Meadow Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Grindstone Reservoir": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only, trolling speeds; village boat permit required; boat hours sunrise to sundown; stay out of fenced or buoyed areas near the intake.",
+    "source": ""
+  },
+  "Heron Reservoir": {
+    "rule": "no_wake",
+    "text": "No-wake lake: boats restricted to trolling speeds everywhere on the lake.",
+    "source": ""
+  },
+  "Hopewell Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Jackson Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Laguna Del Campo (Burns Lake)": {
+    "rule": "none",
+    "text": "No boats or flotation devices allowed.",
+    "source": ""
+  },
+  "Lake Alice (Sugarite Canyon)": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only; daylight hours only.",
+    "source": ""
+  },
+  "Lake Farmington": {
+    "rule": "non_motorized",
+    "text": "Non-motorized watercraft only April 11 to Oct 25; open sunrise to sunset.",
+    "source": ""
+  },
+  "Lake Maloya": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only; daylight hours only.",
+    "source": ""
+  },
+  "Lake Roberts": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Maxwell Lake 13": {
+    "rule": "no_wake",
+    "text": "Boats restricted to trolling speed; open noon March 1 to Oct 31.",
+    "source": ""
+  },
+  "Mcgaffey Lake": {
+    "rule": "non_motorized",
+    "text": "Boats without motors only.",
+    "source": ""
+  },
+  "Monastery Lake": {
+    "rule": "none",
+    "text": "No boats or floating devices allowed.",
+    "source": ""
+  },
+  "Morphy Reservoir": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors; open March 1 to Oct 31, weather permitting.",
+    "source": ""
+  },
+  "Navajo Reservoir": {
+    "rule": "unrestricted",
+    "text": "Motors allowed; designated no-wake areas are posted (and closed to kokanee snagging).",
+    "source": ""
+  },
+  "Oasis Park Lake": {
+    "rule": "none",
+    "text": "Boats and flotation devices are not allowed.",
+    "source": ""
+  },
+  "Quemado Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "San Gregorio Lake": {
+    "rule": "non_motorized",
+    "text": "Boats without motors only.",
+    "source": ""
+  },
+  "Shuree Ponds": {
+    "rule": "non_motorized",
+    "text": "Boats without motors only; open July 1 to Dec 31, daylight hours.",
+    "source": ""
+  },
+  "Snow Lake": {
+    "rule": "electric_only",
+    "text": "Boats restricted to oars or electric motors only.",
+    "source": ""
+  },
+  "Springer Lake": {
+    "rule": "no_wake",
+    "text": "Motorboats only when the lake holds 2,000 acre-feet or more; trolling speeds only when below that. No ice fishing.",
+    "source": ""
+  },
+  "Trees Lake": {
+    "rule": "none",
+    "text": "No boats allowed; open sunrise to sunset.",
+    "source": ""
+  },
+  "Cochiti Lake": {
+    "rule": "no_wake",
+    "text": "Boats restricted to trolling speeds (no-wake lake); spillway closed to fishing.",
+    "source": ""
+  }
 }

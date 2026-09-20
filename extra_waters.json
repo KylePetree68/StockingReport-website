@@ -1,0 +1,14 @@
+{
+  "_readme": [
+    "Waters that get a page and a map pin without appearing in NMDGF stocking reports. Merged at page-generation time only; stocking_data*.json are never modified.",
+    "  coords         - {lat, lon}",
+    "  stocking_note  - shown in place of the stocking summary. Blank line = new paragraph. Say only what the records support."
+  ],
+  "Cochiti Lake": {
+    "coords": {
+      "lat": 35.632,
+      "lon": -106.323
+    },
+    "stocking_note": "Cochiti Lake does not appear in any NMDGF stocking report in this site's records, which run from 2021 to the present. Its fishery is self-sustaining: the species listed in the fishing rules booklet reproduce in the lake and the Rio Grande above it, so there are no stocking dates to report.\n\nThe lake is a Corps of Engineers flood-control reservoir on Pueblo de Cochiti land. It is included here because it is one of the most-fished waters in the state and because the Corps publishes a daily lake level (charted below). If another agency or group stocks Cochiti we have not found a public record of it."
+  }
+}

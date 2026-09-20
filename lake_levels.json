@@ -1,17 +1,13 @@
 {
- "_generated": "2026-09-20T03:44:07Z",
+ "_generated": "2026-09-20T03:57:19Z",
  "_readme": "Daily water-surface elevation (ft) or storage (ac-ft) per reservoir; see lake_level_sources.json. Written by fetch_lake_levels.py.",
  "Bluewater Lake": {
   "source": "usgs",
   "label": "USGS 08341400 Bluewater Lake near Bluewater",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    7372.01
-   ],
    [
     "2025-08-16",
     7371.95
@@ -1563,12 +1559,8 @@
   "label": "USGS 07205500 Eagle Nest Lake near Eagle Nest",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    8169.11
-   ],
    [
     "2025-08-16",
     8169.08
@@ -3172,12 +3164,8 @@
   "label": "USGS 07199450 Lake Maloya near Raton",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    7510.71
-   ],
    [
     "2025-08-16",
     7510.7
@@ -4577,12 +4565,8 @@
   "label": "USGS 07226800 Ute Reservoir near Logan (storage)",
   "unit": "ac-ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    199600.0
-   ],
    [
     "2025-08-16",
     199500.0
@@ -6186,7 +6170,7 @@
   "label": "USACE Albuquerque District, Conchas Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
    [
     "2025-08-16",
@@ -7795,7 +7779,7 @@
   "label": "USACE Albuquerque District, Santa Rosa Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
    [
     "2025-08-16",
@@ -9404,7 +9388,7 @@
   "label": "USACE Albuquerque District, Abiquiu Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
    [
     "2025-08-16",
@@ -11013,7 +10997,7 @@
   "label": "USACE Albuquerque District, Cochiti Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
    [
     "2025-08-16",
@@ -12622,12 +12606,8 @@
   "label": "Bureau of Reclamation, Heron Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    7090.8
-   ],
    [
     "2025-08-16",
     7090.09
@@ -14231,12 +14211,8 @@
   "label": "Bureau of Reclamation, Navajo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    6028.51
-   ],
    [
     "2025-08-16",
     6028.24
@@ -15840,12 +15816,8 @@
   "label": "Bureau of Reclamation, El Vado Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    6819.71
-   ],
    [
     "2025-08-16",
     6819.75
@@ -17449,12 +17421,8 @@
   "label": "Bureau of Reclamation, Elephant Butte Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    4291.35
-   ],
    [
     "2025-08-16",
     4291.37
@@ -19046,12 +19014,8 @@
   "label": "Bureau of Reclamation, Caballo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    4125.5
-   ],
    [
     "2025-08-16",
     4125.16
@@ -20655,12 +20619,8 @@
   "label": "Bureau of Reclamation, Lake Sumner",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    4251.78
-   ],
    [
     "2025-08-16",
     4251.75
@@ -22236,12 +22196,8 @@
   "label": "Bureau of Reclamation, Brantley Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-09-19",
+  "fetched": "2026-09-20",
   "series": [
-   [
-    "2025-08-15",
-    3247.78
-   ],
    [
     "2025-08-16",
     3247.58

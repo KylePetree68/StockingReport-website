@@ -1733,8 +1733,17 @@ def generate_sitemap(data):
     print("\n--- Starting Sitemap Generation ---")
     
     urls = ["https://stockingreport.com/"]
-    
-    for water_name in data.keys():
+
+    names = list(data.keys())
+    # Pages for unstocked extra waters (extra_waters.json) belong in the sitemap too.
+    if os.path.exists(EXTRA_WATERS_FILE):
+        try:
+            with open(EXTRA_WATERS_FILE, 'r', encoding='utf-8') as f:
+                names += [k for k in json.load(f) if not k.startswith('_') and k not in data]
+        except Exception as e:
+            print(f"Warning: Could not load {EXTRA_WATERS_FILE} for sitemap: {e}")
+
+    for water_name in names:
         filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
         url = f"https://stockingreport.com/public/waters/{filename}"
         urls.append(url)

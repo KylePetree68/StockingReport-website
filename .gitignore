@@ -8,8 +8,10 @@ __pycache__/
 # Downloaded PDFs (don't commit these - too large)
 downloaded_pdfs/
 
-# Duplicate waters folder at root (should not exist)
-waters/
+# Duplicate waters folder at root (should not exist).
+# Leading slash matters: a bare "waters/" also ignores public/waters/ and
+# silently blocks every NEW water page from being committed.
+/waters/
 
 # Generated data files (local only, regenerated in CI)
 stocking_data.json.bak

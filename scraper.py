@@ -1,4 +1,5 @@
 import requests
+import html as html_lib
 from bs4 import BeautifulSoup
 import json
 import re
@@ -395,13 +396,18 @@ def enrich_data_with_coordinates(data, manual_coords):
     print("\n--- Starting Geocoding Enrichment ---")
     enriched_count = 0
     for water_name in data.keys():
-        if data[water_name].get("coords"):
+        # Human-verified coordinates always win, even over an existing pin,
+        # so a bad geocode can be corrected by editing manual_coordinates.json.
+        if water_name in manual_coords and isinstance(manual_coords[water_name], dict):
+            m = manual_coords[water_name]
+            fixed = {"lat": m["lat"], "lon": m["lon"]}
+            if data[water_name].get("coords") != fixed:
+                print(f"  -> Using manual coordinates for {water_name}...")
+                data[water_name]["coords"] = fixed
+                enriched_count += 1
             continue
 
-        if water_name in manual_coords:
-            print(f"  -> Using manual coordinates for {water_name}...")
-            data[water_name]["coords"] = manual_coords[water_name]
-            enriched_count += 1
+        if data[water_name].get("coords"):
             continue
 
         print(f"  -> Fetching coordinates for {water_name}...")
@@ -1003,44 +1009,30 @@ def generate_regulation_html(water_name, regulations_data):
             return f'<span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">{designation}</span>'
 
     # Special Trout Water - Lake
+    def render_stw(entries):
+        entries = entries if isinstance(entries, list) else [entries]
+        for idx, stw in enumerate(entries):
+            if idx:
+                html_parts.append('<hr class="my-4 border-blue-200">')
+            designation = stw.get("designation", "")
+            if designation:
+                html_parts.append(f'<div class="mb-4">{get_designation_badge(designation)}</div>')
+            if stw.get("info"):
+                html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Reach:</strong> {stw["info"]}</p>')
+            if stw.get("tackle_regulation"):
+                html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Tackle:</strong> {stw["tackle_regulation"]}</p>')
+            if stw.get("pro_regulation"):
+                html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Bag Limit:</strong> {stw["pro_regulation"]}</p>')
+            if stw.get("trout_present"):
+                html_parts.append(f'<p class="text-gray-600 text-sm mt-3"><strong>Species:</strong> {stw["trout_present"]}</p>')
+
+    # Special Trout Water - Lake(s) and Stream reach(es)
     if "special_trout_water_lake" in regulations:
-        stw = regulations["special_trout_water_lake"]
-        designation = stw.get("designation", "")
-
-        if designation:
-            html_parts.append(f'<div class="mb-4">{get_designation_badge(designation)}</div>')
-
-        if stw.get("info"):
-            html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')
-
-        if stw.get("tackle_regulation"):
-            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Tackle:</strong> {stw["tackle_regulation"]}</p>')
-
-        if stw.get("pro_regulation"):
-            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Bag Limit:</strong> {stw["pro_regulation"]}</p>')
-
-        if stw.get("trout_present"):
-            html_parts.append(f'<p class="text-gray-600 text-sm mt-3"><strong>Species:</strong> {stw["trout_present"]}</p>')
-
-    # Special Trout Water - Stream
+        render_stw(regulations["special_trout_water_lake"])
     if "special_trout_water_stream" in regulations:
-        stw = regulations["special_trout_water_stream"]
-        designation = stw.get("designation", "")
-
-        if designation:
-            html_parts.append(f'<div class="mb-4">{get_designation_badge(designation)}</div>')
-
-        if stw.get("info"):
-            html_parts.append(f'<p class="text-gray-700 mb-3"><strong>Info:</strong> {stw["info"]}</p>')
-
-        if stw.get("tackle_regulation"):
-            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Tackle:</strong> {stw["tackle_regulation"]}</p>')
-
-        if stw.get("pro_regulation"):
-            html_parts.append(f'<p class="text-gray-700 mb-2"><strong>Bag Limit:</strong> {stw["pro_regulation"]}</p>')
-
-        if stw.get("trout_present"):
-            html_parts.append(f'<p class="text-gray-600 text-sm mt-3"><strong>Species:</strong> {stw["trout_present"]}</p>')
+        if "special_trout_water_lake" in regulations:
+            html_parts.append('<hr class="my-4 border-blue-200">')
+        render_stw(regulations["special_trout_water_stream"])
 
     # Trophy Bass
     if "trophy_bass" in regulations:
@@ -1062,6 +1054,20 @@ def generate_regulation_html(water_name, regulations_data):
             html_parts.append(f'<p class="text-gray-700 mb-2">{sc["regulation"]}</p>')
         if sc.get("info"):
             html_parts.append(f'<p class="text-gray-600 text-sm">{sc["info"]}</p>')
+        html_parts.append('</div>')
+
+    # Boat ramps (NMDGF Fishing Waters Map): ramp type, who runs it, motor rules
+    ramps = regulations.get("boat_ramps") or []
+    if ramps:
+        html_parts.append('<div class="mt-4 pt-4 border-t border-blue-200">')
+        html_parts.append(f'<p class="text-gray-700 font-semibold mb-2">Boat Ramps ({len(ramps)})</p>')
+        seen = set()
+        for ramp in ramps:
+            bits = [ramp.get("ramp_type") or "", ramp.get("ownership") or "", ramp.get("info") or ""]
+            line = " &middot; ".join(html_lib.escape(b) for b in bits if b)
+            if line and line not in seen:
+                seen.add(line)
+                html_parts.append(f'<p class="text-gray-700 text-sm mb-1">{line}</p>')
         html_parts.append('</div>')
 
     # Disclaimer
@@ -1291,9 +1297,14 @@ def generate_static_pages(data):
         reg_species = None
         if water_name in regulations_data:
             for reg_block in regulations_data[water_name].get('regulations', {}).values():
-                trout_present = reg_block.get('trout_present', '')
-                if trout_present:
-                    reg_species = trout_present
+                # STW entries are lists of reaches; ramps are lists too.
+                blocks = reg_block if isinstance(reg_block, list) else [reg_block]
+                for b in blocks:
+                    trout_present = b.get('trout_present', '') if isinstance(b, dict) else ''
+                    if trout_present:
+                        reg_species = trout_present
+                        break
+                if reg_species:
                     break
 
         # Pull species from NMDGF fishing rules booklet

@@ -716,13 +716,13 @@
     "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
   },
   "Hidden Lake (Aka Lake Hazel)": {
-    "authority": "Unknown",
-    "category": "unknown",
-    "unit": "",
-    "url": "",
-    "notes": "Receives Rio Grande cutthroat fingerlings only, which suggests a high-elevation restoration lake, likely on National Forest. Not confirmed.",
-    "confidence": "low",
-    "source": "Unverified"
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness (near Trampas Lakes)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Backcountry lake stocked only with Rio Grande cutthroat fingerlings, like the neighboring Trampas Lakes. Identified by GNIS as the Hidden Lake beside Trampas Lakes; the Lake Hazel alias is unconfirmed.",
+    "confidence": "medium",
+    "source": "GNIS (Rio Arriba Co., 36.005 -105.637); hatchery/species pattern"
   },
   "Holy Ghost Creek": {
     "authority": "Santa Fe National Forest",
@@ -1274,13 +1274,13 @@
     "source": "Location"
   },
   "Rito De Los Pinos": {
-    "authority": "Carson National Forest",
+    "authority": "Santa Fe National Forest",
     "category": "usfs",
-    "unit": "Tres Piedras Ranger District",
-    "url": "https://www.fs.usda.gov/r03/carson",
-    "notes": "Stocked from Los Ojos, so this is the Rito de los Pinos in northern Rio Arriba County (site coordinates near Cuba are wrong).",
-    "confidence": "low",
-    "source": "Hatchery source; verify"
+    "unit": "Cuba Ranger District",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "The Rito de los Pinos in Sandoval County near Cuba (GNIS), stocked from Los Ojos.",
+    "confidence": "medium",
+    "source": "GNIS (Sandoval Co.); existing site coordinates agree"
   },
   "Rock Lake Hatchery Kids Ponds (Near Roswell)": {
     "authority": "NM Dept. of Game & Fish",

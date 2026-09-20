@@ -118,8 +118,8 @@ for water_name, info in data.items():
     had_coords = bool(info.get('coords'))
 
     # ── Human-verified coords take absolute priority ──────────────────────────
-    if water_name in manual:
-        data[water_name]['coords'] = manual[water_name]
+    if water_name in manual and isinstance(manual[water_name], dict):
+        data[water_name]['coords'] = {'lat': manual[water_name]['lat'], 'lon': manual[water_name]['lon']}
         manual_applied.append(water_name)
         continue
 

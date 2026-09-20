@@ -1,258 +1,667 @@
 {
-    "Rito De Los Pinos": {
-        "lat": 36.0646563,
-        "lon": -106.959604
-    },
-    "Lake Van": {
-        "lat": 33.1934393,
-        "lon": -104.3571866
-    },
-    "Bonito Lake": {
-        "lat": 33.4570327,
-        "lon": -105.7332878
-    },
-    "Berrendo Creek": {
-        "lat": 33.4235946,
-        "lon": -104.4711215
-    },
-    "Bill Evans Lake": {
-        "lat": 32.8664405,
-        "lon": -108.573898
-    },
-    "Bosque Redondo": {
-        "lat": 34.4024317,
-        "lon": -104.1961131
-    },
-    "Cow Creek": {
-        "lat": 36.6413573,
-        "lon": -106.1085068
-    },
-    "Eagle Nest Lake": {
-        "lat": 36.5202484,
-        "lon": -105.2588982
-    },
-    "Escondida Lake": {
-        "lat": 34.1219411,
-        "lon": -106.891147
-    },
-    "Estancia Park Lake": {
-        "lat": 34.7556158,
-        "lon": -106.0602951
-    },
-    "Eunice Lake": {
-        "lat": 32.4652799,
-        "lon": -103.2270772
-    },
-    "Fenton Lake": {
-        "lat": 35.8833937,
-        "lon": -106.7263906
-    },
-    "Goose Lake": {
-        "lat": 36.6358273,
-        "lon": -105.4497823
-    },
-    "Holy Ghost Creek": {
-        "lat": 35.7655381,
-        "lon": -105.697425
-    },
-    "Hopewell Lake": {
-        "lat": 36.7062574,
-        "lon": -106.2343418
-    },
-    "Jal Lake": {
-        "lat": 32.0998858,
-        "lon": -103.1883305
-    },
-    "Jemez River": {
-        "lat": 35.7178914,
-        "lon": -106.721902
-    },
-    "Lake Maloya": {
-        "lat": 36.9896458,
-        "lon": -104.3710519
-    },
-    "Lake Roberts": {
-        "lat": 33.0308841,
-        "lon": -108.1614769
-    },
-    "Lake Sumner": {
-        "lat": 34.6112205,
-        "lon": -104.3656848
-    },
-    "Los Pinos River": {
-        "lat": 36.622,
-        "lon": -106.207
-    },
-    "Mcgaffey Lake": {
-        "lat": 35.3776704,
-        "lon": -108.5133276
-    },
-    "Monastery Lake": {
-        "lat": 35.5981635,
-        "lon": -105.6820334
-    },
-    "Navajo Reservoir": {
-        "lat": 36.8012772,
-        "lon": -107.6068026
-    },
-    "Pecos River (Pecos Canyon)": {
-        "lat": 35.716,
-        "lon": -105.683
-    },
-    "Perch Lake (Guadalupe County)": {
-        "lat": 34.9258533,
-        "lon": -104.6637945
-    },
-    "Placer Creek": {
-        "lat": 36.7060286,
-        "lon": -106.2346954
-    },
-    "Quemado Lake": {
-        "lat": 34.1352627,
-        "lon": -108.4921198
-    },
-    "Red River East Fork": {
-        "lat": 36.5998488,
-        "lon": -105.3849902
-    },
-    "Rio Las Vacas": {
-        "lat": 36.0471881,
-        "lon": -106.8191567
-    },
-    "Rio Pueblo": {
-        "lat": 36.1853038,
-        "lon": -105.6386255
-    },
-    "San Juan River (Blw Quality)": {
-        "lat": 36.8155998,
-        "lon": -107.659174
-    },
-    "Santa Cruz Reservoir": {
-        "lat": 35.9785934,
-        "lon": -105.9198401
-    },
-    "Santa Rosa Lake": {
-        "lat": 35.0532072,
-        "lon": -104.6677135
-    },
-    "Shuree Ponds": {
-        "lat": 36.7736951,
-        "lon": -105.1931433
-    },
-    "Snow Lake": {
-        "lat": 33.4235433,
-        "lon": -108.495506
-    },
-    "Ute Lake": {
-        "lat": 35.3404282,
-        "lon": -103.4441479
-    },
-    "Albuquerque Drain": {
-        "lat": 35.0756594,
-        "lon": -106.6624842
-    },
-    "Albuquerque Drain (South)": {
-        "lat": 35.0146856,
-        "lon": -106.6702174
-    },
-    "Animas River": {
-        "lat": 36.728,
-        "lon": -108.195
-    },
-    "Bear Canyon Reservoir": {
-        "lat": 32.8828722,
-        "lon": -107.9937217
-    },
-    "Bernalillo Drain": {
-        "lat": 35.2628418,
-        "lon": -106.5927669
-    },
-    "Black River": {
-        "lat": 32.1741274,
-        "lon": -104.2691594
-    },
-    "Bluewater Lake": {
-        "lat": 35.3005165,
-        "lon": -108.1272585
-    },
-    "Bottomless Lakes": {
-        "lat": 33.3413005,
-        "lon": -104.3348987
-    },
-    "Brantley Dam": {
-        "lat": 32.548975,
-        "lon": -104.3779946
-    },
-    "Caballo Lake": {
-        "lat": 32.9336917,
-        "lon": -107.2968425
-    },
-    "Clayton Lake": {
-        "lat": 36.5779943,
-        "lon": -103.299868
-    },
-    "Green Meadow Lake": {
-        "lat": 32.7494276,
-        "lon": -103.1664136
-    },
-    "Brazos River": {
-        "lat": 36.708,
-        "lon": -106.440
-    },
-    "White Water Creek": {
-        "lat": 33.374944,
-        "lon": -108.837083
-    },
-    "Chama River (Abv El Vado)": {
-        "lat": 36.763034,
-        "lon": -106.665740
-    },
-    "Chama River (Blw El Vado)": {
-        "lat": 36.409000,
-        "lon": -106.571000
-    },
-    "Chama River (Below Abiquiu)": {
-        "lat": 36.163000,
-        "lon": -106.237000
-    },
-    "Pecos River (Cowles To Village Of Pecos)": {
-        "lat": 35.708350,
-        "lon": -105.682703
-    },
-    "Pecos River (Villanueva To I-40)": {
-        "lat": 35.178669,
-        "lon": -105.108803
-    },
-    "Pecos River (I-40 To Lake Sumner)": {
-        "lat": 34.773724,
-        "lon": -104.543537
-    },
-    "Pecos River (Lake Sumner To Roswell)": {
-        "lat": 34.011500,
-        "lon": -104.454500
-    },
-    "Red River (Abv Questa)": {
-        "lat": 36.706042,
-        "lon": -105.500058
-    },
-    "Red River (Below Questa)": {
-        "lat": 36.700000,
-        "lon": -105.640000
-    },
-    "Rio Grande (Gorge- Abv Pilar)": {
-        "lat": 36.530025,
-        "lon": -105.718943
-    },
-    "Rio Grande (Pilar To Cochiti Lake)": {
-        "lat": 35.874500,
-        "lon": -106.142444
-    },
-    "Rio Grande (Elephant Butte To Caballo)": {
-        "lat": 33.016711,
-        "lon": -107.249740
-    },
-    "San Juan River (Blw Quality)": {
-        "lat": 36.699675,
-        "lon": -107.981442
-    }
+  "_readme": "Human-verified coordinates. These ALWAYS override geocoded values (see enrich_data_with_coordinates). Add a water here after confirming its location; 'source' says how it was verified.",
+  "Abiquiu Reservoir": {
+    "lat": 36.256,
+    "lon": -106.434,
+    "source": "nmdgf-ramp"
+  },
+  "Albuquerque Drain": {
+    "lat": 35.0756594,
+    "lon": -106.6624842
+  },
+  "Albuquerque Drain (South)": {
+    "lat": 35.0146856,
+    "lon": -106.6702174
+  },
+  "Alumni Pond": {
+    "lat": 32.279,
+    "lon": -106.745,
+    "source": "known: NMSU, next to Pan American Center"
+  },
+  "Animas River": {
+    "lat": 36.728,
+    "lon": -108.195
+  },
+  "Aztec Pond #1": {
+    "lat": 36.8225,
+    "lon": -107.99,
+    "source": "known: City of Aztec (town center; exact pond unverified)"
+  },
+  "Bataan Lake": {
+    "lat": 32.411,
+    "lon": -104.224,
+    "source": "nmdgf-ramp"
+  },
+  "Bear Canyon Reservoir": {
+    "lat": 32.8828722,
+    "lon": -107.9937217
+  },
+  "Belen Riverside Drain": {
+    "lat": 34.6834,
+    "lon": -106.7453,
+    "source": "gnis-county: Lower Belen Riverside Drain, Valencia Co."
+  },
+  "Bernalillo Drain": {
+    "lat": 35.2628418,
+    "lon": -106.5927669
+  },
+  "Berrendo Creek": {
+    "lat": 33.4235946,
+    "lon": -104.4711215
+  },
+  "Bill Evans Lake": {
+    "lat": 32.8664405,
+    "lon": -108.573898
+  },
+  "Black Canyon": {
+    "lat": 33.1742,
+    "lon": -108.1614,
+    "source": "gnis-county: Black Canyon Creek, Grant Co."
+  },
+  "Black River": {
+    "lat": 32.1741274,
+    "lon": -104.2691594
+  },
+  "Blue Hole Park Pond": {
+    "lat": 34.9401,
+    "lon": -104.673,
+    "source": "gnis-county: Blue Hole, Guadalupe Co."
+  },
+  "Bluewater Lake": {
+    "lat": 35.3005165,
+    "lon": -108.1272585
+  },
+  "Bonito Creek North Fork": {
+    "lat": 33.468,
+    "lon": -105.77,
+    "source": "known: above Bonito Lake"
+  },
+  "Bonito Creek South Fork": {
+    "lat": 33.4554,
+    "lon": -105.7522,
+    "source": "gnis-county: South Fork Rio Bonito, Lincoln Co."
+  },
+  "Bonito Lake": {
+    "lat": 33.4570327,
+    "lon": -105.7332878
+  },
+  "Bosque Redondo": {
+    "lat": 34.4024317,
+    "lon": -104.1961131
+  },
+  "Bottomless Lakes": {
+    "lat": 33.3413005,
+    "lon": -104.3348987
+  },
+  "Brantley Dam": {
+    "lat": 32.548975,
+    "lon": -104.3779946
+  },
+  "Brazos River": {
+    "lat": 36.708,
+    "lon": -106.44
+  },
+  "Caballo Lake": {
+    "lat": 32.9336917,
+    "lon": -107.2968425
+  },
+  "Carrizozo Recreation Lake": {
+    "lat": 33.641,
+    "lon": -105.877,
+    "source": "known: Carrizozo (town center; exact lake unverified)"
+  },
+  "Cebolla River": {
+    "lat": 36.4614,
+    "lon": -106.7059,
+    "source": "gnis-county: Rio Cebolla, Rio Arriba Co. (mouth)"
+  },
+  "Chama River (Abv El Vado)": {
+    "lat": 36.763034,
+    "lon": -106.66574
+  },
+  "Chama River (Below Abiquiu)": {
+    "lat": 36.236,
+    "lon": -106.425,
+    "source": "known: Abiquiu Dam tailwater"
+  },
+  "Chama River (Blw El Vado)": {
+    "lat": 36.56,
+    "lon": -106.7,
+    "source": "known: El Vado Ranch / Rio Chama WMA reach"
+  },
+  "Chaparral Park Lake": {
+    "lat": 32.938,
+    "lon": -103.357,
+    "source": "known: Lovington (city; exact park unverified)"
+  },
+  "Charette Lake Lower": {
+    "lat": 36.1856,
+    "lon": -104.8037,
+    "source": "gnis-county: Charette Lake, Mora Co."
+  },
+  "Cimarron River (West Of Cimarron)": {
+    "lat": 36.535,
+    "lon": -105.1,
+    "source": "known: Cimarron Canyon State Park"
+  },
+  "Cimarron River Gravel Pit Lakes": {
+    "lat": 36.546,
+    "lon": -105.1352,
+    "source": "gnis-county: Gravel Pit Lakes, Colfax Co."
+  },
+  "Clayton Lake": {
+    "lat": 36.5779943,
+    "lon": -103.299868
+  },
+  "Clear Creek (Jemez Mts)": {
+    "lat": 35.9936,
+    "lon": -106.8017,
+    "source": "gnis-county: Clear Creek, Sandoval Co."
+  },
+  "Comanche Creek (Lower)": {
+    "lat": 36.832,
+    "lon": -105.3186,
+    "source": "gnis-county: Comanche Creek, Taos Co. (Valle Vidal)"
+  },
+  "Comanche Creek (Upper)": {
+    "lat": 36.87,
+    "lon": -105.25,
+    "source": "known: upper Comanche Creek, Valle Vidal"
+  },
+  "Conoco Pond": {
+    "lat": 32.8098,
+    "lon": -103.7516,
+    "source": "blm: Loco Lagoon visit page"
+  },
+  "Conservancy Park Lake (Aka Tingley Beach)": {
+    "lat": 35.0838,
+    "lon": -106.6785,
+    "source": "known: Tingley Beach"
+  },
+  "Corona Pond": {
+    "lat": 34.252,
+    "lon": -105.597,
+    "source": "known: Corona (village center)"
+  },
+  "Cow Creek": {
+    "lat": 35.4284,
+    "lon": -105.5095,
+    "source": "gnis-county: Cow Creek, San Miguel Co. (mouth)"
+  },
+  "Coyote Creek (Nr Guadalupita)": {
+    "lat": 36.175,
+    "lon": -105.235,
+    "source": "known: Coyote Creek State Park"
+  },
+  "Coyote Creek Pond": {
+    "lat": 36.176,
+    "lon": -105.234,
+    "source": "known: Coyote Creek State Park"
+  },
+  "Dennis Chaves Pond": {
+    "lat": 34.43,
+    "lon": -103.23,
+    "source": "known: northwest Clovis (exact pond unverified)"
+  },
+  "Eagle Nest Lake": {
+    "lat": 36.5202484,
+    "lon": -105.2588982
+  },
+  "El Porvenir Creek (2115)": {
+    "lat": 35.705,
+    "lon": -105.42,
+    "source": "known: El Porvenir Campground"
+  },
+  "El Rito Creek (Nr Santa Rosa)": {
+    "lat": 34.925,
+    "lon": -104.683,
+    "source": "gnis-county: El Rito Creek, Guadalupe Co."
+  },
+  "El Rito Creek (Trib Of Chama)": {
+    "lat": 36.37,
+    "lon": -106.2,
+    "source": "known: above El Rito village"
+  },
+  "Escondida Lake": {
+    "lat": 34.1219411,
+    "lon": -106.891147
+  },
+  "Estancia Park Lake": {
+    "lat": 34.7556158,
+    "lon": -106.0602951
+  },
+  "Eunice Lake": {
+    "lat": 32.4652799,
+    "lon": -103.2270772
+  },
+  "Fenton Lake": {
+    "lat": 35.8833937,
+    "lon": -106.7263906
+  },
+  "Gallinas Ice Pond": {
+    "lat": 35.652,
+    "lon": -105.28,
+    "source": "known: Montezuma Pond"
+  },
+  "Gallinas River (Nr Las Vegas)": {
+    "lat": 35.6,
+    "lon": -105.225,
+    "source": "known: Las Vegas"
+  },
+  "Gila River (East, Middle, West Forks)": {
+    "lat": 33.1801,
+    "lon": -108.2059,
+    "source": "gnis-county: forks confluence, Grant Co."
+  },
+  "Gilita Creek": {
+    "lat": 33.4145,
+    "lon": -108.4903,
+    "source": "gnis-county: Gilita Creek, Catron Co."
+  },
+  "Glenwood Pond": {
+    "lat": 33.318,
+    "lon": -108.88,
+    "source": "known: Glenwood hatchery"
+  },
+  "Goose Lake": {
+    "lat": 36.6358273,
+    "lon": -105.4497823
+  },
+  "Grants Municipal Pond (River Walk Pond)": {
+    "lat": 35.152,
+    "lon": -107.85,
+    "source": "known: Grants Riverwalk"
+  },
+  "Green Meadow Lake": {
+    "lat": 32.7494276,
+    "lon": -103.1664136
+  },
+  "Greene Acres Lake": {
+    "lat": 34.4177,
+    "lon": -103.2069,
+    "source": "gnis-county: Greene Lake, Curry Co."
+  },
+  "Grindstone Reservoir": {
+    "lat": 33.323,
+    "lon": -105.684,
+    "source": "nmdgf-ramp"
+  },
+  "Guadalupe River": {
+    "lat": 35.72,
+    "lon": -106.77,
+    "source": "known: Rio Guadalupe, Jemez (Gilman Tunnels reach)"
+  },
+  "Harris Lake": {
+    "lat": 35.6278,
+    "lon": -105.2053,
+    "source": "gnis-county: Harris Lake, San Miguel Co."
+  },
+  "Harry Mcadams Park Pond": {
+    "lat": 32.79,
+    "lon": -103.2,
+    "source": "known: Harry McAdams Park, NW Hobbs"
+  },
+  "Hidden Lake (Aka Lake Hazel)": {
+    "lat": 36.005,
+    "lon": -105.6374,
+    "source": "gnis-county: Hidden Lake near Trampas Lakes (RGCT water; best match of six)"
+  },
+  "Holy Ghost Creek": {
+    "lat": 35.7655381,
+    "lon": -105.697425
+  },
+  "Hondo River (Lower)": {
+    "lat": 36.535,
+    "lon": -105.68,
+    "source": "known: Arroyo Hondo to Rio Grande"
+  },
+  "Hopewell Lake": {
+    "lat": 36.7062574,
+    "lon": -106.2343418
+  },
+  "Horseshoe Lake": {
+    "lat": 36.5645,
+    "lon": -105.4057,
+    "source": "gnis-county: Horseshoe Lake, Taos Co. (Wheeler Peak)"
+  },
+  "Jal Lake": {
+    "lat": 32.0998858,
+    "lon": -103.1883305
+  },
+  "Jemez River": {
+    "lat": 35.78,
+    "lon": -106.69,
+    "source": "known: Jemez Springs reach"
+  },
+  "Jemez River East Fork": {
+    "lat": 35.82,
+    "lon": -106.56,
+    "source": "known: Las Conchas reach, NM 4"
+  },
+  "Joe Vigil Lake": {
+    "lat": 35.9557,
+    "lon": -105.6497,
+    "source": "gnis-county: Jose Vigil Lake, Mora Co."
+  },
+  "Laguna Del Campo (Burns Lake)": {
+    "lat": 36.722,
+    "lon": -106.565,
+    "source": "known: Los Ojos Hatchery"
+  },
+  "Lagunitas Lakes": {
+    "lat": 36.858,
+    "lon": -106.178,
+    "source": "known: Lagunitas Campground (approx.)"
+  },
+  "Lake Alice (Sugarite Canyon)": {
+    "lat": 36.955,
+    "lon": -104.386,
+    "source": "gnis-county: Lake Alice, Colfax Co."
+  },
+  "Lake Maloya": {
+    "lat": 36.9896458,
+    "lon": -104.3710519
+  },
+  "Lake Roberts": {
+    "lat": 33.0308841,
+    "lon": -108.1614769
+  },
+  "Lake Sumner": {
+    "lat": 34.6112205,
+    "lon": -104.3656848
+  },
+  "Lake Van": {
+    "lat": 33.1934393,
+    "lon": -104.3571866
+  },
+  "Liam Knight Pond": {
+    "lat": 35.238,
+    "lon": -106.612,
+    "source": "known: Corrales (exact pond unverified)"
+  },
+  "Los Pinos River": {
+    "lat": 36.9981,
+    "lon": -106.0356,
+    "source": "gnis-county: Rio de los Pinos, Rio Arriba Co."
+  },
+  "Lower Trampas (Aka Lake Ruth)": {
+    "lat": 35.994,
+    "lon": -105.635,
+    "source": "gnis-county: Trampas Lakes, Rio Arriba Co."
+  },
+  "Maxwell Lake 13": {
+    "lat": 36.581,
+    "lon": -104.589,
+    "source": "nmdgf-ramp"
+  },
+  "Mcgaffey Lake": {
+    "lat": 35.3776704,
+    "lon": -108.5133276
+  },
+  "Monastery Lake": {
+    "lat": 35.5981635,
+    "lon": -105.6820334
+  },
+  "Mora (Pecos River Drainage)": {
+    "lat": 35.7761,
+    "lon": -105.6595,
+    "source": "gnis-county: Rio Mora mouth (Mora Campground), San Miguel Co."
+  },
+  "Morphy Reservoir": {
+    "lat": 35.9421,
+    "lon": -105.3982,
+    "source": "gnis-county: Morphy Lake, Mora Co."
+  },
+  "Mt View Ponds (Aka Cowles Ponds)": {
+    "lat": 35.812,
+    "lon": -105.6597,
+    "source": "gnis-county: Cowles, San Miguel Co."
+  },
+  "Navajo Reservoir": {
+    "lat": 36.8012772,
+    "lon": -107.6068026
+  },
+  "Ned Houk Ponds": {
+    "lat": 34.49,
+    "lon": -103.21,
+    "source": "known: Ned Houk Park, north of Clovis (approx.)"
+  },
+  "Nutrias Lakes (Aka Trout Lakes)": {
+    "lat": 36.6064,
+    "lon": -106.379,
+    "source": "gnis-county: Trout Lakes, Rio Arriba Co."
+  },
+  "Oasis Park Lake": {
+    "lat": 34.265,
+    "lon": -103.352,
+    "source": "known: Oasis State Park"
+  },
+  "Pecos River (Cowles To Village Of Pecos)": {
+    "lat": 35.70835,
+    "lon": -105.682703
+  },
+  "Pecos River (I-40 To Lake Sumner)": {
+    "lat": 34.773724,
+    "lon": -104.543537
+  },
+  "Pecos River (Lake Sumner To Roswell)": {
+    "lat": 34.0115,
+    "lon": -104.4545
+  },
+  "Pecos River (Pecos Canyon)": {
+    "lat": 35.716,
+    "lon": -105.683
+  },
+  "Pecos River (Vill Of Pecos - Villanueva)": {
+    "lat": 35.42,
+    "lon": -105.48,
+    "source": "known: midpoint of reach (Ribera/San Jose)"
+  },
+  "Pecos River (Villanueva To I-40)": {
+    "lat": 35.178669,
+    "lon": -105.108803
+  },
+  "Peralta Creek": {
+    "lat": 35.5963,
+    "lon": -106.3516,
+    "source": "gnis-county: Peralta Canyon, Sandoval Co."
+  },
+  "Perch Lake (Guadalupe County)": {
+    "lat": 34.9258533,
+    "lon": -104.6637945
+  },
+  "Placer Creek": {
+    "lat": 36.6778,
+    "lon": -106.2497,
+    "source": "gnis-county: Placer Creek, Rio Arriba Co. (Hopewell)"
+  },
+  "Quemado Lake": {
+    "lat": 34.1352627,
+    "lon": -108.4921198
+  },
+  "Ralph Edwards Derby": {
+    "lat": 33.132,
+    "lon": -107.248,
+    "source": "known: Ralph Edwards Park, Truth or Consequences"
+  },
+  "Rancho Grande Pond": {
+    "lat": 33.6856,
+    "lon": -108.862,
+    "source": "gnis-county: Rancho Grande Estates, Catron Co."
+  },
+  "Red River (Abv Questa)": {
+    "lat": 36.706042,
+    "lon": -105.500058
+  },
+  "Red River (Below Questa)": {
+    "lat": 36.7,
+    "lon": -105.64
+  },
+  "Red River City Ponds": {
+    "lat": 36.706,
+    "lon": -105.406,
+    "source": "known: town of Red River"
+  },
+  "Red River East Fork": {
+    "lat": 36.5998488,
+    "lon": -105.3849902
+  },
+  "Red River West Fork": {
+    "lat": 36.61,
+    "lon": -105.43,
+    "source": "known: West Fork above Red River"
+  },
+  "Rio Bonito Lower": {
+    "lat": 33.49,
+    "lon": -105.52,
+    "source": "known: Fort Stanton reach"
+  },
+  "Rio Bonito Upper": {
+    "lat": 33.46,
+    "lon": -105.7,
+    "source": "known: above Bonito Lake (approx.)"
+  },
+  "Rio Grande (Elephant Butte To Caballo)": {
+    "lat": 33.016711,
+    "lon": -107.24974
+  },
+  "Rio Grande (Gorge- Abv Pilar)": {
+    "lat": 36.530025,
+    "lon": -105.718943
+  },
+  "Rio Grande (Pilar To Cochiti Lake)": {
+    "lat": 35.8745,
+    "lon": -106.142444
+  },
+  "Rio Las Vacas": {
+    "lat": 36.0471881,
+    "lon": -106.8191567
+  },
+  "Rio Pueblo": {
+    "lat": 36.1853038,
+    "lon": -105.6386255
+  },
+  "Rito De Los Pinos": {
+    "lat": 36.0646563,
+    "lon": -106.959604
+  },
+  "Rock Lake Hatchery Kids Ponds (Near Roswell)": {
+    "lat": 34.9073,
+    "lon": -104.6699,
+    "source": "gnis-county: Rock Lake, Guadalupe Co. (hatchery is at Santa Rosa)"
+  },
+  "Roswell Kids Pond": {
+    "lat": 33.401,
+    "lon": -104.512,
+    "source": "known: Spring River Park & Zoo, Roswell"
+  },
+  "San Antonio River": {
+    "lat": 35.8281,
+    "lon": -106.645,
+    "source": "gnis-county: San Antonio Creek, Sandoval Co."
+  },
+  "San Juan River (Blw Quality)": {
+    "lat": 36.79,
+    "lon": -107.72,
+    "source": "known: below Quality Water boundary"
+  },
+  "San Juan River (Quality)": {
+    "lat": 36.808,
+    "lon": -107.66,
+    "source": "known: Texas Hole / Quality Waters"
+  },
+  "Santa Cruz Reservoir": {
+    "lat": 35.9785934,
+    "lon": -105.9198401
+  },
+  "Santa Rosa Lake": {
+    "lat": 35.0532072,
+    "lon": -104.6677135
+  },
+  "Sapillo Creek (Nr Lake Roberts)": {
+    "lat": 33.0487,
+    "lon": -108.307,
+    "source": "gnis-county: Sapillo Creek, Grant Co."
+  },
+  "Seven Springs Brood Pond": {
+    "lat": 35.9281,
+    "lon": -106.7028,
+    "source": "gnis-county: Seven Springs, Sandoval Co."
+  },
+  "Shuree Ponds": {
+    "lat": 36.7736951,
+    "lon": -105.1931433
+  },
+  "Sipapu Pond": {
+    "lat": 36.1556,
+    "lon": -105.5506,
+    "source": "gnis-county: Sipapu, Taos Co."
+  },
+  "Snow Lake": {
+    "lat": 33.4235433,
+    "lon": -108.495506
+  },
+  "Storrie Reservoir": {
+    "lat": 35.6662,
+    "lon": -105.2395,
+    "source": "gnis-county: Storrie Lake, San Miguel Co."
+  },
+  "Stubblefield Lake": {
+    "lat": 36.5743,
+    "lon": -104.6628,
+    "source": "gnis-county: Stubblefield Reservoir, Colfax Co."
+  },
+  "Tajique Creek": {
+    "lat": 34.75,
+    "lon": -106.32,
+    "source": "known: Tajique Campground reach (approx.)"
+  },
+  "Taos Creek (Aka Rio Fernando De Taos)": {
+    "lat": 36.39,
+    "lon": -105.5,
+    "source": "known: Taos Canyon, US 64"
+  },
+  "Tiger Park Pond (Aztec)": {
+    "lat": 36.826,
+    "lon": -107.988,
+    "source": "known: Tiger Park, Aztec (approx.)"
+  },
+  "Timberon Ponds": {
+    "lat": 32.63,
+    "lon": -105.69,
+    "source": "gnis-county: Timberon, Otero Co."
+  },
+  "Trees Lake": {
+    "lat": 32.263,
+    "lon": -107.757,
+    "source": "known: downtown Deming"
+  },
+  "Upper Trampas (Aka Lake Alice)": {
+    "lat": 35.992,
+    "lon": -105.64,
+    "source": "gnis-county: Trampas Lakes, Rio Arriba Co."
+  },
+  "Ute Lake": {
+    "lat": 35.3404282,
+    "lon": -103.4441479
+  },
+  "White Water Creek": {
+    "lat": 33.374944,
+    "lon": -108.837083
+  },
+  "Willow Creek (Gila Drainage)": {
+    "lat": 33.4098,
+    "lon": -108.5723,
+    "source": "gnis-county: Willow Creek, Catron Co."
+  },
+  "Willow Creek (Pecos Drainage)": {
+    "lat": 35.7578,
+    "lon": -105.6717,
+    "source": "gnis-county: Willow Creek, San Miguel Co."
+  },
+  "Young Pond": {
+    "lat": 32.311,
+    "lon": -106.749,
+    "source": "known: Young Park, Las Cruces"
+  }
 }

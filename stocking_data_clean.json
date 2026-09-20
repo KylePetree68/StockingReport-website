@@ -1738,7 +1738,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.279,
+            "lon": -106.745
+        }
     },
     "Bataan Lake": {
         "records": [
@@ -2607,7 +2610,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.411,
+            "lon": -104.224
+        }
     },
     "Bear Canyon Reservoir": {
         "records": [
@@ -6116,7 +6122,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.9401,
+            "lon": -104.673
+        }
     },
     "Bottomless Lakes": {
         "records": [
@@ -9121,7 +9130,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.925,
+            "lon": -104.683
+        }
     },
     "Escondida Lake": {
         "records": [
@@ -17219,7 +17231,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.263,
+            "lon": -107.757
+        }
     },
     "Young Pond": {
         "records": [
@@ -18160,7 +18175,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_03_20/?wpdmdl=44464&refresh=69cb145ebf10b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.311,
+            "lon": -106.749
+        }
     },
     "Albuquerque Drain": {
         "records": [
@@ -22197,7 +22215,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.8225,
+            "lon": -107.99
+        }
     },
     "Belen Riverside Drain": {
         "records": [
@@ -23434,7 +23455,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.6834,
+            "lon": -106.7453
+        }
     },
     "Bernalillo Drain": {
         "records": [
@@ -27471,7 +27495,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.0838,
+            "lon": -106.6785
+        }
     },
     "Corrales Riverside Drain": {
         "records": [
@@ -31933,8 +31960,8 @@
             }
         ],
         "coords": {
-            "lat": 36.163,
-            "lon": -106.237
+            "lat": 36.236,
+            "lon": -106.425
         }
     },
     "Chaparral Park Lake": {
@@ -32948,7 +32975,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_17_20/?wpdmdl=44470&refresh=69cb145eb50a31774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.938,
+            "lon": -103.357
+        }
     },
     "Dennis Chaves Pond": {
         "records": [
@@ -33961,7 +33991,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_31_20/?wpdmdl=44474&refresh=69cb145c43f911774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.43,
+            "lon": -103.23
+        }
     },
     "Eunice Lake": {
         "records": [
@@ -38134,7 +38167,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.318,
+            "lon": -108.88
+        }
     },
     "Green Meadow Lake": {
         "records": [
@@ -40035,7 +40071,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_31_20/?wpdmdl=44474&refresh=69cb145c43f911774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.4177,
+            "lon": -103.2069
+        }
     },
     "Harry Mcadams Park Pond": {
         "records": [
@@ -40680,7 +40719,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_17_20/?wpdmdl=44470&refresh=69cb145eb50a31774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.79,
+            "lon": -103.2
+        }
     },
     "Jal Lake": {
         "records": [
@@ -44533,7 +44575,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_31_20/?wpdmdl=44474&refresh=69cb145c43f911774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.49,
+            "lon": -103.21
+        }
     },
     "Oasis Park Lake": {
         "records": [
@@ -45474,7 +45519,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_31_20/?wpdmdl=44474&refresh=69cb145c43f911774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.265,
+            "lon": -103.352
+        }
     },
     "Pecos River (Vill Of Pecos - Villanueva)": {
         "records": [
@@ -46055,7 +46103,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.42,
+            "lon": -105.48
+        }
     },
     "Peralta Drain": {
         "records": [
@@ -48020,7 +48071,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.6856,
+            "lon": -108.862
+        }
     },
     "Tiger Park Pond (Aztec)": {
         "records": [
@@ -48857,7 +48911,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_31_20/?wpdmdl=44474&refresh=69cb145c43f911774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.826,
+            "lon": -107.988
+        }
     },
     "Carrizozo Recreation Lake": {
         "records": [
@@ -49726,7 +49783,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.641,
+            "lon": -105.877
+        }
     },
     "Corona Pond": {
         "records": [
@@ -50571,7 +50631,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.252,
+            "lon": -105.597
+        }
     },
     "Grindstone Reservoir": {
         "records": [
@@ -52008,7 +52071,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_10_20/?wpdmdl=44467&refresh=69cb145eb9b8b1774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.323,
+            "lon": -105.684
+        }
     },
     "Lake Farmington": {
         "records": [
@@ -53797,7 +53863,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-01_17_20/?wpdmdl=44470&refresh=69cb145eb50a31774916702"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.152,
+            "lon": -107.85
+        }
     },
     "Pecos River (Lake Sumner To Roswell)": {
         "records": [
@@ -54778,7 +54847,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11_13_20/?wpdmdl=44546&refresh=69cb144a04c5a1774916682"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.49,
+            "lon": -105.52
+        }
     },
     "Rio Grande (Pilar To Cochiti Lake)": {
         "records": [
@@ -56503,7 +56575,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-07_10_20/?wpdmdl=44510&refresh=69cb1454b968a1774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.808,
+            "lon": -107.66
+        }
     },
     "Timberon Ponds": {
         "records": [
@@ -57684,7 +57759,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_13_20/?wpdmdl=44486&refresh=69cb1459b06351774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.63,
+            "lon": -105.69
+        }
     },
     "Rio Grande (Gorge- Abv Pilar)": {
         "records": [
@@ -60242,8 +60320,8 @@
             }
         ],
         "coords": {
-            "lat": 36.699675,
-            "lon": -107.981442
+            "lat": 36.79,
+            "lon": -107.72
         }
     },
     "Jemez River": {
@@ -61114,8 +61192,8 @@
             }
         ],
         "coords": {
-            "lat": 35.7178914,
-            "lon": -106.721902
+            "lat": 35.78,
+            "lon": -106.69
         }
     },
     "Heron Reservoir": {
@@ -62329,7 +62407,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-02_07_20/?wpdmdl=44476&refresh=69cb145c415c71774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.238,
+            "lon": -106.612
+        }
     },
     "Jackson Lake": {
         "records": [
@@ -63302,7 +63383,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-02_21_20/?wpdmdl=44480&refresh=69cb145c3bd281774916700"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 32.8098,
+            "lon": -103.7516
+        }
     },
     "Monastery Lake": {
         "records": [
@@ -66171,7 +66255,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_06_20/?wpdmdl=44484&refresh=69cb1459b306d1774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.4614,
+            "lon": -106.7059
+        }
     },
     "Santa Cruz Reservoir": {
         "records": [
@@ -67112,7 +67199,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_06_20/?wpdmdl=44484&refresh=69cb1459b306d1774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.1856,
+            "lon": -104.8037
+        }
     },
     "Pecos River (Villanueva To I-40)": {
         "records": [
@@ -67965,7 +68055,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_06_20/?wpdmdl=44484&refresh=69cb1459b306d1774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.6662,
+            "lon": -105.2395
+        }
     },
     "Lake Alice (Sugarite Canyon)": {
         "records": [
@@ -68498,7 +68591,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_13_20/?wpdmdl=44486&refresh=69cb1459b06351774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.955,
+            "lon": -104.386
+        }
     },
     "Morphy Reservoir": {
         "records": [
@@ -69015,7 +69111,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_12_21/?wpdmdl=44485&refresh=69cb1459b1b2c1774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.9421,
+            "lon": -105.3982
+        }
     },
     "Rio Bonito Upper": {
         "records": [
@@ -69196,7 +69295,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_13_20/?wpdmdl=44486&refresh=69cb1459b06351774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.46,
+            "lon": -105.7
+        }
     },
     "Eagle Rock Lake": {
         "records": [
@@ -72690,8 +72792,8 @@
             }
         ],
         "coords": {
-            "lat": 36.409,
-            "lon": -106.571
+            "lat": 36.56,
+            "lon": -106.7
         }
     },
     "Chama River (Abv El Vado)": {
@@ -74305,7 +74407,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_05_20/?wpdmdl=44500&refresh=69cb1457377751774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.7761,
+            "lon": -105.6595
+        }
     },
     "Pecos River (Cowles To Village Of Pecos)": {
         "records": [
@@ -77022,7 +77127,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.175,
+            "lon": -105.235
+        }
     },
     "Coyote Creek Pond": {
         "records": [
@@ -77571,7 +77679,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.176,
+            "lon": -105.234
+        }
     },
     "Gallinas Ice Pond": {
         "records": [
@@ -77872,7 +77983,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.652,
+            "lon": -105.28
+        }
     },
     "Gallinas River (Nr Las Vegas)": {
         "records": [
@@ -78221,7 +78335,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.6,
+            "lon": -105.225
+        }
     },
     "Rio Pueblo": {
         "records": [
@@ -79402,7 +79519,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-08_14_20/?wpdmdl=44520&refresh=69cb14522c38f1774916690"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.8281,
+            "lon": -106.645
+        }
     },
     "Guadalupe River": {
         "records": [
@@ -79480,8 +79600,8 @@
             }
         ],
         "coords": {
-            "lat": 34.93299,
-            "lon": -104.69203
+            "lat": 35.72,
+            "lon": -106.77
         }
     },
     "Jemez River East Fork": {
@@ -79575,7 +79695,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_26_20/?wpdmdl=44506&refresh=69cb1454c0c841774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.82,
+            "lon": -106.56
+        }
     },
     "Mcgaffey Lake": {
         "records": [
@@ -80452,7 +80575,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_19_20/?wpdmdl=44504&refresh=69cb1454c39f11774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.812,
+            "lon": -105.6597
+        }
     },
     "Ute Lake": {
         "records": [
@@ -81545,7 +81671,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_05_20/?wpdmdl=44500&refresh=69cb1457377751774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.535,
+            "lon": -105.1
+        }
     },
     "Cimarron River Gravel Pit Lakes": {
         "records": [
@@ -82630,7 +82759,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_05_20/?wpdmdl=44500&refresh=69cb1457377751774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.546,
+            "lon": -105.1352
+        }
     },
     "Cow Creek": {
         "records": [
@@ -83148,8 +83280,8 @@
             }
         ],
         "coords": {
-            "lat": 36.6413573,
-            "lon": -106.1085068
+            "lat": 35.4284,
+            "lon": -105.5095
         }
     },
     "Eagle Nest Lake": {
@@ -84747,7 +84879,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_12_20/?wpdmdl=44502&refresh=69cb1454c65d41774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.722,
+            "lon": -106.565
+        }
     },
     "Quemado Lake": {
         "records": [
@@ -85449,8 +85584,8 @@
             }
         ],
         "coords": {
-            "lat": 36.2632975,
-            "lon": -106.5172941
+            "lat": 36.256,
+            "lon": -106.434
         }
     },
     "Holy Ghost Creek": {
@@ -86521,8 +86656,8 @@
             }
         ],
         "coords": {
-            "lat": 36.622,
-            "lon": -106.207
+            "lat": 36.9981,
+            "lon": -106.0356
         }
     },
     "Pecos River (Pecos Canyon)": {
@@ -88064,7 +88199,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_05_20/?wpdmdl=44500&refresh=69cb1457377751774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.1801,
+            "lon": -108.2059
+        }
     },
     "Canjilon Lakes": {
         "records": [
@@ -90037,7 +90175,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.6064,
+            "lon": -106.379
+        }
     },
     "Sipapu Pond": {
         "records": [
@@ -90266,7 +90407,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.1556,
+            "lon": -105.5506
+        }
     },
     "Taos Creek (Aka Rio Fernando De Taos)": {
         "records": [
@@ -90319,7 +90463,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.39,
+            "lon": -105.5
+        }
     },
     "El Porvenir Creek (2115)": {
         "records": [
@@ -90340,7 +90487,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_28_21/?wpdmdl=44497&refresh=69cb14573bb8f1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.705,
+            "lon": -105.42
+        }
     },
     "Red River East Fork": {
         "records": [
@@ -91161,7 +91311,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_19_20/?wpdmdl=44504&refresh=69cb1454c39f11774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.61,
+            "lon": -105.43
+        }
     },
     "Gilita Creek": {
         "records": [
@@ -91214,7 +91367,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-05_29_20/?wpdmdl=44498&refresh=69cb14573a4ff1774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.4145,
+            "lon": -108.4903
+        }
     },
     "Brazos River": {
         "records": [
@@ -92059,7 +92215,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_05_20/?wpdmdl=44500&refresh=69cb1457377751774916695"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.535,
+            "lon": -105.68
+        }
     },
     "Black Canyon": {
         "records": [
@@ -92129,8 +92288,8 @@
             }
         ],
         "coords": {
-            "lat": 33.9766653,
-            "lon": -106.8941223
+            "lat": 33.1742,
+            "lon": -108.1614
         }
     },
     "Red River City Ponds": {
@@ -92376,7 +92535,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_26_20/?wpdmdl=44506&refresh=69cb1454c0c841774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.706,
+            "lon": -105.406
+        }
     },
     "Brantley Dam": {
         "records": [
@@ -92581,7 +92743,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-06_19_20/?wpdmdl=44504&refresh=69cb1454c39f11774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.858,
+            "lon": -106.178
+        }
     },
     "Shuree Ponds": {
         "records": [
@@ -93434,7 +93599,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-07_02_21/?wpdmdl=44507&refresh=69cb1454be34f1774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.6278,
+            "lon": -105.2053
+        }
     },
     "El Rito Creek (Trib Of Chama)": {
         "records": [
@@ -93511,7 +93679,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-07_03_20/?wpdmdl=44508&refresh=69cb1454bc3af1774916692"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.37,
+            "lon": -106.2
+        }
     },
     "Casias Lakes": {
         "records": [
@@ -94222,7 +94393,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-11-24/?wpdmdl=49738&refresh=69cb143c564b51774916668"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.87,
+            "lon": -105.25
+        }
     },
     "Costilla Creek": {
         "records": [
@@ -94307,7 +94481,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-11-24/?wpdmdl=49738&refresh=69cb143c564b51774916668"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.9557,
+            "lon": -105.6497
+        }
     },
     "Willow Creek (Pecos Drainage)": {
         "records": [
@@ -94336,7 +94513,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10-11-24/?wpdmdl=49738&refresh=69cb143c564b51774916668"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.7578,
+            "lon": -105.6717
+        }
     },
     "El Vado Lake": {
         "records": [
@@ -94549,7 +94729,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10_09_20/?wpdmdl=44536&refresh=69cb144c723f81774916684"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.005,
+            "lon": -105.6374
+        }
     },
     "Horseshoe Lake": {
         "records": [
@@ -94579,8 +94762,8 @@
             }
         ],
         "coords": {
-            "lat": 32.1723762,
-            "lon": -104.1064609
+            "lat": 36.5645,
+            "lon": -105.4057
         }
     },
     "Lost Lake": {
@@ -94658,7 +94841,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10_09_20/?wpdmdl=44536&refresh=69cb144c723f81774916684"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.994,
+            "lon": -105.635
+        }
     },
     "Middle Fork Lake": {
         "records": [
@@ -94751,7 +94937,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10_09_20/?wpdmdl=44536&refresh=69cb144c723f81774916684"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.992,
+            "lon": -105.64
+        }
     },
     "Maxwell Lake 13": {
         "records": [
@@ -94812,7 +95001,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-4-25/?wpdmdl=50750&refresh=69cb1437683cb1774916663"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.581,
+            "lon": -104.589
+        }
     },
     "Lake Katherine": {
         "records": [
@@ -94921,7 +95113,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-10_09_20/?wpdmdl=44536&refresh=69cb144c723f81774916684"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.9936,
+            "lon": -106.8017
+        }
     },
     "Lake Sumner": {
         "records": [
@@ -95022,7 +95217,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-1-24/?wpdmdl=49809&refresh=69cb143c52e241774916668"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.0487,
+            "lon": -108.307
+        }
     },
     "Pecos River (I-40 To Lake Sumner)": {
         "records": [
@@ -95075,7 +95273,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-4-22/?wpdmdl=45328&refresh=69cb1444921161774916676"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.832,
+            "lon": -105.3186
+        }
     },
     "Stubblefield Lake": {
         "records": [
@@ -95096,7 +95297,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-18-25/?wpdmdl=50930&refresh=69cb14350f2721774916661"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 36.5743,
+            "lon": -104.6628
+        }
     },
     "Tajique Creek": {
         "records": [
@@ -95117,7 +95321,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-4-21-23/?wpdmdl=46536&refresh=69cb14412a5cb1774916673"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.75,
+            "lon": -106.32
+        }
     },
     "Ralph Edwards Derby": {
         "records": [
@@ -95186,7 +95393,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-5-5-23/?wpdmdl=46538&refresh=69cb144127feb1774916673"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.132,
+            "lon": -107.248
+        }
     },
     "White Water Creek": {
         "records": [
@@ -95272,8 +95482,8 @@
             }
         ],
         "coords": {
-            "lat": 36.7060286,
-            "lon": -106.2346954
+            "lat": 36.6778,
+            "lon": -106.2497
         }
     },
     "Rito De Los Pinos": {
@@ -95407,7 +95617,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-7-5-24/?wpdmdl=48305&refresh=69cb1441217d31774916673"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.401,
+            "lon": -104.512
+        }
     },
     "Bonito Creek North Fork": {
         "records": [
@@ -95428,7 +95641,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.468,
+            "lon": -105.77
+        }
     },
     "Bonito Creek South Fork": {
         "records": [
@@ -95449,7 +95665,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-8-1-25/?wpdmdl=52130&refresh=69cb14325ab1d1774916658"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.4554,
+            "lon": -105.7522
+        }
     },
     "Willow Creek (Gila Drainage)": {
         "records": [
@@ -95470,7 +95689,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-9-06-24/?wpdmdl=49305&refresh=69cb143eb755d1774916670"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 33.4098,
+            "lon": -108.5723
+        }
     },
     "Rock Lake Hatchery Kids Ponds (Near Roswell)": {
         "records": [
@@ -96027,7 +96249,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-6-14-24/?wpdmdl=48302&refresh=69cb144125b381774916673"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 34.9073,
+            "lon": -104.6699
+        }
     },
     "Seven Springs Brood Pond": {
         "records": [
@@ -96440,7 +96665,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-03_13_20/?wpdmdl=44486&refresh=69cb1459b06351774916697"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.9281,
+            "lon": -106.7028
+        }
     },
     "Peralta Creek": {
         "records": [
@@ -96453,7 +96681,10 @@
                 "reportUrl": "https://wildlife.dgf.nm.gov/download/stocking-report-11-21-25/?wpdmdl=52980&refresh=6920d18e3b15b1763758478"
             }
         ],
-        "coords": null
+        "coords": {
+            "lat": 35.5963,
+            "lon": -106.3516
+        }
     },
     "Lake Roberts Glenwood Trout Hatchery": {
         "records": [

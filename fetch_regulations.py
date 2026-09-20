@@ -21,14 +21,27 @@ import time
 BASE_URL = "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer"
 
 # Layer IDs from the feature service
+# NOTE: the service numbers its layers 1-7 (there is no layer 0). Verified
+# against {BASE_URL}?f=json on 2026-09-19.
 LAYERS = {
-    "Trophy_Bass_Waters": 0,
-    "Summer_Catfish_Waters": 1,
-    "Boat_Ramps": 2,
-    "Special_Trout_Waters_Streams": 3,
-    "Special_Trout_Waters_Lakes": 4,
-    "Habitat_Improvements_Streams": 5,
-    "Habitat_Improvements_Lakes": 6
+    "Trophy_Bass_Waters": 1,
+    "Summer_Catfish_Waters": 2,
+    "Boat_Ramps": 3,
+    "Special_Trout_Waters_Streams": 4,
+    "Special_Trout_Waters_Lakes": 5,
+    "Habitat_Improvements_Streams": 6,
+    "Habitat_Improvements_Lakes": 7
+}
+
+# Each layer names its water column differently.
+WATER_NAME_FIELD = {
+    "Trophy_Bass_Waters": "Water_name",
+    "Summer_Catfish_Waters": "Water",
+    "Boat_Ramps": "Water_name",
+    "Special_Trout_Waters_Streams": "Water_Name",
+    "Special_Trout_Waters_Lakes": "Water_Name",
+    "Habitat_Improvements_Streams": "Stream",
+    "Habitat_Improvements_Lakes": "Water",
 }
 
 
@@ -48,7 +61,8 @@ def query_layer(layer_id: int, layer_name: str) -> List[Dict[str, Any]]:
     params = {
         "where": "1=1",  # Get all records
         "outFields": "*",  # All fields
-        "returnGeometry": "false",  # We don't need geometry, just attributes
+        "returnGeometry": "true" if layer_name == "Boat_Ramps" else "false",
+        "outSR": 4326,
         "f": "json",
         "resultRecordCount": 2000  # Max records per request
     }
@@ -64,7 +78,14 @@ def query_layer(layer_id: int, layer_name: str) -> List[Dict[str, Any]]:
             return []
 
         features = data["features"]
-        records = [feature["attributes"] for feature in features]
+        records = []
+        for feature in features:
+            attrs = dict(feature.get("attributes") or {})
+            geom = feature.get("geometry") or {}
+            if "x" in geom and "y" in geom:
+                attrs["Latitude"] = geom["y"]
+                attrs["Longitude"] = geom["x"]
+            records.append(attrs)
         print(f"  Found {len(records)} records")
 
         return records
@@ -180,43 +201,43 @@ def build_water_lookup(regulations_data: Dict[str, Any]) -> Dict[str, Dict[str, 
 
     # Process Special Trout Waters - Lakes
     for record in regulations_data.get("special_trout_waters_lakes", []):
-        water_name = record.get("Water_Name", "").strip()
+        water_name = (record.get("Water_Name") or "").strip()
         if not water_name:
             continue
 
         if water_name not in lookup:
             lookup[water_name] = {}
 
-        lookup[water_name]["special_trout_water_lake"] = {
+        lookup[water_name].setdefault("special_trout_water_lake", []).append({
             "designation": record.get("Designatio", ""),
             "info": record.get("Info", ""),
             "tackle_regulation": record.get("Tackle_Reg", ""),
             "pro_regulation": record.get("Pro_Reg", ""),
             "trout_present": record.get("Trout_pres", ""),
             "acres": record.get("STW_acres", "")
-        }
+        })
 
     # Process Special Trout Waters - Streams
     for record in regulations_data.get("special_trout_waters_streams", []):
-        water_name = record.get("Water_Name", "").strip()
+        water_name = (record.get("Water_Name") or "").strip()
         if not water_name:
             continue
 
         if water_name not in lookup:
             lookup[water_name] = {}
 
-        lookup[water_name]["special_trout_water_stream"] = {
+        lookup[water_name].setdefault("special_trout_water_stream", []).append({
             "designation": record.get("Designatio", ""),
             "info": record.get("Info", ""),
             "tackle_regulation": record.get("Tackle_Reg", ""),
             "pro_regulation": record.get("Pro_Reg", ""),
             "trout_present": record.get("Trout_pres", ""),
             "miles": record.get("STW_miles", "")
-        }
+        })
 
     # Process Trophy Bass Waters
     for record in regulations_data.get("trophy_bass_waters", []):
-        water_name = record.get("WaterName", "").strip()
+        water_name = (record.get("Water_name") or "").strip()
         if not water_name:
             continue
 
@@ -224,13 +245,13 @@ def build_water_lookup(regulations_data: Dict[str, Any]) -> Dict[str, Dict[str, 
             lookup[water_name] = {}
 
         lookup[water_name]["trophy_bass"] = {
-            "info": record.get("Info", ""),
-            "regulation": record.get("Regulation", "")
+            "info": "Trophy Bass Water",
+            "regulation": record.get("Bag_limit", "")
         }
 
     # Process Summer Catfish Waters
     for record in regulations_data.get("summer_catfish_waters", []):
-        water_name = record.get("WaterName", "").strip()
+        water_name = (record.get("Water") or "").strip()
         if not water_name:
             continue
 
@@ -238,13 +259,13 @@ def build_water_lookup(regulations_data: Dict[str, Any]) -> Dict[str, Dict[str, 
             lookup[water_name] = {}
 
         lookup[water_name]["summer_catfish"] = {
-            "info": record.get("Info", ""),
-            "regulation": record.get("Regulation", "")
+            "info": "Special Summer Catfish Water",
+            "regulation": record.get("Bag_limit", "")
         }
 
     # Process Boat Ramps
     for record in regulations_data.get("boat_ramps", []):
-        water_name = record.get("WaterName", "").strip()
+        water_name = (record.get("Water_name") or "").strip()
         if not water_name:
             continue
 
@@ -255,8 +276,9 @@ def build_water_lookup(regulations_data: Dict[str, Any]) -> Dict[str, Dict[str, 
             lookup[water_name]["boat_ramps"] = []
 
         lookup[water_name]["boat_ramps"].append({
-            "name": record.get("Name", ""),
-            "info": record.get("Info", ""),
+            "ramp_type": (record.get("Ramp_type") or "").strip(),
+            "ownership": (record.get("Ownership") or "").strip(),
+            "info": (record.get("Notes_info") or "").strip(),
             "latitude": record.get("Latitude"),
             "longitude": record.get("Longitude")
         })

@@ -7,9 +7,7 @@
         "Rio Grande",
         "San Juan River"
     ],
-    "matched_regulations.json": [
-        "Pecos River"
-    ],
+    "matched_regulations.json": [],
     "consumption_advisories.json": [
         "Cabresto Lake",
         "Cochiti Lake"

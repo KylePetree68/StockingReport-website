@@ -1,143 +1,920 @@
 {
   "matched_waters": {
-    "Rio Las Vacas": {
+    "Alto Lake": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile, non-native suppression",
-          "info": "From fish migration barrier located about 0.2 miles upstream of NM Road 70 to its headwaters",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout, brown trout",
-          "miles": 12.4
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
         }
       },
-      "match_score": 0.8666666666666667,
-      "regulation_water_name": "Rio del Las Vacas"
+      "match_score": 1.0,
+      "regulation_water_name": "Alto Lake"
+    },
+    "Alumni Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Alumni Pond"
+    },
+    "Bataan Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        },
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "City of Carlsbad",
+            "info": "Motorized craft allowed",
+            "latitude": 32.41148153221397,
+            "longitude": -104.22351156677533
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Bataan Lake"
+    },
+    "Bear Canyon Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish",
+            "info": "Craft restricted to oars and electric motors",
+            "latitude": 32.88429433322878,
+            "longitude": -107.99564319985828
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Bear Canyon Reservoir"
+    },
+    "Blue Hole Park Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.9743589743589743,
+      "regulation_water_name": "Bllue Hole Park Pond"
+    },
+    "Escondida Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Escondida Lake"
+    },
+    "Estancia Park Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Estancia Park Lake"
+    },
+    "Lake Roberts": {
+      "regulations": {
+        "trophy_bass": {
+          "info": "Trophy Bass Water",
+          "regulation": "Two largemouth bass 14 inches or larger per day, spearfishing and bowfishing for largemouth bass prohibited"
+        },
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Gila National Forest",
+            "info": "Craft restricted to oars and electric motors, trolling speed only",
+            "latitude": 33.03040677620677,
+            "longitude": -108.15762753765483
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Lake Roberts"
+    },
+    "Lake Van": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Lake Van"
+    },
+    "Young Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Young Pond"
+    },
+    "Animas River": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Primative, dirt",
+            "ownership": "City of Farmington",
+            "info": "Non-motorize craft only, river access",
+            "latitude": 36.78367505713316,
+            "longitude": -108.10214275726287
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Animas River"
+    },
+    "Bill Evans Lake": {
+      "regulations": {
+        "trophy_bass": {
+          "info": "Trophy Bass Water",
+          "regulation": "Two largemouth bass 14 inches or larger per day, spearfishing and bowfishing for largemouth bass prohibited"
+        },
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish",
+            "info": "Craft restriced to oars and electric motors",
+            "latitude": 32.865216320649104,
+            "longitude": -108.57904165000569
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Bill Evans Lake"
+    },
+    "Bosque Redondo": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Bosque Redondo"
+    },
+    "Chaparral Park Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.8484848484848485,
+      "regulation_water_name": "Chaparral Lake"
+    },
+    "Dennis Chaves Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.9444444444444444,
+      "regulation_water_name": "Dennis Chavez Pond"
+    },
+    "Fenton Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Craft restricted to oars and electric motors",
+            "latitude": 35.88287103464963,
+            "longitude": -106.72916346575832
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Fenton Lake"
+    },
+    "Green Meadow Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Green Meadow Lake"
+    },
+    "Greene Acres Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.9696969696969697,
+      "regulation_water_name": "Green Acres Lake"
+    },
+    "Jal Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Jal Lake"
+    },
+    "Lake Maloya": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Craft restriced to oars and electric motors",
+            "latitude": 36.98425124440584,
+            "longitude": -104.37298661001714
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Lake Maloya"
+    },
+    "Navajo Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.81753244010206,
+            "longitude": -107.6141679344093
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.82928925885451,
+            "longitude": -107.59130599997295
+          }
+        ]
+      },
+      "match_score": 0.7619047619047619,
+      "regulation_water_name": "Navajo Lake"
+    },
+    "Ned Houk Ponds": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Ned Houk Ponds"
+    },
+    "Rancho Grande Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.972972972972973,
+      "regulation_water_name": "Rancho Grande Ponds"
+    },
+    "Carrizozo Recreation Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.875,
+      "regulation_water_name": "Carrizozo Lake"
+    },
+    "Corona Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Corona Pond"
+    },
+    "Grindstone Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Primative, dirt, concrete ramp planned for 2021",
+            "ownership": "City of Ruidoso",
+            "info": "Craft restricted to oars and eletctric motors",
+            "latitude": 33.32321265062455,
+            "longitude": -105.68395654493204
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Grindstone Reservoir"
+    },
+    "Bluewater Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.284735005661204,
+            "longitude": -108.1204961694591
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.30056317561155,
+            "longitude": -108.11336042086431
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.30147028344705,
+            "longitude": -108.10983192017503
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Bluewater Lake"
+    },
+    "Timberon Ponds": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Timberon Ponds"
+    },
+    "Liam Knight Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Liam Knight Pond"
+    },
+    "Clayton Lake": {
+      "regulations": {
+        "trophy_bass": {
+          "info": "Trophy Bass Water",
+          "regulation": "Two largemouth bass 14 inches or larger per day, spearfishing and bowfishing for largemouth bass prohibited"
+        },
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed, trolling speed only",
+            "latitude": 36.575068273055514,
+            "longitude": -103.29925557380565
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Clayton Lake"
+    },
+    "Santa Cruz Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Motorized crafted allowed",
+            "latitude": 35.97934798942518,
+            "longitude": -105.91638244012447
+          }
+        ]
+      },
+      "match_score": 0.8275862068965517,
+      "regulation_water_name": "Santa Cruz Lake"
+    },
+    "Charette Lake Lower": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish",
+            "info": "Motorized craft allowed, trolling speed only",
+            "latitude": 36.18727498929392,
+            "longitude": -104.81020774221214
+          }
+        ]
+      },
+      "match_score": 0.7878787878787878,
+      "regulation_water_name": "Charrette Lake"
+    },
+    "Pecos River (Villanueva To I-40)": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 0.7692307692307693,
+      "regulation_water_name": "Pecos River Villanueva State Park"
+    },
+    "Storrie Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.6615133627519,
+            "longitude": -105.23114248747629
+          }
+        ]
+      },
+      "match_score": 0.782608695652174,
+      "regulation_water_name": "Storrie Lake"
+    },
+    "Morphy Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Craft restricted to oars and electric motors",
+            "latitude": 35.940793415375715,
+            "longitude": -105.39584160682499
+          }
+        ]
+      },
+      "match_score": 0.7619047619047619,
+      "regulation_water_name": "Morphy Lake"
+    },
+    "Rio Las Vacas": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile, non-native suppression",
+            "info": "From fish migration barrier located about 0.2 miles upstream of NM Road 70 to its headwaters",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, brown trout",
+            "miles": 12.4
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio del Las Vacas",
+      "manual_mapping": true
+    },
+    "Snow Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Gila National Forest",
+            "info": "Craft restricted to oars and electric motors",
+            "latitude": 33.423398000713,
+            "longitude": -108.4981612054776
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Snow Lake"
+    },
+    "Conchas Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.38195659340855,
+            "longitude": -104.19547784350033
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.4218951705149,
+            "longitude": -104.19341763554965
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.421899141847284,
+            "longitude": -104.19401241548917
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.422382544866146,
+            "longitude": -104.19348988345469
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.42404761931186,
+            "longitude": -104.19304368216824
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 35.424841755982506,
+            "longitude": -104.19314591763404
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Conchas Lake"
     },
     "San Antonio River": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Green chile",
-          "info": "From Valles Caldera Preserve boundary downstream 2 miles",
-          "tackle_regulation": "",
-          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
-          "trout_present": "brown trout",
-          "miles": 2.1
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Green chile",
+            "info": "From Valles Caldera Preserve boundary downstream 2 miles",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "brown trout",
+            "miles": 2.1
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Rio San Antonio",
       "manual_mapping": true
     },
+    "Mcgaffey Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "McGaffey Lake"
+    },
+    "Ute Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.339376703497166,
+            "longitude": -103.44643871112731
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.34204893023335,
+            "longitude": -103.49372411786509
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.35553979169738,
+            "longitude": -103.45681517792364
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.368087188018556,
+            "longitude": -103.49158938747505
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Ute Lake"
+    },
+    "Eagle Nest Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.53631867988406,
+            "longitude": -105.2635244510867
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.54066513763402,
+            "longitude": -105.26704724028743
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Eagle Nest Lake"
+    },
+    "Quemado Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish",
+            "info": "Craft restricted to oars and electric motors",
+            "latitude": 34.13874714109846,
+            "longitude": -108.49584553193148
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Quemado Lake"
+    },
+    "Abiquiu Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 36.25282141478572,
+            "longitude": -106.42937763434469
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Army Corps of Engineers",
+            "info": "Motorized craft allowed",
+            "latitude": 36.25591531340183,
+            "longitude": -106.43374146853527
+          }
+        ]
+      },
+      "match_score": 0.782608695652174,
+      "regulation_water_name": "Abiquiu Lake"
+    },
+    "Caballo Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 32.911218232274905,
+            "longitude": -107.30677579260066
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Caballo Lake"
+    },
     "Black Canyon": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile, non-native suppression",
-          "info": "From waterfall barrier at Black Canyon campground upstream.  Open July 1-Oct 31.",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
-          "trout_present": "Gila trout, brown trout",
-          "miles": 10.6
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile, non-native suppression",
+            "info": "From waterfall barrier at Black Canyon campground upstream.  Open July 1-Oct 31.",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+            "trout_present": "Gila trout, brown trout",
+            "miles": 10.6
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Black Canyon"
     },
+    "Brantley Dam": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 32.557472774016986,
+            "longitude": -104.39209710347032
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 32.5614355289782,
+            "longitude": -104.38891733775743
+          }
+        ]
+      },
+      "match_score": 0.8,
+      "regulation_water_name": "Brantley Lake"
+    },
     "Shuree Ponds": {
       "regulations": {
-        "special_trout_water_lake": {
-          "designation": "Green chile",
-          "info": "Valle Vidal, small pond located directly south of larger upper pond is designated for anglers 11 years old and younger",
-          "tackle_regulation": "Artificial fly or lure, single barbless hood",
-          "pro_regulation": "2 fish any length, artificial fly or lure with single barbless hook",
-          "trout_present": "rainbow trout, cutthroat trout-hybrid",
-          "acres": "9.5"
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "All stream within the Valle Vidal.  Open July 1-Dec 31",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout",
+            "miles": 69.9
+          }
+        ]
       },
       "match_score": 1.0,
-      "regulation_water_name": "Shuree Ponds"
+      "regulation_water_name": "Valle Vidal",
+      "manual_mapping": true
     },
-    "Tajique Creek": {
+    "Elephant Butte Lake": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile, non-native suppression",
-          "info": "From USFS Road 93 crossing upstream to its headwaters",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout, brown trout",
-          "miles": 2
-        }
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 33.14974117984597,
+            "longitude": -107.18245810751802
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 33.181278848640666,
+            "longitude": -107.20323960394344
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 33.22479267654833,
+            "longitude": -107.2034720448198
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 33.29607710268331,
+            "longitude": -107.1777640759852
+          }
+        ]
       },
-      "match_score": 0.8461538461538461,
-      "regulation_water_name": "Tanques Creek"
+      "match_score": 1.0,
+      "regulation_water_name": "Elephant Butte Lake"
+    },
+    "Santa Rosa Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 35.031844597620726,
+            "longitude": -104.68450864764851
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Santa Rosa Lake"
+    },
+    "El Vado Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.60976067185968,
+            "longitude": -106.7414432775887
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.65043943850498,
+            "longitude": -106.74393635313213
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "El Vado Lake"
+    },
+    "Maxwell Lake 13": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "US Fish and Wildlife",
+            "info": "Motorized craft allowed, trolling speed only, often out of water due to low lake levels",
+            "latitude": 36.58122989762809,
+            "longitude": -104.58919922317668
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Maxwell Lake 13"
+    },
+    "Springer Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish-Open Gate",
+            "info": "Motorized craft allowed, trolling speed when lake below 1,000 surface acres",
+            "latitude": 36.409412462465944,
+            "longitude": -104.65224038200692
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Springer Lake"
+    },
+    "Stubblefield Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM Dept of Game and Fish-Open Gate",
+            "info": "Motorized craft allowed, often out of water dut to low lake levels",
+            "latitude": 36.561476018586774,
+            "longitude": -104.67306092011292
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Stubblefield Lake"
     },
     "White Water Creek": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "X-mas chile",
-          "info": "Catwalk National Recreational Trail parking area upstream to headwaters including all tribs",
-          "tackle_regulation": "",
-          "pro_regulation": "2 trout any length, any legal bait and tackle",
-          "trout_present": "Gila trout",
-          "miles": 28.5
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "Catwalk National Recreational Trail parking area upstream to headwaters including all tribs",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "Gila trout",
+            "miles": 28.5
+          }
+        ]
       },
       "match_score": 0.9696969696969697,
       "regulation_water_name": "Whitewater Creek"
     },
-    "Rito De Los Pinos": {
-      "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Green chile",
-          "info": "From USFS Roads 284 & 87A , 2.5 miles upstream to the private land boundary",
-          "tackle_regulation": "",
-          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
-          "trout_present": "rainbow trout, brown trout",
-          "miles": 2.5
-        }
-      },
-      "match_score": 0.9696969696969697,
-      "regulation_water_name": "Rio de Los Pinos"
-    },
     "Leandro Creek": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile, non-native suppression",
-          "info": "Within the Valle Vidal boundary.  Open July 1-Dec 31",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout, brook trout",
-          "miles": 2.9
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile, non-native suppression",
+            "info": "Within the Valle Vidal boundary.  Open July 1-Dec 31",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release (Native), unlimited (NN), artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, brook trout",
+            "miles": 2.9
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Leandro Creek"
     },
-    "Pecos River": {
-      "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile",
-          "info": "Pecos Wilderness above Pecos Falls",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout",
-          "miles": 3.9
-        }
-      },
-      "match_score": 1.0,
-      "regulation_water_name": "Pecos River",
-      "manual_mapping": true
-    },
     "Costilla River": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile",
-          "info": "From its confluence with Latir Creek upstream 2.4 miles to the Valle Viday boundary",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
-          "miles": 3
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "From its confluence with Latir Creek upstream 2.4 miles to the Valle Viday boundary",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
+            "miles": 3
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Costilla",
+      "manual_mapping": true
+    },
+    "Costilla Creek": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "From its confluence with Latir Creek upstream 2.4 miles to the Valle Viday boundary",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, brook trout, brown trout",
+            "miles": 3
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Rio Costilla",
@@ -145,14 +922,16 @@
     },
     "Ruidoso River": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "X-mas chile",
-          "info": "From Fridenbloom Drive upstream to teh Mescalero Reservation",
-          "tackle_regulation": "",
-          "pro_regulation": "2 trout any length, any legal bait and tackle",
-          "trout_present": "brown trout",
-          "miles": 6.48
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From Fridenbloom Drive upstream to teh Mescalero Reservation",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "brown trout",
+            "miles": 6.48
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Rio Ruidoso",
@@ -160,29 +939,80 @@
     },
     "Guadalupe River": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Green chile",
-          "info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
-          "tackle_regulation": "",
-          "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
-          "trout_present": "Rio Grande cutthroat trout, brown trout",
-          "miles": 6
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Green chile",
+            "info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, brown trout",
+            "miles": 6
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Rio Guadalupe",
       "manual_mapping": true
     },
+    "Los Pinos River": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "Green chile",
+            "info": "From USFS Roads 284 & 87A , 2.5 miles upstream to the private land boundary",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 2.5
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio de Los Pinos",
+      "manual_mapping": true
+    },
     "San Juan River (Quality)": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile",
-          "info": "From Navajo Dam downstream 3.75 miles to the Crusher Hole Day Use Area.  It is illegal to fish with more than 2 flies on a single line.",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
-          "trout_present": "rainbow trout, brown trout",
-          "miles": 4.3
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "From Navajo Dam downstream 3.75 miles to the Crusher Hole Day Use Area.  It is illegal to fish with more than 2 flies on a single line.",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 4.3
+          }
+        ],
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.74431875690047,
+            "longitude": -107.80019926147004
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.79831036237744,
+            "longitude": -107.70198551271778
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.814820831718265,
+            "longitude": -107.67126121299606
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.817563927119814,
+            "longitude": -107.62989510929594
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "San Juan River",
@@ -190,30 +1020,448 @@
     },
     "Cimarron River (West Of Cimarron)": {
       "regulations": {
-        "special_trout_water_stream": {
-          "designation": "Red chile",
-          "info": "From east end of Tolby Campground downstream 1.4 miles to first US 64 bridge",
-          "tackle_regulation": "",
-          "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
-          "trout_present": "rainbow trout, brown trout",
-          "miles": 1.7
-        }
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "From east end of Tolby Campground downstream 1.4 miles to first US 64 bridge",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 1.7
+          }
+        ]
       },
       "match_score": 1.0,
       "regulation_water_name": "Cimarron River",
       "manual_mapping": true
+    },
+    "Red River (Abv Questa)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From the confluence with the Rio Grande upstream to the lower walking bridge at Red River State Fish Hatchery",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 3.1
+          },
+          {
+            "designation": "Green chile",
+            "info": "From the confluence with Goose Creek for 1.1 miles upstream to the Carson NF boundary",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, rainbow trout, brook trout, brown trout",
+            "miles": 1
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Red River",
+      "manual_mapping": true
+    },
+    "Red River (Below Questa)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From the confluence with the Rio Grande upstream to the lower walking bridge at Red River State Fish Hatchery",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 3.1
+          },
+          {
+            "designation": "Green chile",
+            "info": "From the confluence with Goose Creek for 1.1 miles upstream to the Carson NF boundary",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, rainbow trout, brook trout, brown trout",
+            "miles": 1
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Red River",
+      "manual_mapping": true
+    },
+    "Chama River (Blw El Vado)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From the river-crossing bridge on US 64 at Abiquiu upstream 7.0 miles to the base of Abiquiu Dam",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 7.8
+          },
+          {
+            "designation": "Red chile",
+            "info": "Rom USGS gaging station located below Cooper's Landing to the Rio Nutrias confluence",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, rainbow trout, brown trout",
+            "miles": 3
+          },
+          {
+            "designation": "Green chile",
+            "info": "Within boundaries of Rio Chama WMA from Heron Reservoir outlet 2.9 miles upstream to Cottonwood Flats",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 3.2
+          }
+        ],
+        "boat_ramps": [
+          {
+            "ramp_type": "Primative, dirt",
+            "ownership": "Private-public access allowed",
+            "info": "Non-motorized craft only, river access, floating requires BLM permit",
+            "latitude": 36.36436627415457,
+            "longitude": -106.68088835902088
+          },
+          {
+            "ramp_type": "Primative, dirt",
+            "ownership": "Private-public access allowed",
+            "info": "Non-motorized craft only, river access, floating requires BLM permit",
+            "latitude": 36.582771807223985,
+            "longitude": -106.72854233463825
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Chama",
+      "manual_mapping": true
+    },
+    "Chama River (Below Abiquiu)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From the river-crossing bridge on US 64 at Abiquiu upstream 7.0 miles to the base of Abiquiu Dam",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 7.8
+          },
+          {
+            "designation": "Red chile",
+            "info": "Rom USGS gaging station located below Cooper's Landing to the Rio Nutrias confluence",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout, rainbow trout, brown trout",
+            "miles": 3
+          },
+          {
+            "designation": "Green chile",
+            "info": "Within boundaries of Rio Chama WMA from Heron Reservoir outlet 2.9 miles upstream to Cottonwood Flats",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, artificial fly or lure with single barbless hook",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 3.2
+          }
+        ],
+        "boat_ramps": [
+          {
+            "ramp_type": "Primative, dirt",
+            "ownership": "Private-public access allowed",
+            "info": "Non-motorized craft only, river access, floating requires BLM permit",
+            "latitude": 36.36436627415457,
+            "longitude": -106.68088835902088
+          },
+          {
+            "ramp_type": "Primative, dirt",
+            "ownership": "Private-public access allowed",
+            "info": "Non-motorized craft only, river access, floating requires BLM permit",
+            "latitude": 36.582771807223985,
+            "longitude": -106.72854233463825
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Chama",
+      "manual_mapping": true
+    },
+    "Rio Grande (Gorge- Abv Pilar)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "From Colorado line downstream to the Taos Junction Bridge at NM 567",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length, any legal bait and tackle",
+            "trout_present": "rainbow trout, brown trout",
+            "miles": 52.4
+          }
+        ],
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.2298229617354,
+            "longitude": -105.85687187146488
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.2662233328622,
+            "longitude": -105.79467096081879
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.299554083802875,
+            "longitude": -105.77245583853986
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.335597173781345,
+            "longitude": -105.73379056735214
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "Bureau of Land Management",
+            "info": "Non-motorized craft only, river access",
+            "latitude": 36.53605845175248,
+            "longitude": -105.70806490889292
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Rio Grande",
+      "manual_mapping": true
+    },
+    "Gilita Creek": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "Upstream from confluence of Snow Creek to headwaters",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length (Native), unlimited (NN), any legal bait and tackle",
+            "trout_present": "Gila trout",
+            "miles": 30.1
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Gilita Creek and Willow Creek",
+      "manual_mapping": true
+    },
+    "Willow Creek (Gila Drainage)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "X-mas chile",
+            "info": "Upstream from confluence of Snow Creek to headwaters",
+            "tackle_regulation": "",
+            "pro_regulation": "2 trout any length (Native), unlimited (NN), any legal bait and tackle",
+            "trout_present": "Gila trout",
+            "miles": 30.1
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Gilita Creek and Willow Creek",
+      "manual_mapping": true
+    },
+    "Comanche Creek (Upper)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "All stream within the Valle Vidal.  Open July 1-Dec 31",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout",
+            "miles": 69.9
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Valle Vidal",
+      "manual_mapping": true
+    },
+    "Comanche Creek (Lower)": {
+      "regulations": {
+        "special_trout_water_stream": [
+          {
+            "designation": "Red chile",
+            "info": "All stream within the Valle Vidal.  Open July 1-Dec 31",
+            "tackle_regulation": "",
+            "pro_regulation": "Catch-and-release only, artificial fly or lure with single barbless hook",
+            "trout_present": "Rio Grande cutthroat trout",
+            "miles": 69.9
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Valle Vidal",
+      "manual_mapping": true
+    },
+    "Heron Reservoir": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.669389271810644,
+            "longitude": -106.70703665865156
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.674358738318645,
+            "longitude": -106.71436400891332
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 36.70130855390522,
+            "longitude": -106.65588085871559
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Heron Lake",
+      "manual_mapping": true
+    },
+    "Lake Sumner": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 34.61570475135457,
+            "longitude": -104.37687663050612
+          },
+          {
+            "ramp_type": "Concrete",
+            "ownership": "NM State Parks",
+            "info": "Motorized craft allowed",
+            "latitude": 34.61584529143066,
+            "longitude": -104.38861231480266
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Sumner Lake",
+      "manual_mapping": true
+    },
+    "Carlsbad Municipal Lake": {
+      "regulations": {
+        "boat_ramps": [
+          {
+            "ramp_type": "Concrete",
+            "ownership": "CIty of Carlsbad",
+            "info": "Motorized craft allowed",
+            "latitude": 32.42992982886604,
+            "longitude": -104.21923717244768
+          }
+        ]
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Lake Carlsbad",
+      "manual_mapping": true
+    },
+    "Perch Lake (Guadalupe County)": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Perch Lake",
+      "manual_mapping": true
+    },
+    "Conoco Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Conoco Lake",
+      "manual_mapping": true
+    },
+    "Eunice Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Eunice Pond",
+      "manual_mapping": true
+    },
+    "Grants Municipal Pond (River Walk Pond)": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Grants Riverwalk Pond",
+      "manual_mapping": true
+    },
+    "Oasis Park Lake": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Oasis State Park Pond",
+      "manual_mapping": true
+    },
+    "Roswell Kids Pond": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Roswell Kid's Pond (Spring River Park)",
+      "manual_mapping": true
+    },
+    "Conservancy Park Lake (Aka Tingley Beach)": {
+      "regulations": {
+        "summer_catfish": {
+          "info": "Special Summer Catfish Water",
+          "regulation": "Two channel catfish per day"
+        }
+      },
+      "match_score": 1.0,
+      "regulation_water_name": "Tingley Beach Ponds",
+      "manual_mapping": true
     }
   },
   "metadata": {
-    "total_stocking_waters": 168,
-    "total_regulation_waters": 43,
-    "matched_count": 14,
-    "match_rate": "8.3%",
+    "total_stocking_waters": 170,
+    "total_regulation_waters": 105,
+    "matched_count": 82,
+    "match_rate": "48.2%",
     "regulation_metadata": {
-      "last_updated": "2025-11-01T20:14:49",
+      "last_updated": "2026-09-19T20:57:34",
       "source": "NM Game & Fish ArcGIS Feature Service",
       "source_url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer",
-      "total_records": 163,
+      "total_records": 161,
       "layers_queried": [
         "Trophy_Bass_Waters",
         "Summer_Catfish_Waters",

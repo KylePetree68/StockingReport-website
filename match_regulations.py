@@ -115,6 +115,9 @@ def match_regulations_to_stocking(stocking_data: Dict, regulations_data: Dict) -
 
     # Try to match each stocking water body
     for stocking_name in stocking_water_names:
+        if stocking_name in NO_AUTO_MATCH:
+            unmatched_stocking.append(stocking_name)
+            continue
         match_name, score = find_best_match(stocking_name, regulation_water_names, threshold=0.75)
 
         if match_name:
@@ -163,6 +166,18 @@ def match_regulations_to_stocking(stocking_data: Dict, regulations_data: Dict) -
     return matched
 
 
+# Stocking waters whose closest regulation name is a DIFFERENT water. Never auto-match these.
+NO_AUTO_MATCH = {
+    "Peralta Creek",        # would match Mineral Creek
+    "Trees Lake",           # would match Ute Lake
+    "Lost Lake",            # would match Alto Lake
+    "Tajique Creek",        # would match Tanques Creek
+    "Rito De Los Pinos",    # would match Rio de Los Pinos (a different river)
+    "Cebolla River",        # Rio Arriba water; the Rio Cebolla STW is the Jemez one
+    "Hondo River (Lower)",  # would match South Fork Rio Hondo
+}
+
+
 def create_manual_mapping() -> Dict[str, str]:
     """
     Create manual mappings for waters that don't match automatically.
@@ -175,15 +190,39 @@ def create_manual_mapping() -> Dict[str, str]:
         # Fix incorrect auto-match (San Juan River != San Antonio River)
         "San Antonio River": "Rio San Antonio",
 
-        # Common river/stream name variations (add more as needed)
-        "Pecos River": "Pecos River",
+        # Common river/stream name variations
         "Costilla River": "Rio Costilla",
+        "Costilla Creek": "Rio Costilla",
         "Ruidoso River": "Rio Ruidoso",
         "Guadalupe River": "Rio Guadalupe",
+        "Los Pinos River": "Rio de Los Pinos",
+        "Rio Las Vacas": "Rio del Las Vacas",
 
-        # User-requested waters
+        # Multi-reach rivers: every reach is listed with its own description
         "San Juan River (Quality)": "San Juan River",
         "Cimarron River (West Of Cimarron)": "Cimarron River",
+        "Red River (Abv Questa)": "Red River",
+        "Red River (Below Questa)": "Red River",
+        "Chama River (Blw El Vado)": "Rio Chama",
+        "Chama River (Below Abiquiu)": "Rio Chama",
+        "Rio Grande (Gorge- Abv Pilar)": "Rio Grande",
+        "Gilita Creek": "Gilita Creek and Willow Creek",
+        "Willow Creek (Gila Drainage)": "Gilita Creek and Willow Creek",
+        "Comanche Creek (Upper)": "Valle Vidal",
+        "Comanche Creek (Lower)": "Valle Vidal",
+        "Shuree Ponds": "Valle Vidal",
+
+        # Lakes / ponds with different official names
+        "Heron Reservoir": "Heron Lake",
+        "Lake Sumner": "Sumner Lake",
+        "Carlsbad Municipal Lake": "Lake Carlsbad",
+        "Perch Lake (Guadalupe County)": "Perch Lake",
+        "Conoco Pond": "Conoco Lake",
+        "Eunice Lake": "Eunice Pond",
+        "Grants Municipal Pond (River Walk Pond)": "Grants Riverwalk Pond",
+        "Oasis Park Lake": "Oasis State Park Pond",
+        "Roswell Kids Pond": "Roswell Kid's Pond (Spring River Park)",
+        "Conservancy Park Lake (Aka Tingley Beach)": "Tingley Beach Ponds",
     }
     return manual_mappings
 
@@ -206,6 +245,9 @@ def main():
     if manual_mappings:
         print(f"\nApplying {len(manual_mappings)} manual mappings...")
         for stocking_name, regulation_name in manual_mappings.items():
+            if stocking_name not in stocking_data:
+                print(f"  SKIP manual mapping: '{stocking_name}' is not a stocking water")
+                continue
             if regulation_name in regulations_data["waters"]:
                 matched[stocking_name] = {
                     "regulations": regulations_data["waters"][regulation_name],

@@ -819,6 +819,77 @@ def generate_schema_org(water_name, stats, coords, page_url):
     return f'<script type="application/ld+json">\n{_json.dumps(schema, indent=2)}\n</script>'
 
 
+# Hand-written, first-person notes per water. Lives in water_notes.json, which
+# the scraper never writes, so the nightly Action can't clobber the prose.
+WATER_NOTES_FILE = "water_notes.json"
+
+BOAT_LABELS = {
+    "none": "No boats",
+    "non_motorized": "Non-motorized only (kayaks, float tubes, canoes)",
+    "electric_only": "Electric motors only",
+    "no_wake": "Motors allowed, no-wake",
+    "unrestricted": "Motors allowed",
+}
+
+
+def generate_water_notes_html(water_name, water_notes):
+    """
+    Generate the "Local Notes" block from water_notes.json.
+
+    Only fields with content are rendered; a water with no filled fields
+    returns "" so the page has no empty container or filler text. Author
+    text is HTML-escaped. `boats` must be one of BOAT_LABELS or the row is
+    dropped rather than guessed.
+    """
+    import html as _html
+
+    note = water_notes.get(water_name)
+    if not isinstance(note, dict):
+        return ""
+
+    def field(key):
+        val = note.get(key)
+        return val.strip() if isinstance(val, str) else ""
+
+    rows = []
+    if field("access_parking"):
+        rows.append(("Access / parking", _html.escape(field("access_parking"))))
+    if field("shoreline_ramps"):
+        rows.append(("Shoreline / boat ramps", _html.escape(field("shoreline_ramps"))))
+    boats = field("boats")
+    if boats in BOAT_LABELS:
+        text = _html.escape(BOAT_LABELS[boats])
+        if field("boats_source"):
+            text += f' <span class="text-gray-500 text-sm">(source: {_html.escape(field("boats_source"))})</span>'
+        rows.append(("Boats", text))
+    elif boats:
+        print(f"  [water-notes] {water_name}: unknown boats value '{boats}' ignored.")
+    description = field("description")
+
+    if not rows and not description:
+        return ""
+
+    parts = []
+    parts.append('<div class="mb-6 border-l-4 border-green-600 bg-green-50 p-6 rounded-r-lg">')
+    parts.append('<h3 class="text-xl font-bold text-green-900 mb-1 flex items-center">')
+    parts.append('<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">')
+    parts.append('<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>')
+    parts.append('</svg>')
+    parts.append('Local Notes</h3>')
+    parts.append('<p class="text-sm text-green-800 mb-4">First-hand observations from the site author, not official NMDGF information. Conditions and rules change; verify before you go.</p>')
+    if description:
+        for para in re.split(r'\n\s*\n', description):
+            parts.append(f'<p class="text-gray-800 mb-3">{_html.escape(para.strip())}</p>')
+    if rows:
+        parts.append('<dl class="grid grid-cols-1 sm:grid-cols-[max-content_1fr] gap-x-6 gap-y-2 mt-2">')
+        for label, value in rows:
+            parts.append(f'<dt class="font-semibold text-gray-700">{label}</dt>')
+            parts.append(f'<dd class="text-gray-800">{value}</dd>')
+        parts.append('</dl>')
+    parts.append('</div>')
+    return "\n".join(parts)
+
+
 def generate_regulation_html(water_name, regulations_data):
     """
     Generate HTML for fishing regulations if available for this water body.
@@ -1089,6 +1160,18 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load consumption_advisories.json: {e}")
 
+    # Load hand-written water notes (author prose; never generated)
+    water_notes = {}
+    if os.path.exists(WATER_NOTES_FILE):
+        try:
+            with open(WATER_NOTES_FILE, 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                water_notes = {k: v for k, v in raw.items() if not k.startswith('_')}
+            filled = sum(1 for v in water_notes.values() if isinstance(v, dict) and any((x or "").strip() for x in v.values() if isinstance(x, str)))
+            print(f"Loaded water notes: {filled} of {len(water_notes)} entries have content.")
+        except Exception as e:
+            print(f"Warning: Could not load {WATER_NOTES_FILE}: {e}")
+
     # Re-key auxiliary data sources onto canonical stocking water names so that
     # naming differences (Navajo Lake -> Navajo Reservoir, Sumner Lake -> Lake
     # Sumner, etc.) don't cause silent lookup misses. Ambiguous/orphan keys are
@@ -1097,10 +1180,12 @@ def generate_static_pages(data):
     water_species_data, booklet_unmatched = _resolve_by_canonical(water_species_data, canonical_names)
     regulations_data, regs_unmatched = _resolve_by_canonical(regulations_data, canonical_names)
     consumption_advisories, advisory_unmatched = _resolve_by_canonical(consumption_advisories, canonical_names)
+    water_notes, notes_unmatched = _resolve_by_canonical(water_notes, canonical_names)
     for src_label, unmatched in (
         ("water_species.json", booklet_unmatched),
         ("matched_regulations.json", regs_unmatched),
         ("consumption_advisories.json", advisory_unmatched),
+        (WATER_NOTES_FILE, notes_unmatched),
     ):
         for key, targets in unmatched:
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
@@ -1186,8 +1271,14 @@ def generate_static_pages(data):
         schema_org = generate_schema_org(water_name, summary_stats, coords, page_url)
 
         water_image_html = generate_water_image_html(water_name, water_images)
+        water_notes_html = generate_water_notes_html(water_name, water_notes)
 
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
+        if water_notes_html:
+            page_html = page_html.replace("{{WATER_NOTES}}", water_notes_html)
+        else:
+            # Drop the whole placeholder line so pages without notes are unchanged.
+            page_html = re.sub(r'[ \t]*\{\{WATER_NOTES\}\}\r?\n', '', page_html)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
         page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)

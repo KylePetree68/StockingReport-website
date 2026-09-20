@@ -1,0 +1,139 @@
+{
+  "_readme": [
+    "Hand-written, first-person notes per water. This file is NEVER written by the scraper or the nightly Action; only edit it by hand.",
+    "Keys must match a water name in stocking_data_clean.json exactly (run `python check_notes.py` to verify).",
+    "Fields (all optional; blank fields are simply not rendered, and a water with nothing filled in gets no notes block at all):",
+    "  access_parking  - how to get there, where to park, fees, gates, road condition.",
+    "  shoreline_ramps - shore access, wading, where the ramps are, what condition they are in.",
+    "  boats           - one of: none | non_motorized | electric_only | no_wake | unrestricted. Anything else is ignored. Leave blank if unsure; do not guess.",
+    "  boats_source    - where the boats rule came from (e.g. 'NM State Parks', 'USFS sign at ramp', 'NMDGF 2026 rules p.42').",
+    "  description     - your own observations: what has worked, best season, an honest caveat. Blank line = new paragraph. Plain text only; HTML is escaped.",
+    "Keep it to 150-250 words. Photos add more than prose does; add them later via water_images.json."
+  ],
+  "Fenton Lake": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Bluewater Lake": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Eagle Nest Lake": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Pecos River (Pecos Canyon)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Pecos River (Cowles To Village Of Pecos)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Red River (Below Questa)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Red River (Abv Questa)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Jemez River": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Jemez River East Fork": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "San Juan River (Quality)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "San Juan River (Blw Quality)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Conservancy Park Lake (Aka Tingley Beach)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Albuquerque Drain": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Albuquerque Drain (South)": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Abiquiu Reservoir": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Heron Reservoir": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "El Vado Lake": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Navajo Reservoir": {
+    "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  }
+}

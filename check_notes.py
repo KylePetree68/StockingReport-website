@@ -1,5 +1,5 @@
 """
-Validate water_notes.json before committing.
+Validate water_notes.json and water_authority.json before committing.
 
 Checks:
   - file parses as JSON
@@ -14,9 +14,62 @@ Exit code 1 on any error so it can gate a commit.
 import json
 import sys
 
-from scraper import _resolve_by_canonical, BOAT_LABELS, WATER_NOTES_FILE
+from scraper import (_resolve_by_canonical, BOAT_LABELS, WATER_NOTES_FILE,
+                     WATER_AUTHORITY_FILE, AUTHORITY_CATEGORY_LABELS)
 
 FIELDS = {"access_parking", "shoreline_ramps", "boats", "boats_source", "description"}
+AUTHORITY_FIELDS = {"authority", "category", "unit", "url", "notes", "confidence", "source"}
+AUTHORITY_CATEGORIES = set(AUTHORITY_CATEGORY_LABELS) | {"unknown"}
+
+
+def check_authority(canonical):
+    """Validate water_authority.json. Returns (errors, warnings)."""
+    errors, warnings = [], []
+    try:
+        with open(WATER_AUTHORITY_FILE, encoding="utf-8") as f:
+            raw = json.load(f)
+    except FileNotFoundError:
+        return errors, [f"{WATER_AUTHORITY_FILE} not present (optional)"]
+    except Exception as e:
+        return [f"{WATER_AUTHORITY_FILE} does not parse: {e}"], warnings
+
+    entries = {k: v for k, v in raw.items() if not k.startswith("_")}
+    for key, val in entries.items():
+        if not isinstance(val, dict):
+            errors.append(f"authority '{key}': value must be an object")
+            continue
+        missing = AUTHORITY_FIELDS - set(val)
+        unknown = set(val) - AUTHORITY_FIELDS
+        if missing:
+            errors.append(f"authority '{key}': missing field(s) {sorted(missing)}")
+        if unknown:
+            errors.append(f"authority '{key}': unknown field(s) {sorted(unknown)}")
+        if val.get("category") not in AUTHORITY_CATEGORIES:
+            errors.append(f"authority '{key}': category '{val.get('category')}' not one of {sorted(AUTHORITY_CATEGORIES)}")
+        if val.get("confidence") not in ("high", "medium", "low"):
+            errors.append(f"authority '{key}': confidence must be high|medium|low")
+        url = val.get("url") or ""
+        if url and not url.startswith("https://"):
+            warnings.append(f"authority '{key}': url is not https ({url})")
+        if val.get("confidence") in ("high", "medium") and val.get("category") == "unknown":
+            errors.append(f"authority '{key}': category unknown cannot be high/medium confidence")
+        if val.get("category") == "mixed" and not (val.get("notes") or "").strip():
+            warnings.append(f"authority '{key}': mixed ownership with no notes saying which stretch is public")
+
+    _, unmatched = _resolve_by_canonical(entries, canonical)
+    for key, targets in unmatched:
+        reason = f"ambiguous, matches {targets}" if targets else "no matching stocked water"
+        errors.append(f"authority '{key}': {reason}")
+    uncovered = [c for c in canonical if c not in entries]
+    if uncovered:
+        warnings.append(f"authority: {len(uncovered)} water(s) have no entry: {uncovered[:8]}{' ...' if len(uncovered) > 8 else ''}")
+
+    by_conf = {c: sum(1 for v in entries.values() if isinstance(v, dict) and v.get("confidence") == c) for c in ("high", "medium", "low")}
+    print(f"{len(entries)} authority entries: {by_conf['high']} high, {by_conf['medium']} medium, {by_conf['low']} low (low is not rendered).")
+    low = [k for k, v in entries.items() if isinstance(v, dict) and v.get("confidence") == "low"]
+    if low:
+        print("  Low confidence (verify): " + ", ".join(low))
+    return errors, warnings
 
 
 def main():
@@ -60,6 +113,10 @@ def main():
 
     filled = [k for k, v in notes.items() if isinstance(v, dict) and any((x or "").strip() for x in v.values() if isinstance(x, str))]
     empty = [k for k in notes if k not in filled]
+
+    a_errors, a_warnings = check_authority(canonical)
+    errors += a_errors
+    warnings += a_warnings
 
     for w in warnings:
         print(f"WARN  {w}")

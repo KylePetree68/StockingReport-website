@@ -823,6 +823,72 @@ def generate_schema_org(water_name, stats, coords, page_url):
 # the scraper never writes, so the nightly Action can't clobber the prose.
 WATER_NOTES_FILE = "water_notes.json"
 
+# Who manages public access at each water (state park, national forest, city,
+# BLM, ...). Hand-maintained in water_authority.json with a confidence level;
+# only high/medium entries are rendered.
+WATER_AUTHORITY_FILE = "water_authority.json"
+
+AUTHORITY_CATEGORY_LABELS = {
+    "state_park": "State park",
+    "usfs": "National Forest",
+    "blm": "BLM",
+    "usace": "Army Corps of Engineers",
+    "usbr": "Bureau of Reclamation",
+    "nps": "National Park Service",
+    "usfws": "National Wildlife Refuge",
+    "nmdgf": "NM Game & Fish",
+    "municipal": "City / town",
+    "county": "County",
+    "university": "University",
+    "tribal": "Tribal",
+    "private": "Private",
+    "mixed": "Mixed ownership",
+}
+
+
+def generate_water_authority_html(water_name, water_authority):
+    """
+    Generate the "Managed by" strip from water_authority.json.
+
+    Renders only when confidence is high or medium. Low-confidence and
+    unknown entries return "" so nothing unverified reaches the page.
+    """
+    import html as _html
+
+    info = water_authority.get(water_name)
+    if not isinstance(info, dict):
+        return ""
+    if info.get("confidence") not in ("high", "medium"):
+        return ""
+    authority = (info.get("authority") or "").strip()
+    if not authority or info.get("category") == "unknown":
+        return ""
+
+    unit = (info.get("unit") or "").strip()
+    url = (info.get("url") or "").strip()
+    notes = (info.get("notes") or "").strip()
+    category = info.get("category", "")
+    is_mixed = category == "mixed"
+
+    parts = []
+    parts.append('<div class="mb-6 bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm">')
+    parts.append('<p class="text-gray-800">')
+    parts.append('<span class="font-semibold text-gray-700">Managed by:</span> ')
+    parts.append(f'<strong>{_html.escape(authority)}</strong>')
+    if unit and unit.lower() != authority.lower():
+        parts.append(f' <span class="text-gray-600">&middot; {_html.escape(unit)}</span>')
+    if url and url.startswith("http"):
+        parts.append(f' <a href="{_html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline whitespace-nowrap">Official site &#8599;</a>')
+    parts.append('</p>')
+    if notes:
+        # Mixed-ownership rivers always carry a note saying which stretch is public.
+        parts.append(f'<p class="text-gray-600 mt-1">{_html.escape(notes)}</p>')
+    if is_mixed and not notes:
+        parts.append('<p class="text-gray-600 mt-1">This water crosses several ownerships, including private land. Check posting before you fish.</p>')
+    parts.append('</div>')
+    return "\n".join(parts)
+
+
 BOAT_LABELS = {
     "none": "No boats",
     "non_motorized": "Non-motorized only (kayaks, float tubes, canoes)",
@@ -1172,6 +1238,18 @@ def generate_static_pages(data):
         except Exception as e:
             print(f"Warning: Could not load {WATER_NOTES_FILE}: {e}")
 
+    # Load managing-authority data (hand-maintained; never generated)
+    water_authority = {}
+    if os.path.exists(WATER_AUTHORITY_FILE):
+        try:
+            with open(WATER_AUTHORITY_FILE, 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+                water_authority = {k: v for k, v in raw.items() if not k.startswith('_')}
+            renderable = sum(1 for v in water_authority.values() if isinstance(v, dict) and v.get("confidence") in ("high", "medium"))
+            print(f"Loaded water authority: {renderable} of {len(water_authority)} entries at high/medium confidence.")
+        except Exception as e:
+            print(f"Warning: Could not load {WATER_AUTHORITY_FILE}: {e}")
+
     # Re-key auxiliary data sources onto canonical stocking water names so that
     # naming differences (Navajo Lake -> Navajo Reservoir, Sumner Lake -> Lake
     # Sumner, etc.) don't cause silent lookup misses. Ambiguous/orphan keys are
@@ -1181,11 +1259,13 @@ def generate_static_pages(data):
     regulations_data, regs_unmatched = _resolve_by_canonical(regulations_data, canonical_names)
     consumption_advisories, advisory_unmatched = _resolve_by_canonical(consumption_advisories, canonical_names)
     water_notes, notes_unmatched = _resolve_by_canonical(water_notes, canonical_names)
+    water_authority, authority_unmatched = _resolve_by_canonical(water_authority, canonical_names)
     for src_label, unmatched in (
         ("water_species.json", booklet_unmatched),
         ("matched_regulations.json", regs_unmatched),
         ("consumption_advisories.json", advisory_unmatched),
         (WATER_NOTES_FILE, notes_unmatched),
+        (WATER_AUTHORITY_FILE, authority_unmatched),
     ):
         for key, targets in unmatched:
             reason = f"ambiguous -> {targets}" if targets else "no matching stocked water"
@@ -1272,6 +1352,7 @@ def generate_static_pages(data):
 
         water_image_html = generate_water_image_html(water_name, water_images)
         water_notes_html = generate_water_notes_html(water_name, water_notes)
+        water_authority_html = generate_water_authority_html(water_name, water_authority)
 
         page_html = template_html.replace("{{WATER_NAME}}", water_name)
         if water_notes_html:
@@ -1279,6 +1360,10 @@ def generate_static_pages(data):
         else:
             # Drop the whole placeholder line so pages without notes are unchanged.
             page_html = re.sub(r'[ \t]*\{\{WATER_NOTES\}\}\r?\n', '', page_html)
+        if water_authority_html:
+            page_html = page_html.replace("{{AUTHORITY}}", water_authority_html)
+        else:
+            page_html = re.sub(r'[ \t]*\{\{AUTHORITY\}\}\r?\n', '', page_html)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
         page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)

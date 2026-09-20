@@ -1,0 +1,1537 @@
+{
+  "_readme": [
+    "Managing authority for public access at each stocked water. Hand-maintained; never written by the scraper.",
+    "Keys match water names in stocking_data_clean.json. Run `python check_notes.py` (it validates this file too).",
+    "Fields:",
+    "  authority  - short display name of who manages public access (e.g. 'NM State Parks', 'Carson National Forest', 'City of Carlsbad').",
+    "  category   - state_park | usfs | blm | usace | usbr | nps | usfws | nmdgf | municipal | county | university | tribal | private | mixed | unknown",
+    "  unit       - the specific park / forest unit / rec area, if any.",
+    "  url        - official page for that authority or unit. Prefer the specific unit page; fall back to the agency home page.",
+    "  notes      - ownership vs. operation split, or for rivers, which stretches are public and who holds them. Plain text; HTML is escaped.",
+    "  confidence - high | medium | low. Only high and medium are rendered on the site. Low = best guess, verify before it goes live.",
+    "  source     - where the determination came from.",
+    "Rivers: 'mixed' means the reach crosses several owners including private land. Always say which stretch is public; never imply a whole river is open.",
+    "Sources used 2026-09-19: EMNRD State Parks 'Find a Park' list; NMDGF Fishing Waters Map (ArcGIS Boat Ramps layer, Ownership field); NMDGF Rules booklet 'Regulations for Specific Waters'; agency pages found by search."
+  ],
+  "Abiquiu Reservoir": {
+    "authority": "US Army Corps of Engineers",
+    "category": "usace",
+    "unit": "Abiquiu Lake",
+    "url": "https://www.spa.usace.army.mil/Missions/Civil-Works/Recreation/Abiquiu-Lake/",
+    "notes": "Federal flood-control reservoir; recreation areas run by the Corps.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (boat ramp ownership)"
+  },
+  "Albuquerque Drain": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Riverside drains, Albuquerque",
+    "url": "https://www.mrgcd.com/",
+    "notes": "Drains are MRGCD irrigation works; adjacent bosque trails are City of Albuquerque Open Space. Fish from the ditch banks where posted open.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article; MRGCD"
+  },
+  "Albuquerque Drain (South)": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Riverside drains, south Albuquerque (Bridge to Rio Bravo)",
+    "url": "https://www.mrgcd.com/",
+    "notes": "Drains are MRGCD irrigation works; adjacent bosque trails are City of Albuquerque Open Space.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article; MRGCD"
+  },
+  "Alto Lake": {
+    "authority": "Village of Ruidoso",
+    "category": "municipal",
+    "unit": "Alto Lake",
+    "url": "https://www.ruidoso-nm.gov/",
+    "notes": "Village water-supply reservoir; village boating permit required, no motors.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (city boating permit); Village of Ruidoso"
+  },
+  "Alumni Pond": {
+    "authority": "New Mexico State University",
+    "category": "university",
+    "unit": "NMSU campus, Las Cruces",
+    "url": "https://www.nmsu.edu/",
+    "notes": "On the NMSU campus next to the Pan American Center.",
+    "confidence": "high",
+    "source": "NMSU newsroom"
+  },
+  "Animas River": {
+    "authority": "City of Farmington / City of Aztec",
+    "category": "mixed",
+    "unit": "Animas Park, Berg Park (Farmington); Riverside Park (Aztec)",
+    "url": "https://www.fmtn.org/",
+    "notes": "Public access at city river parks in Farmington and Aztec; most of the river between is private.",
+    "confidence": "medium",
+    "source": "NMDGF Fishing Waters Map (ramp: City of Farmington)"
+  },
+  "Aztec Pond #1": {
+    "authority": "City of Aztec",
+    "category": "municipal",
+    "unit": "",
+    "url": "https://www.aztecnm.gov/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name; NMDGF stocking list"
+  },
+  "Bataan Lake": {
+    "authority": "City of Carlsbad",
+    "category": "municipal",
+    "unit": "Bataan Recreation Area, Carlsbad",
+    "url": "https://www.cityofcarlsbadnm.com/",
+    "notes": "Impoundment of the Pecos River below Lake Carlsbad.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership); NMDGF habitat project page"
+  },
+  "Bear Canyon Reservoir": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Bear Canyon Reservoir (near Mimbres)",
+    "url": "https://wildlife.dgf.nm.gov/fishing/",
+    "notes": "Oars or electric motors only.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Belen Riverside Drain": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Belen riverside drain (west bank)",
+    "url": "https://www.mrgcd.com/",
+    "notes": "MRGCD drain; stocked on the west bank between Los Lunas and Belen.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article"
+  },
+  "Bernalillo Drain": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Bernalillo riverside drain (near NM 550 bridge)",
+    "url": "https://www.mrgcd.com/",
+    "notes": "MRGCD drain.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article"
+  },
+  "Berrendo Creek": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "North Roswell",
+    "url": "",
+    "notes": "Creek runs through north Roswell; most frontage appears private. Verify the stocked access point.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "Bill Evans Lake": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Bill Evans Lake (west of Silver City)",
+    "url": "https://wildlife.dgf.nm.gov/fishing/",
+    "notes": "Lake owned by the Tyrone mine (Freeport-McMoRan); public fishing managed by NMDGF under agreement. Oars or electric motors only.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership); NMDGF habitat project page"
+  },
+  "Black Canyon": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Black Canyon Creek",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Gila trout water; free Gila Trout Permit required. Seasonal closure above FR 150.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet; Gila trout stockings from federal hatchery"
+  },
+  "Black River": {
+    "authority": "Bureau of Land Management",
+    "category": "mixed",
+    "unit": "Black River Recreation Area (near Carlsbad)",
+    "url": "https://www.blm.gov/visit/black-river-recreation-area",
+    "notes": "BLM recreation area provides the public access; much of the river elsewhere is private.",
+    "confidence": "medium",
+    "source": "BLM"
+  },
+  "Blue Hole Park Pond": {
+    "authority": "City of Santa Rosa",
+    "category": "municipal",
+    "unit": "Blue Hole Park",
+    "url": "https://www.santarosanm.org/",
+    "notes": "Kids/seniors/disabled anglers only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Bluewater Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Bluewater Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/bluewater-lake-state-park/",
+    "notes": "Dam and water owned by Bluewater-Toltec Irrigation District; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Bonito Creek North Fork": {
+    "authority": "Lincoln National Forest",
+    "category": "usfs",
+    "unit": "Smokey Bear Ranger District",
+    "url": "https://www.fs.usda.gov/r03/lincoln",
+    "notes": "Above Bonito Lake.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Bonito Creek South Fork": {
+    "authority": "Lincoln National Forest",
+    "category": "usfs",
+    "unit": "South Fork Campground area",
+    "url": "https://www.fs.usda.gov/r03/lincoln",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Bonito Lake": {
+    "authority": "City of Alamogordo",
+    "category": "municipal",
+    "unit": "Bonito Lake",
+    "url": "https://ci.alamogordo.nm.us/",
+    "notes": "Alamogordo's water-supply reservoir on Lincoln National Forest land. No boats or flotation; daylight only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet; City of Alamogordo"
+  },
+  "Bosque Redondo": {
+    "authority": "Village of Fort Sumner",
+    "category": "municipal",
+    "unit": "Bosque Redondo Lake & Park",
+    "url": "https://www.fortsumner.net/parksrec/page/bosque-redondo-lake-park",
+    "notes": "No motorized boats.",
+    "confidence": "high",
+    "source": "Village of Fort Sumner parks page"
+  },
+  "Bottomless Lakes": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Bottomless Lakes State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/bottomless-lakes-state-park/",
+    "notes": "",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Brantley Dam": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Brantley Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/brantley-lake-state-park/",
+    "notes": "Dam owned by the Bureau of Reclamation; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Brazos Lodge Pond": {
+    "authority": "Private",
+    "category": "private",
+    "unit": "Brazos Lodge",
+    "url": "",
+    "notes": "Private lodge pond; access for guests/fee.",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Brazos River": {
+    "authority": "Private",
+    "category": "private",
+    "unit": "Rio Brazos (Chama area)",
+    "url": "",
+    "notes": "Nearly all frontage is private ranch and lodge land; access is by fee or permission.",
+    "confidence": "medium",
+    "source": "General knowledge; verify"
+  },
+  "Caballo Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Caballo Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/caballo-lake-state-park/",
+    "notes": "Bureau of Reclamation reservoir; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Canjilon Lakes": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Canjilon Lakes Recreation Area",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Carlsbad Municipal Lake": {
+    "authority": "City of Carlsbad",
+    "category": "municipal",
+    "unit": "Lake Carlsbad",
+    "url": "https://www.cityofcarlsbadnm.com/",
+    "notes": "",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Carrizozo Recreation Lake": {
+    "authority": "Town of Carrizozo",
+    "category": "municipal",
+    "unit": "",
+    "url": "https://www.townofcarrizozo.org/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Casias Lakes": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "Chama area",
+    "url": "",
+    "notes": "Stocked from Los Ojos hatchery in 2021 only; likely private. Verify.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "Cebolla River": {
+    "authority": "Mixed (private / Carson National Forest)",
+    "category": "mixed",
+    "unit": "Rio Cebolla near Cebolla, Rio Arriba County",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Stocked from Los Ojos hatchery, so this is the Rio Cebolla in Rio Arriba County, not the Jemez one. Headwaters on Carson NF; the valley is largely private.",
+    "confidence": "low",
+    "source": "Hatchery source; verify the stocked access"
+  },
+  "Chama River (Abv El Vado)": {
+    "authority": "Mixed (private / NMDGF Sargent WMA / Village of Chama)",
+    "category": "mixed",
+    "unit": "Rio Chama above El Vado Lake",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Mostly private ranch land. Public access in the Village of Chama and on NMDGF's Edward Sargent Wildlife Area.",
+    "confidence": "medium",
+    "source": "General knowledge; verify access points"
+  },
+  "Chama River (Below Abiquiu)": {
+    "authority": "US Army Corps of Engineers",
+    "category": "mixed",
+    "unit": "Abiquiu Dam tailwater",
+    "url": "https://www.spa.usace.army.mil/Missions/Civil-Works/Recreation/Abiquiu-Lake/",
+    "notes": "The ~2 miles directly below Abiquiu Dam are Corps land (NMDGF habitat project, parking added 2020). Downstream is private and pueblo land.",
+    "confidence": "high",
+    "source": "NMDGF Fisheries Management page (Rio Chama habitat project)"
+  },
+  "Chama River (Blw El Vado)": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "mixed",
+    "unit": "Rio Chama Wildlife Area; El Vado Ranch (private, fee)",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Below the dam: El Vado Ranch (Cooper's) is private with paid access, then NMDGF's Rio Chama WMA. Further downstream is BLM/USFS Wild & Scenic river (float access, BLM permit).",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet; NMDGF Fishing Waters Map (ramp: private-public access allowed)"
+  },
+  "Chaparral Park Lake": {
+    "authority": "City of Lovington",
+    "category": "municipal",
+    "unit": "Chaparral Park",
+    "url": "https://www.lovington.org/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Location (Lea County); verify"
+  },
+  "Charette Lake Lower": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Charette Lakes Wildlife Area",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Open noon March 1 to noon Oct 31.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Cimarron River (West Of Cimarron)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Cimarron Canyon State Park (Colin Neblett Wildlife Area)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/cimarron-canyon-state-park/",
+    "notes": "The canyon stretch along US 64 is Cimarron Canyon State Park, on NMDGF's Colin Neblett WMA. River outside the park is private.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Cimarron River Gravel Pit Lakes": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Cimarron Canyon State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/cimarron-canyon-state-park/",
+    "notes": "",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Clayton Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Clayton Lake State Park & Dinosaur Trackways",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/clayton-lake-state-park-and-dinosaur-trackways/",
+    "notes": "Open noon March 1 to noon Oct 31.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Clear Creek (Jemez Mts)": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Cuba Ranger District (Clear Creek Campground)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Comanche Creek (Lower)": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Valle Vidal Unit",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Valle Vidal is open to fishing July 1 to Dec 31 only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (Valle Vidal)"
+  },
+  "Comanche Creek (Upper)": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Valle Vidal Unit",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Valle Vidal is open to fishing July 1 to Dec 31 only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (Valle Vidal)"
+  },
+  "Conchas Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Conchas Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/conchas-lake-state-park/",
+    "notes": "Corps of Engineers reservoir; the Corps runs its own recreation areas and ramps near the dam, State Parks runs the rest.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map (ramps: USACE)"
+  },
+  "Conoco Pond": {
+    "authority": "Bureau of Land Management",
+    "category": "blm",
+    "unit": "Loco Lagoon (near Maljamar)",
+    "url": "https://www.blm.gov/visit/loco-lagoon",
+    "notes": "Formerly Conoco Lake. No facilities or water on site.",
+    "confidence": "high",
+    "source": "BLM visit page"
+  },
+  "Conservancy Park Lake (Aka Tingley Beach)": {
+    "authority": "City of Albuquerque",
+    "category": "municipal",
+    "unit": "ABQ BioPark - Tingley Beach",
+    "url": "https://www.cabq.gov/artsculture/biopark/tingley",
+    "notes": "",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article"
+  },
+  "Corona Pond": {
+    "authority": "Village of Corona",
+    "category": "municipal",
+    "unit": "Silver Pond",
+    "url": "",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name; NMDGF Rules booklet"
+  },
+  "Corrales Riverside Drain": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Corrales riverside drain",
+    "url": "https://www.mrgcd.com/",
+    "notes": "MRGCD drain along the Corrales bosque.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article"
+  },
+  "Costilla Creek": {
+    "authority": "Mixed (Rio Costilla Cooperative Livestock Assn. / Carson National Forest)",
+    "category": "mixed",
+    "unit": "Rio Costilla Park (private, fee); Valle Vidal (USFS)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Most of Costilla Creek is on private RCCLA land with day-fee access; upper reaches are in Valle Vidal (open July 1 to Dec 31).",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Rio Costilla camping note)"
+  },
+  "Costilla River": {
+    "authority": "Mixed (Rio Costilla Cooperative Livestock Assn. / Carson National Forest)",
+    "category": "mixed",
+    "unit": "Rio Costilla Park (private, fee); Valle Vidal (USFS)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Same water as Costilla Creek. Most frontage is private RCCLA land with day-fee access; upper reaches in Valle Vidal.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Rio Costilla camping note)"
+  },
+  "Cow Creek": {
+    "authority": "Mixed (private / Santa Fe National Forest)",
+    "category": "mixed",
+    "unit": "Cow Creek, San Miguel County",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Stocked from Lisboa Springs (Pecos). Lower Cow Creek is largely private; headwaters are on Santa Fe NF. Verify the stocked access.",
+    "confidence": "low",
+    "source": "Hatchery source; unverified"
+  },
+  "Coyote Creek (Nr Guadalupita)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Coyote Creek State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/coyote-creek-state-park/",
+    "notes": "Public access is the state park stretch; creek outside the park is private.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Coyote Creek Pond": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Coyote Creek State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/coyote-creek-state-park/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name; stocked alongside Coyote Creek"
+  },
+  "Dennis Chaves Pond": {
+    "authority": "City of Clovis",
+    "category": "municipal",
+    "unit": "Dennis Chavez Park, northwest Clovis",
+    "url": "https://www.clovisnm.gov/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Eastern New Mexico News"
+  },
+  "Eagle Nest Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Eagle Nest Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/eagle-nest-lake-state-park/",
+    "notes": "Day use only.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Eagle Rock Lake": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Eagle Rock Lake Day Use Area (Questa)",
+    "url": "https://www.fs.usda.gov/r03/carson/recreation/eagle-rock-lake-fishing",
+    "notes": "No boating, wading or swimming (protects the lake liner).",
+    "confidence": "high",
+    "source": "Carson NF recreation page"
+  },
+  "El Porvenir Creek (2115)": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "El Porvenir Campground area",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Lower creek near the village is private.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "El Rito Creek (Nr Santa Rosa)": {
+    "authority": "City of Santa Rosa",
+    "category": "municipal",
+    "unit": "El Rito Creek through Santa Rosa parks",
+    "url": "https://www.santarosanm.org/",
+    "notes": "Stocked from Rock Lake; creek runs through the city's park lands. Verify exact stocked stretch.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "El Rito Creek (Trib Of Chama)": {
+    "authority": "Mixed (Carson National Forest / private)",
+    "category": "mixed",
+    "unit": "El Rito Ranger District",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Upper creek on Carson NF; the valley through El Rito village is private.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "El Vado Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "El Vado Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/el-vado-lake-state-park/",
+    "notes": "Dam owned by the Middle Rio Grande Conservancy District (Bureau of Reclamation project); recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Elephant Butte Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Elephant Butte Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/elephant-butte-lake-state-park/",
+    "notes": "Bureau of Reclamation reservoir; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Escondida Lake": {
+    "authority": "Socorro County",
+    "category": "county",
+    "unit": "Escondida Lake Park",
+    "url": "https://www.socorronm.gov/locations/escondida-lake/",
+    "notes": "",
+    "confidence": "high",
+    "source": "Socorro County / Visit Socorro"
+  },
+  "Estancia Park Lake": {
+    "authority": "Town of Estancia",
+    "category": "municipal",
+    "unit": "Arthur Park",
+    "url": "",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Eunice Lake": {
+    "authority": "City of Eunice",
+    "category": "municipal",
+    "unit": "",
+    "url": "https://www.cityofeunice.org/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Fenton Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Fenton Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/fenton-lake-state-park/",
+    "notes": "Oars or electric motors only.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Gallinas Ice Pond": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "Montezuma Pond (Gallinas Canyon, near Las Vegas)",
+    "url": "https://www.visitlasvegasnm.com/things-to-do/outdoor-adventures/montezuma-pond/",
+    "notes": "The historic ice pond at Montezuma. Ownership not confirmed (United World College / City of Las Vegas area). Verify.",
+    "confidence": "low",
+    "source": "Visit Las Vegas NM"
+  },
+  "Gallinas River (Nr Las Vegas)": {
+    "authority": "Mixed (City of Las Vegas / private / Santa Fe National Forest)",
+    "category": "mixed",
+    "unit": "Gallinas River Park (city); Gallinas Canyon (USFS upstream)",
+    "url": "https://www.lasvegasnm.gov/",
+    "notes": "Public access in Las Vegas city parks and on Santa Fe NF above Montezuma; private between.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Gila River (East, Middle, West Forks)": {
+    "authority": "Gila National Forest",
+    "category": "mixed",
+    "unit": "Gila Wilderness; Gila Cliff Dwellings National Monument (NPS) at the forks",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Forks are on Gila NF / Gila Wilderness; the West Fork near the cliff dwellings is National Park Service. Gila Trout Permit required on parts of the West Fork.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Gilita Creek": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Gila Trout Permit (free) required.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Glenwood Pond": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Glenwood Hatchery brood pond",
+    "url": "https://wildlife.dgf.nm.gov/fishing/fish-hatcheries/",
+    "notes": "Daylight hours only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Goose Lake": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Questa Ranger District (above Red River)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "High-clearance 4WD road.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Grants Municipal Pond (River Walk Pond)": {
+    "authority": "City of Grants",
+    "category": "municipal",
+    "unit": "Riverwalk Pond",
+    "url": "https://www.grantsnm.gov/",
+    "notes": "",
+    "confidence": "high",
+    "source": "Name; NMDGF Rules booklet"
+  },
+  "Green Meadow Lake": {
+    "authority": "City of Hobbs",
+    "category": "municipal",
+    "unit": "Green Meadow Lake",
+    "url": "https://www.hobbsnm.org/",
+    "notes": "Oars or electric motors only.",
+    "confidence": "medium",
+    "source": "Location (Hobbs); NMDGF Rules booklet"
+  },
+  "Greene Acres Lake": {
+    "authority": "City of Clovis",
+    "category": "municipal",
+    "unit": "Greene Acres Park",
+    "url": "https://www.clovisnm.gov/",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Grindstone Reservoir": {
+    "authority": "Village of Ruidoso",
+    "category": "municipal",
+    "unit": "Grindstone Lake",
+    "url": "https://www.ruidoso-nm.gov/",
+    "notes": "Village boating permit required; oars/electric only; trolling speed.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Guadalupe River": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Rio Guadalupe (Jemez Ranger District)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Rio Grande cutthroat stockings from Seven Springs; this is the Rio Guadalupe in the Jemez, not a Guadalupe County water (site coordinates are wrong).",
+    "confidence": "medium",
+    "source": "Hatchery source; NMDGF Rules booklet (Rio Guadalupe Special Trout Water)"
+  },
+  "Harris Lake": {
+    "authority": "City of Las Vegas",
+    "category": "municipal",
+    "unit": "Harris Pond",
+    "url": "https://www.lasvegasnm.gov/",
+    "notes": "Anglers 11 and younger only.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Harris Pond, Las Vegas)"
+  },
+  "Harry Mcadams Park Pond": {
+    "authority": "City of Hobbs",
+    "category": "municipal",
+    "unit": "Harry McAdams Park",
+    "url": "https://www.hobbsnm.org/",
+    "notes": "Former state park, now city-run. Kids/seniors/disabled anglers only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Heron Reservoir": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Heron Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/heron-lake-state-park/",
+    "notes": "Bureau of Reclamation reservoir; recreation managed by State Parks. No-wake lake.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Hidden Lake (Aka Lake Hazel)": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "",
+    "url": "",
+    "notes": "Receives Rio Grande cutthroat fingerlings only, which suggests a high-elevation restoration lake, likely on National Forest. Not confirmed.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "Holy Ghost Creek": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Holy Ghost Campground (Pecos)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Hondo River (Lower)": {
+    "authority": "Mixed (Bureau of Land Management / private)",
+    "category": "mixed",
+    "unit": "Rio Hondo below Arroyo Hondo (Rio Grande del Norte NM)",
+    "url": "https://www.blm.gov/programs/national-conservation-lands/new-mexico/rio-grande-del-norte-national-monument",
+    "notes": "The lowest reach to the Rio Grande (John Dunn Bridge area) is BLM; the valley through Arroyo Hondo and Valdez is private.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Hopewell Lake": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Hopewell Lake Campground (US 64)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Oars or electric motors only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet; location"
+  },
+  "Horseshoe Lake": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Wheeler Peak Wilderness",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Rio Grande cutthroat water reached by trail from the Middle Fork/Lost Lake trailhead. Site coordinates are wrong (they point near Carlsbad).",
+    "confidence": "high",
+    "source": "Hatchery source (RGCT fingerlings); location"
+  },
+  "Jackson Lake": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Jackson Lake Wildlife Area (near Farmington)",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Oars or electric motors only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Jal Lake": {
+    "authority": "City of Jal",
+    "category": "municipal",
+    "unit": "Jal Lake Park",
+    "url": "https://www.cityofjal.us/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Jemez River": {
+    "authority": "Santa Fe National Forest",
+    "category": "mixed",
+    "unit": "Jemez Ranger District (NM 4 above Jemez Springs)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Public water is the Santa Fe NF stretch along NM 4 above Jemez Springs (Battleship Rock, Dark Canyon, etc.). Through Jemez Springs it is private; below Cañon it is Pueblo of Jemez land and closed without a pueblo permit.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Jemez River East Fork": {
+    "authority": "Santa Fe National Forest",
+    "category": "mixed",
+    "unit": "Jemez Ranger District (Las Conchas, Jemez Falls); Valles Caldera National Preserve upstream",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Lower East Fork along NM 4 is Santa Fe NF. Inside Valles Caldera it is National Park Service with its own fishing permit.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (Valles Caldera)"
+  },
+  "Joe Vigil Lake": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness (Jose Vigil Lake)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Backcountry lake at ~11,700 ft near Truchas Peaks; Rio Grande cutthroat water.",
+    "confidence": "high",
+    "source": "USGS name (Jose Vigil Lake); hatchery source"
+  },
+  "Laguna Del Campo (Burns Lake)": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Los Ojos Hatchery",
+    "url": "https://wildlife.dgf.nm.gov/fishing/fish-hatcheries/",
+    "notes": "Open May 1 to Oct 31; kids 14 and under with up to two supervising adults, seniors, and anglers with disabilities.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Lagunitas Lakes": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Lagunitas Campground (Tres Piedras RD)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Lake Alice (Sugarite Canyon)": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Sugarite Canyon State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/sugarite-canyon-state-park/",
+    "notes": "Oars or electric motors only; daylight hours.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Rules booklet"
+  },
+  "Lake Farmington": {
+    "authority": "City of Farmington",
+    "category": "municipal",
+    "unit": "Lake Farmington",
+    "url": "https://www.fmtn.org/",
+    "notes": "City water-supply lake; non-motorized craft only in season.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Lake Katherine": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Backcountry lake below Santa Fe Baldy.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Lake Maloya": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Sugarite Canyon State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/sugarite-canyon-state-park/",
+    "notes": "City of Raton water-supply reservoir; recreation managed by State Parks. Oars or electric only.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Lake Roberts": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Lake Roberts Recreation Area (NM 35)",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Oars or electric motors only; trolling speed.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Lake Roberts Glenwood Trout Hatchery": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "",
+    "url": "",
+    "notes": "Data artifact: a hatchery name leaked into the water-name column. Not a real water.",
+    "confidence": "low",
+    "source": "Parser bug"
+  },
+  "Lake Sumner": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Sumner Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/sumner-lake-state-park/",
+    "notes": "Bureau of Reclamation reservoir; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Lake Van": {
+    "authority": "Town of Dexter",
+    "category": "municipal",
+    "unit": "Lake Van Park",
+    "url": "",
+    "notes": "Town-run lake park with camping. (Town has no reliable website; call 575-734-5482.)",
+    "confidence": "high",
+    "source": "Lake Van Park listings (Town of Dexter operated)"
+  },
+  "Leandro Creek": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "",
+    "url": "",
+    "notes": "Stocked from Los Ojos hatchery (Chama area). Ownership not confirmed; may be private ranch land. Verify.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "Liam Knight Pond": {
+    "authority": "Village of Corrales",
+    "category": "municipal",
+    "unit": "Corrales Community Pond",
+    "url": "https://www.corrales-nm.org/",
+    "notes": "",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (Corrales Community Pond)"
+  },
+  "Los Pinos River": {
+    "authority": "Mixed (NMDGF Rio de los Pinos WMA / Carson National Forest / private)",
+    "category": "mixed",
+    "unit": "Rio de los Pinos Wildlife Area",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Public access on NMDGF's Rio de los Pinos WMA and Carson NF; private ranch land between.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Rio de los Pinos Special Trout Water)"
+  },
+  "Lost Lake": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Backcountry lake.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Lower Trampas (Aka Lake Ruth)": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness (Trampas Lakes)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Backcountry lake reached from the Trampas Lakes trailhead.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Manzano Lake": {
+    "authority": "Unknown",
+    "category": "unknown",
+    "unit": "Manzano village pond",
+    "url": "",
+    "notes": "Small pond in the village of Manzano; last stocked 2020. Ownership (land grant / private) not confirmed.",
+    "confidence": "low",
+    "source": "Unverified"
+  },
+  "Maxwell Lake 13": {
+    "authority": "US Fish & Wildlife Service",
+    "category": "usfws",
+    "unit": "Maxwell National Wildlife Refuge",
+    "url": "https://www.fws.gov/refuge/maxwell",
+    "notes": "Open noon March 1 to Oct 31; trolling speed. Ramp often dry at low water.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Mcgaffey Lake": {
+    "authority": "Cibola National Forest",
+    "category": "usfs",
+    "unit": "McGaffey Recreation Area (Zuni Mountains)",
+    "url": "https://www.fs.usda.gov/r03/cibola",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Middle Fork Lake": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Questa Ranger District (above Red River)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "4WD road or hike from the Middle Fork trailhead.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Monastery Lake": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Monastery Lake (Pecos)",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Daylight only; no boats or flotation; no ice fishing.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet; verify ownership"
+  },
+  "Mora (Pecos River Drainage)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Pecos Canyon State Park (Mora Campground area)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/pecos-canyon-state-park/",
+    "notes": "Rio Mora at its confluence with the Pecos is in Pecos Canyon State Park; upstream is Santa Fe NF.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Morphy Reservoir": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Morphy Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/morphy-lake-state-park/",
+    "notes": "Open March 1 to Oct 31; oars or electric only.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Mt View Ponds (Aka Cowles Ponds)": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Pecos Canyon State Park (Cowles)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/pecos-canyon-state-park/",
+    "notes": "Smaller pond is kids/seniors/disabled anglers only.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Cowles Pond); location"
+  },
+  "Navajo Reservoir": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Navajo Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/navajo-lake-state-park/",
+    "notes": "Bureau of Reclamation reservoir; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Ned Houk Ponds": {
+    "authority": "City of Clovis",
+    "category": "municipal",
+    "unit": "Ned Houk Park",
+    "url": "https://www.clovisnm.gov/",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Nutrias Lakes (Aka Trout Lakes)": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Trout Lakes Campground (Canjilon RD)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Oasis Park Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Oasis State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/oasis-state-park/",
+    "notes": "No boats or flotation devices.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Pecos River (Cowles To Village Of Pecos)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Pecos Canyon State Park (Dalton, Bert Clancey, Mora, Terrero, Cowles day-use areas)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/pecos-canyon-state-park/",
+    "notes": "Public access is at the Pecos Canyon State Park units and Santa Fe NF campgrounds along NM 63; much of the canyon between them is private and posted.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Pecos River (I-40 To Lake Sumner)": {
+    "authority": "Mixed (private / NM State Parks)",
+    "category": "mixed",
+    "unit": "Santa Rosa Lake State Park; Puerto de Luna area",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/santa-rosa-lake-state-park/",
+    "notes": "Mostly private ranch land. Public access at Santa Rosa Lake State Park and in Santa Rosa city parks.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Pecos River (Lake Sumner To Roswell)": {
+    "authority": "Mixed (NM State Parks / private)",
+    "category": "mixed",
+    "unit": "Sumner Lake State Park (below dam / stilling basin)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/sumner-lake-state-park/",
+    "notes": "The stilling basin and tailwater below Sumner Dam are in the state park (Winter Trout Water). Downstream to Roswell is almost entirely private.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet (Sumner Lake stilling basin)"
+  },
+  "Pecos River (Pecos Canyon)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Pecos Canyon State Park; Santa Fe NF above Cowles",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/pecos-canyon-state-park/",
+    "notes": "Public access at Pecos Canyon State Park units and Santa Fe NF (Jacks Creek, Iron Gate, Pecos Wilderness) above Cowles. Private inholdings between are posted.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list"
+  },
+  "Pecos River (Vill Of Pecos - Villanueva)": {
+    "authority": "Mixed (private / NM State Parks)",
+    "category": "mixed",
+    "unit": "Villanueva State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/villanueva-state-park/",
+    "notes": "Mostly private through the villages; reliable public access is Villanueva State Park at the bottom of the reach, plus NMDGF's Monastery Lake stretch near Pecos.",
+    "confidence": "medium",
+    "source": "EMNRD State Parks list; NMDGF Rules booklet"
+  },
+  "Pecos River (Villanueva To I-40)": {
+    "authority": "Mixed (NM State Parks / private)",
+    "category": "mixed",
+    "unit": "Villanueva State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/villanueva-state-park/",
+    "notes": "Villanueva State Park at the top of the reach is the public access; below it the river is private ranch land.",
+    "confidence": "medium",
+    "source": "EMNRD State Parks list"
+  },
+  "Peralta Creek": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Jemez Ranger District (Peralta Canyon)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Location; single Seven Springs stocking"
+  },
+  "Peralta Drain": {
+    "authority": "Middle Rio Grande Conservancy District",
+    "category": "mixed",
+    "unit": "Peralta drain (east bank), Los Lunas to Belen",
+    "url": "https://www.mrgcd.com/",
+    "notes": "MRGCD drain; stocked on the east bank between Los Lunas and Belen.",
+    "confidence": "high",
+    "source": "NMDGF Winter Fish Stocking article"
+  },
+  "Perch Lake (Guadalupe County)": {
+    "authority": "City of Santa Rosa",
+    "category": "municipal",
+    "unit": "Perch Lake (scuba park)",
+    "url": "https://www.santarosanm.org/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Placer Creek": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Near Hopewell Lake (US 64)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Quemado Lake": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Quemado Lake Recreation Area",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Recreation area is Gila NF (Quemado RD); NMDGF built the dam and owns the boat ramp. Oars or electric only.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp: NMDGF); USFS"
+  },
+  "Ralph Edwards Derby": {
+    "authority": "City of Truth or Consequences",
+    "category": "municipal",
+    "unit": "Ralph Edwards Park (Rio Grande)",
+    "url": "https://www.torcnm.gov/",
+    "notes": "Kids' derby pond / river park.",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Rancho Grande Pond": {
+    "authority": "Private (public fishing allowed)",
+    "category": "private",
+    "unit": "Rancho Grande Estates, west of Reserve",
+    "url": "https://wildlife.dgf.nm.gov/public-fishing-private-ponds-now-available-near-reserve/",
+    "notes": "Private subdivision ponds opened to public fishing under an NMDGF agreement.",
+    "confidence": "high",
+    "source": "NMDGF news release"
+  },
+  "Red River (Abv Questa)": {
+    "authority": "Mixed (Town of Red River / Carson National Forest / NMDGF)",
+    "category": "mixed",
+    "unit": "Carson NF campgrounds (Junebug, Elephant Rock, Fawn Lakes); Town of Red River; NMDGF Red River Hatchery",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Above town: Carson NF. In town: Town of Red River parks. Between town and Questa: Carson NF campgrounds along NM 38, then the Chevron mine (private, closed) and the NMDGF hatchery.",
+    "confidence": "high",
+    "source": "Location; NMDGF Rules booklet"
+  },
+  "Red River (Below Questa)": {
+    "authority": "Bureau of Land Management",
+    "category": "mixed",
+    "unit": "Wild Rivers Recreation Area (Rio Grande del Norte National Monument); NMDGF Red River Hatchery",
+    "url": "https://www.blm.gov/visit/wild-rivers-recreation-area",
+    "notes": "From the hatchery down through the gorge is BLM; private land around Questa.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Red River City Ponds": {
+    "authority": "Town of Red River",
+    "category": "municipal",
+    "unit": "",
+    "url": "https://redriver.org/",
+    "notes": "Open March 1 to Nov 15; middle pond is kids/seniors/disabled only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Red River East Fork": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Questa Ranger District",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Red River West Fork": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Questa Ranger District",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Rio Bonito Lower": {
+    "authority": "Mixed (Bureau of Land Management / private)",
+    "category": "mixed",
+    "unit": "Fort Stanton-Snowy River Cave National Conservation Area",
+    "url": "https://www.blm.gov/visit/fort-stanton-snowy-river-cave-nca",
+    "notes": "Public stretch runs through BLM's Fort Stanton NCA; through Lincoln and below it is private.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Rio Bonito Upper": {
+    "authority": "Lincoln National Forest",
+    "category": "usfs",
+    "unit": "Smokey Bear Ranger District",
+    "url": "https://www.fs.usda.gov/r03/lincoln",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Rio Grande (Elephant Butte To Caballo)": {
+    "authority": "Mixed (NM State Parks / Bureau of Reclamation / private)",
+    "category": "mixed",
+    "unit": "Elephant Butte Lake SP (Dam Site); Caballo Lake SP",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/elephant-butte-lake-state-park/",
+    "notes": "Tailwater below Elephant Butte Dam is Reclamation land in the state park; the reach through Truth or Consequences has city river parks; much of the rest is private. Winter Trout Water.",
+    "confidence": "medium",
+    "source": "NMDGF Rules booklet; location"
+  },
+  "Rio Grande (Gorge- Abv Pilar)": {
+    "authority": "Bureau of Land Management",
+    "category": "blm",
+    "unit": "Rio Grande del Norte National Monument (Orilla Verde, Wild Rivers, John Dunn Bridge)",
+    "url": "https://www.blm.gov/programs/national-conservation-lands/new-mexico/rio-grande-del-norte-national-monument",
+    "notes": "",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Rio Grande (Pilar To Cochiti Lake)": {
+    "authority": "Mixed (Bureau of Land Management / private / pueblo)",
+    "category": "mixed",
+    "unit": "Orilla Verde Recreation Area (Pilar to Taos Junction Bridge)",
+    "url": "https://www.blm.gov/visit/orilla-verde-recreation-area",
+    "notes": "BLM from Pilar down through the Racecourse and Orilla Verde; private through Embudo and Velarde; Ohkay Owingeh, Santa Clara, San Ildefonso and Cochiti pueblo lands below Española are closed without tribal permission.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Rio Las Vacas": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "Cuba Ranger District (Rio de las Vacas Campground)",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Rio Pueblo": {
+    "authority": "Mixed (Carson National Forest / private / Picuris Pueblo)",
+    "category": "mixed",
+    "unit": "Camino Real Ranger District (Sipapu to Tres Ritos)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Public water is the Carson NF stretch along NM 518 above Vadito; through Peñasco it is private and Picuris Pueblo.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Rito De Los Pinos": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Tres Piedras Ranger District",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Stocked from Los Ojos, so this is the Rito de los Pinos in northern Rio Arriba County (site coordinates near Cuba are wrong).",
+    "confidence": "low",
+    "source": "Hatchery source; verify"
+  },
+  "Rock Lake Hatchery Kids Ponds (Near Roswell)": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Rock Lake Hatchery (Santa Rosa)",
+    "url": "https://wildlife.dgf.nm.gov/fishing/fish-hatcheries/",
+    "notes": "Anglers 11 and younger only; 8 a.m. to 5 p.m. (The hatchery is at Santa Rosa, not Roswell.)",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Roswell Kids Pond": {
+    "authority": "City of Roswell",
+    "category": "municipal",
+    "unit": "Spring River Park & Zoo",
+    "url": "https://www.roswell-nm.gov/",
+    "notes": "Anglers 11 and younger only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet (Spring River Park)"
+  },
+  "Ruidoso River": {
+    "authority": "Mixed (Village of Ruidoso / private / Mescalero Apache Tribe)",
+    "category": "mixed",
+    "unit": "Two Rivers Park and other village river parks",
+    "url": "https://www.ruidoso-nm.gov/",
+    "notes": "Public access at Village of Ruidoso river parks; upstream is Mescalero Apache tribal land (closed), and most other frontage is private.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "San Antonio River": {
+    "authority": "Santa Fe National Forest",
+    "category": "mixed",
+    "unit": "Jemez Ranger District (San Antonio Campground); Valles Caldera upstream",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Santa Fe NF along NM 126; inside Valles Caldera it is National Park Service with its own permit.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "San Gregorio Lake": {
+    "authority": "Santa Fe National Forest",
+    "category": "usfs",
+    "unit": "San Pedro Parks Wilderness",
+    "url": "https://www.fs.usda.gov/r03/santafe",
+    "notes": "Short hike in; boats without motors only.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "San Juan River (Blw Quality)": {
+    "authority": "Mixed (NM State Parks / private)",
+    "category": "mixed",
+    "unit": "Navajo Lake State Park (river section)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/navajo-lake-state-park/",
+    "notes": "State park access continues below the Quality Water boundary; further downstream toward Hammond is mostly private.",
+    "confidence": "medium",
+    "source": "NMDGF Fishing Waters Map (ramps: NM State Parks)"
+  },
+  "San Juan River (Quality)": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Navajo Lake State Park (Quality Waters below Navajo Dam)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/navajo-lake-state-park/",
+    "notes": "The Quality Water stretch is within Navajo Lake State Park on Bureau of Reclamation land; NMDGF sets the special regulations.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Santa Cruz Reservoir": {
+    "authority": "Bureau of Land Management",
+    "category": "blm",
+    "unit": "Santa Cruz Lake Recreation Area",
+    "url": "https://www.blm.gov/visit/santa-cruz-lake-recreation-area",
+    "notes": "Water owned by the Santa Cruz Irrigation District; recreation area managed by BLM Taos Field Office. Limited days/hours (see rules).",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Santa Rosa Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Santa Rosa Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/santa-rosa-lake-state-park/",
+    "notes": "Corps of Engineers reservoir; recreation managed by State Parks.",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Sapillo Creek (Nr Lake Roberts)": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Gila Trout Permit (free) required.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Seven Springs Brood Pond": {
+    "authority": "NM Dept. of Game & Fish",
+    "category": "nmdgf",
+    "unit": "Seven Springs Hatchery",
+    "url": "https://wildlife.dgf.nm.gov/fishing/fish-hatcheries/",
+    "notes": "Anglers 11 and younger only; 8 a.m. to 5 p.m.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Shuree Ponds": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Valle Vidal Unit",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Open July 1 to Dec 31; one pond is kids only; no motors.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Sipapu Pond": {
+    "authority": "Private (Sipapu Ski & Summer Resort)",
+    "category": "private",
+    "unit": "Sipapu resort, NM 518",
+    "url": "https://www.sipapu.ski/",
+    "notes": "Resort pond open to the public.",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Snow Lake": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Snow Lake / Dipping Vat Campground",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Oars or electric motors only.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp ownership)"
+  },
+  "Springer Lake": {
+    "authority": "NM Dept. of Game & Fish (Open Gate)",
+    "category": "nmdgf",
+    "unit": "Springer Lake",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Town of Springer reservoir; public fishing access through NMDGF's Open Gate program. No ice fishing.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp: NMDGF-Open Gate)"
+  },
+  "Storrie Reservoir": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Storrie Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/storrie-lake-state-park/",
+    "notes": "",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "Stubblefield Lake": {
+    "authority": "NM Dept. of Game & Fish (Open Gate)",
+    "category": "nmdgf",
+    "unit": "Stubblefield Lake (Maxwell)",
+    "url": "https://wildlife.dgf.nm.gov/",
+    "notes": "Irrigation reservoir adjacent to Maxwell NWR; public access through NMDGF's Open Gate program. Often dry.",
+    "confidence": "high",
+    "source": "NMDGF Fishing Waters Map (ramp: NMDGF-Open Gate)"
+  },
+  "Tajique Creek": {
+    "authority": "Mixed (Cibola National Forest / private)",
+    "category": "mixed",
+    "unit": "Mountainair Ranger District (Tajique Campground)",
+    "url": "https://www.fs.usda.gov/r03/cibola",
+    "notes": "Public water is on Cibola NF above Tajique village.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Taos Creek (Aka Rio Fernando De Taos)": {
+    "authority": "Mixed (Carson National Forest / private)",
+    "category": "mixed",
+    "unit": "Taos Canyon (US 64)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Carson NF through Taos Canyon; private through the town of Taos.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Tiger Park Pond (Aztec)": {
+    "authority": "City of Aztec",
+    "category": "municipal",
+    "unit": "Tiger Park",
+    "url": "https://www.aztecnm.gov/",
+    "notes": "",
+    "confidence": "medium",
+    "source": "Name"
+  },
+  "Timberon Ponds": {
+    "authority": "Timberon community (private, public fishing allowed)",
+    "category": "private",
+    "unit": "Timberon, Otero County",
+    "url": "",
+    "notes": "Stocked by a private vendor per NMDGF reports. Summer Catfish Water.",
+    "confidence": "low",
+    "source": "NMDGF Rules booklet; stocking hatchery field = Private"
+  },
+  "Trees Lake": {
+    "authority": "City of Deming",
+    "category": "municipal",
+    "unit": "Trees Lake (downtown Deming)",
+    "url": "https://www.cityofdeming.org/",
+    "notes": "Sunrise to sunset; no boats.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet; Deming tourism page"
+  },
+  "Upper Trampas (Aka Lake Alice)": {
+    "authority": "Carson National Forest",
+    "category": "usfs",
+    "unit": "Pecos Wilderness (Trampas Lakes)",
+    "url": "https://www.fs.usda.gov/r03/carson",
+    "notes": "Backcountry lake reached from the Trampas Lakes trailhead.",
+    "confidence": "high",
+    "source": "Location"
+  },
+  "Ute Lake": {
+    "authority": "NM State Parks",
+    "category": "state_park",
+    "unit": "Ute Lake State Park",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/ute-lake-state-park/",
+    "notes": "",
+    "confidence": "high",
+    "source": "EMNRD State Parks list; NMDGF Fishing Waters Map"
+  },
+  "White Water Creek": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Catwalk Recreation Area (Glenwood)",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Gila Trout Permit (free) required.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Willow Creek (Gila Drainage)": {
+    "authority": "Gila National Forest",
+    "category": "usfs",
+    "unit": "Willow Creek Campground",
+    "url": "https://www.fs.usda.gov/r03/gila",
+    "notes": "Gila Trout Permit (free) required.",
+    "confidence": "high",
+    "source": "NMDGF Rules booklet"
+  },
+  "Willow Creek (Pecos Drainage)": {
+    "authority": "NM State Parks",
+    "category": "mixed",
+    "unit": "Pecos Canyon State Park (Willow Creek area)",
+    "url": "https://www.emnrd.nm.gov/spd/find-a-park/pecos-canyon-state-park/",
+    "notes": "Confluence area is in Pecos Canyon State Park; upstream is Santa Fe NF.",
+    "confidence": "medium",
+    "source": "Location"
+  },
+  "Young Pond": {
+    "authority": "City of Las Cruces",
+    "category": "municipal",
+    "unit": "Young Park",
+    "url": "https://www.lascruces.gov/",
+    "notes": "",
+    "confidence": "high",
+    "source": "Location"
+  }
+}

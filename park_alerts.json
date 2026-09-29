@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-09-28T07:10:09Z",
+ "_fetched": "2026-09-29T07:06:43Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -9,6 +9,17 @@
     "posted": "7/4/2020",
     "until": "ongoing",
     "boating": true
+   }
+  ]
+ },
+ "Cerrillos Hills": {
+  "phone": "(505) 474-0196",
+  "alerts": [
+   {
+    "text": "Main park road, County Road 59, has been washed out due to recent heavy rains. All trailheads, except Jane Calvin Sanchez trail are inaccessible at this time due to extensive road damage. Santa Fe County has been notified.",
+    "posted": "9/28/2026",
+    "until": "10/23/2026",
+    "boating": false
    }
   ]
  },
@@ -79,6 +90,12 @@
  "Elephant Butte Lake": {
   "phone": "(575) 744-5923",
   "alerts": [
+   {
+    "text": "Both the Upper Ridge Road and Rock Canyon comfort stations will be closed for the winter season from October 1st, 2026 through February 28th, 2027.",
+    "posted": "9/28/2026",
+    "until": "2/28/2027",
+    "boating": false
+   },
    {
     "text": "Please be advised that all boat ramps in the park are closed due to low water levels. We anticipate reopening when water levels increase, and conditions allow. All launching and retrieving of vessels is at the operators own risk.",
     "posted": "8/18/2026",
@@ -249,6 +266,12 @@
  "Storrie Lake": {
   "phone": "(505) 425-7278",
   "alerts": [
+   {
+    "text": "Dump Station closed for repairs from 9/28/26",
+    "posted": "9/28/2026",
+    "until": "ongoing",
+    "boating": false
+   },
    {
     "text": "From October 1, 2026, through March 31, 2027: The park entrance gate will open at 7am and close at 5pm;",
     "posted": "9/18/2026",

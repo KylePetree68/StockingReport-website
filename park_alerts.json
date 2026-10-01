@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-09-30T06:56:54Z",
+ "_fetched": "2026-10-01T07:21:52Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -114,6 +114,12 @@
   "phone": "(575) 588-7470",
   "alerts": [
    {
+    "text": "Heron Lake Visitors Center- Closed Due to parking lot construction.",
+    "posted": "9/30/2026",
+    "until": "10/12/2026",
+    "boating": false
+   },
+   {
     "text": "All boat ramps (and courtesy docks) at Heron Lake State Park are currently unavailable for boaters due to extremely low lake levels. These ramps and docks will remain unavailable until lake levels improve. Those visitors planning to launch watercraft should call the park office to check for conditions prior to arriving. (575)588-7470",
     "posted": "5/26/2026",
     "until": "ongoing",
@@ -137,6 +143,12 @@
   "phone": "505-983-7175",
   "alerts": [
    {
+    "text": "Group Site #1 is closed until further notice. The bridge leading into the site is washed out.",
+    "posted": "9/30/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
     "text": "Seasonal closure of the Main Camping Loop, all group shelters, and all first-come, first-serve sites from November 1, 2026, through April 30, 2027, depending on weather conditions.",
     "posted": "9/18/2026",
     "until": "4/30/2027",
@@ -146,6 +158,17 @@
     "text": "The RV Loop and Yurts will remain open, depending on weather conditions. Seasonal closure of the Lodge from October 31, 2026, through April 30, 2027. Seasonal availability of the Lodge is from May 1 through October 31 each year.",
     "posted": "9/18/2026",
     "until": "4/30/2027",
+    "boating": false
+   }
+  ]
+ },
+ "Leasburg Dam": {
+  "phone": "575-524-4068",
+  "alerts": [
+   {
+    "text": "Riverside Day use area will be closed until further notice due to severe weather and flooding.",
+    "posted": "9/30/2026",
+    "until": "ongoing",
     "boating": false
    }
   ]
@@ -241,17 +264,6 @@
    }
   ]
  },
- "Santa Rosa Lake": {
-  "phone": "(575) 472-3110",
-  "alerts": [
-   {
-    "text": "Boat Ramp closed due to low water levels.",
-    "posted": "7/28/2026",
-    "until": "4/1/2027",
-    "boating": true
-   }
-  ]
- },
  "Storrie Lake": {
   "phone": "(505) 425-7278",
   "alerts": [
@@ -314,12 +326,6 @@
   "phone": "(575) 355-2541",
   "alerts": [
    {
-    "text": "Main Boat Ramp is closed due to low water levels until further notice.",
-    "posted": "9/12/2026",
-    "until": "1/1/2027",
-    "boating": true
-   },
-   {
     "text": "Alamo boat ramp is closed due to low water levels until further notice.",
     "posted": "7/9/2026",
     "until": "1/1/2027",
@@ -341,6 +347,12 @@
  "Villanueva": {
   "phone": "(575) 421-2957",
   "alerts": [
+   {
+    "text": "PARK CLOSED – Due to flooding along the Pecos River, the park is closed until further notice.",
+    "posted": "9/30/2026",
+    "until": "10/2/2026",
+    "boating": false
+   },
    {
     "text": "Seasonal closure of El Cerro Campground (First come, First serve campground) from November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
     "posted": "9/18/2026",

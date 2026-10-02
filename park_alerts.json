@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-01T07:21:52Z",
+ "_fetched": "2026-10-02T07:10:14Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -73,6 +73,12 @@
  "Clayton Lake & Dinosaur Trackways": {
   "phone": "575-374-8808",
   "alerts": [
+   {
+    "text": "We will be performing maintenance and repairs to the drinking water well and system at Clayton Lake from Monday October 5th thru Friday October 9th. During this time the water system and comfort station will be closed and unavailable.",
+    "posted": "10/1/2026",
+    "until": "10/10/2026",
+    "boating": false
+   },
    {
     "text": "Clayton Lake State Park and Dinosaur Trackway has closed access to the boat ramp and is prohibiting the use of motorized boats due to declining water levels and related safety concerns. The lake remains open for non-motorized vessels, including canoes and kayaks. Motorized boat access will be restored once water levels improve and conditions allow for safe use of the boat ramp.",
     "posted": "7/31/2026",
@@ -166,9 +172,9 @@
   "phone": "575-524-4068",
   "alerts": [
    {
-    "text": "Riverside Day use area will be closed until further notice due to severe weather and flooding.",
-    "posted": "9/30/2026",
-    "until": "ongoing",
+    "text": "Day use area closed to vehicle and foot traffic from 9/30/2026 through 03/25/2027. No camping is permitted at or within the day use area or riverbed.",
+    "posted": "10/1/2026",
+    "until": "3/25/2027",
     "boating": false
    }
   ]
@@ -190,6 +196,17 @@
    {
     "text": "Mesilla Valley Bosque Park is closed on Thanksgiving Day, Christmas Day and New Year's Day.",
     "posted": "11/19/2021",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Morphy Lake": {
+  "phone": "(575) 387-2328",
+  "alerts": [
+   {
+    "text": "EMERGENCY UPDATE: Morphy Lake State Park CLOSED Severe flooding in Mora County has made the main road to Morphy Lake State Park dangerous and impassable. Runoff and debris are creating hazardous conditions throughout the area. Effective immediately, the park is CLOSED until further notice.",
+    "posted": "10/1/2026",
     "until": "ongoing",
     "boating": false
    }
@@ -347,12 +364,6 @@
  "Villanueva": {
   "phone": "(575) 421-2957",
   "alerts": [
-   {
-    "text": "PARK CLOSED – Due to flooding along the Pecos River, the park is closed until further notice.",
-    "posted": "9/30/2026",
-    "until": "10/2/2026",
-    "boating": false
-   },
    {
     "text": "Seasonal closure of El Cerro Campground (First come, First serve campground) from November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
     "posted": "9/18/2026",

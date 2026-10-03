@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-02T07:10:14Z",
+ "_fetched": "2026-10-03T06:42:50Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -232,12 +232,6 @@
  "Pecos Canyon": {
   "phone": "(505) 670-8196",
   "alerts": [
-   {
-    "text": "Bert Clancy campground and parking will be closed for construction from Sundays at 4pm through Fridays at 10am. We apologize for any inconvenience this may cause, it is for the safety of visitors. These campground improvements will be open soon.",
-    "posted": "9/17/2026",
-    "until": "10/2/2026",
-    "boating": false
-   },
    {
     "text": "Seasonal Closures - Pecos Canyon State Park: Green Chili Waters Day Use Angler site November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
     "posted": "9/17/2026",

@@ -1,17 +1,13 @@
 {
- "_generated": "2026-10-04T07:05:42Z",
+ "_generated": "2026-10-05T07:17:21Z",
  "_readme": "Daily water-surface elevation (ft) or storage (ac-ft) per reservoir; see lake_level_sources.json. Written by fetch_lake_levels.py.",
  "Bluewater Lake": {
   "source": "usgs",
   "label": "USGS 08341400 Bluewater Lake near Bluewater",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    7370.58
-   ],
    [
     "2025-08-31",
     7370.49
@@ -1551,6 +1547,10 @@
    [
     "2026-10-02",
     7364.29
+   ],
+   [
+    "2026-10-03",
+    7364.27
    ]
   ]
  },
@@ -1559,12 +1559,8 @@
   "label": "USGS 07205500 Eagle Nest Lake near Eagle Nest",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    8168.85
-   ],
    [
     "2025-08-31",
     8168.84
@@ -3156,6 +3152,10 @@
    [
     "2026-10-02",
     8160.02
+   ],
+   [
+    "2026-10-03",
+    8160.03
    ]
   ]
  },
@@ -4565,12 +4565,8 @@
   "label": "USGS 07226800 Ute Reservoir near Logan (storage)",
   "unit": "ac-ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    201300.0
-   ],
    [
     "2025-08-31",
     202500.0
@@ -6162,6 +6158,10 @@
    [
     "2026-10-02",
     184000.0
+   ],
+   [
+    "2026-10-03",
+    184200.0
    ]
   ]
  },
@@ -6170,12 +6170,8 @@
   "label": "USACE Albuquerque District, Conchas Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    4192.85
-   ],
    [
     "2025-08-31",
     4193.19
@@ -7775,12 +7771,8 @@
   "label": "USACE Albuquerque District, Santa Rosa Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    4742.06
-   ],
    [
     "2025-08-31",
     4742.6
@@ -9380,12 +9372,8 @@
   "label": "USACE Albuquerque District, Abiquiu Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    6200.86
-   ],
    [
     "2025-08-31",
     6201.01
@@ -10985,12 +10973,8 @@
   "label": "USACE Albuquerque District, Cochiti Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    5345.78
-   ],
    [
     "2025-08-31",
     5345.62
@@ -12590,12 +12574,8 @@
   "label": "Bureau of Reclamation, Heron Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    7085.71
-   ],
    [
     "2025-08-31",
     7084.96
@@ -14187,6 +14167,10 @@
    [
     "2026-10-02",
     7068.5
+   ],
+   [
+    "2026-10-03",
+    7068.6
    ]
   ]
  },
@@ -14195,12 +14179,8 @@
   "label": "Bureau of Reclamation, Navajo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    6024.53
-   ],
    [
     "2025-08-31",
     6024.3
@@ -15792,6 +15772,10 @@
    [
     "2026-10-02",
     6016.28
+   ],
+   [
+    "2026-10-03",
+    6016.49
    ]
   ]
  },
@@ -15800,12 +15784,8 @@
   "label": "Bureau of Reclamation, El Vado Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    6820.33
-   ],
    [
     "2025-08-31",
     6820.33
@@ -17397,6 +17377,10 @@
    [
     "2026-10-02",
     6813.11
+   ],
+   [
+    "2026-10-03",
+    6812.76
    ]
   ]
  },
@@ -17405,12 +17389,8 @@
   "label": "Bureau of Reclamation, Elephant Butte Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    4291.44
-   ],
    [
     "2025-08-31",
     4291.42
@@ -18998,6 +18978,10 @@
    [
     "2026-10-02",
     4288.39
+   ],
+   [
+    "2026-10-03",
+    4289.38
    ]
   ]
  },
@@ -19006,12 +18990,8 @@
   "label": "Bureau of Reclamation, Caballo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    4125.16
-   ],
    [
     "2025-08-31",
     4125.16
@@ -20603,6 +20583,10 @@
    [
     "2026-10-02",
     4138.98
+   ],
+   [
+    "2026-10-03",
+    4139.0
    ]
   ]
  },
@@ -20611,12 +20595,8 @@
   "label": "Bureau of Reclamation, Lake Sumner",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    4250.65
-   ],
    [
     "2025-08-31",
     4251.0
@@ -22180,6 +22160,10 @@
    [
     "2026-10-02",
     4242.22
+   ],
+   [
+    "2026-10-03",
+    4242.46
    ]
   ]
  },
@@ -22188,12 +22172,8 @@
   "label": "Bureau of Reclamation, Brantley Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-10-04",
+  "fetched": "2026-10-05",
   "series": [
-   [
-    "2025-08-30",
-    3244.65
-   ],
    [
     "2025-08-31",
     3244.39
@@ -23773,6 +23753,10 @@
    [
     "2026-10-02",
     3250.84
+   ],
+   [
+    "2026-10-03",
+    3251.73
    ]
   ]
  }

@@ -16,16 +16,14 @@
     <title>Alumni Pond - NM Stocking Report</title>
     <meta name="description" content="Alumni Pond: stocked 1 times in the last 6 months with Channel Catfish. Last stocked Sep 03, 2026. View complete NM stocking history.">
     <link rel="stylesheet" href="/tailwind.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Fuse.js for fuzzy search -->
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script defer src="/vendor/fuse/fuse.min.js"></script>
 
     <!-- Favicon and Social Media Meta Tags -->
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta property="og:title" content="Alumni Pond - Stocking Report">
     <meta property="og:description" content="View the complete stocking history for Alumni Pond, including dates, species, quantity, and size.">
     <meta property="og:image" content="https://stockingreport.com/og-image.png">
@@ -112,13 +110,16 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
-            background-image: linear-gradient(rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.6)), url('/bg.jpg');
+            background-image: linear-gradient(rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.6)), url('/bg.webp');
             background-attachment: fixed;
             background-size: cover;
         }
         /* iOS Safari doesn't support fixed backgrounds and repaints them badly. */
         @media (max-width: 767px) {
-            body { background-attachment: scroll; }
+            body {
+                background-attachment: scroll;
+                background-image: linear-gradient(rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.6)), url('/bg-mobile.webp');
+            }
         }
         /* Phones and tablets have no arrow keys. */
         @media (hover: none) {
@@ -179,7 +180,7 @@
 
     <div class="container mx-auto p-3 sm:p-4 md:p-8 max-w-5xl flex flex-col">
         <header class="flex items-center justify-center mb-4 md:mb-8">
-            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-10 w-10 md:h-16 md:w-16 mr-3 md:mr-4"></a>
+            <a href="/"><img src="/logo-128.webp" width="64" height="64" alt="Stocking Report Logo" class="h-10 w-10 md:h-16 md:w-16 mr-3 md:mr-4"></a>
             <div>
                  <a href="/" class="text-2xl sm:text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
                 <p class="hidden sm:block text-gray-600 mt-1 text-left">The complete stocking history for Alumni Pond.</p>
@@ -205,7 +206,7 @@
         <section class="order-1 md:order-none mt-6 md:mt-0 md:mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 md:p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
             <div class="relative" id="searchable-dropdown">
-                <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
+                <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search...">
                 <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1000;"></div>
             </div>
             <p class="keyboard-tip text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
@@ -214,17 +215,17 @@
         <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">Alumni Pond</h2>
             
-            <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-orange-100 text-orange-800 border-orange-300">Stocked 33 days ago — Worth a Trip</div><p class="text-gray-700 mt-1"><strong>1</strong> stocking in the past 6 months &nbsp;·&nbsp; <strong>162 Channel Catfish</strong> &nbsp;·&nbsp; avg <strong>18.0 in.</strong></p><p class="text-sm text-gray-400 mt-2 pt-2 border-t border-gray-200">~66-day intervals &nbsp;·&nbsp; Peak: <strong>Nov, Feb, Mar</strong> &nbsp;·&nbsp; 75 stockings since 2020 &nbsp;·&nbsp; 22,816 fish</p><div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Channel Catfish</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Northern Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Triploid Rainbow Trout</span></div></div></div>
+            <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-orange-100 text-orange-800 border-orange-300">Stocked 33 days ago — Worth a Trip</div><p class="text-gray-700 mt-1"><strong>1</strong> stocking in the past 6 months &nbsp;·&nbsp; <strong>162 Channel Catfish</strong> &nbsp;·&nbsp; avg <strong>18.0 in.</strong></p><p class="text-sm text-gray-500 mt-2 pt-2 border-t border-gray-200">~66-day intervals &nbsp;·&nbsp; Peak: <strong>Nov, Feb, Mar</strong> &nbsp;·&nbsp; 75 stockings since 2020 &nbsp;·&nbsp; 22,816 fish</p><div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Channel Catfish</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Northern Largemouth Bass</span><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Triploid Rainbow Trout</span></div></div></div>
             <div class="mb-6 bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm">
 <p class="text-gray-800">
 <span class="font-semibold text-gray-700">Managed by:</span> 
 <strong>New Mexico State University</strong>
  <span class="text-gray-600">&middot; NMSU campus, Las Cruces</span>
- <a href="https://www.nmsu.edu/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline whitespace-nowrap">Official site &#8599;</a>
+ <a href="https://www.nmsu.edu/" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline whitespace-nowrap">Official site &#8599;</a>
 </p>
 <p class="text-gray-600 mt-1">On the NMSU campus next to the Pan American Center.</p>
 </div>
-            <div class="mb-6 border-l-4 border-blue-500 bg-blue-50 p-6 rounded-r-lg"><h3 class="text-xl font-bold text-blue-900 mb-4 flex items-center"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>Special Regulations</h3><div class="mt-4 pt-4 border-t border-blue-200"><p class="text-gray-700 font-semibold mb-2">Special Summer Catfish Water</p><p class="text-gray-700 mb-2">Two channel catfish per day</p><p class="text-gray-600 text-sm">Special Summer Catfish Water</p></div><p class="text-xs text-gray-500 mt-4 pt-4 border-t border-blue-200"><strong>Note:</strong> This information is sourced from NM Game & Fish GIS data. Always check the official <a href="https://wildlife.dgf.nm.gov/fishing/" target="_blank" class="text-blue-600 hover:underline">NM Game & Fish fishing regulations</a> for the most current rules.</p></div>
+            <div class="mb-6 border-l-4 border-blue-500 bg-blue-50 p-6 rounded-r-lg"><h3 class="text-xl font-bold text-blue-900 mb-4 flex items-center"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>Special Regulations</h3><div class="mt-4 pt-4 border-t border-blue-200"><p class="text-gray-700 font-semibold mb-2">Special Summer Catfish Water</p><p class="text-gray-700 mb-2">Two channel catfish per day</p><p class="text-gray-600 text-sm">Special Summer Catfish Water</p></div><p class="text-xs text-gray-600 mt-4 pt-4 border-t border-blue-200"><strong>Note:</strong> This information is sourced from NM Game & Fish GIS data. Always check the official <a href="https://wildlife.dgf.nm.gov/fishing/" target="_blank" class="text-blue-700 underline">NM Game & Fish fishing regulations</a> for the most current rules.</p></div>
 
             <!-- Gear call-to-action (affiliate) -->
             <div class="mb-6 flex items-center gap-4 bg-gradient-to-r from-blue-50 to-white border border-blue-100 rounded-lg px-4 py-3">
@@ -235,7 +236,7 @@
                 </div>
                 <div class="flex-none flex flex-col items-end gap-1">
                     <a href="https://amzn.to/4cQs1We" target="_blank" rel="noopener noreferrer sponsored" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors">Shop tackle<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                    <button type="button" onclick="document.getElementById('affiliate-dialog').showModal()" class="text-[10px] text-gray-400 hover:text-gray-600 underline decoration-dotted underline-offset-2">Amazon affiliate link</button>
+                    <button type="button" onclick="document.getElementById('affiliate-dialog').showModal()" class="text-xs py-1 text-gray-600 hover:text-gray-800 underline decoration-dotted underline-offset-2">Amazon affiliate link</button>
                 </div>
             </div>
             <dialog id="affiliate-dialog" class="rounded-lg p-0 w-11/12 max-w-md shadow-xl" onclick="if(event.target===this)this.close()">
@@ -920,7 +921,7 @@
 
         async function initializeSearch() {
             try {
-                const response = await fetch('/stocking_data.json?v=' + new Date().getTime());
+                const response = await fetch('/stocking_data.json');
                 if (!response.ok) return;
                 stockingData = JSON.parse(await response.text());
 
@@ -961,6 +962,9 @@
                 optionsContainer.classList.add('hidden');
                 return;
             }
+
+            // Water list still loading; the input is re-dispatched once it arrives.
+            if (!fuse) return;
 
             optionsContainer.classList.remove('hidden');
 
@@ -1027,7 +1031,19 @@
             }
         });
 
-        window.addEventListener('DOMContentLoaded', initializeSearch);
+        // The water list (stocking_data.json, several MB) is only needed for
+        // search, so fetch it when the visitor first reaches for the search box
+        // instead of on every page load.
+        let searchLoading = null;
+        function loadSearch() {
+            if (!searchLoading) {
+                searchLoading = initializeSearch().then(() => {
+                    if (searchInput.value) searchInput.dispatchEvent(new Event('input'));
+                });
+            }
+            return searchLoading;
+        }
+        ['focus', 'pointerdown', 'keydown'].forEach(evt => searchInput.addEventListener(evt, loadSearch, { once: true }));
     </script>
 </body>
 </html>

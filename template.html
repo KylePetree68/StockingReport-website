@@ -11,14 +11,11 @@
       gtag('config', 'G-TK0ZMTQ9X9');
     </script>
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6546924017294618"
-         crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{WATER_NAME}} - NM Stocking Report</title>
     <meta name="description" content="{{META_DESCRIPTION}}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,6 +41,33 @@
             background-image: linear-gradient(rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.6)), url('/bg.jpg');
             background-attachment: fixed;
             background-size: cover;
+        }
+        /* iOS Safari doesn't support fixed backgrounds and repaints them badly. */
+        @media (max-width: 767px) {
+            body { background-attachment: scroll; }
+        }
+        /* Phones and tablets have no arrow keys. */
+        @media (hover: none) {
+            .keyboard-tip { display: none; }
+        }
+
+        /* Stocking table: on phones each row becomes a two-line card
+           (species + date, quantity + length, hatchery) and only the
+           latest rows show until "Show all" is tapped. */
+        @media (max-width: 639px) {
+            .stock-table thead { display: none; }
+            .stock-table tr { display: flex; flex-wrap: wrap; align-items: baseline; padding: 0.75rem 1rem; }
+            .stock-table td { display: block; padding: 0 !important; white-space: normal !important; }
+            .stock-table .c-species { flex: 1 1 0; min-width: 0; padding-right: 0.75rem !important; }
+            .stock-table .c-date { order: 1; flex: none; white-space: nowrap !important; }
+            .stock-table tr::after { content: ""; order: 2; flex-basis: 100%; height: 0.25rem; }
+            .stock-table .c-qty { order: 3; }
+            .stock-table .c-len { order: 4; }
+            .stock-table .c-hatch { order: 5; flex-basis: 100%; margin-top: 0.125rem; font-size: 0.75rem; color: #6b7280; }
+            .stock-table .c-qty[data-v]::after { content: " fish"; }
+            .stock-table .c-len[data-v]::after { content: " in"; }
+            .stock-table .c-qty[data-v] + .c-len[data-v]::before { content: "\00b7"; margin: 0 0.4rem; color: #9ca3af; }
+            .stock-table:not(.show-all) tr.extra-row { display: none; }
         }
         .clickable-row { cursor: pointer; transition: background-color 0.2s ease-in-out; }
         .clickable-row:hover { background-color: #f9fafb; }
@@ -79,42 +103,42 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-        <header class="flex items-center justify-center mb-8">
-            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4"></a>
+    <div class="container mx-auto p-3 sm:p-4 md:p-8 max-w-5xl flex flex-col">
+        <header class="flex items-center justify-center mb-4 md:mb-8">
+            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-10 w-10 md:h-16 md:w-16 mr-3 md:mr-4"></a>
             <div>
-                 <a href="/" class="text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
-                <p class="text-gray-600 mt-1 text-left">The complete stocking history for {{WATER_NAME}}.</p>
+                 <a href="/" class="text-2xl sm:text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
+                <p class="hidden sm:block text-gray-600 mt-1 text-left">The complete stocking history for {{WATER_NAME}}.</p>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
-            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
-                <span class="text-gray-400">•</span>
-                <a href="/waters.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Browse All Waters</a>
-                <span class="text-gray-400">•</span>
-                <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
-                <span class="text-gray-400">•</span>
-                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
-                <span class="text-gray-400">•</span>
-                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+        <nav class="mb-4 md:mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg px-2 py-1 md:p-4">
+            <div class="flex flex-wrap justify-center items-center gap-x-1 md:gap-x-4 text-sm md:text-base">
+                <a href="/" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/waters.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Browse All Waters</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/about.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/contact.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/privacy.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
             </div>
         </nav>
 
         <!-- Search Section -->
-        <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
+        <section class="order-1 md:order-none mt-6 md:mt-0 md:mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 md:p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
             <div class="relative" id="searchable-dropdown">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
                 <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1000;"></div>
             </div>
-            <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
+            <p class="keyboard-tip text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
 
-        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">{{WATER_NAME}}</h2>
+        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">{{WATER_NAME}}</h2>
             {{WATER_IMAGE}}
             {{SUMMARY}}
             {{AUTHORITY}}
@@ -149,14 +173,14 @@
             <div>
                 <h3 class="text-xl font-semibold mb-4 text-gray-700"><svg class="inline w-5 h-5 mr-1.5 -mt-0.5 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 12L5 7V17L2 12Z"/><path d="M5 12C8 6 19 6 22 12C19 18 8 18 5 12Z"/><circle cx="18" cy="10" r="1.5" fill="white"/></svg>Complete Stocking History — {{WATER_NAME}}</h3>
                 <div class="overflow-x-auto rounded-lg border border-gray-200">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table id="stock-table" class="stock-table min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -164,16 +188,17 @@
                         </tbody>
                     </table>
                 </div>
-                 <p class="text-xs text-gray-500 mt-2 text-right">Click any row or the PDF link to view the original NMDGF stocking report.</p>
+                {{SHOW_ALL_BUTTON}}
+                 <p class="text-xs text-gray-500 mt-2 text-right">Tap any row to view the original NMDGF stocking report.</p>
             </div>
         </main>
 
-        <footer class="text-center mt-8 text-sm text-gray-500">
+        <footer class="order-2 md:order-none text-center mt-8 text-sm text-gray-500">
             <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
             <p class="mt-2">
-                <a href="/about.html" class="hover:underline">About</a> •
-                <a href="/contact.html" class="hover:underline">Contact</a> •
-                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+                <a href="/about.html" class="inline-block py-2 hover:underline">About</a> •
+                <a href="/contact.html" class="inline-block py-2 hover:underline">Contact</a> •
+                <a href="/privacy.html" class="inline-block py-2 hover:underline">Privacy Policy</a>
             </p>
         </footer>
     </div>

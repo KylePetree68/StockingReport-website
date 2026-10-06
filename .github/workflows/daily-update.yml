@@ -57,6 +57,14 @@ jobs:
         run: |
           cd geocoding && python apply_coords.py
 
+      # Pages link /tailwind.css instead of the in-browser Play CDN, so rebuild
+      # it after page generation in case the generator added new classes.
+      # A failed build keeps the committed tailwind.css and must not block data.
+      - name: Build Tailwind CSS
+        continue-on-error: true
+        run: |
+          npx -y tailwindcss@3.4.19 -i tailwind.input.css -o tailwind.css --minify
+
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -65,7 +73,7 @@ jobs:
           git stash
           git rebase origin/main
           git stash pop
-          git add stocking_data_clean.json stocking_data.json lake_levels.json park_alerts.json public/
+          git add stocking_data_clean.json stocking_data.json lake_levels.json park_alerts.json tailwind.css public/
           git diff --staged --quiet || git commit -m "Daily stocking data update - $(date +'%Y-%m-%d')"
           git push origin main
 

@@ -1381,15 +1381,32 @@ def generate_water_image_html(water_name, water_images):
         f'</span></div></div>'
     )
 
+def _make_webp_sizes(src, small, large):
+    """Write 640px and 1280px WebP copies of a local banner photo. Failures
+    only log; the page then falls back to the original JPEG."""
+    try:
+        from PIL import Image
+        with Image.open(src) as im:
+            im = im.convert("RGB")
+            for path, w in ((small, 640), (large, 1280)):
+                out = im if im.width <= w else im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+                out.save(path, "WEBP", quality=72, method=6)
+        print(f"  [image] made {small} and {large} from {src}")
+    except Exception as e:
+        print(f"  [image] could not make WebP sizes for {src}: {e}")
+
 def _banner_sources(url, width=None):
     """Return (src, srcset) for a banner image, using smaller files where they exist.
 
-    - Local /name.jpg: /name-640.webp and /name-1280.webp when both are on disk.
+    - Local /name.jpg: /name-640.webp and /name-1280.webp, created on first use
+      (the daily workflow commits them).
     - Wikimedia originals wider than 1280px: use the 1280px thumbnail instead.
     """
     m = re.match(r'^/([\w-]+)\.jpe?g$', url)
     if m:
         small, large = f"{m.group(1)}-640.webp", f"{m.group(1)}-1280.webp"
+        if not (os.path.exists(small) and os.path.exists(large)):
+            _make_webp_sizes(url.lstrip('/'), small, large)
         if os.path.exists(small) and os.path.exists(large):
             return f"/{large}", f"/{small} 640w, /{large} 1280w"
         return url, ""

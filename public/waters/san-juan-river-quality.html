@@ -11,14 +11,11 @@
       gtag('config', 'G-TK0ZMTQ9X9');
     </script>
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6546924017294618"
-         crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Juan River (Quality) - NM Stocking Report</title>
     <meta name="description" content="San Juan River (Quality): last stocked Mar 02, 2026. 73 total stockings of Triploid Rainbow Trout. View complete NM stocking history.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -116,6 +113,33 @@
             background-attachment: fixed;
             background-size: cover;
         }
+        /* iOS Safari doesn't support fixed backgrounds and repaints them badly. */
+        @media (max-width: 767px) {
+            body { background-attachment: scroll; }
+        }
+        /* Phones and tablets have no arrow keys. */
+        @media (hover: none) {
+            .keyboard-tip { display: none; }
+        }
+
+        /* Stocking table: on phones each row becomes a two-line card
+           (species + date, quantity + length, hatchery) and only the
+           latest rows show until "Show all" is tapped. */
+        @media (max-width: 639px) {
+            .stock-table thead { display: none; }
+            .stock-table tr { display: flex; flex-wrap: wrap; align-items: baseline; padding: 0.75rem 1rem; }
+            .stock-table td { display: block; padding: 0 !important; white-space: normal !important; }
+            .stock-table .c-species { flex: 1 1 0; min-width: 0; padding-right: 0.75rem !important; }
+            .stock-table .c-date { order: 1; flex: none; white-space: nowrap !important; }
+            .stock-table tr::after { content: ""; order: 2; flex-basis: 100%; height: 0.25rem; }
+            .stock-table .c-qty { order: 3; }
+            .stock-table .c-len { order: 4; }
+            .stock-table .c-hatch { order: 5; flex-basis: 100%; margin-top: 0.125rem; font-size: 0.75rem; color: #6b7280; }
+            .stock-table .c-qty[data-v]::after { content: " fish"; }
+            .stock-table .c-len[data-v]::after { content: " in"; }
+            .stock-table .c-qty[data-v] + .c-len[data-v]::before { content: "\00b7"; margin: 0 0.4rem; color: #9ca3af; }
+            .stock-table:not(.show-all) tr.extra-row { display: none; }
+        }
         .clickable-row { cursor: pointer; transition: background-color 0.2s ease-in-out; }
         .clickable-row:hover { background-color: #f9fafb; }
 
@@ -150,42 +174,42 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-        <header class="flex items-center justify-center mb-8">
-            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-16 w-16 mr-4"></a>
+    <div class="container mx-auto p-3 sm:p-4 md:p-8 max-w-5xl flex flex-col">
+        <header class="flex items-center justify-center mb-4 md:mb-8">
+            <a href="/"><img src="/logo.png" alt="Stocking Report Logo" class="h-10 w-10 md:h-16 md:w-16 mr-3 md:mr-4"></a>
             <div>
-                 <a href="/" class="text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
-                <p class="text-gray-600 mt-1 text-left">The complete stocking history for San Juan River (Quality).</p>
+                 <a href="/" class="text-2xl sm:text-4xl md:text-5xl font-bold text-blue-800 hover:text-blue-700 transition text-left">NM Stocking Report</a>
+                <p class="hidden sm:block text-gray-600 mt-1 text-left">The complete stocking history for San Juan River (Quality).</p>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
-            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
-                <span class="text-gray-400">•</span>
-                <a href="/waters.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Browse All Waters</a>
-                <span class="text-gray-400">•</span>
-                <a href="/about.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
-                <span class="text-gray-400">•</span>
-                <a href="/contact.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
-                <span class="text-gray-400">•</span>
-                <a href="/privacy.html" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
+        <nav class="mb-4 md:mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg px-2 py-1 md:p-4">
+            <div class="flex flex-wrap justify-center items-center gap-x-1 md:gap-x-4 text-sm md:text-base">
+                <a href="/" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Home</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/waters.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Browse All Waters</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/about.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">About</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/contact.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                <span class="hidden md:inline text-gray-400">•</span>
+                <a href="/privacy.html" class="inline-block px-2 py-3 md:p-0 text-blue-600 hover:text-blue-800 font-medium transition-colors">Privacy Policy</a>
             </div>
         </nav>
 
         <!-- Search Section -->
-        <section class="mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6" style="position: relative; z-index: 100;">
+        <section class="order-1 md:order-none mt-6 md:mt-0 md:mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 md:p-6" style="position: relative; z-index: 100;">
             <label for="water-search-input" class="block text-lg font-medium text-gray-700 mb-2">Search for Another Water:</label>
             <div class="relative" id="searchable-dropdown">
                 <input type="text" id="water-search-input" class="w-full p-3 text-base bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Type to search..." disabled>
                 <div id="custom-select-options" class="hidden absolute w-full mt-2 bg-white border-2 border-gray-300 rounded-lg shadow-2xl max-h-96" style="z-index: 1000;"></div>
             </div>
-            <p class="text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
+            <p class="keyboard-tip text-sm text-gray-500 mt-2">💡 Tip: Use arrow keys to navigate, Enter to select</p>
         </section>
 
-        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">San Juan River (Quality)</h2>
+        <main class="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">San Juan River (Quality)</h2>
             
             <div class="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 rounded-r-lg"><div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 bg-gray-100 text-gray-500 border-gray-300">Last stocked March 02, 2026</div><p class="text-gray-500 mt-1">No stockings in the past 6 months — last stocked <strong>March 02, 2026</strong>.</p><p class="text-sm text-gray-400 mt-2 pt-2 border-t border-gray-200">~48-day intervals &nbsp;·&nbsp; Peak: <strong>Jan, Feb, Sep</strong> &nbsp;·&nbsp; 73 stockings since 2020 &nbsp;·&nbsp; 1,850,464 fish</p><div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">Triploid Rainbow Trout</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Brown Trout ✦</span><span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">Rainbow Trout ✦</span></div><p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p><p class="text-xs mt-2"><a href="https://wildlife.dgf.nm.gov/wp-content/uploads/2026/03/2026-2027-FISH-RIB_Online.pdf#page=42" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p></div></div>
             <div class="mb-6 bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm">
@@ -225,615 +249,616 @@
             <div>
                 <h3 class="text-xl font-semibold mb-4 text-gray-700"><svg class="inline w-5 h-5 mr-1.5 -mt-0.5 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 12L5 7V17L2 12Z"/><path d="M5 12C8 6 19 6 22 12C19 18 8 18 5 12Z"/><circle cx="18" cy="10" r="1.5" fill="white"/></svg>Complete Stocking History — San Juan River (Quality)</h3>
                 <div class="overflow-x-auto rounded-lg border border-gray-200">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table id="stock-table" class="stock-table min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Length (In)</th>
+                                <th scope="col" class="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hatchery</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 02, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">17721</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.9</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-3-6-26/?wpdmdl=54069&refresh=69ab87d03c02b1772849104" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 02, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>17721</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.9</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-3-6-26/?wpdmdl=54069&refresh=69ab87d03c02b1772849104" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 04, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">13713</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-06-26/?wpdmdl=53873&refresh=69865d2380e381770413347" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 04, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>13713</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-06-26/?wpdmdl=53873&refresh=69865d2380e381770413347" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">22060</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-06-26/?wpdmdl=53873&refresh=69865d2380e381770413347" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>22060</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-06-26/?wpdmdl=53873&refresh=69865d2380e381770413347" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10527</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>10527</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 28, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">31560</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 28, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>31560</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2026</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">22280</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2026</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>22280</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-30-26/?wpdmdl=53761&refresh=697d3e0830a521769815560" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 03, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">30009</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-5-25/?wpdmdl=53101&refresh=69338112bead61764983058" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 03, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>30009</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-5-25/?wpdmdl=53101&refresh=69338112bead61764983058" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 18, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">24998</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-19-25/?wpdmdl=52528&refresh=6905355d02baa1761949021" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 18, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>24998</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-19-25/?wpdmdl=52528&refresh=6905355d02baa1761949021" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 01, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">68560</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-7-3-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 01, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>68560</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-7-3-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                 <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 01, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">68560</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-7-3-25/?wpdmdl=51955&refresh=69cb14325fb061774916658" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 01, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>68560</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-7-3-25/?wpdmdl=51955&refresh=69cb14325fb061774916658" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 20, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">28798</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.6</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-3-21-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 20, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">28798</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.6</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 26, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">27713</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-2-28-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 26, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">27713</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 11, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">17279</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-2-14-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 11, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">17279</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 05, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25473</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-2-7-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 05, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25473</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">23852</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-1-31-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">23852</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 24, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">30827</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-1-24-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 24, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">30827</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
-                </tr>
-            
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 23, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">27233</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 20, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>28798</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.6</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-3-21-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 22, 2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18259</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Mar 20, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>28798</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.6</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-3-21-25/?wpdmdl=50681&refresh=69cb14376dad61774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 26, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">28335</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-12-27-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 26, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>27713</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-2-28-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 26, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">28335</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 26, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>27713</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-28-25/?wpdmdl=50608&refresh=69cb1437718b31774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 11, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">21425</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.9</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-12-13-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 11, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>17279</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-2-14-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 11, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">21425</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.9</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 11, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>17279</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-14-25/?wpdmdl=50592&refresh=69cb143773fff1774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 28, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">44999</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-11-1-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 05, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25473</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-2-7-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 28, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">44999</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-11-1-24/?wpdmdl=49809&refresh=69cb143c52e241774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 05, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25473</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-7-25/?wpdmdl=50514&refresh=69cb143775fb71774916663" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25034</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-10-25-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>23852</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-1-31-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25034</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-25-24/?wpdmdl=49785&refresh=69cb143c5401d1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>23852</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-31-25/?wpdmdl=50427&refresh=69cb1439e90931774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 16, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">30245</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-10-18-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 24, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>30827</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-1-24-25.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 16, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">30245</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-18-24/?wpdmdl=49772&refresh=69cb143c552ce1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 24, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>30827</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 30, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25773</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-10-4-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 23, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>27233</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 30, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">25773</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.4</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-4-24/?wpdmdl=49629&refresh=69cb143c5770c1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 22, 2025</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>18259</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-1-24-25/?wpdmdl=50396&refresh=69cb1439ea8911774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12390</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-9-27-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 26, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>28335</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-12-27-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12390</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-27-24/?wpdmdl=49606&refresh=69cb143c589061774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 26, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>28335</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-27-24/?wpdmdl=50183&refresh=69cb1439ef1771774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 05, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">74994</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-9-06-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 11, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>21425</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.9</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-12-13-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 05, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">74994</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-06-24/?wpdmdl=49305&refresh=69cb143eb755d1774916670" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 11, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>21425</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.9</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-12-13-24/?wpdmdl=50128&refresh=69cb1439f1d0e1774916665" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 29, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">29991</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-8-2-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 28, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>44999</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-11-1-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 29, 2024</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">29991</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 28, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>44999</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-11-1-24/?wpdmdl=49809&refresh=69cb143c52e241774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 11, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">13823</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-5-12-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25034</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-10-25-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 11, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">13823</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 22, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25034</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-25-24/?wpdmdl=49785&refresh=69cb143c5401d1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 09, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">16587</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 16, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>30245</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-10-18-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 08, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">37200</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Oct 16, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>30245</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-18-24/?wpdmdl=49772&refresh=69cb143c552ce1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 25, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">23415</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-4-28-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 30, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25773</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-10-4-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 25, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">23415</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 30, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>25773</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.4</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-10-4-24/?wpdmdl=49629&refresh=69cb143c5770c1774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11694</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-4-21-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>12390</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-9-27-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11694</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-21-23/?wpdmdl=46536&refresh=69cb14412a5cb1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>12390</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-27-24/?wpdmdl=49606&refresh=69cb143c589061774916668" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">11393</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-21-23/?wpdmdl=46536&refresh=69cb14412a5cb1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 05, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>74994</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-9-06-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 21, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">33090</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-2-24-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 05, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>74994</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-9-06-24/?wpdmdl=49305&refresh=69cb143eb755d1774916670" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 21, 2023</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">33090</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-24-23/?wpdmdl=45805&refresh=69cb144484d281774916676" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 29, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>29991</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-8-2-24.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 13, 2022</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5751</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-01_14_22.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 29, 2024</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>29991</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-8-2-24/?wpdmdl=49002&refresh=69cb143ebd1e91774916670" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 13, 2022</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5751</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_14_22/?wpdmdl=44468&refresh=69cb145eb826e1774916702" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 11, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>13823</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-5-12-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 17, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4912</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-11_19_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 11, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>13823</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 17, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4912</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-11_19_21/?wpdmdl=44547&refresh=69cb144a03a7a1774916682" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 09, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>16587</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 12, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12705</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-08_13_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">May 08, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>37200</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-5-12-23/?wpdmdl=46539&refresh=69cb144126d9d1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 12, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12705</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_13_21/?wpdmdl=44519&refresh=69cb14522e81c1774916690" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 25, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>23415</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-4-28-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 09, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7580</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.9</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_13_21/?wpdmdl=44519&refresh=69cb14522e81c1774916690" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 25, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>23415</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-28-23/?wpdmdl=46537&refresh=69cb1441291f61774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10420</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-02_05_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>11694</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-4-21-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10420</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">4.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-02_05_21/?wpdmdl=44475&refresh=69cb145c42abe1774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>11694</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-21-23/?wpdmdl=46536&refresh=69cb14412a5cb1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">27496</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-01_29_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Apr 19, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>11393</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-4-21-23/?wpdmdl=46536&refresh=69cb14412a5cb1774916673" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">27496</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.3</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 21, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>33090</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-2-24-23.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 28, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">24553</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 21, 2023</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>33090</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-2-24-23/?wpdmdl=45805&refresh=69cb144484d281774916676" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2021</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">22840</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">6.0</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 13, 2022</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5751</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-01_14_22.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18883</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.5</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-09_25_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 13, 2022</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>5751</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_14_22/?wpdmdl=44468&refresh=69cb145eb826e1774916702" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">18883</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.5</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-09_25_20/?wpdmdl=44532&refresh=69cb144c76bee1774916684" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 17, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4912</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-11_19_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 18, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">65041</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="/public/reports/stocking-report-08_21_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Nov 17, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4912</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-11_19_21/?wpdmdl=44547&refresh=69cb144a03a7a1774916682" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 18, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">65041</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3.2</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_21_20/?wpdmdl=44522&refresh=69cb144f222b81774916687" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 12, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>12705</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-08_13_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 09, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7590</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">8.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-07_10_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 12, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>12705</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_13_21/?wpdmdl=44519&refresh=69cb14522e81c1774916690" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 09, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7590</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">8.1</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-07_10_20/?wpdmdl=44510&refresh=69cb1454b968a1774916692" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 09, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7580</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.9</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_13_21/?wpdmdl=44519&refresh=69cb14522e81c1774916690" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 08, 2020</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">10935</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7.8</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-07_10_20/?wpdmdl=44510&refresh=69cb1454b968a1774916692" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>10420</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-02_05_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 03, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>10420</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>4.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-02_05_21/?wpdmdl=44475&refresh=69cb145c42abe1774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>27496</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-01_29_21.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 29, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>27496</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.3</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 28, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>24553</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 27, 2021</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>22840</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>6.0</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-01_29_21/?wpdmdl=44473&refresh=69cb145c454f61774916700" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>18883</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.5</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="/public/reports/stocking-report-09_25_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sep 23, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>18883</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.5</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Lisboa Springs Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-09_25_20/?wpdmdl=44532&refresh=69cb144c76bee1774916684" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 18, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>65041</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="/public/reports/stocking-report-08_21_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aug 18, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>65041</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>3.2</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Red River Trout Hatchery<a href="https://wildlife.dgf.nm.gov/download/stocking-report-08_21_20/?wpdmdl=44522&refresh=69cb144f222b81774916687" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 09, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7590</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>8.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="/public/reports/stocking-report-07_10_20.pdf" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 09, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7590</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>8.1</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-07_10_20/?wpdmdl=44510&refresh=69cb1454b968a1774916692" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
+                </tr>
+            
+                <tr class="clickable-row hover:bg-gray-50 extra-row" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jul 08, 2020</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Triploid Rainbow Trout</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>10935</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>7.8</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-v>Los Ojos Hatchery (Parkview)<a href="https://wildlife.dgf.nm.gov/download/stocking-report-07_10_20/?wpdmdl=44510&refresh=69cb1454b968a1774916692" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a></td>
                 </tr>
             
                         </tbody>
                     </table>
                 </div>
-                 <p class="text-xs text-gray-500 mt-2 text-right">Click any row or the PDF link to view the original NMDGF stocking report.</p>
+                <button type="button" class="sm:hidden mt-3 w-full py-3 rounded-lg border border-blue-200 bg-blue-50 text-blue-700 font-semibold text-sm" onclick="document.getElementById('stock-table').classList.add('show-all');this.remove()">Show all 73 stockings</button>
+                 <p class="text-xs text-gray-500 mt-2 text-right">Tap any row to view the original NMDGF stocking report.</p>
             </div>
         </main>
 
-        <footer class="text-center mt-8 text-sm text-gray-500">
+        <footer class="order-2 md:order-none text-center mt-8 text-sm text-gray-500">
             <p>&copy; <span id="copyright-year"></span> StockingReport.com - Data sourced from NM Department of Game & Fish.</p>
             <p class="mt-2">
-                <a href="/about.html" class="hover:underline">About</a> •
-                <a href="/contact.html" class="hover:underline">Contact</a> •
-                <a href="/privacy.html" class="hover:underline">Privacy Policy</a>
+                <a href="/about.html" class="inline-block py-2 hover:underline">About</a> •
+                <a href="/contact.html" class="inline-block py-2 hover:underline">Contact</a> •
+                <a href="/privacy.html" class="inline-block py-2 hover:underline">Privacy Policy</a>
             </p>
         </footer>
     </div>

@@ -19,6 +19,7 @@ LIVE_DATA_URL = "https://stockingreport.com/stocking_data.json"
 OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
 TEMPLATE_FILE = "template.html"
+MOBILE_ROW_LIMIT = 10  # stocking-table rows shown on phones before "Show all"
 OUTPUT_DIR = "public/waters"
 SITEMAP_FILE = "public/sitemap.xml"
 MANUAL_COORDS_FILE = "manual_coordinates.json"
@@ -1358,7 +1359,7 @@ def generate_water_image_html(water_name, water_images):
         page_url_safe = page_url.replace('"', '&quot;')
         credit = (
             f'<a href="{page_url_safe}" target="_blank" rel="noopener noreferrer nofollow" '
-            f'style="color:rgba(255,255,255,0.8);text-decoration:underline;">'
+            f'style="color:rgba(255,255,255,0.8);text-decoration:underline;display:inline-block;padding:8px 0;">'
             f'{attribution_safe}</a>'
         )
     else:
@@ -1424,6 +1425,11 @@ def _resolve_by_canonical(source, canonical_names):
             unmatched.append((key, targets))
     return resolved, unmatched
 
+
+def _cell_attr(value):
+    """data-v marks non-empty table cells so the phone layout only adds units
+    and separators where there's a value."""
+    return ' data-v' if str(value or '').strip() else ''
 
 def generate_static_pages(data):
     """
@@ -1638,7 +1644,9 @@ def generate_static_pages(data):
         meta_description = generate_meta_description(water_name, summary_stats)
 
         table_rows_html = ""
-        for record in records:
+        # Newest first, so the rows shown on phones are the latest stockings.
+        table_records = sorted(records, key=lambda r: r['date'], reverse=True)
+        for row_index, record in enumerate(table_records):
             date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
             display_date = date_obj.strftime("%b %d, %Y")
 
@@ -1664,15 +1672,29 @@ def generate_static_pages(data):
                 # Hidden anchor — gives Google a proper tag to read, no visible UI change.
                 report_link_html = f'<a href="{url}" target="_blank" rel="nofollow noopener noreferrer" style="display:none" onclick="event.stopPropagation()"></a>'
 
+            # On phones only the latest MOBILE_ROW_LIMIT rows show until "Show all"
+            # is tapped (CSS in template.html); every row stays in the HTML.
+            row_class = "clickable-row hover:bg-gray-50"
+            if row_index >= MOBILE_ROW_LIMIT:
+                row_class += " extra-row"
             table_rows_html += f"""
-                <tr class="clickable-row hover:bg-gray-50" onclick="this.querySelector('a[target]')?.click()">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['quantity']}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['length']}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{record['hatchery']}{report_link_html}</td>
+                <tr class="{row_class}" onclick="this.querySelector('a[target]')?.click()">
+                    <td class="c-date px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600">{display_date}</td>
+                    <td class="c-species px-4 lg:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{record['species']}</td>
+                    <td class="c-qty px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600"{_cell_attr(record['quantity'])}>{record['quantity']}</td>
+                    <td class="c-len px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600"{_cell_attr(record['length'])}>{record['length']}</td>
+                    <td class="c-hatch px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-600"{_cell_attr(record['hatchery'])}>{record['hatchery']}{report_link_html}</td>
                 </tr>
             """
+
+        show_all_html = ""
+        if len(records) > MOBILE_ROW_LIMIT:
+            show_all_html = (
+                '<button type="button" class="sm:hidden mt-3 w-full py-3 rounded-lg border border-blue-200 '
+                'bg-blue-50 text-blue-700 font-semibold text-sm" '
+                "onclick=\"document.getElementById('stock-table').classList.add('show-all');this.remove()\">"
+                f'Show all {len(records)} stockings</button>'
+            )
 
         if not records and water_name in extra_notes:
             table_rows_html = """
@@ -1711,6 +1733,7 @@ def generate_static_pages(data):
         else:
             page_html = re.sub(r'[ \t]*\{\{PARK_ALERTS\}\}\r?\n', '', page_html)
         page_html = page_html.replace("{{TABLE_ROWS}}", table_rows_html)
+        page_html = page_html.replace("{{SHOW_ALL_BUTTON}}", show_all_html)
         page_html = page_html.replace("{{SUMMARY}}", summary_html)
         page_html = page_html.replace("{{REGULATIONS}}", regulation_html)
         page_html = page_html.replace("{{WATER_IMAGE}}", water_image_html)

@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-06T07:43:59Z",
+ "_fetched": "2026-10-06T17:34:30Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -196,17 +196,6 @@
    {
     "text": "Mesilla Valley Bosque Park is closed on Thanksgiving Day, Christmas Day and New Year's Day.",
     "posted": "11/19/2021",
-    "until": "ongoing",
-    "boating": false
-   }
-  ]
- },
- "Morphy Lake": {
-  "phone": "(575) 387-2328",
-  "alerts": [
-   {
-    "text": "EMERGENCY UPDATE: Morphy Lake State Park CLOSED Severe flooding in Mora County has made the main road to Morphy Lake State Park dangerous and impassable. Runoff and debris are creating hazardous conditions throughout the area. Effective immediately, the park is CLOSED until further notice.",
-    "posted": "10/1/2026",
     "until": "ongoing",
     "boating": false
    }

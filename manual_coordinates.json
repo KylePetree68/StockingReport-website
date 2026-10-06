@@ -344,9 +344,9 @@
     "source": "gnis-county: Jose Vigil Lake, Mora Co."
   },
   "Laguna Del Campo (Burns Lake)": {
-    "lat": 36.722,
-    "lon": -106.565,
-    "source": "known: Los Ojos Hatchery"
+    "lat": 36.714699,
+    "lon": -106.581941,
+    "source": "site owner: Google Maps pin on the lake"
   },
   "Lagunitas Lakes": {
     "lat": 36.858,

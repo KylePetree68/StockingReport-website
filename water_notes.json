@@ -4,6 +4,7 @@
     "Keys must match a water name in stocking_data_clean.json exactly (run `python check_notes.py` to verify).",
     "Fields (all optional; blank fields are simply not rendered, and a water with nothing filled in gets no notes block at all):",
     "  access_parking  - how to get there, where to park, fees, gates, road condition.",
+    "  parking_coords  - 'lat, lon' of the parking lot (copy from Google Maps); shown as a 'Directions to parking' link.",
     "  shoreline_ramps - shore access, wading, where the ramps are, what condition they are in.",
     "  boats           - one of: none | non_motorized | electric_only | no_wake | unrestricted. Anything else is ignored. Leave blank if unsure; do not guess.",
     "  boats_source    - where the boats rule came from (e.g. 'NM State Parks', 'USFS sign at ramp', 'NMDGF 2026 rules p.42').",
@@ -131,6 +132,14 @@
   },
   "Navajo Reservoir": {
     "access_parking": "",
+    "shoreline_ramps": "",
+    "boats": "",
+    "boats_source": "",
+    "description": ""
+  },
+  "Laguna Del Campo (Burns Lake)": {
+    "access_parking": "",
+    "parking_coords": "36.714426, -106.585134",
     "shoreline_ramps": "",
     "boats": "",
     "boats_source": "",

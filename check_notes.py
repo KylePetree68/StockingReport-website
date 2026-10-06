@@ -17,7 +17,7 @@ import sys
 from scraper import (_resolve_by_canonical, BOAT_LABELS, WATER_NOTES_FILE,
                      WATER_AUTHORITY_FILE, AUTHORITY_CATEGORY_LABELS)
 
-FIELDS = {"access_parking", "shoreline_ramps", "boats", "boats_source", "description"}
+FIELDS = {"access_parking", "parking_coords", "shoreline_ramps", "boats", "boats_source", "description"}
 AUTHORITY_FIELDS = {"authority", "category", "unit", "url", "notes", "confidence", "source"}
 AUTHORITY_CATEGORIES = set(AUTHORITY_CATEGORY_LABELS) | {"unknown"}
 

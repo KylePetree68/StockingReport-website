@@ -795,11 +795,12 @@ def generate_schema_org(water_name, stats, coords, page_url):
         }
     }
 
-    if coords and coords.get('lat') and coords.get('lng'):
+    lon = (coords or {}).get('lon', (coords or {}).get('lng'))
+    if coords and coords.get('lat') and lon:
         dataset["spatialCoverage"]["geo"] = {
             "@type": "GeoCoordinates",
             "latitude": coords['lat'],
-            "longitude": coords['lng']
+            "longitude": lon
         }
 
     if stats:
@@ -1166,8 +1167,19 @@ def generate_water_notes_html(water_name, water_notes):
         return val.strip() if isinstance(val, str) else ""
 
     rows = []
+    parking_link = ""
+    m = re.fullmatch(r'(-?\d{1,2}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)', field("parking_coords"))
+    if m:
+        url = f"https://www.google.com/maps/dir/?api=1&amp;destination={m.group(1)},{m.group(2)}"
+        parking_link = (f'<a href="{url}" target="_blank" rel="noopener noreferrer" '
+                        f'class="inline-block py-1 text-blue-700 underline font-medium">Directions to parking &#8599;</a>')
+    elif field("parking_coords"):
+        print(f"  [water-notes] {water_name}: parking_coords '{field('parking_coords')}' is not 'lat, lon'; ignored.")
     if field("access_parking"):
-        rows.append(("Access / parking", _html.escape(field("access_parking"))))
+        text = _html.escape(field("access_parking"))
+        rows.append(("Access / parking", text + (f'<br>{parking_link}' if parking_link else "")))
+    elif parking_link:
+        rows.append(("Parking", parking_link))
     if field("shoreline_ramps"):
         rows.append(("Shoreline / boat ramps", _html.escape(field("shoreline_ramps"))))
     boats = field("boats")

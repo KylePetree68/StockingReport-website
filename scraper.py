@@ -619,7 +619,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
         fc = "bg-gray-100 text-gray-600 border-gray-300"
         fl = f"Last stocked ~{months} month{'s' if months > 1 else ''} ago"
     else:
-        fc = "bg-gray-100 text-gray-500 border-gray-300"
+        fc = "bg-gray-100 text-gray-600 border-gray-300"
         fl = f"Last stocked {most_recent_str}"
     html += f'<div class="inline-block px-4 py-2 rounded-full border text-sm font-semibold mb-3 {fc}">{fl}</div>'
 
@@ -643,7 +643,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
             stat_parts.append(f"avg <strong>{stats['recent_avg_length']:.1f} in.</strong>")
         html += '<p class="text-gray-700 mt-1">' + " &nbsp;·&nbsp; ".join(stat_parts) + '</p>'
     else:
-        html += f'<p class="text-gray-500 mt-1">No stockings in the past 6 months — last stocked <strong>{most_recent_str}</strong>.</p>'
+        html += f'<p class="text-gray-600 mt-1">No stockings in the past 6 months — last stocked <strong>{most_recent_str}</strong>.</p>'
 
     # --- Compact stats line: frequency + peak + history ---
     stats_parts = []
@@ -661,7 +661,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
     stats_parts.append(f"{stats['total_stockings']:,} stockings since {earliest_year}")
     stats_parts.append(f"{stats['total_fish']:,} fish")
 
-    html += '<p class="text-sm text-gray-400 mt-2 pt-2 border-t border-gray-200">' + " &nbsp;·&nbsp; ".join(stats_parts) + '</p>'
+    html += '<p class="text-sm text-gray-500 mt-2 pt-2 border-t border-gray-200">' + " &nbsp;·&nbsp; ".join(stats_parts) + '</p>'
 
     # --- Species Present ---
     stocked_species = sorted(stats.get('species_counts', {}).keys())
@@ -695,7 +695,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
 
     if stocked_species or wild_species:
         html += '<div class="mt-4 pt-3 border-t border-gray-200">'
-        html += '<p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p>'
+        html += '<p class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">Species Present</p>'
         html += '<div class="flex flex-wrap gap-2">'
         for sp in stocked_species:
             html += f'<span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full" title="Stocked by NMDGF">{sp}</span>'
@@ -703,7 +703,7 @@ def generate_summary_html(water_name, stats, reg_species=None, booklet_species=N
             html += f'<span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">{sp} ✦</span>'
         html += '</div>'
         if wild_species:
-            html += '<p class="text-xs text-gray-400 mt-1">✦ Listed in fishing regulations (not stocked)</p>'
+            html += '<p class="text-xs text-gray-500 mt-1">✦ Listed in fishing regulations (not stocked)</p>'
         if advisory_url:
             html += f'<p class="text-xs mt-2"><a href="{advisory_url}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p>'
         html += '</div>'
@@ -888,7 +888,7 @@ def generate_water_authority_html(water_name, water_authority):
     if unit and unit.lower() != authority.lower():
         parts.append(f' <span class="text-gray-600">&middot; {_html.escape(unit)}</span>')
     if url and url.startswith("http"):
-        parts.append(f' <a href="{_html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline whitespace-nowrap">Official site &#8599;</a>')
+        parts.append(f' <a href="{_html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline whitespace-nowrap">Official site &#8599;</a>')
     parts.append('</p>')
     if notes:
         # Mixed-ownership rivers always carry a note saying which stretch is public.
@@ -1011,7 +1011,7 @@ def generate_lake_level_html(water_name, lake_levels):
     src_url = AGENCY_LINKS.get(info.get("source", ""), "")
     src = _html.escape(info.get("label", "") or info.get("source", ""))
     if src_url:
-        src = f'<a href="{src_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">{src}</a>'
+        src = f'<a href="{src_url}" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline">{src}</a>'
 
     spark = _level_svg(series, unit, 240, 48, 2, 2, 4, 4, compact=True)
     full = _level_svg(series, unit, 720, 240, 64, 16, 16, 30, compact=False)
@@ -1024,7 +1024,7 @@ def generate_lake_level_html(water_name, lake_levels):
         f'aria-label="Show 12-month {what.lower()} chart for {_html.escape(water_name)}">',
         '<div class="flex-1 min-w-0 text-sm text-gray-800">',
         f'<span class="font-semibold">{what}:</span> <strong>{_html.escape(_fmt_level(cur, unit))}</strong> '
-        f'<span class="text-gray-500">({dstr(series[-1][0])})</span>' + (f' &nbsp;&middot;&nbsp; {chg}' if chg else '') +
+        f'<span class="text-gray-600">({dstr(series[-1][0])})</span>' + (f' &nbsp;&middot;&nbsp; {chg}' if chg else '') +
         ' <span class="text-xs text-blue-600 whitespace-nowrap">&nbsp;&middot; 12-month chart &#9656;</span>',
         '</div>',
         f'<div class="w-40 sm:w-60 h-12 flex-none">{spark}</div>',
@@ -1034,14 +1034,14 @@ def generate_lake_level_html(water_name, lake_levels):
         '<div class="p-5">',
         '<div class="flex items-start justify-between gap-4 mb-1">',
         f'<h3 class="text-lg font-bold text-gray-800">{_html.escape(water_name)} &mdash; {what.lower()}, last 12 months</h3>',
-        f'<button type="button" onclick="document.getElementById(\'{dlg}\').close()" class="text-gray-500 hover:text-gray-800 text-2xl leading-none" aria-label="Close">&times;</button>',
+        f'<button type="button" onclick="document.getElementById(\'{dlg}\').close()" class="text-gray-600 hover:text-gray-800 text-2xl leading-none" aria-label="Close">&times;</button>',
         '</div>',
         '<p class="text-sm text-gray-700 mb-3">'
         f'<strong>{_html.escape(_fmt_level(cur, unit))}</strong> on {dstr(series[-1][0])} &nbsp;&middot;&nbsp; '
         f'12-mo high {_html.escape(_fmt_level(hi, unit))} ({dstr(hi_date)}) &nbsp;&middot;&nbsp; '
         f'low {_html.escape(_fmt_level(lo, unit))} ({dstr(lo_date)})' + (f' &nbsp;&middot;&nbsp; {chg}' if chg else '') + '</p>',
         full,
-        f'<p class="text-xs text-gray-500 mt-2">Daily readings from {src}. Elevation is the water surface above sea level; a falling line means ramps and shoreline access get longer. This is not a ramp-status feed &mdash; see park alerts and call ahead before towing.</p>',
+        f'<p class="text-xs text-gray-600 mt-2">Daily readings from {src}. Elevation is the water surface above sea level; a falling line means ramps and shoreline access get longer. This is not a ramp-status feed &mdash; see park alerts and call ahead before towing.</p>',
         '</div></dialog>',
     ]
     return "\n".join(parts)
@@ -1096,7 +1096,7 @@ def generate_park_alerts_html(water_name, park_alerts, water_authority, fetched=
         elif when:
             when += ' &ndash; ongoing'
         return (f'<li class="text-sm text-gray-800">{_html.escape(a.get("text", ""))}'
-                + (f' <span class="text-xs text-gray-500 whitespace-nowrap">({when})</span>' if when else '') + '</li>')
+                + (f' <span class="text-xs text-gray-600 whitespace-nowrap">({when})</span>' if when else '') + '</li>')
 
     parts = ['<div class="mb-6 border-l-4 border-amber-500 bg-amber-50 px-5 py-3 rounded-r-lg">']
     parts.append(f'<p class="text-sm font-bold text-amber-900 mb-1">Park Alerts &mdash; {_html.escape(park)} State Park</p>')
@@ -1106,12 +1106,12 @@ def generate_park_alerts_html(water_name, park_alerts, water_authority, fetched=
         label = f'{len(other)} more park alert{"s" if len(other) != 1 else ""}' if boating else f'{len(other)} park alert{"s" if len(other) != 1 else ""}'
         parts.append(f'<details class="mt-1"><summary class="text-sm text-amber-900 cursor-pointer select-none">{label} (campgrounds, trails, seasonal closures)</summary>')
         parts.append('<ul class="space-y-1 mt-2">' + "".join(li(a) for a in other) + '</ul></details>')
-    foot = 'Source: <a href="https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">NM State Parks alerts</a>'
+    foot = 'Source: <a href="https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline">NM State Parks alerts</a>'
     if fetched:
         foot += f', checked {_html.escape(fetched[:10])}'
     if phone:
         foot += f'. Park office {_html.escape(phone)}'
-    parts.append(f'<p class="text-xs text-gray-500 mt-2">{foot}.</p></div>')
+    parts.append(f'<p class="text-xs text-gray-600 mt-2">{foot}.</p></div>')
     return "\n".join(parts)
 
 
@@ -1124,10 +1124,10 @@ def generate_unstocked_html(water_name, note, booklet_species=None, advisory_url
         for para in re.split(r'\n\s*\n', note.strip()):
             parts.append(f'<p class="text-gray-700 mt-1">{_html.escape(para.strip())}</p>')
     if booklet_species:
-        parts.append('<div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2">')
+        parts.append('<div class="mt-4 pt-3 border-t border-gray-200"><p class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">Species Present</p><div class="flex flex-wrap gap-2">')
         for sp in booklet_species:
             parts.append(f'<span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full" title="Present per fishing regulations">{_html.escape(sp)} &#10022;</span>')
-        parts.append('</div><p class="text-xs text-gray-400 mt-1">&#10022; Listed in fishing regulations (not stocked)</p>')
+        parts.append('</div><p class="text-xs text-gray-500 mt-1">&#10022; Listed in fishing regulations (not stocked)</p>')
         if advisory_url:
             parts.append(f'<p class="text-xs mt-2"><a href="{_html.escape(advisory_url, quote=True)}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:underline font-medium">Consumption Advisory</a></p>')
         parts.append('</div>')
@@ -1174,7 +1174,7 @@ def generate_water_notes_html(water_name, water_notes):
     if boats in BOAT_LABELS:
         text = _html.escape(BOAT_LABELS[boats])
         if field("boats_source"):
-            text += f' <span class="text-gray-500 text-sm">(source: {_html.escape(field("boats_source"))})</span>'
+            text += f' <span class="text-gray-600 text-sm">(source: {_html.escape(field("boats_source"))})</span>'
         rows.append(("Boats", text))
     elif boats:
         print(f"  [water-notes] {water_name}: unknown boats value '{boats}' ignored.")
@@ -1304,10 +1304,10 @@ def generate_regulation_html(water_name, regulations_data):
     if isinstance(boating, dict) and boating.get("text"):
         label = BOAT_LABELS.get(boating.get("rule", ""), "")
         html_parts.append('<div class="mt-4 pt-4 border-t border-blue-200">')
-        html_parts.append('<p class="text-gray-700 font-semibold mb-2">Boating' + (f' <span class="font-normal text-gray-500">&middot; {html_lib.escape(label)}</span>' if label else '') + '</p>')
+        html_parts.append('<p class="text-gray-700 font-semibold mb-2">Boating' + (f' <span class="font-normal text-gray-600">&middot; {html_lib.escape(label)}</span>' if label else '') + '</p>')
         html_parts.append(f'<p class="text-gray-700 mb-1">{html_lib.escape(boating["text"])}</p>')
         if boating.get("source"):
-            html_parts.append(f'<p class="text-xs text-gray-500">Source: {html_lib.escape(boating["source"])}</p>')
+            html_parts.append(f'<p class="text-xs text-gray-600">Source: {html_lib.escape(boating["source"])}</p>')
         html_parts.append('</div>')
 
     # Boat ramps (NMDGF Fishing Waters Map): ramp type, who runs it, motor rules
@@ -1325,9 +1325,9 @@ def generate_regulation_html(water_name, regulations_data):
         html_parts.append('</div>')
 
     # Disclaimer
-    html_parts.append('<p class="text-xs text-gray-500 mt-4 pt-4 border-t border-blue-200">')
+    html_parts.append('<p class="text-xs text-gray-600 mt-4 pt-4 border-t border-blue-200">')
     html_parts.append('<strong>Note:</strong> This information is sourced from NM Game & Fish GIS data. ')
-    html_parts.append('Always check the official <a href="https://wildlife.dgf.nm.gov/fishing/" target="_blank" class="text-blue-600 hover:underline">NM Game & Fish fishing regulations</a> for the most current rules.')
+    html_parts.append('Always check the official <a href="https://wildlife.dgf.nm.gov/fishing/" target="_blank" class="text-blue-700 underline">NM Game & Fish fishing regulations</a> for the most current rules.')
     html_parts.append('</p>')
 
     html_parts.append('</div>')
@@ -1364,17 +1364,40 @@ def generate_water_image_html(water_name, water_images):
         )
     else:
         credit = attribution_safe
+    src, srcset = _banner_sources(url, img.get("width"))
+    srcset_attr = f' srcset="{srcset}" sizes="(min-width: 1024px) 896px, calc(100vw - 56px)"' if srcset else ''
+    # A real <img> (not a CSS background) so the browser finds it early and
+    # can fetch a phone-sized file; it is usually the page's largest paint.
     return (
         f'<div class="mb-6 rounded-lg overflow-hidden shadow" '
-        f'style="background: linear-gradient(rgba(10,30,90,0.35), rgba(10,30,90,0.35)), '
-        f'url(\'{url}\') {position}/cover no-repeat; height: 160px;" '
-        f'role="img" '
-        f'aria-label="{water_name}, New Mexico">'
-        f'<div style="height:100%;display:flex;align-items:flex-end;padding:8px 12px;">'
+        f'style="position:relative;height:160px;">'
+        f'<img src="{src}"{srcset_attr} alt="{water_name}, New Mexico" '
+        f'fetchpriority="high" decoding="async" '
+        f'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{position};">'
+        f'<div style="position:absolute;inset:0;background:rgba(10,30,90,0.35);"></div>'
+        f'<div style="position:relative;height:100%;display:flex;align-items:flex-end;padding:8px 12px;">'
         f'<span style="color:rgba(255,255,255,0.7);font-size:0.65rem;">'
         f'{credit}'
         f'</span></div></div>'
     )
+
+def _banner_sources(url, width=None):
+    """Return (src, srcset) for a banner image, using smaller files where they exist.
+
+    - Local /name.jpg: /name-640.webp and /name-1280.webp when both are on disk.
+    - Wikimedia originals wider than 1280px: use the 1280px thumbnail instead.
+    """
+    m = re.match(r'^/([\w-]+)\.jpe?g$', url)
+    if m:
+        small, large = f"{m.group(1)}-640.webp", f"{m.group(1)}-1280.webp"
+        if os.path.exists(small) and os.path.exists(large):
+            return f"/{large}", f"/{small} 640w, /{large} 1280w"
+        return url, ""
+    m = re.match(r'^(https://upload\.wikimedia\.org/wikipedia/commons)/(\w/\w\w)/([^/]+)$', url)
+    if m and (width or 0) > 1280:
+        base, hashdir, name = m.groups()
+        return f"{base}/thumb/{hashdir}/{name}/1280px-{name}", ""
+    return url, ""
 
 def _canonical_water_key(name):
     """Normalize a water-body name for fuzzy matching across data sources.
@@ -1698,7 +1721,7 @@ def generate_static_pages(data):
 
         if not records and water_name in extra_notes:
             table_rows_html = """
-                <tr><td colspan="5" class="px-6 py-4 text-sm text-gray-500">No NMDGF stocking records for this water.</td></tr>
+                <tr><td colspan="5" class="px-6 py-4 text-sm text-gray-600">No NMDGF stocking records for this water.</td></tr>
             """
 
         # Generate regulation HTML if available

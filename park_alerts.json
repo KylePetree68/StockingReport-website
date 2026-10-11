@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-10T07:22:35Z",
+ "_fetched": "2026-10-11T07:27:27Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -73,12 +73,6 @@
  "Clayton Lake & Dinosaur Trackways": {
   "phone": "575-374-8808",
   "alerts": [
-   {
-    "text": "We will be performing maintenance and repairs to the drinking water well and system at Clayton Lake from Monday October 5th thru Friday October 9th. During this time the water system and comfort station will be closed and unavailable.",
-    "posted": "10/1/2026",
-    "until": "10/10/2026",
-    "boating": false
-   },
    {
     "text": "Clayton Lake State Park and Dinosaur Trackway has closed access to the boat ramp and is prohibiting the use of motorized boats due to declining water levels and related safety concerns. The lake remains open for non-motorized vessels, including canoes and kayaks. Motorized boat access will be restored once water levels improve and conditions allow for safe use of the boat ramp.",
     "posted": "7/31/2026",

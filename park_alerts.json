@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-12T07:36:00Z",
+ "_fetched": "2026-10-13T07:55:00Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -113,12 +113,6 @@
  "Heron Lake": {
   "phone": "(575) 588-7470",
   "alerts": [
-   {
-    "text": "Heron Lake Visitors Center- Closed Due to parking lot construction.",
-    "posted": "9/30/2026",
-    "until": "10/12/2026",
-    "boating": false
-   },
    {
     "text": "All boat ramps (and courtesy docks) at Heron Lake State Park are currently unavailable for boaters due to extremely low lake levels. These ramps and docks will remain unavailable until lake levels improve. Those visitors planning to launch watercraft should call the park office to check for conditions prior to arriving. (575)588-7470",
     "posted": "5/26/2026",

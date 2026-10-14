@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-13T07:55:00Z",
+ "_fetched": "2026-10-14T06:20:51Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -252,6 +252,17 @@
    }
   ]
  },
+ "Santa Rosa Lake": {
+  "phone": "(575) 472-3110",
+  "alerts": [
+   {
+    "text": "Juniper and Los Tanos Campground have been closed for a seasonal closures from October 1, 2026 - April 1, 2027.",
+    "posted": "10/8/2026",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
  "Storrie Lake": {
   "phone": "(505) 425-7278",
   "alerts": [
@@ -307,17 +318,6 @@
     "posted": "7/4/2026",
     "until": "5/1/2027",
     "boating": false
-   }
-  ]
- },
- "Sumner Lake": {
-  "phone": "(575) 355-2541",
-  "alerts": [
-   {
-    "text": "Alamo boat ramp is closed due to low water levels until further notice.",
-    "posted": "7/9/2026",
-    "until": "1/1/2027",
-    "boating": true
    }
   ]
  },

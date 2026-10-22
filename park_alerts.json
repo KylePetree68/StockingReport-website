@@ -1,9 +1,15 @@
 {
- "_fetched": "2026-10-21T06:11:35Z",
+ "_fetched": "2026-10-22T06:15:48Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
   "alerts": [
+   {
+    "text": "Seasonal closure of Upper Riverside comfort station from October 19, 2026, through March 25, 2027.",
+    "posted": "10/21/2026",
+    "until": "3/25/2027",
+    "boating": false
+   },
    {
     "text": "East side boat ramp closed",
     "posted": "7/4/2020",

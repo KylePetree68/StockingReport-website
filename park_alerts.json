@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-23T06:10:28Z",
+ "_fetched": "2026-10-24T06:05:30Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -15,17 +15,6 @@
     "posted": "7/4/2020",
     "until": "ongoing",
     "boating": true
-   }
-  ]
- },
- "Cerrillos Hills": {
-  "phone": "(505) 474-0196",
-  "alerts": [
-   {
-    "text": "Main park road, County Road 59, has been washed out due to recent heavy rains. All trailheads, except Jane Calvin Sanchez trail are inaccessible at this time due to extensive road damage. Santa Fe County has been notified.",
-    "posted": "9/28/2026",
-    "until": "10/23/2026",
-    "boating": false
    }
   ]
  },

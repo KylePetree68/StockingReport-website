@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-25T06:24:49Z",
+ "_fetched": "2026-10-26T06:34:17Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -15,6 +15,17 @@
     "posted": "7/4/2020",
     "until": "ongoing",
     "boating": true
+   }
+  ]
+ },
+ "Cerrillos Hills": {
+  "phone": "(505) 474-0196",
+  "alerts": [
+   {
+    "text": "Recent heavy rains have made the park road impassable past the fee station on County Road 59. Even high clearance four-wheel drive vehicles may experience difficulty. Trail conditions are wet and muddy.",
+    "posted": "10/25/2026",
+    "until": "10/30/2026",
+    "boating": false
    }
   ]
  },

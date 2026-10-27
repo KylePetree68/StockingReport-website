@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-26T06:34:17Z",
+ "_fetched": "2026-10-27T06:30:28Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -190,6 +190,17 @@
    {
     "text": "Mesilla Valley Bosque Park is closed on Thanksgiving Day, Christmas Day and New Year's Day.",
     "posted": "11/19/2021",
+    "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Navajo Lake": {
+  "phone": "(505) 632-2278",
+  "alerts": [
+   {
+    "text": "Highway 539 from mile marker 0 to mile marker 5 is closed due to severe damage from recent floods. Traffic attempting to gain access to Navajo Lake State Park should use Highway 511 near Blanco or Highway 173 in Aztec. NM DOT does not have a timeframe for reopening this road.",
+    "posted": "10/25/2026",
     "until": "ongoing",
     "boating": false
    }

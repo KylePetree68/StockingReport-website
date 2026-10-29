@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-28T06:58:57Z",
+ "_fetched": "2026-10-29T07:20:30Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -90,6 +90,35 @@
     "posted": "7/31/2026",
     "until": "ongoing",
     "boating": false
+   }
+  ]
+ },
+ "Eagle Nest Lake": {
+  "phone": "(575) 377-1594",
+  "alerts": [
+   {
+    "text": "Eagle Nest Campground will be closed on November 12th and will reopen on April 1st. There will be no other camping in the park. Please check Cimarron Canyon and Coyote Creek State Parks for camping. Remember to check their park alerts and know limitations before you go.",
+    "posted": "10/28/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Cieneguilla Day Use Area will be closed on November 12th. It will reopen in the spring of 2027.",
+    "posted": "10/28/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "Six Mile and Moreno Day Use Areas will be closed periodically depending on snow levels and when staff can clear the roads. Closures will only last as long as areas are unpassable with heavy snow accumulation.",
+    "posted": "10/28/2026",
+    "until": "ongoing",
+    "boating": false
+   },
+   {
+    "text": "North Boating Ramp is closed due to low water levels.",
+    "posted": "10/28/2026",
+    "until": "ongoing",
+    "boating": true
    }
   ]
  },

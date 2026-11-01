@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-10-31T07:11:18Z",
+ "_fetched": "2026-11-01T07:44:15Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -370,6 +370,12 @@
  "Villanueva": {
   "phone": "(575) 421-2957",
   "alerts": [
+   {
+    "text": "El Cerro Campground Winter Closure",
+    "posted": "11/1/2026",
+    "until": "3/31/2027",
+    "boating": false
+   },
    {
     "text": "Seasonal closure of El Cerro Campground (First come, First serve campground) from November 1, 2026, through March 31, 2027, closed due to possible icy road conditions through winter months, the opening and closing dates will depend on weather and road conditions.",
     "posted": "9/18/2026",

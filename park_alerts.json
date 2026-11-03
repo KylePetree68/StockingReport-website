@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-11-02T07:51:15Z",
+ "_fetched": "2026-11-03T08:07:40Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -69,10 +69,10 @@
   "phone": "575-374-8808",
   "alerts": [
    {
-    "text": "Clayton Lake State Park and Dinosaur Trackway has closed access to the boat ramp and is prohibiting the use of motorized boats due to declining water levels and related safety concerns. The lake remains open for non-motorized vessels, including canoes and kayaks. Motorized boat access will be restored once water levels improve and conditions allow for safe use of the boat ramp.",
-    "posted": "7/31/2026",
-    "until": "7/31/2999",
-    "boating": true
+    "text": "Seasonal closures of west end and lake surface from November 1, 2026 to March 1, 2027.",
+    "posted": "11/1/2026",
+    "until": "3/1/2027",
+    "boating": false
    },
    {
     "text": "Due to ongoing construction to replace vault toilets at Clayton Lake State Park & Dinosaur Trackways, the vault toilet facilities located at the dinosaur parking lot, Camp Cove, the South Loop, and the Rock Gardens will be closed. The comfort station, as well as the double vault toilets at North Point and along the Nature Trail, will remain open for visitor use. Please exercise caution and be aware of construction activity while visiting the park.",

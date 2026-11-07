@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-11-06T08:06:13Z",
+ "_fetched": "2026-11-07T07:26:24Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -115,8 +115,8 @@
   "phone": "(575) 744-5923",
   "alerts": [
    {
-    "text": "Please be advised that the Rock Canyon and South Monticello ramps are closed due to low water levels. We anticipate reopening when water levels increase, and conditions allow. The MDS main ramp is open for us. All launching and loading of vessels is at the operators own risk.",
-    "posted": "10/2/2026",
+    "text": "Please be advised that the South Monticello boat ramp is closed due to low water levels. We anticipate reopening when water levels increase, and conditions allow. The Marina Del Sur and Rock Canyon ramps are open for us. All launching and loading of vessels is at the operator’s own risk.",
+    "posted": "11/6/2026",
     "until": "ongoing",
     "boating": true
    },

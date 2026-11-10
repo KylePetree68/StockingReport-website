@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-11-09T08:14:35Z",
+ "_fetched": "2026-11-10T08:33:28Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -114,6 +114,12 @@
  "Elephant Butte Lake": {
   "phone": "(575) 744-5923",
   "alerts": [
+   {
+    "text": "The Long Point area is closed to public access effective immediately, reinstating a previously established winter closure and following the same seasonal closure schedule as the park's comfort stations. This closure is necessary due to increased incidents of vandalism, illegal dumping of trash, and hunting activity occurring outside designated hunting areas. The action is being taken to protect park resources, enhance public safety, and reduce ongoing impacts to the area. The Long Point area will remain closed through the winter season and is scheduled to reopen on March 1, 2027.",
+    "posted": "11/9/2026",
+    "until": "3/1/2027",
+    "boating": false
+   },
    {
     "text": "Please be advised that the South Monticello boat ramp is closed due to low water levels. We anticipate reopening when water levels increase, and conditions allow. The Marina Del Sur and Rock Canyon ramps are open for us. All launching and loading of vessels is at the operator’s own risk.",
     "posted": "11/6/2026",

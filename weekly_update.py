@@ -19,6 +19,7 @@ from datetime import datetime
 from scraper import (
     get_pdf_links_from_first_page,
     extract_text_from_pdf,
+    unwrap_pdf_bytes,
     final_parser,
     is_valid_length,
     enrich_data_with_coordinates,
@@ -42,19 +43,26 @@ def download_pdf(url, filename):
     filepath = os.path.join(PDF_DOWNLOAD_DIR, filename)
     public_filepath = os.path.join("public/reports", filename)
 
-    # Skip if already downloaded
+    # Skip if already downloaded -- but only if the saved copy is a real PDF.
+    # (A ZIP or HTML error page saved under a .pdf name gets re-fetched.)
     if os.path.exists(filepath) and os.path.exists(public_filepath):
-        return True
+        with open(public_filepath, 'rb') as f:
+            if f.read(5) == b'%PDF-':
+                return True
 
     try:
         print(f"  Downloading: {filename}...", end=" ")
         response = requests.get(url, timeout=30)
         if response.status_code == 200:
+            content = unwrap_pdf_bytes(response.content)
+            if content[:5] != b'%PDF-':
+                print("Failed (response is not a PDF)")
+                return False
             # Save to both locations
             with open(filepath, 'wb') as f:
-                f.write(response.content)
+                f.write(content)
             with open(public_filepath, 'wb') as f:
-                f.write(response.content)
+                f.write(content)
             print("OK")
             return True
         else:

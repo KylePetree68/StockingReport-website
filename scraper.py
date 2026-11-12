@@ -10,6 +10,7 @@ import os
 import shutil
 import time
 import sys
+import zipfile
 
 # This is the single, definitive script for all scraping operations.
 
@@ -189,6 +190,33 @@ def _ocr_pdf(pdf_bytes):
         print(f"    [!] OCR fallback failed: {e}")
         return ""
 
+def unwrap_pdf_bytes(content):
+    """
+    NMDGF's download manager sometimes serves a report as a ZIP archive
+    containing the PDF (first seen with the 11-6-26 report) instead of the
+    bare PDF. Return the raw PDF bytes either way. Anything that is neither a
+    PDF nor a ZIP holding one is returned unchanged so the caller's normal
+    error handling still applies.
+    """
+    if not content or content[:5] == b'%PDF-':
+        return content
+    if content[:2] == b'PK':
+        try:
+            with zipfile.ZipFile(io.BytesIO(content)) as zf:
+                # Duplicate uploads are common; if the PDFs actually differ,
+                # take the most recently added one (likely a corrected upload).
+                members = [i for i in zf.infolist() if i.filename.lower().endswith('.pdf')]
+                if members:
+                    members.sort(key=lambda i: i.date_time, reverse=True)
+                    data = zf.read(members[0])
+                    distinct = {zf.read(m) for m in members}
+                    if len(distinct) > 1:
+                        print(f"    [!] ZIP held {len(distinct)} different PDFs; using newest: {members[0].filename}")
+                    return data
+        except zipfile.BadZipFile:
+            pass
+    return content
+
 def extract_text_from_pdf(pdf_url):
     """
     Downloads a PDF from a URL and extracts all text from it.
@@ -198,7 +226,7 @@ def extract_text_from_pdf(pdf_url):
     try:
         response = requests.get(pdf_url, timeout=30)
         response.raise_for_status()
-        pdf_bytes = response.content
+        pdf_bytes = unwrap_pdf_bytes(response.content)
         full_text = ""
         with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
             for page in pdf.pages:

@@ -16,6 +16,9 @@ import zipfile
 
 BASE_URL = "https://wildlife.dgf.nm.gov"
 ARCHIVE_PAGE_URL = f"{BASE_URL}/fishing/weekly-report/fish-stocking-archive/"
+# Canonical origin: Vercel serves www and redirects the bare domain to it,
+# and cleanUrls strips ".html", so every URL we publish uses this form.
+SITE_URL = "https://www.stockingreport.com"
 LIVE_DATA_URL = "https://stockingreport.com/stocking_data.json"
 OUTPUT_FILE = "stocking_data.json"
 BACKUP_FILE = "stocking_data.json.bak"
@@ -804,7 +807,7 @@ def generate_schema_org(water_name, stats, coords, page_url):
         "creator": {
             "@type": "Organization",
             "name": "StockingReport.com",
-            "url": "https://stockingreport.com"
+            "url": f"{SITE_URL}/"
         },
         "provider": {
             "@type": "Organization",
@@ -842,7 +845,7 @@ def generate_schema_org(water_name, stats, coords, page_url):
     breadcrumb = {
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stockingreport.com"},
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_URL}/"},
             {"@type": "ListItem", "position": 2, "name": water_name, "item": page_url}
         ]
     }
@@ -1785,7 +1788,7 @@ def generate_static_pages(data):
         regulation_html = generate_regulation_html(water_name, regulations_data)
 
         # Generate page URL for social media tags
-        page_url = f"https://stockingreport.com/public/waters/{filename}"
+        page_url = f"{SITE_URL}/public/waters/{filename[:-len('.html')]}"
         schema_org = generate_schema_org(water_name, summary_stats, coords, page_url)
 
         water_image_html = generate_water_image_html(water_name, water_images)
@@ -1835,7 +1838,7 @@ def generate_sitemap(data):
     """
     print("\n--- Starting Sitemap Generation ---")
     
-    urls = ["https://stockingreport.com/"]
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/about"]
 
     names = list(data.keys())
     # Pages for unstocked extra waters (extra_waters.json) belong in the sitemap too.
@@ -1847,8 +1850,8 @@ def generate_sitemap(data):
             print(f"Warning: Could not load {EXTRA_WATERS_FILE} for sitemap: {e}")
 
     for water_name in names:
-        filename = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-') + ".html"
-        url = f"https://stockingreport.com/public/waters/{filename}"
+        slug = re.sub(r'[^a-z0-9]+', '-', water_name.lower()).strip('-')
+        url = f"{SITE_URL}/public/waters/{slug}"
         urls.append(url)
 
     xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'

@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://stockingreport.com/public/sitemap.xml
+Sitemap: https://www.stockingreport.com/public/sitemap.xml

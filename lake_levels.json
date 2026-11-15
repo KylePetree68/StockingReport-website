@@ -1,17 +1,13 @@
 {
- "_generated": "2026-11-14T07:44:16Z",
+ "_generated": "2026-11-15T08:00:26Z",
  "_readme": "Daily water-surface elevation (ft) or storage (ac-ft) per reservoir; see lake_level_sources.json. Written by fetch_lake_levels.py.",
  "Bluewater Lake": {
   "source": "usgs",
   "label": "USGS 08341400 Bluewater Lake near Bluewater",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    7369.59
-   ],
    [
     "2025-10-11",
     7369.59
@@ -1555,6 +1551,10 @@
    [
     "2026-11-13",
     7366.6
+   ],
+   [
+    "2026-11-14",
+    7366.61
    ]
   ]
  },
@@ -1563,12 +1563,8 @@
   "label": "USGS 07205500 Eagle Nest Lake near Eagle Nest",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    8167.95
-   ],
    [
     "2025-10-11",
     8167.94
@@ -3164,6 +3160,10 @@
    [
     "2026-11-13",
     8159.82
+   ],
+   [
+    "2026-11-14",
+    8159.84
    ]
   ]
  },
@@ -3172,12 +3172,8 @@
   "label": "USGS 07199450 Lake Maloya near Raton",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    7510.7
-   ],
    [
     "2025-10-11",
     7510.71
@@ -4565,6 +4561,10 @@
    [
     "2026-11-12",
     7511.0
+   ],
+   [
+    "2026-11-13",
+    7510.99
    ]
   ]
  },
@@ -4573,12 +4573,8 @@
   "label": "USGS 07226800 Ute Reservoir near Logan (storage)",
   "unit": "ac-ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    200000.0
-   ],
    [
     "2025-10-11",
     199800.0
@@ -6174,6 +6170,10 @@
    [
     "2026-11-13",
     187700.0
+   ],
+   [
+    "2026-11-14",
+    187500.0
    ]
   ]
  },
@@ -6182,12 +6182,8 @@
   "label": "USACE Albuquerque District, Conchas Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    4192.97
-   ],
    [
     "2025-10-11",
     4192.95
@@ -7779,12 +7775,8 @@
   "label": "USACE Albuquerque District, Santa Rosa Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    4741.41
-   ],
    [
     "2025-10-11",
     4741.5
@@ -9375,7 +9367,11 @@
    ],
    [
     "2026-11-14",
-    4735.08
+    4735.17
+   ],
+   [
+    "2026-11-15",
+    4735.23
    ]
   ]
  },
@@ -9384,12 +9380,8 @@
   "label": "USACE Albuquerque District, Abiquiu Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    6202.58
-   ],
    [
     "2025-10-11",
     6202.64
@@ -10980,7 +10972,11 @@
    ],
    [
     "2026-11-14",
-    6224.63
+    6224.67
+   ],
+   [
+    "2026-11-15",
+    6224.67
    ]
   ]
  },
@@ -10989,12 +10985,8 @@
   "label": "USACE Albuquerque District, Cochiti Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    5345.29
-   ],
    [
     "2025-10-11",
     5345.35
@@ -12585,7 +12577,11 @@
    ],
    [
     "2026-11-14",
-    5361.15
+    5361.26
+   ],
+   [
+    "2026-11-15",
+    5361.47
    ]
   ]
  },
@@ -12594,12 +12590,8 @@
   "label": "Bureau of Reclamation, Heron Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    7077.42
-   ],
    [
     "2025-10-11",
     7077.58
@@ -14191,6 +14183,10 @@
    [
     "2026-11-12",
     7102.91
+   ],
+   [
+    "2026-11-13",
+    7103.19
    ]
   ]
  },
@@ -14199,12 +14195,8 @@
   "label": "Bureau of Reclamation, Navajo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    6020.5
-   ],
    [
     "2025-10-11",
     6021.44
@@ -15796,6 +15788,10 @@
    [
     "2026-11-12",
     6071.16
+   ],
+   [
+    "2026-11-13",
+    6071.55
    ]
   ]
  },
@@ -15804,12 +15800,8 @@
   "label": "Bureau of Reclamation, El Vado Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    6820.12
-   ],
    [
     "2025-10-11",
     6820.21
@@ -17401,6 +17393,10 @@
    [
     "2026-11-12",
     6817.89
+   ],
+   [
+    "2026-11-13",
+    6817.07
    ]
   ]
  },
@@ -17409,12 +17405,8 @@
   "label": "Bureau of Reclamation, Elephant Butte Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    4291.46
-   ],
    [
     "2025-10-11",
     4291.6
@@ -19002,6 +18994,10 @@
    [
     "2026-11-12",
     4314.74
+   ],
+   [
+    "2026-11-13",
+    4315.51
    ]
   ]
  },
@@ -19010,12 +19006,8 @@
   "label": "Bureau of Reclamation, Caballo Reservoir",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    4134.25
-   ],
    [
     "2025-10-11",
     4134.24
@@ -20599,6 +20591,10 @@
    [
     "2026-11-12",
     4139.18
+   ],
+   [
+    "2026-11-13",
+    4139.21
    ]
   ]
  },
@@ -20607,12 +20603,8 @@
   "label": "Bureau of Reclamation, Lake Sumner",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    4247.9
-   ],
    [
     "2025-10-11",
     4248.05
@@ -22176,6 +22168,10 @@
    [
     "2026-11-12",
     4250.84
+   ],
+   [
+    "2026-11-13",
+    4250.94
    ]
   ]
  },
@@ -22184,12 +22180,8 @@
   "label": "Bureau of Reclamation, Brantley Lake",
   "unit": "ft",
   "full_pool_ft": null,
-  "fetched": "2026-11-14",
+  "fetched": "2026-11-15",
   "series": [
-   [
-    "2025-10-10",
-    3247.59
-   ],
    [
     "2025-10-11",
     3247.47
@@ -23769,6 +23761,10 @@
    [
     "2026-11-12",
     3256.81
+   ],
+   [
+    "2026-11-13",
+    3256.78
    ]
   ]
  }

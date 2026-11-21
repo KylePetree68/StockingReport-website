@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-11-20T08:46:12Z",
+ "_fetched": "2026-11-21T08:27:56Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -215,6 +215,17 @@
     "text": "Mesilla Valley Bosque Park is closed on Thanksgiving Day, Christmas Day and New Year's Day.",
     "posted": "11/19/2021",
     "until": "ongoing",
+    "boating": false
+   }
+  ]
+ },
+ "Morphy Lake": {
+  "phone": "(575) 387-2328",
+  "alerts": [
+   {
+    "text": "Morphy Lake is closed due to seasonal Closure from November 15 2026 through April 1st 2027",
+    "posted": "11/20/2026",
+    "until": "3/31/2027",
     "boating": false
    }
   ]

@@ -1,5 +1,5 @@
 {
- "_fetched": "2026-11-23T09:20:16Z",
+ "_fetched": "2026-11-24T11:14:52Z",
  "_source": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure",
  "Caballo Lake": {
   "phone": "(575) 743-3942",
@@ -233,6 +233,12 @@
  "Navajo Lake": {
   "phone": "(505) 632-2278",
   "alerts": [
+   {
+    "text": "This park has a seasonal closure of the Cottonwood, Crusher Hole, Juniper, Cedar, and Sims Upper Loop campgrounds. The Pine Main and Sims Main camp loops are still available for camping by reservation only. It is important for visitors to continue to check for details on specific park hours of operation and additional information before visiting",
+    "posted": "11/18/2026",
+    "until": "1/31/2027",
+    "boating": false
+   },
    {
     "text": "Highway 539 from mile marker 0 to mile marker 5 is closed due to severe damage from recent floods. Traffic attempting to gain access to Navajo Lake State Park should use Highway 511 near Blanco or Highway 173 in Aztec. NM DOT does not have a timeframe for reopening this road.",
     "posted": "10/25/2026",

@@ -30,7 +30,7 @@
 
     emoji: '🦃', // turkey
     headline: 'Happy Thanksgiving',
-    message: 'Tight lines and safe travels from NM Stocking Report. Stocking data keeps updating right through the holiday.',
+    message: 'Tight lines and safe travels from NM Stocking Report.',
 
     // Autumn palette, chosen to sit over the site's blue header without clashing.
     background: 'linear-gradient(90deg, #7c2d12 0%, #9a3412 45%, #b45309 100%)',
